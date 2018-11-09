@@ -1,0 +1,60 @@
+{
+  "name": "aspose-imaging-cloud",
+  "version": "18.12.0",
+  "description": "Aspose.Imaging for Cloud Node.js SDK",
+  "homepage": "https://products.aspose.cloud/imaging",
+  "author": {
+    "name": "Maksym Shnurenok",
+    "email": "maksym.shnurenok@apose.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.15"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-nodejs.git"
+  },
+  "keywords": [
+    "Aspose",
+    "Cloud",
+    "Imaging",
+    "REST",
+    "API",
+    "SDK"
+  ],
+  "readmeFilename": "README.md",
+  "main": "dist/lib/api.js",
+  "types": "dist/lib/api.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "compile": "tsc",
+    "lint": "tslint lib/{,**/}*.ts test/{,**/}*.ts -t verbose --project ./tsconfig.json",
+    "test": "cross-var node --max_old_space_size=4096 ./node_modules/jest/bin/jest.js --testMatch=$ProcessedTestPattern --verbose --runInBand --no-cache --colors --ci --reporters=default --reporters=jest-junit",
+    "ci": "npm run-script lint && npm run-script compile && npm run-script test"
+  },
+  "jest-junit": {
+    "outputDirectory": "../test-reports",
+    "outputName": "./junit.xml"
+  },
+  "dependencies": {
+    "@types/request": "^2.47.0",
+    "request": "^2.87.0",
+    "request-debug": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.9",
+    "@types/jest-each": "^0.3.2",
+    "asposestoragecloud": "^1.0.5",
+    "jest": "^23.6.0",
+    "jest-each": "^23.6.0",
+    "jest-junit": "^5.2.0",
+    "ts-jest": "^23.10.4",
+    "ts-node": "^4.0.2",
+    "tslint": "^5.8.0",
+    "typescript": "^2.9.2",
+    "cross-var": "^1.1.0"
+  }
+}

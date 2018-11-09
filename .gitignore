@@ -1,0 +1,8 @@
+wwwroot/*.js
+node_modules
+typings
+.vs/
+.vscode/
+dist/
+package-lock.json
+.swagger-codegen-ignore
