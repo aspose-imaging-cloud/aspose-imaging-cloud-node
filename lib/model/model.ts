@@ -36,7 +36,19 @@ export class BmpProperties {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "compression",
             baseName: "Compression",
@@ -69,7 +81,19 @@ export class DicomProperties {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "planarConfiguration",
             baseName: "PlanarConfiguration",
@@ -332,7 +356,19 @@ export class DjvuProperties {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "backgroundColor",
             baseName: "BackgroundColor",
@@ -385,7 +421,19 @@ export class DngProperties {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "dngVersion",
             baseName: "DngVersion",
@@ -518,7 +566,19 @@ export class ExifData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "apertureValue",
             baseName: "ApertureValue",
@@ -1551,7 +1611,19 @@ export class GifProperties {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "backgroundColor",
             baseName: "BackgroundColor",
@@ -1614,7 +1686,19 @@ export class ImageDuplicates {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "duplicateImages",
             baseName: "DuplicateImages",
@@ -1647,7 +1731,19 @@ export class JfifData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "densityUnits",
             baseName: "DensityUnits",
@@ -1710,7 +1806,19 @@ export class Jpeg2000Codec {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
     ];
 
     /**
@@ -1734,7 +1842,19 @@ export class Jpeg2000Properties {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "comments",
             baseName: "Comments",
@@ -1777,7 +1897,19 @@ export class JpegProperties {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "comment",
             baseName: "Comment",
@@ -1830,7 +1962,19 @@ export class OdgMetadata {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "generator",
             baseName: "Generator",
@@ -2033,7 +2177,19 @@ export class OdgPage {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "width",
             baseName: "Width",
@@ -2076,7 +2232,19 @@ export class OdgProperties {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "pageCount",
             baseName: "PageCount",
@@ -2129,7 +2297,19 @@ export class PngProperties {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
     ];
 
     /**
@@ -2153,7 +2333,19 @@ export class PsdProperties {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "bitsPerChannel",
             baseName: "BitsPerChannel",
@@ -2216,7 +2408,19 @@ export class SearchResult {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "imageId",
             baseName: "ImageId",
@@ -2259,7 +2463,19 @@ export class TiffFrame {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "frameOptions",
             baseName: "FrameOptions",
@@ -2322,7 +2538,19 @@ export class TiffOptions {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "isValid",
             baseName: "IsValid",
@@ -2805,7 +3033,19 @@ export class TiffProperties {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "byteOrder",
             baseName: "ByteOrder",
@@ -2858,7 +3098,19 @@ export class WebPProperties {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "lossless",
             baseName: "Lossless",
@@ -2921,7 +3173,19 @@ export class ImageDuplicatesSet extends SaaSposeResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "duplicates",
             baseName: "Duplicates",
@@ -2954,7 +3218,19 @@ export class ImageFeatures extends SaaSposeResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "imageId",
             baseName: "ImageId",
@@ -3017,7 +3293,19 @@ export class ImagingResponse extends SaaSposeResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "height",
             baseName: "Height",
@@ -3220,7 +3508,19 @@ export class JpegExifData extends ExifData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "artist",
             baseName: "Artist",
@@ -3403,7 +3703,19 @@ export class SearchContextStatus extends SaaSposeResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "id",
             baseName: "Id",
@@ -3446,7 +3758,19 @@ export class SearchResultsSet extends SaaSposeResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "results",
             baseName: "Results",

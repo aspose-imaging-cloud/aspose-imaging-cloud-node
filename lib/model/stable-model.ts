@@ -32,7 +32,19 @@ export class SaaSposeResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
         {
             name: "code",
             baseName: "Code",
@@ -42,7 +54,7 @@ export class SaaSposeResponse {
             name: "status",
             baseName: "Status",
             type: "string",
-        }    ];
+        }];
 
     /**
      * Returns attribute type map

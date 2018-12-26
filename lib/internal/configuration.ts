@@ -57,7 +57,7 @@ export class Configuration {
     /**
      * Gets or sets the API version.
      */
-    public version: string = "v2";
+    public version: string = "v2.0";
 
     constructor(appSID: string, appKey: string, baseUrl?: string, debugMode?: boolean, version?: string) {
         if (baseUrl) {
