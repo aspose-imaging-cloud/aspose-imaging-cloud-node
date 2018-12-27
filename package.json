@@ -1,5 +1,5 @@
 {
-  "name": "aspose-imaging-cloud",
+  "name": "asposeimagingcloud",
   "version": "18.12.0",
   "description": "Aspose.Imaging for Cloud Node.js SDK",
   "homepage": "https://products.aspose.cloud/imaging",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-nodejs.git"
+    "url": "https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-node.git"
   },
   "keywords": [
     "Aspose",
