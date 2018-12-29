@@ -1,6 +1,6 @@
 {
-  "name": "asposeimagingcloud",
-  "version": "18.12.0",
+  "name": "@asposecloud/asposeimagingcloud",
+  "version": "18.12.1",
   "description": "Aspose.Imaging for Cloud Node.js SDK",
   "homepage": "https://products.aspose.cloud/imaging",
   "author": {

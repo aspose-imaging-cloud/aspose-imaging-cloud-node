@@ -45,18 +45,18 @@ Process options, change and return image in the PNG format:
 * Image features extraction (for now, AKAZE detector is supported)
 
 # Usage
-1. Please, add the following [nmp package](https://www.npmjs.com/package/asposeimagingcloud) to your project.json as a dependency.
+1. Please, add the following [nmp package](https://www.npmjs.com/package/@asposecloud/asposeimagingcloud) to your project.json as a dependency.
 ```json
 {
   "dependencies": {
-    "asposeimagingcloud": "^18.12.0"
+    "@asposecloud/asposeimagingcloud": "^18.12.1"
   }
 }
 ```
 
 2. Import the dependencies to your code as follows.
 ```ts
-import * as imaging from "asposeimagingcloud";
+import * as imaging from "@asposecloud/asposeimagingcloud";
 ```
 
 # Examples
