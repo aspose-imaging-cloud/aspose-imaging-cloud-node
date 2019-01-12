@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd. All rights reserved.
+* Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -133,7 +133,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                             return reject(new ApiError(null, response.statusCode));
                         }
                     } catch (error) {
-                        return reject(new ApiError(`Failed to parsre Aspose.Imaging for Cloud API error message: ${error}`, response.statusCode));
+                        return reject(new ApiError(`Failed to parsre Aspose.Imaging Cloud API error message: ${error}`, response.statusCode));
                     }
 
                 }
