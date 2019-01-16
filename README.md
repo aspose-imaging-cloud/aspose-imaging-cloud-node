@@ -49,7 +49,7 @@ Process options, change and return image in the PNG format:
 ```json
 {
   "dependencies": {
-    "@asposecloud/asposeimagingcloud": "^19.01"
+    "@asposecloud/asposeimagingcloud": "^19.1.0"
   }
 }
 ```

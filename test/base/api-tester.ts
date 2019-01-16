@@ -95,6 +95,10 @@ export abstract class ApiTester {
         "psd",
         "tiff",
     ];
+
+    /**
+     * Cloud test folder prefix.
+     */
     protected readonly CloudTestFolderPrefix: string = "ImagingCloudTestNodeJS";
 
     /**
@@ -529,7 +533,7 @@ export abstract class ApiTester {
                                     resultProperties = await this.imagingApi.getImageProperties(
                                         new imaging.GetImagePropertiesRequest({ name: resultFileName, folder, storage }));
                                     expect(resultProperties).toBeTruthy();
-                                } else if (!this.imagingApi.configuration.version.includes("v1.")) {
+                                } else if (!this.imagingApi.configuration.apiVersion.includes("v1.")) {
                                     resultProperties = await this.imagingApi.postImageProperties(new imaging.PostImagePropertiesRequest({ imageData: response }));
                                     expect(resultProperties).toBeTruthy();
                                 }

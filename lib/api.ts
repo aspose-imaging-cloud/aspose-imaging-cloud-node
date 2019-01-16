@@ -70,7 +70,7 @@ export class ImagingApi {
         if (requestObj.searchContextId === null || requestObj.searchContextId === undefined) {
             throw new Error('Required parameter "requestObj.searchContextId" was null or undefined when calling deleteSearchContext.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
@@ -80,7 +80,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -110,7 +110,7 @@ export class ImagingApi {
         if (requestObj.imageId === null || requestObj.imageId === undefined) {
             throw new Error('Required parameter "requestObj.imageId" was null or undefined when calling deleteSearchContextImage.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageId", requestObj.imageId);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -121,7 +121,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -151,7 +151,7 @@ export class ImagingApi {
         if (requestObj.imageId === null || requestObj.imageId === undefined) {
             throw new Error('Required parameter "requestObj.imageId" was null or undefined when calling deleteSearchContextImageFeatures.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageId", requestObj.imageId);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -161,7 +161,7 @@ export class ImagingApi {
             uri: localVarPath,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
@@ -203,7 +203,7 @@ export class ImagingApi {
         if (requestObj.verticalResolution === null || requestObj.verticalResolution === undefined) {
             throw new Error('Required parameter "requestObj.verticalResolution" was null or undefined when calling getImageBmp.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bitsPerPixel", requestObj.bitsPerPixel);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "horizontalResolution", requestObj.horizontalResolution);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "verticalResolution", requestObj.verticalResolution);
@@ -218,7 +218,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -268,7 +268,7 @@ export class ImagingApi {
         if (requestObj.height === null || requestObj.height === undefined) {
             throw new Error('Required parameter "requestObj.height" was null or undefined when calling getImageCrop.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "x", requestObj.x);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "y", requestObj.y);
@@ -284,7 +284,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -309,7 +309,7 @@ export class ImagingApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getImageDicom.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -321,7 +321,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -346,7 +346,7 @@ export class ImagingApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getImageDng.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -358,7 +358,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -408,7 +408,7 @@ export class ImagingApi {
         if (requestObj.borderY === null || requestObj.borderY === undefined) {
             throw new Error('Required parameter "requestObj.borderY" was null or undefined when calling getImageEmf.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bkColor", requestObj.bkColor);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageWidth", requestObj.pageWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageHeight", requestObj.pageHeight);
@@ -425,7 +425,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -456,7 +456,7 @@ export class ImagingApi {
         if (requestObj.frameId === null || requestObj.frameId === undefined) {
             throw new Error('Required parameter "requestObj.frameId" was null or undefined when calling getImageFrame.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "x", requestObj.x);
@@ -475,7 +475,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -506,7 +506,7 @@ export class ImagingApi {
         if (requestObj.frameId === null || requestObj.frameId === undefined) {
             throw new Error('Required parameter "requestObj.frameId" was null or undefined when calling getImageFrameProperties.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
@@ -515,7 +515,7 @@ export class ImagingApi {
             uri: localVarPath,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
@@ -542,7 +542,7 @@ export class ImagingApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getImageGif.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "backgroundColorIndex", requestObj.backgroundColorIndex);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "colorResolution", requestObj.colorResolution);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "hasTrailer", requestObj.hasTrailer);
@@ -560,7 +560,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -590,7 +590,7 @@ export class ImagingApi {
         if (requestObj.comment === null || requestObj.comment === undefined) {
             throw new Error('Required parameter "requestObj.comment" was null or undefined when calling getImageJpeg2000.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "comment", requestObj.comment);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "codec", requestObj.codec);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
@@ -604,7 +604,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -629,7 +629,7 @@ export class ImagingApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getImageJpg.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "quality", requestObj.quality);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "compressionType", requestObj.compressionType);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
@@ -643,7 +643,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -668,7 +668,7 @@ export class ImagingApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getImageOdg.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -680,7 +680,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -705,7 +705,7 @@ export class ImagingApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getImagePng.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -717,7 +717,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -742,7 +742,7 @@ export class ImagingApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getImageProperties.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
@@ -751,7 +751,7 @@ export class ImagingApi {
             uri: localVarPath,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
@@ -778,7 +778,7 @@ export class ImagingApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getImagePsd.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "channelsCount", requestObj.channelsCount);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "compressionMethod", requestObj.compressionMethod);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
@@ -792,7 +792,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -832,7 +832,7 @@ export class ImagingApi {
         if (requestObj.newHeight === null || requestObj.newHeight === undefined) {
             throw new Error('Required parameter "requestObj.newHeight" was null or undefined when calling getImageResize.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
@@ -846,7 +846,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -881,7 +881,7 @@ export class ImagingApi {
         if (requestObj.method === null || requestObj.method === undefined) {
             throw new Error('Required parameter "requestObj.method" was null or undefined when calling getImageRotateFlip.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "method", requestObj.method);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
@@ -894,7 +894,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -924,7 +924,7 @@ export class ImagingApi {
         if (requestObj.format === null || requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was null or undefined when calling getImageSaveAs.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -936,7 +936,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -976,7 +976,7 @@ export class ImagingApi {
         if (requestObj.bitDepth === null || requestObj.bitDepth === undefined) {
             throw new Error('Required parameter "requestObj.bitDepth" was null or undefined when calling getImageTiff.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "compression", requestObj.compression);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resolutionUnit", requestObj.resolutionUnit);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bitDepth", requestObj.bitDepth);
@@ -993,7 +993,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1058,7 +1058,7 @@ export class ImagingApi {
         if (requestObj.rotateFlipMethod === null || requestObj.rotateFlipMethod === undefined) {
             throw new Error('Required parameter "requestObj.rotateFlipMethod" was null or undefined when calling getImageUpdate.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
@@ -1077,7 +1077,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1122,7 +1122,7 @@ export class ImagingApi {
         if (requestObj.animBackgroundColor === null || requestObj.animBackgroundColor === undefined) {
             throw new Error('Required parameter "requestObj.animBackgroundColor" was null or undefined when calling getImageWebP.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "lossLess", requestObj.lossLess);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "quality", requestObj.quality);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "animLoopCount", requestObj.animLoopCount);
@@ -1138,7 +1138,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1188,7 +1188,7 @@ export class ImagingApi {
         if (requestObj.borderY === null || requestObj.borderY === undefined) {
             throw new Error('Required parameter "requestObj.borderY" was null or undefined when calling getImageWmf.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bkColor", requestObj.bkColor);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageWidth", requestObj.pageWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageHeight", requestObj.pageHeight);
@@ -1205,7 +1205,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1214,7 +1214,7 @@ export class ImagingApi {
     }
 
     /**
-     * Extract features from image without adding to search context.
+     * Extract features from image without adding to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async getSearchContextExtractImageFeatures(requestObj: model.GetSearchContextExtractImageFeaturesRequest): Promise<model.ImageFeatures> {
@@ -1235,17 +1235,24 @@ export class ImagingApi {
         if (requestObj.imageId === null || requestObj.imageId === undefined) {
             throw new Error('Required parameter "requestObj.imageId" was null or undefined when calling getSearchContextExtractImageFeatures.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageId", requestObj.imageId);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
             uri: localVarPath,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
@@ -1277,7 +1284,7 @@ export class ImagingApi {
         if (requestObj.similarityThreshold === null || requestObj.similarityThreshold === undefined) {
             throw new Error('Required parameter "requestObj.similarityThreshold" was null or undefined when calling getSearchContextFindDuplicates.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "similarityThreshold", requestObj.similarityThreshold);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -1287,7 +1294,7 @@ export class ImagingApi {
             uri: localVarPath,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
@@ -1298,7 +1305,7 @@ export class ImagingApi {
     }
 
     /**
-     * Find similar images.
+     * Find similar images. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async getSearchContextFindSimilar(requestObj: model.GetSearchContextFindSimilarRequest): Promise<model.SearchResultsSet> {
@@ -1324,19 +1331,27 @@ export class ImagingApi {
         if (requestObj.maxCount === null || requestObj.maxCount === undefined) {
             throw new Error('Required parameter "requestObj.maxCount" was null or undefined when calling getSearchContextFindSimilar.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "similarityThreshold", requestObj.similarityThreshold);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "maxCount", requestObj.maxCount);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageId", requestObj.imageId);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
+        
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
             uri: localVarPath,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
@@ -1368,7 +1383,7 @@ export class ImagingApi {
         if (requestObj.imageId === null || requestObj.imageId === undefined) {
             throw new Error('Required parameter "requestObj.imageId" was null or undefined when calling getSearchContextImage.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageId", requestObj.imageId);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -1379,7 +1394,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1409,7 +1424,7 @@ export class ImagingApi {
         if (requestObj.imageId === null || requestObj.imageId === undefined) {
             throw new Error('Required parameter "requestObj.imageId" was null or undefined when calling getSearchContextImageFeatures.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageId", requestObj.imageId);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -1419,7 +1434,7 @@ export class ImagingApi {
             uri: localVarPath,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
@@ -1446,7 +1461,7 @@ export class ImagingApi {
         if (requestObj.searchContextId === null || requestObj.searchContextId === undefined) {
             throw new Error('Required parameter "requestObj.searchContextId" was null or undefined when calling getSearchContextStatus.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
@@ -1455,7 +1470,7 @@ export class ImagingApi {
             uri: localVarPath,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
@@ -1482,7 +1497,7 @@ export class ImagingApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getTiffToFax.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
@@ -1493,7 +1508,7 @@ export class ImagingApi {
             encoding: null,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1512,7 +1527,7 @@ export class ImagingApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/ai/imageSearch/create";
         const queryParameters: any = {};
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "detector", requestObj.detector);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "matchingAlgorithm", requestObj.matchingAlgorithm);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -1523,7 +1538,7 @@ export class ImagingApi {
             uri: localVarPath,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
@@ -1534,7 +1549,7 @@ export class ImagingApi {
     }
 
     /**
-     * Update parameters of BMP image. Image is passed in a request stream.
+     * Update parameters of BMP image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageBmp(requestObj: model.PostImageBmpRequest): Promise<Buffer> {
@@ -1564,21 +1579,28 @@ export class ImagingApi {
         if (requestObj.verticalResolution === null || requestObj.verticalResolution === undefined) {
             throw new Error('Required parameter "requestObj.verticalResolution" was null or undefined when calling postImageBmp.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bitsPerPixel", requestObj.bitsPerPixel);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "horizontalResolution", requestObj.horizontalResolution);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "verticalResolution", requestObj.verticalResolution);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1587,7 +1609,7 @@ export class ImagingApi {
     }
 
     /**
-     * Crop an image. Image is passed in a request stream.
+     * Crop an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageCrop(requestObj: model.PostImageCropRequest): Promise<Buffer> {
@@ -1627,7 +1649,8 @@ export class ImagingApi {
         if (requestObj.height === null || requestObj.height === undefined) {
             throw new Error('Required parameter "requestObj.height" was null or undefined when calling postImageCrop.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "x", requestObj.x);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "y", requestObj.y);
@@ -1635,14 +1658,20 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", requestObj.height);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1651,7 +1680,7 @@ export class ImagingApi {
     }
 
     /**
-     * Rasterize DICOM image to PNG using given parameters. Image is passed in a request stream.
+     * Rasterize DICOM image to PNG using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageDicom(requestObj: model.PostImageDicomRequest): Promise<Buffer> {
@@ -1666,18 +1695,25 @@ export class ImagingApi {
         if (requestObj.imageData === null || requestObj.imageData === undefined) {
             throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling postImageDicom.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1686,7 +1722,7 @@ export class ImagingApi {
     }
 
     /**
-     * Rasterize DNG image to PNG using given parameters. Image is passed in a request stream.
+     * Rasterize DNG image to PNG using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageDng(requestObj: model.PostImageDngRequest): Promise<Buffer> {
@@ -1701,18 +1737,25 @@ export class ImagingApi {
         if (requestObj.imageData === null || requestObj.imageData === undefined) {
             throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling postImageDng.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1721,7 +1764,7 @@ export class ImagingApi {
     }
 
     /**
-     * Rasterize EMF image to PNG using given parameters. Image is passed in a request stream.
+     * Rasterize EMF image to PNG using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageEmf(requestObj: model.PostImageEmfRequest): Promise<Buffer> {
@@ -1761,7 +1804,8 @@ export class ImagingApi {
         if (requestObj.borderY === null || requestObj.borderY === undefined) {
             throw new Error('Required parameter "requestObj.borderY" was null or undefined when calling postImageEmf.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bkColor", requestObj.bkColor);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageWidth", requestObj.pageWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageHeight", requestObj.pageHeight);
@@ -1770,14 +1814,20 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1786,7 +1836,7 @@ export class ImagingApi {
     }
 
     /**
-     * Get separate frame from existing TIFF image. Image is passed in a request stream.
+     * Get separate frame from existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageFrame(requestObj: model.PostImageFrameRequest): Promise<Buffer> {
@@ -1807,7 +1857,8 @@ export class ImagingApi {
         if (requestObj.frameId === null || requestObj.frameId === undefined) {
             throw new Error('Required parameter "requestObj.frameId" was null or undefined when calling postImageFrame.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "x", requestObj.x);
@@ -1818,14 +1869,20 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "saveOtherFrames", requestObj.saveOtherFrames);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1834,7 +1891,7 @@ export class ImagingApi {
     }
 
     /**
-     * Get separate frame properties of existing TIFF image. Image is passed in a request stream.
+     * Get separate frame properties of existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageFrameProperties(requestObj: model.PostImageFramePropertiesRequest): Promise<model.ImagingResponse> {
@@ -1855,14 +1912,21 @@ export class ImagingApi {
         if (requestObj.frameId === null || requestObj.frameId === undefined) {
             throw new Error('Required parameter "requestObj.frameId" was null or undefined when calling postImageFrameProperties.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
@@ -1873,7 +1937,7 @@ export class ImagingApi {
     }
 
     /**
-     * Update parameters of GIF image. Image is passed in a request stream.
+     * Update parameters of GIF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageGif(requestObj: model.PostImageGifRequest): Promise<Buffer> {
@@ -1888,7 +1952,8 @@ export class ImagingApi {
         if (requestObj.imageData === null || requestObj.imageData === undefined) {
             throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling postImageGif.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "backgroundColorIndex", requestObj.backgroundColorIndex);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "colorResolution", requestObj.colorResolution);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "hasTrailer", requestObj.hasTrailer);
@@ -1898,14 +1963,20 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1914,7 +1985,7 @@ export class ImagingApi {
     }
 
     /**
-     * Update parameters of JPEG2000 image. Image is passed in a request stream.
+     * Update parameters of JPEG2000 image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageJpeg2000(requestObj: model.PostImageJpeg2000Request): Promise<Buffer> {
@@ -1934,20 +2005,27 @@ export class ImagingApi {
         if (requestObj.comment === null || requestObj.comment === undefined) {
             throw new Error('Required parameter "requestObj.comment" was null or undefined when calling postImageJpeg2000.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "comment", requestObj.comment);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "codec", requestObj.codec);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1956,7 +2034,7 @@ export class ImagingApi {
     }
 
     /**
-     * Update parameters of JPEG image. Image is passed in a request stream.
+     * Update parameters of JPEG image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageJpg(requestObj: model.PostImageJpgRequest): Promise<Buffer> {
@@ -1971,20 +2049,27 @@ export class ImagingApi {
         if (requestObj.imageData === null || requestObj.imageData === undefined) {
             throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling postImageJpg.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "quality", requestObj.quality);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "compressionType", requestObj.compressionType);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -1993,7 +2078,7 @@ export class ImagingApi {
     }
 
     /**
-     * Rasterize ODG image to PNG using given parameters. Image is passed in a request stream.
+     * Rasterize ODG image to PNG using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageOdg(requestObj: model.PostImageOdgRequest): Promise<Buffer> {
@@ -2008,18 +2093,25 @@ export class ImagingApi {
         if (requestObj.imageData === null || requestObj.imageData === undefined) {
             throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling postImageOdg.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -2028,7 +2120,7 @@ export class ImagingApi {
     }
 
     /**
-     * Update parameters of PNG image. Image is passed in a request stream.
+     * Update parameters of PNG image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImagePng(requestObj: model.PostImagePngRequest): Promise<Buffer> {
@@ -2043,18 +2135,25 @@ export class ImagingApi {
         if (requestObj.imageData === null || requestObj.imageData === undefined) {
             throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling postImagePng.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -2063,7 +2162,7 @@ export class ImagingApi {
     }
 
     /**
-     * Get properties of an image. Image is passed in a request stream.
+     * Get properties of an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageProperties(requestObj: model.PostImagePropertiesRequest): Promise<model.ImagingResponse> {
@@ -2078,14 +2177,21 @@ export class ImagingApi {
         if (requestObj.imageData === null || requestObj.imageData === undefined) {
             throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling postImageProperties.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
@@ -2096,7 +2202,7 @@ export class ImagingApi {
     }
 
     /**
-     * Update parameters of PSD image. Image is passed in a request stream.
+     * Update parameters of PSD image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImagePsd(requestObj: model.PostImagePsdRequest): Promise<Buffer> {
@@ -2111,20 +2217,27 @@ export class ImagingApi {
         if (requestObj.imageData === null || requestObj.imageData === undefined) {
             throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling postImagePsd.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "channelsCount", requestObj.channelsCount);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "compressionMethod", requestObj.compressionMethod);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -2133,7 +2246,7 @@ export class ImagingApi {
     }
 
     /**
-     * Resize an image. Image is passed in a request stream.
+     * Resize an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageResize(requestObj: model.PostImageResizeRequest): Promise<Buffer> {
@@ -2163,20 +2276,27 @@ export class ImagingApi {
         if (requestObj.newHeight === null || requestObj.newHeight === undefined) {
             throw new Error('Required parameter "requestObj.newHeight" was null or undefined when calling postImageResize.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -2185,7 +2305,7 @@ export class ImagingApi {
     }
 
     /**
-     * Rotate and/or flip an image. Image is passed in a request stream.
+     * Rotate and/or flip an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageRotateFlip(requestObj: model.PostImageRotateFlipRequest): Promise<Buffer> {
@@ -2210,19 +2330,26 @@ export class ImagingApi {
         if (requestObj.method === null || requestObj.method === undefined) {
             throw new Error('Required parameter "requestObj.method" was null or undefined when calling postImageRotateFlip.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "method", requestObj.method);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -2231,7 +2358,7 @@ export class ImagingApi {
     }
 
     /**
-     * Export existing image to another format. Image is passed in a request stream.             
+     * Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
      * @param requestObj contains request parameters
      */
     public async postImageSaveAs(requestObj: model.PostImageSaveAsRequest): Promise<Buffer> {
@@ -2251,18 +2378,25 @@ export class ImagingApi {
         if (requestObj.format === null || requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was null or undefined when calling postImageSaveAs.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -2271,7 +2405,7 @@ export class ImagingApi {
     }
 
     /**
-     * Update parameters of TIFF image. Image is passed in a request stream.
+     * Update parameters of TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageTiff(requestObj: model.PostImageTiffRequest): Promise<Buffer> {
@@ -2301,7 +2435,8 @@ export class ImagingApi {
         if (requestObj.bitDepth === null || requestObj.bitDepth === undefined) {
             throw new Error('Required parameter "requestObj.bitDepth" was null or undefined when calling postImageTiff.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "compression", requestObj.compression);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resolutionUnit", requestObj.resolutionUnit);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bitDepth", requestObj.bitDepth);
@@ -2310,14 +2445,20 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "verticalResolution", requestObj.verticalResolution);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -2326,7 +2467,7 @@ export class ImagingApi {
     }
 
     /**
-     * Perform scaling, cropping and flipping of an image in a single request. Image is passed in a request stream.             
+     * Perform scaling, cropping and flipping of an image in a single request. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
      * @param requestObj contains request parameters
      */
     public async postImageUpdate(requestObj: model.PostImageUpdateRequest): Promise<Buffer> {
@@ -2381,7 +2522,8 @@ export class ImagingApi {
         if (requestObj.rotateFlipMethod === null || requestObj.rotateFlipMethod === undefined) {
             throw new Error('Required parameter "requestObj.rotateFlipMethod" was null or undefined when calling postImageUpdate.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
@@ -2392,14 +2534,20 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotateFlipMethod", requestObj.rotateFlipMethod);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -2408,7 +2556,7 @@ export class ImagingApi {
     }
 
     /**
-     * Update parameters of WEBP image. Image is passed in a request stream.
+     * Update parameters of WEBP image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageWebP(requestObj: model.PostImageWebPRequest): Promise<Buffer> {
@@ -2443,7 +2591,8 @@ export class ImagingApi {
         if (requestObj.animBackgroundColor === null || requestObj.animBackgroundColor === undefined) {
             throw new Error('Required parameter "requestObj.animBackgroundColor" was null or undefined when calling postImageWebP.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "lossLess", requestObj.lossLess);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "quality", requestObj.quality);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "animLoopCount", requestObj.animLoopCount);
@@ -2451,14 +2600,20 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -2467,7 +2622,7 @@ export class ImagingApi {
     }
 
     /**
-     * Rasterize WMF image to PNG using given parameters. Image is passed in a request stream.
+     * Rasterize WMF image to PNG using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageWmf(requestObj: model.PostImageWmfRequest): Promise<Buffer> {
@@ -2507,7 +2662,8 @@ export class ImagingApi {
         if (requestObj.borderY === null || requestObj.borderY === undefined) {
             throw new Error('Required parameter "requestObj.borderY" was null or undefined when calling postImageWmf.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bkColor", requestObj.bkColor);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageWidth", requestObj.pageWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageHeight", requestObj.pageHeight);
@@ -2516,14 +2672,20 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -2532,7 +2694,7 @@ export class ImagingApi {
     }
 
     /**
-     * Add image and images features to search context.
+     * Add image and images features to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postSearchContextAddImage(requestObj: model.PostSearchContextAddImageRequest): Promise<Buffer> {
@@ -2553,18 +2715,25 @@ export class ImagingApi {
         if (requestObj.imageId === null || requestObj.imageId === undefined) {
             throw new Error('Required parameter "requestObj.imageId" was null or undefined when calling postSearchContextAddImage.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageId", requestObj.imageId);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -2573,7 +2742,7 @@ export class ImagingApi {
     }
 
     /**
-     * Add tag and reference image to search context.
+     * Add tag and reference image to search context. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postSearchContextAddTag(requestObj: model.PostSearchContextAddTagRequest): Promise<Buffer> {
@@ -2599,18 +2768,25 @@ export class ImagingApi {
         if (requestObj.tagName === null || requestObj.tagName === undefined) {
             throw new Error('Required parameter "requestObj.tagName" was null or undefined when calling postSearchContextAddTag.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tagName", requestObj.tagName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -2619,7 +2795,7 @@ export class ImagingApi {
     }
 
     /**
-     * Compare two images.
+     * Compare two images. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postSearchContextCompareImages(requestObj: model.PostSearchContextCompareImagesRequest): Promise<model.SearchResultsSet> {
@@ -2640,18 +2816,25 @@ export class ImagingApi {
         if (requestObj.imageId1 === null || requestObj.imageId1 === undefined) {
             throw new Error('Required parameter "requestObj.imageId1" was null or undefined when calling postSearchContextCompareImages.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageId1", requestObj.imageId1);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageId2", requestObj.imageId2);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
@@ -2662,7 +2845,7 @@ export class ImagingApi {
     }
 
     /**
-     * Extract images features and add them to search context
+     * Extract images features and add them to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postSearchContextExtractImageFeatures(requestObj: model.PostSearchContextExtractImageFeaturesRequest): Promise<Buffer> {
@@ -2678,19 +2861,26 @@ export class ImagingApi {
         if (requestObj.searchContextId === null || requestObj.searchContextId === undefined) {
             throw new Error('Required parameter "requestObj.searchContextId" was null or undefined when calling postSearchContextExtractImageFeatures.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageId", requestObj.imageId);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imagesFolder", requestObj.imagesFolder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -2699,7 +2889,7 @@ export class ImagingApi {
     }
 
     /**
-     * Find images by tag.
+     * Find images by tags. Tags JSON string is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postSearchContextFindByTags(requestObj: model.PostSearchContextFindByTagsRequest): Promise<model.SearchResultsSet> {
@@ -2730,18 +2920,25 @@ export class ImagingApi {
         if (requestObj.maxCount === null || requestObj.maxCount === undefined) {
             throw new Error('Required parameter "requestObj.maxCount" was null or undefined when calling postSearchContextFindByTags.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "similarityThreshold", requestObj.similarityThreshold);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "maxCount", requestObj.maxCount);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.tags !== undefined) {
+            const paramKey = "tags";
+            formParams[paramKey]  = ObjectSerializer.serialize(requestObj.tags, "string");
+        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
-            body: requestObj.tags,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
@@ -2773,7 +2970,7 @@ export class ImagingApi {
         if (requestObj.appendFile === null || requestObj.appendFile === undefined) {
             throw new Error('Required parameter "requestObj.appendFile" was null or undefined when calling postTiffAppend.');
         }
-        
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "appendFile", requestObj.appendFile);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -2783,7 +2980,7 @@ export class ImagingApi {
             uri: localVarPath,
             json: true,
         };
-         
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
@@ -2794,7 +2991,7 @@ export class ImagingApi {
     }
 
     /**
-     * Update image and images features in search context.
+     * Update image and images features in search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async putSearchContextImage(requestObj: model.PutSearchContextImageRequest): Promise<Buffer> {
@@ -2815,18 +3012,25 @@ export class ImagingApi {
         if (requestObj.imageId === null || requestObj.imageId === undefined) {
             throw new Error('Required parameter "requestObj.imageId" was null or undefined when calling putSearchContextImage.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageId", requestObj.imageId);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;
@@ -2835,7 +3039,7 @@ export class ImagingApi {
     }
 
     /**
-     * Update images features in search context.
+     * Update images features in search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async putSearchContextImageFeatures(requestObj: model.PutSearchContextImageFeaturesRequest): Promise<Buffer> {
@@ -2856,18 +3060,25 @@ export class ImagingApi {
         if (requestObj.imageId === null || requestObj.imageId === undefined) {
             throw new Error('Required parameter "requestObj.imageId" was null or undefined when calling putSearchContextImageFeatures.');
         }
-        
+
+        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageId", requestObj.imageId);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            formParams[paramKey] = requestObj.imageData;
+        }
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
-            body: requestObj.imageData,
         };
-         
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         result = response.body;

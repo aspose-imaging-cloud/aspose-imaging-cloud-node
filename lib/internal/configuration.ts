@@ -57,9 +57,9 @@ export class Configuration {
     /**
      * Gets or sets the API version.
      */
-    public version: string = "v2.0";
+    public apiVersion: string = "v2.0";
 
-    constructor(appSID: string, appKey: string, baseUrl?: string, debugMode?: boolean, version?: string) {
+    constructor(appSID: string, appKey: string, baseUrl?: string, debugMode?: boolean, apiVersion?: string) {
         if (baseUrl) {
             this.baseUrl = baseUrl;
         }
@@ -68,8 +68,8 @@ export class Configuration {
         this.appKey = appKey;
         this.debugMode = debugMode;
 
-        if (version) {
-            this.version = version;
+        if (apiVersion) {
+            this.apiVersion = apiVersion;
         }
 
         this.authentication = new OAuth() as IAuthentication;
@@ -80,9 +80,9 @@ export class Configuration {
      */
     public getApiBaseUrl(): string {
         if (this.baseUrl.endsWith("/")) {
-            return this.baseUrl + this.version;
+            return this.baseUrl + this.apiVersion;
         } else {
-            return this.baseUrl + "/" + this.version;
+            return this.baseUrl + "/" + this.apiVersion;
         }
     }
 }

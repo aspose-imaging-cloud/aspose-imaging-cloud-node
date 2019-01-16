@@ -76,11 +76,6 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     requestDebug(request, (type, data, r) => {
         if (r.writeDebugToConsole) {
             const toLog = {};
-            // tslint:disable-next-line:triple-equals
-            if (data.body && (data.body instanceof Buffer || data.body.toString().includes("Buffer"))) {
-                data.body = "buffer";
-            }
-            
             toLog[type] = data;
             // tslint:disable-next-line:no-console
             console.log(JSON.stringify(toLog, undefined, 2));
@@ -92,13 +87,23 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "node.js sdk";
-    requestOptions.headers["x-aspose-client-version"] = "18.12";
+    requestOptions.headers["x-aspose-client-version"] = "19.1.0";
 
-    if (!requestOptions.headers["Content-Type"]) {
+    if (requestOptions.formData && requestOptions.body) {
+        return Promise.reject("You can't send both form data and body.");
+    }
+
+    if (confguration.apiVersion.includes("v1.") && requestOptions.formData) {
+        requestOptions.body = requestOptions.formData[Object.keys(requestOptions.formData)[0]];
+        requestOptions.formData = null;
+    }
+
+    if (requestOptions.formData)  {
+        requestOptions.headers["Content-Type"] = "multipart/form-data";
+    } else if (requestOptions.body && requestOptions.body instanceof Buffer && requestOptions.body.length > 0) {
+        requestOptions.headers["Content-Type"] = "application/octet-stream";
+    } else {
         requestOptions.headers["Content-Type"] = "application/json";
-        if (requestOptions.body && requestOptions.body instanceof Buffer && requestOptions.body.length > 0) {
-            requestOptions.headers["Content-Type"] = "application/octet-stream";
-        }
     }
 
     const auth = confguration.authentication;
