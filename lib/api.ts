@@ -1342,7 +1342,6 @@ export class ImagingApi {
             const paramKey = "imageData";
             formParams[paramKey] = requestObj.imageData;
         }
-        
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
