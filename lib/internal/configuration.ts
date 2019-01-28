@@ -26,7 +26,7 @@ import { IAuthentication, OAuth  } from "../internal/auth";
 const defaultBasePath = "https://api.aspose.cloud/";
 
 /**
- * Words API configuration
+ * Aspose.Imaging Cloud API configuration
  */
 export class Configuration {
     /**
