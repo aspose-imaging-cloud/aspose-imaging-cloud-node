@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2018 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -59,8 +59,13 @@ class EmfApiTests extends ApiTester {
                 (originalProperties, resultProperties) => {
                     expect(originalProperties).toBeTruthy();
                     expect(resultProperties.pngProperties).toBeTruthy();
-                    expect(Math.round((pageWidth + borderX * 2) * (resultProperties.horizontalResolution / 72))).toEqual(resultProperties.width);
-                    expect(Math.round((pageHeight + borderX * 2) * (resultProperties.verticalResolution / 72))).toEqual(resultProperties.height);
+                    if (this.imagingApi.configuration.apiVersion.includes("v1.")) {
+                        expect(Math.round((pageWidth + borderX * 2) * (resultProperties.horizontalResolution / 72))).toEqual(resultProperties.width);
+                        expect(Math.round((pageHeight + borderX * 2) * (resultProperties.verticalResolution / 72))).toEqual(resultProperties.height);
+                    } else {
+                        expect(pageWidth + borderX * 2).toEqual(resultProperties.width);
+                        expect(pageHeight + borderX * 2).toEqual(resultProperties.height);
+                    }
                     return Promise.resolve();
                 },
                 folder,
@@ -93,8 +98,14 @@ class EmfApiTests extends ApiTester {
                 (originalProperties, resultProperties) => {
                     expect(originalProperties).toBeTruthy();
                     expect(resultProperties.pngProperties).toBeTruthy();
-                    expect(Math.round((pageWidth + borderX * 2) * (resultProperties.horizontalResolution / 72))).toEqual(resultProperties.width);
-                    expect(Math.round((pageHeight + borderX * 2) * (resultProperties.verticalResolution / 72))).toEqual(resultProperties.height);
+                    if (this.imagingApi.configuration.apiVersion.includes("v1.")) {
+                        expect(Math.round((pageWidth + borderX * 2) * (resultProperties.horizontalResolution / 72))).toEqual(resultProperties.width);
+                        expect(Math.round((pageHeight + borderX * 2) * (resultProperties.verticalResolution / 72))).toEqual(resultProperties.height);
+                    } else {
+                        expect(pageWidth + borderX * 2).toEqual(resultProperties.width);
+                        expect(pageHeight + borderX * 2).toEqual(resultProperties.height);
+                    }
+                    
                     return Promise.resolve();
                 },
                 folder,

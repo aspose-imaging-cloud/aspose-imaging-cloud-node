@@ -1,11 +1,11 @@
 {
   "name": "@asposecloud/asposeimagingcloud",
-  "version": "18.12.1",
-  "description": "Aspose.Imaging for Cloud Node.js SDK",
+  "version": "19.1.0",
+  "description": "Aspose.Imaging Cloud Node.js SDK",
   "homepage": "https://products.aspose.cloud/imaging",
   "author": {
     "name": "Maksym Shnurenok",
-    "email": "maksym.shnurenok@apose.com"
+    "url": "https://github.com/aspose-imaging-cloud"
   },
   "license": "MIT",
   "engines": {
@@ -17,11 +17,36 @@
   },
   "keywords": [
     "Aspose",
-    "Cloud",
     "Imaging",
+    "Cloud",
     "REST",
     "API",
-    "SDK"
+    "SDK",
+    "image",
+    "bmp",
+    "dicom",
+    "dng", 
+    "djvu",
+    "djv",
+    "emf",
+    "gif",
+    "jpg",
+    "jpe",
+    "jpeg",
+    "jpeg2000",
+    "jp2",
+    "jpx",
+    "jpm",
+    "j2k",
+    "odg",
+    "png",
+    "psd",
+    "tiff",
+    "tif",
+    "webp",
+    "wmf",
+    "reverse",
+    "search"
   ],
   "readmeFilename": "README.md",
   "main": "dist/lib/api.js",
