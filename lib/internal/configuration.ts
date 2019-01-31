@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd. All rights reserved.
+* Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@ import { IAuthentication, OAuth  } from "../internal/auth";
 const defaultBasePath = "https://api.aspose.cloud/";
 
 /**
- * Words API configuration
+ * Aspose.Imaging Cloud API configuration
  */
 export class Configuration {
     /**
@@ -57,9 +57,9 @@ export class Configuration {
     /**
      * Gets or sets the API version.
      */
-    public version: string = "v2.0";
+    public apiVersion: string = "v2.0";
 
-    constructor(appSID: string, appKey: string, baseUrl?: string, debugMode?: boolean, version?: string) {
+    constructor(appSID: string, appKey: string, baseUrl?: string, debugMode?: boolean, apiVersion?: string) {
         if (baseUrl) {
             this.baseUrl = baseUrl;
         }
@@ -68,8 +68,8 @@ export class Configuration {
         this.appKey = appKey;
         this.debugMode = debugMode;
 
-        if (version) {
-            this.version = version;
+        if (apiVersion) {
+            this.apiVersion = apiVersion;
         }
 
         this.authentication = new OAuth() as IAuthentication;
@@ -80,9 +80,9 @@ export class Configuration {
      */
     public getApiBaseUrl(): string {
         if (this.baseUrl.endsWith("/")) {
-            return this.baseUrl + this.version;
+            return this.baseUrl + this.apiVersion;
         } else {
-            return this.baseUrl + "/" + this.version;
+            return this.baseUrl + "/" + this.apiVersion;
         }
     }
 }
