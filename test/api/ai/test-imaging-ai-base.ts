@@ -34,7 +34,7 @@ export abstract class TestImagingAIBase extends ApiTester {
 
     protected readonly CloudTestFolderPrefix: string = "ImagingAICloudTestNodeJS";
 
-    protected readonly OriginalDataFolder: string = "ImagingAiSdk";
+    protected readonly OriginalDataFolder: string = "ImagingIntegrationTestData/AI";
 
     private readonly WaitTimeoutInMinutes: number = 5;
 
@@ -47,10 +47,12 @@ export abstract class TestImagingAIBase extends ApiTester {
             await this.deleteSearchContext(this.SearchContextId);
         }
 
-        const isExist: boolean = await this.getIsExistAsync(this.TempFolder, this.TestStorage);
+        const isExist: boolean = (await this.imagingApi.objectExists(
+            new imaging.ObjectExistsRequest ({ path: this.TempFolder, storageName: this.TestStorage }))).exists;
 
         if (isExist) {
-            await this.deleteFolderAsync(this.TempFolder, this.TestStorage);
+            await this.imagingApi.deleteFolder(
+                new imaging.DeleteFolderRequest({ storageName: this.TestStorage, path: this.TempFolder, recursive: true }));
         }
     }
 
@@ -64,7 +66,6 @@ export abstract class TestImagingAIBase extends ApiTester {
 
     protected async createSearchContext() {
         const status = await this.imagingApi.postCreateSearchContext(new imaging.PostCreateSearchContextRequest({ storage: this.TestStorage }));
-        expect("OK").toEqual(status.status.toUpperCase());
         return status.id;
     }
 
@@ -74,7 +75,6 @@ export abstract class TestImagingAIBase extends ApiTester {
 
     protected async getSearchContextStatus(searchContextId: string) {
         const status = await this.imagingApi.getSearchContextStatus(new imaging.GetSearchContextStatusRequest({ searchContextId, storage: this.TestStorage }));
-        expect("OK").toEqual(status.status.toUpperCase());
         return status.searchStatus;
     }
 
@@ -106,7 +106,7 @@ export abstract class TestImagingAIBase extends ApiTester {
             } else {
                 break;
             }
-        } while ((new Date().getTime() - startTime) < maxTimeMilliseconds);
+        } while (((new Date()).getTime()) - startTime < maxTimeMilliseconds);
     }
 
     protected sleep(milliseconds: number) {

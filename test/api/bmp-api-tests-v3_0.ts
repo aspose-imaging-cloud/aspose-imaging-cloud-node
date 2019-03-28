@@ -29,33 +29,39 @@ import * as imaging from "../../lib/api";
 import { ApiTester } from "../base/api-tester";
 
 /**
- * Class for testing JPG-related API calls
+ * Class for testing BMP-related API calls
  */
-class JpgApiTests extends ApiTester {
+class BmpApiTests extends ApiTester {
 
-    public async getImageJpgTest(saveResultToStorage: boolean) {
-        const name: string = "test.jpg";
-        const quality: number = 65;
-        const compressionType: string = "progressive";
+    public async getImageBmpTest(saveResultToStorage: boolean) {
+        const name: string = "test.bmp";
+        const bitsPerPixel: number = 32;
+        const horizontalResolution: number = 300;
+        const verticalResolution: number  = 300;
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.jpg`;
+        const outName: string = `${name}_specific.bmp`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImageJpgTest", 
+                "getImageBmpTest", 
                 saveResultToStorage,
-                `Input image: ${name}; Quality: ${quality}; Compression type: ${compressionType}`,
+                `Input image: ${name}; Bits per pixel: ${bitsPerPixel}; Horizontal resolution: ${horizontalResolution}; Vertical resolution: ${verticalResolution}`,
                 name,
                 outName,
                 async (fileName, outPath) => {
-                    const request = new imaging.GetImageJpgRequest({ name: fileName, quality, compressionType, fromScratch, outPath, folder, storage });
-                    const response = await this.imagingApi.getImageJpg(request);
+                    const request = new imaging.GetImageBmpRequest({ name: fileName, bitsPerPixel, horizontalResolution, verticalResolution, fromScratch, outPath, folder, storage });
+                    const response = await this.imagingApi.getImageBmp(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
-                    expect(resultProperties.jpegProperties).toBeTruthy();
-                    expect(originalProperties.jpegProperties).toBeTruthy();
+                    expect(resultProperties.bmpProperties).toBeTruthy();
+                    expect(bitsPerPixel).toEqual(resultProperties.bitsPerPixel);
+                    expect(verticalResolution).toEqual(Math.ceil(resultProperties.verticalResolution));
+                    expect(horizontalResolution).toEqual(Math.ceil(resultProperties.horizontalResolution));
+
+                    expect(originalProperties.bmpProperties).toBeTruthy();
+                    expect(originalProperties.bmpProperties.compression).toEqual(resultProperties.bmpProperties.compression);
                     expect(originalProperties.width).toEqual(resultProperties.width);
                     expect(originalProperties.height).toEqual(resultProperties.height);
                     return Promise.resolve();
@@ -64,29 +70,35 @@ class JpgApiTests extends ApiTester {
                 storage);
     }
 
-    public async postImageJpgTest(saveResultToStorage: boolean) {
-        const name: string = "test.jpg";
-        const quality: number = 65;
-        const compressionType: string = "progressive";
+    public async postImageBmpTest(saveResultToStorage: boolean) {
+        const name: string = "test.bmp";
+        const bitsPerPixel: number = 32;
+        const horizontalResolution: number = 300;
+        const verticalResolution: number  = 300;
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.jpg`;
+        const outName: string = `${name}_specific.bmp`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImageJpgTest", 
+                "postImageBmpTest", 
                 saveResultToStorage,
-                `Input image: ${name}; Quality: ${quality}; Compression type: ${compressionType}`,
+                `Input image: ${name}; Bits per pixel: ${bitsPerPixel}; Horizontal resolution: ${horizontalResolution}; Vertical resolution: ${verticalResolution}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageJpgRequest({ imageData: inputStream, quality, compressionType, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImageJpg(request);
+                    const request = new imaging.PostImageBmpRequest({ imageData: inputStream, bitsPerPixel, horizontalResolution, verticalResolution, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.postImageBmp(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
-                    expect(resultProperties.jpegProperties).toBeTruthy();
-                    expect(originalProperties.jpegProperties).toBeTruthy();
+                    expect(resultProperties.bmpProperties).toBeTruthy();
+                    expect(bitsPerPixel).toEqual(resultProperties.bitsPerPixel);
+                    expect(verticalResolution).toEqual(Math.ceil(resultProperties.verticalResolution));
+                    expect(horizontalResolution).toEqual(Math.ceil(resultProperties.horizontalResolution));
+
+                    expect(originalProperties.bmpProperties).toBeTruthy();
+                    expect(originalProperties.bmpProperties.compression).toEqual(resultProperties.bmpProperties.compression);
                     expect(originalProperties.width).toEqual(resultProperties.width);
                     expect(originalProperties.height).toEqual(resultProperties.height);
                     return Promise.resolve();
@@ -96,7 +108,7 @@ class JpgApiTests extends ApiTester {
     }
 }
 
-const testClass: JpgApiTests = new JpgApiTests();
+const testClass: BmpApiTests = new BmpApiTests();
 
 beforeEach(() => {
     jest.setTimeout(ApiTester.DefaultTimeout);
@@ -111,14 +123,14 @@ afterAll(async () =>  {
 });
 
 describe.each([[true], [false]])(
-    "JpgTestSuite_V1_V2",
+    "BmpTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageJpgTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageJpgTest(saveResultToStorage);
+        test(`getImageBmpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.getImageBmpTest(saveResultToStorage);
         });
 
-        test(`postImageJpgTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageJpgTest(saveResultToStorage);
+        test(`postImageBmpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.postImageBmpTest(saveResultToStorage);
         });
 
         beforeEach(() => {

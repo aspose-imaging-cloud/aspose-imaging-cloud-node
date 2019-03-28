@@ -9,24 +9,40 @@ The solution is updated using [code generator](https://github.com/aspose-imaging
 
 # Features
 ### Image Formats Support
-Process options, change and return image in the same format:
+Export the following images to various formats (generally supported ones are BMP, PSD, JPEG, TIFF, GIF, PNG, JPEG2000, WEBP and PDF):
+* BMP
+* GIF
+* DJVU
+* WMF
+* EMF
+* JPEG
+* JPEG2000
 * PSD
-* JPG
+* TIFF
+* WEBP
 * PNG
+* DICOM
+* CDR
+* ODG
+* DNG
+* SVG
+* CMX
+
+Process options, change and return images in the same format:
+* PSD
+* JPEG
 * TIFF
 * GIF
 * BMP
 * JPEG2000
+* WEBP
 
-Process options, change and return image in the PNG format:
-* DICOM
-* DNG
-* ODG
+Process options, change and return images in any supported export format:
 * EMF
 * WMF
 
 ### Supported Imaging Operations
-* Export to various image formats (currently, all supported formats can be exported to BMP, PSD, JPG, TIFF, GIF, PNG, JPEG2000 or WebP)
+* Export 
 * Resize
 * Crop
 * Rotate and Flip
@@ -49,7 +65,7 @@ Process options, change and return image in the PNG format:
 ```json
 {
   "dependencies": {
-    "@asposecloud/asposeimagingcloud": "^19.1.0"
+    "@asposecloud/asposeimagingcloud": "^19.3.0"
   }
 }
 ```

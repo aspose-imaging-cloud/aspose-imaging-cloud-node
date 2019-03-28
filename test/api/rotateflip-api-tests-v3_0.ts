@@ -24,16 +24,18 @@
 * </summary>
 * --------------------------------------------------------------------------------------------------------------------
 */
+
 import * as imaging from "../../lib/api";
 import { ApiTester } from "../base/api-tester";
 
 /**
- * Class for testing save as API calls
+ * Class for testing rotate/flip API calls
  */
-class SaveAsApiTests extends ApiTester {
+class RotateFlipApiTests extends ApiTester {
 
-    public async getImageSaveAsTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async getImageRotateFlipTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
         let name: string = null;
+        const method: string = "Rotate90FlipX";
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
         let outName: string = null;
@@ -45,36 +47,51 @@ class SaveAsApiTests extends ApiTester {
         }
 
         for (const inputFile of this.InputTestFiles) {
-            if (inputFile.Name.endsWith(formatExtension)) {
-                name = inputFile.Name;
+            if (inputFile.name.endsWith(formatExtension)) {
+                name = inputFile.name;
             } else {
                 continue;
             }
 
             for (const format of formatsToExport) {
-                outName = `${name}.${format}`;
+                outName = `${name}_rotateFlip.${format}`;
 
                 await this.testGetRequest(
-                        "getImageSaveAsTest",
+                        "getImageRotateFlipTest",
                         saveResultToStorage,
-                        `Input image: ${name}; Output format: ${format}`,
+                        `Input image: ${name}; Output format: ${format}; Method: ${method}`,
                         name,
                         outName,
                         async (fileName, outPath) => {
-                            const request: imaging.GetImageSaveAsRequest = new imaging.GetImageSaveAsRequest({ name: fileName, format, outPath, 
+                            const request: imaging.GetImageRotateFlipRequest = new imaging.GetImageRotateFlipRequest({ name: fileName, format, method, outPath, 
                                 folder, storage });
-                            const response = await this.imagingApi.getImageSaveAs(request);
+                            const response = await this.imagingApi.getImageRotateFlip(request);
                             return response;
                         },
-                        null,
+                        (originalProperties, resultProperties) => {
+                            expect(originalProperties).toBeTruthy();
+                            try {
+                                expect(originalProperties.height).toEqual(resultProperties.width);
+                            } catch (error) {
+                                expect(originalProperties.height - 1).toEqual(resultProperties.width);
+                            }
+        
+                            try {
+                                expect(originalProperties.width).toEqual(resultProperties.height);
+                            } catch (error) {
+                                expect(originalProperties.width - 1).toEqual(resultProperties.height);
+                            }
+                            return Promise.resolve();
+                        },
                         folder,
                         storage);
             }
         }
     }
 
-    public async postImageSaveAsTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async postImageRotateFlipTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
         let name: string = null;
+        const method: string = "Rotate90FlipX";
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
         let outName: string = null;
@@ -86,28 +103,42 @@ class SaveAsApiTests extends ApiTester {
         }
 
         for (const inputFile of this.InputTestFiles) {
-            if (inputFile.Name.endsWith(formatExtension)) {
-                name = inputFile.Name;
+            if (inputFile.name.endsWith(formatExtension)) {
+                name = inputFile.name;
             } else {
                 continue;
             }
 
             for (const format of formatsToExport) {
-                outName = `${name}.${format}`;
+                outName = `${name}_rotateFlip.${format}`;
 
                 await this.testPostRequest(
-                        "postImageSaveAsTest",
+                        "postImageRotateFlipTest",
                         saveResultToStorage,
-                        `Input image: ${name}; Output format: ${format}`,
+                        `Input image: ${name}; Output format: ${format}; Method: ${method}`,
                         name,
                         outName,
                         async (inputStream, outPath) => {
-                            const request: imaging.PostImageSaveAsRequest = new imaging.PostImageSaveAsRequest({ imageData: inputStream, format,  
+                            const request: imaging.PostImageRotateFlipRequest = new imaging.PostImageRotateFlipRequest({ imageData: inputStream, format, method, 
                                 outPath, storage });
-                            const response = await this.imagingApi.postImageSaveAs(request);
+                            const response = await this.imagingApi.postImageRotateFlip(request);
                             return response;
                         },
-                        null,
+                        (originalProperties, resultProperties) => {
+                            expect(originalProperties).toBeTruthy();
+                            try {
+                                expect(originalProperties.height).toEqual(resultProperties.width);
+                            } catch (error) {
+                                expect(originalProperties.height - 1).toEqual(resultProperties.width);
+                            }
+        
+                            try {
+                                expect(originalProperties.width).toEqual(resultProperties.height);
+                            } catch (error) {
+                                expect(originalProperties.width - 1).toEqual(resultProperties.height);
+                            }
+                            return Promise.resolve();
+                        },
                         folder,
                         storage);
             }
@@ -115,7 +146,7 @@ class SaveAsApiTests extends ApiTester {
     }
 }
 
-const testClass: SaveAsApiTests = new SaveAsApiTests();
+const testClass: RotateFlipApiTests = new RotateFlipApiTests();
 const useExtendedTests: boolean = process.env.ExtendedTests === "true";
 
 beforeEach(() => {
@@ -131,14 +162,14 @@ afterAll(async () =>  {
 });
 
 describe.each([[".jpg", true], [".jpg", false]])(
-    "SaveAsTestSuite_V1_V2",
+    "RotateFlipTestSuite_V3",
     (formatExtension, saveResultToStorage) => {
-        test(`getImageSaveAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageSaveAsTest(formatExtension, saveResultToStorage);
+        test(`getImageRotateFlipTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.getImageRotateFlipTest(formatExtension, saveResultToStorage);
         });
 
-        test(`postImageSaveAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageSaveAsTest(formatExtension, saveResultToStorage);
+        test(`postImageRotateFlipTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.postImageRotateFlipTest(formatExtension, saveResultToStorage);
         });
 
         beforeEach(() => {
@@ -163,14 +194,14 @@ if (useExtendedTests) {
         [".tiff", true], [".tiff", false],
         [".webp", true], [".webp", false],
         ])
-        ("SaveAsTestSuite_Extended_V1_V2",
+        ("RotateFlipTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage) => {
-            test(`getImageSaveAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.getImageSaveAsTest(formatExtension, saveResultToStorage);
+            test(`getImageRotateFlipTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+                await testClass.getImageRotateFlipTest(formatExtension, saveResultToStorage);
             });
     
-            test(`postImageSaveAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.postImageSaveAsTest(formatExtension, saveResultToStorage);
+            test(`postImageRotateFlipTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+                await testClass.postImageRotateFlipTest(formatExtension, saveResultToStorage);
             });
 
             beforeEach(() => {

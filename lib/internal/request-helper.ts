@@ -26,6 +26,7 @@ import request = require("request");
 import requestDebug = require("request-debug");
 import { ApiError } from "./api-error";
 import { Configuration } from "./configuration";
+import { ObjectSerializer } from "./object-serializer";
 
 /**
  * Invoke api method
@@ -34,15 +35,7 @@ import { Configuration } from "./configuration";
  * @param notApplyAuthToRequest if setted to true, auth is not applied to request
  */
 export async function invokeApiMethod(requestOptions: request.Options, confguration: Configuration, notApplyAuthToRequest?: boolean): Promise<request.RequestResponse> {
-    try {
-        return await invokeApiMethodInternal(requestOptions, confguration, notApplyAuthToRequest);
-    } catch (e) {
-        if (e instanceof NeedRepeatException) {
-            return await invokeApiMethodInternal(requestOptions, confguration, notApplyAuthToRequest);
-        }
-
-        throw e;
-    }
+    return await invokeApiMethodInternal(requestOptions, confguration, notApplyAuthToRequest);
 }
 
 /**
@@ -87,23 +80,16 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "node.js sdk";
-    requestOptions.headers["x-aspose-client-version"] = "19.1.0";
+    requestOptions.headers["x-aspose-client-version"] = "19.3.0";
 
     if (requestOptions.formData && requestOptions.body) {
         return Promise.reject("You can't send both form data and body.");
-    }
-
-    if (confguration.apiVersion.includes("v1.") && requestOptions.formData) {
-        requestOptions.body = requestOptions.formData[Object.keys(requestOptions.formData)[0]];
-        requestOptions.formData = null;
     }
 
     if (requestOptions.formData)  {
         requestOptions.headers["Content-Type"] = "multipart/form-data";
     } else if (requestOptions.body && requestOptions.body instanceof Buffer && requestOptions.body.length > 0) {
         requestOptions.headers["Content-Type"] = "application/octet-stream";
-    } else {
-        requestOptions.headers["Content-Type"] = "application/json";
     }
 
     const auth = confguration.authentication;
@@ -119,26 +105,26 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                 if (response.statusCode >= 200 && response.statusCode <= 299) {
                     return resolve(response);
                 } else if (response.statusCode === 401 && !notApplyAuthToRequest) {
-                    await auth.handle401response(confguration);
-                    return reject(new NeedRepeatException());
+                    return reject(new ApiError("Authentication failed!", response.statusCode, null));
                 } else {
                     try {
-                        let bodyContent = response.body;
+                        let modelError = null;
+                        const bodyContent = response.body;
                         if (bodyContent) {
                             if (bodyContent instanceof Buffer) {
-                                const bufferString = bodyContent.toString("utf8");
-                                bodyContent = JSON.parse(bufferString);
-                                return reject(new ApiError(bodyContent, response.statusCode));
+                                modelError = ObjectSerializer.deserialize(bodyContent.toString("utf8"), "ModelError");
+                                return reject(new ApiError(response.body, response.statusCode, modelError));
                             } else if (bodyContent.Message) {
-                                return reject(new ApiError(bodyContent.Message, response.statusCode));
+                                return reject(new ApiError(bodyContent.Message, response.statusCode, null));
                             } else {
-                                return reject(new ApiError(bodyContent, response.statusCode));
+                                modelError = ObjectSerializer.deserialize(bodyContent, "ModelError");
+                                return reject(new ApiError(response.body, response.statusCode, bodyContent));
                             }
                         } else {
-                            return reject(new ApiError(null, response.statusCode));
+                            return reject(new ApiError(null, response.statusCode, null));
                         }
                     } catch (error) {
-                        return reject(new ApiError(`Failed to parsre Aspose.Imaging Cloud API error message: ${error}`, response.statusCode));
+                        return reject(new ApiError(`Failed to parse Aspose.Imaging Cloud API error message: ${response.body}`, response.statusCode, null));
                     }
 
                 }
@@ -147,10 +133,4 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
 
         (r as any).writeDebugToConsole = confguration.debugMode;
     });
-}
-
-/**
- * Exception, indicating necessity of request repeat
- */
-class NeedRepeatException extends Error {
 }

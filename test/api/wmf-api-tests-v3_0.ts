@@ -29,62 +29,72 @@ import * as imaging from "../../lib/api";
 import { ApiTester } from "../base/api-tester";
 
 /**
- * Class for testing DNG-related API calls
+ * Class for testing WMF-related API calls
  */
-class DngApiTests extends ApiTester {
+class WmfApiTests extends ApiTester {
 
-    public async getImageDngTest(saveResultToStorage: boolean) {
-        const name: string = "test.dng";
+    public async getImageWmfTest(saveResultToStorage: boolean) {
+        const name: string = "test.wmf";
         const fromScratch: boolean = false;
+        const bkColor: string = "gray";
+        const pageWidth: number = 300;
+        const pageHeight: number = 300;
+        const borderX: number = 50;
+        const borderY: number = 50;
         const outName: string = `${name}_specific.png`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImageDngTest", 
+                "getImageWmfTest", 
                 saveResultToStorage,
-                `Input image: ${name}`,
+                `Input image: ${name}; BackColor: ${bkColor}; Page width: ${pageWidth}; Page height: ${pageHeight}; BorderX: ${borderX}; BorderY: ${borderY}`,
                 name,
                 outName,
                 async (fileName, outPath) => {
-                    const request = new imaging.GetImageDngRequest({ name: fileName, fromScratch, outPath, folder, storage });
-                    const response = await this.imagingApi.getImageDng(request);
+                    const request = new imaging.GetImageWmfRequest({ name: fileName, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, outPath, folder, storage });
+                    const response = await this.imagingApi.getImageWmf(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
+                    expect(originalProperties).toBeTruthy();
                     expect(resultProperties.pngProperties).toBeTruthy();
-                    expect(originalProperties.dngProperties).toBeTruthy();
-                    expect(originalProperties.width).toEqual(resultProperties.width);
-                    expect(originalProperties.height).toEqual(resultProperties.height);
+                    expect(Math.round(pageWidth + borderX * 2)).toEqual(resultProperties.width);
+                    expect(Math.round(pageHeight + borderX * 2)).toEqual(resultProperties.height);
                     return Promise.resolve();
                 },
                 folder,
                 storage);
     }
 
-    public async postImageDngTest(saveResultToStorage: boolean) {
-        const name: string = "test.dng";
+    public async postImageWmfTest(saveResultToStorage: boolean) {
+        const name: string = "test.wmf";
         const fromScratch: boolean = false;
+        const bkColor: string = "gray";
+        const pageWidth: number = 300;
+        const pageHeight: number = 300;
+        const borderX: number = 50;
+        const borderY: number = 50;
         const outName: string = `${name}_specific.png`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImageDngTest", 
+                "postImageWmfTest", 
                 saveResultToStorage,
-                `Input image: ${name}`,
+                `Input image: ${name}; BackColor: ${bkColor}; Page width: ${pageWidth}; Page height: ${pageHeight}; BorderX: ${borderX}; BorderY: ${borderY}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageDngRequest({ imageData: inputStream, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImageDng(request);
+                    const request = new imaging.PostImageWmfRequest({ imageData: inputStream, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.postImageWmf(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
+                    expect(originalProperties).toBeTruthy();
                     expect(resultProperties.pngProperties).toBeTruthy();
-                    expect(originalProperties.dngProperties).toBeTruthy();
-                    expect(originalProperties.width).toEqual(resultProperties.width);
-                    expect(originalProperties.height).toEqual(resultProperties.height);
+                    expect(Math.round(pageWidth + borderX * 2)).toEqual(resultProperties.width);
+                    expect(Math.round(pageHeight + borderX * 2)).toEqual(resultProperties.height);
                     return Promise.resolve();
                 },
                 folder,
@@ -92,7 +102,7 @@ class DngApiTests extends ApiTester {
     }
 }
 
-const testClass: DngApiTests = new DngApiTests();
+const testClass: WmfApiTests = new WmfApiTests();
 
 beforeEach(() => {
     jest.setTimeout(ApiTester.DefaultTimeout);
@@ -107,14 +117,14 @@ afterAll(async () =>  {
 });
 
 describe.each([[true], [false]])(
-    "DngTestSuite_V1_V2",
+    "WmfTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageDngTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageDngTest(saveResultToStorage);
+        test(`getImageWmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.getImageWmfTest(saveResultToStorage);
         });
 
-        test(`postImageDngTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageDngTest(saveResultToStorage);
+        test(`postImageWmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.postImageWmfTest(saveResultToStorage);
         });
 
         beforeEach(() => {

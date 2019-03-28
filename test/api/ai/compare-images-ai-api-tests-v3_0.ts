@@ -59,14 +59,14 @@ class CompareImagesTests extends TestImagingAIBase {
                       await this.addImageFeaturesToSearchContext(image);
 
                       const storagePath: string = this.OriginalDataFolder + "/" + this.ComparingImageSimilarLess15;
-                      const imageStream = await this.getDownloadAsync(storagePath, this.TestStorage);
+                      const imageStream = await this.imagingApi.downloadFile(
+                        new imaging.DownloadFileRequest({ path: storagePath, storageName: this.TestStorage}));
                       expect(imageStream).toBeTruthy();
 
                       const response = await this.imagingApi.postSearchContextCompareImages(
                           new imaging.PostSearchContextCompareImagesRequest({ 
                               searchContextId: this.SearchContextId, imageId1: image, imageData: imageStream, storage: this.TestStorage} ));
 
-                      expect("OK").toEqual(response.status);
                       expect(1).toEqual(response.results.length);
                       expect(response.results[0].similarity).toBeLessThanOrEqual(15);
                   });

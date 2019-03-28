@@ -29,19 +29,16 @@ import * as imaging from "../../lib/api";
 import { ApiTester } from "../base/api-tester";
 
 /**
- * Class for testing update API calls
+ * Class for testing crop API calls
  */
-class UpdateApiTests extends ApiTester {
+class CropApiTests extends ApiTester {
 
-    public async getImageUpdateTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async getImageCropTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
         let name: string = null;
-        const newWidth: number = 300;
-        const newHeight: number = 450;
         const x: number = 10;
         const y: number = 10;
-        const rectWidth: number = 200;
-        const rectHeight: number = 300;
-        const rotateFlipMethod: string = "Rotate90FlipX";
+        const width: number = 100;
+        const height: number = 150;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
         let outName: string = null;
@@ -53,32 +50,31 @@ class UpdateApiTests extends ApiTester {
         }
 
         for (const inputFile of this.InputTestFiles) {
-            if (inputFile.Name.endsWith(formatExtension)) {
-                name = inputFile.Name;
+            if (inputFile.name.endsWith(formatExtension)) {
+                name = inputFile.name;
             } else {
                 continue;
             }
 
             for (const format of formatsToExport) {
-                outName = `${name}_update.${format}`;
+                outName = `${name}_crop.${format}`;
 
                 await this.testGetRequest(
-                        "getImageUpdateTest",
+                        "getImageCropTest",
                         saveResultToStorage,
-                        `Input image: ${name}; Output format: ${format}; New width: ${newWidth}; New height: ${newHeight}; X: ${x}; Y: ${y}; 
-                            Rect width: ${rectWidth}; Rect height: ${rectHeight}; Rotate/flip method: ${rotateFlipMethod}`,
+                        `Input image: ${name}; Output format: ${format}; Width: ${width}; Height: ${height}; X: ${x}; Y: ${y}`,
                         name,
                         outName,
                         async (fileName, outPath) => {
-                            const request: imaging.GetImageUpdateRequest = new imaging.GetImageUpdateRequest({ name: fileName, format, newWidth, newHeight, x, y, rectWidth, 
-                                rectHeight, rotateFlipMethod, outPath, folder, storage });
-                            const response = await this.imagingApi.getImageUpdate(request);
+                            const request: imaging.GetImageCropRequest = new imaging.GetImageCropRequest({ name: fileName, format, x, y, width, height, outPath, 
+                                folder, storage });
+                            const response = await this.imagingApi.getImageCrop(request);
                             return response;
                         },
                         (originalProperties, resultProperties) => {
                             expect(originalProperties).toBeTruthy();
-                            expect(rectWidth).toEqual(resultProperties.height);
-                            expect(rectHeight).toEqual(resultProperties.width);
+                            expect(width).toEqual(resultProperties.width);
+                            expect(height).toEqual(resultProperties.height);
                             return Promise.resolve();
                         },
                         folder,
@@ -87,15 +83,12 @@ class UpdateApiTests extends ApiTester {
         }
     }
 
-    public async postImageUpdateTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async postImageCropTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
         let name: string = null;
-        const newWidth: number = 300;
-        const newHeight: number = 450;
         const x: number = 10;
         const y: number = 10;
-        const rectWidth: number = 200;
-        const rectHeight: number = 300;
-        const rotateFlipMethod: string = "Rotate90FlipX";
+        const width: number = 100;
+        const height: number = 150;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
         let outName: string = null;
@@ -107,32 +100,31 @@ class UpdateApiTests extends ApiTester {
         }
 
         for (const inputFile of this.InputTestFiles) {
-            if (inputFile.Name.endsWith(formatExtension)) {
-                name = inputFile.Name;
+            if (inputFile.name.endsWith(formatExtension)) {
+                name = inputFile.name;
             } else {
                 continue;
             }
 
             for (const format of formatsToExport) {
-                outName = `${name}_update.${format}`;
+                outName = `${name}_crop.${format}`;
 
                 await this.testPostRequest(
-                        "getImageUpdateTest",
+                        "getImageCropTest",
                         saveResultToStorage,
-                        `Input image: ${name}; Output format: ${format}; New width: ${newWidth}; New height: ${newHeight}; X: ${x}; Y: ${y}; 
-                            Rect width: ${rectWidth}; Rect height: ${rectHeight}; Rotate/flip method: ${rotateFlipMethod}`,
+                        `Input image: ${name}; Output format: ${format}; Width: ${width}; Height: ${height}; X: ${x}; Y: ${y}`,
                         name,
                         outName,
                         async (inputStream, outPath) => {
-                            const request: imaging.PostImageUpdateRequest = new imaging.PostImageUpdateRequest({ imageData: inputStream, format, newWidth, newHeight, 
-                                x, y, rectWidth, rectHeight, rotateFlipMethod, outPath, storage });
-                            const response = await this.imagingApi.postImageUpdate(request);
+                            const request: imaging.PostImageCropRequest = new imaging.PostImageCropRequest({ imageData: inputStream, format, x, y, width, height, 
+                                outPath, storage });
+                            const response = await this.imagingApi.postImageCrop(request);
                             return response;
                         },
                         (originalProperties, resultProperties) => {
                             expect(originalProperties).toBeTruthy();
-                            expect(rectWidth).toEqual(resultProperties.height);
-                            expect(rectHeight).toEqual(resultProperties.width);
+                            expect(width).toEqual(resultProperties.width);
+                            expect(height).toEqual(resultProperties.height);
                             return Promise.resolve();
                         },
                         folder,
@@ -142,7 +134,7 @@ class UpdateApiTests extends ApiTester {
     }
 }
 
-const testClass: UpdateApiTests = new UpdateApiTests();
+const testClass: CropApiTests = new CropApiTests();
 const useExtendedTests: boolean = process.env.ExtendedTests === "true";
 
 beforeEach(() => {
@@ -158,14 +150,14 @@ afterAll(async () =>  {
 });
 
 describe.each([[".jpg", true], [".jpg", false]])(
-    "UpdateTestSuite_V1_V2",
+    "CropTestSuite_V3",
     (formatExtension, saveResultToStorage) => {
-        test(`getImageUpdateTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageUpdateTest(formatExtension, saveResultToStorage);
+        test(`getImageCropTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.getImageCropTest(formatExtension, saveResultToStorage);
         });
 
-        test(`postImageUpdateTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageUpdateTest(formatExtension, saveResultToStorage);
+        test(`postImageCropTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.postImageCropTest(formatExtension, saveResultToStorage);
         });
 
         beforeEach(() => {
@@ -190,14 +182,14 @@ if (useExtendedTests) {
         [".tiff", true], [".tiff", false],
         [".webp", true], [".webp", false],
         ])
-        ("UpdateTestSuite_Extended_V1_V2",
+        ("CropTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage) => {
-            test(`getImageUpdateTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.getImageUpdateTest(formatExtension, saveResultToStorage);
+            test(`getImageCropTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+                await testClass.getImageCropTest(formatExtension, saveResultToStorage);
             });
     
-            test(`postImageUpdateTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.postImageUpdateTest(formatExtension, saveResultToStorage);
+            test(`postImageCropTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+                await testClass.postImageCropTest(formatExtension, saveResultToStorage);
             });
 
             beforeEach(() => {

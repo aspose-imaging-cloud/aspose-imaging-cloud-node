@@ -162,7 +162,7 @@ afterAll(async () =>  {
 });
 
 describe.each([[true], [false]])(
-    "TiffGetFramesTestSuite_V1_V2",
+    "TiffGetFramesTestSuite_V3",
     (saveResultToStorage) => {
         test(`getImageSingleFrameTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.getImageSingleFrameTest(saveResultToStorage);

@@ -54,10 +54,177 @@ export class ImagingApi {
     }
 
     /**
+     * Copy file
+     * @param requestObj contains request parameters
+     */
+    public async copyFile(requestObj: model.CopyFileRequest): Promise<any> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling copyFile.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/storage/file/copy/{srcPath}"
+            .replace("{" + "srcPath" + "}", String(requestObj.srcPath));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.srcPath' is not null or undefined
+        if (requestObj.srcPath === null || requestObj.srcPath === undefined) {
+            throw new Error('Required parameter "requestObj.srcPath" was null or undefined when calling copyFile.');
+        }
+
+        // verify required parameter 'requestObj.destPath' is not null or undefined
+        if (requestObj.destPath === null || requestObj.destPath === undefined) {
+            throw new Error('Required parameter "requestObj.destPath" was null or undefined when calling copyFile.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", requestObj.destPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", requestObj.srcStorageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", requestObj.destStorageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", requestObj.versionId);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
+    }
+
+    /**
+     * Copy folder
+     * @param requestObj contains request parameters
+     */
+    public async copyFolder(requestObj: model.CopyFolderRequest): Promise<any> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling copyFolder.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/storage/folder/copy/{srcPath}"
+            .replace("{" + "srcPath" + "}", String(requestObj.srcPath));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.srcPath' is not null or undefined
+        if (requestObj.srcPath === null || requestObj.srcPath === undefined) {
+            throw new Error('Required parameter "requestObj.srcPath" was null or undefined when calling copyFolder.');
+        }
+
+        // verify required parameter 'requestObj.destPath' is not null or undefined
+        if (requestObj.destPath === null || requestObj.destPath === undefined) {
+            throw new Error('Required parameter "requestObj.destPath" was null or undefined when calling copyFolder.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", requestObj.destPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", requestObj.srcStorageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", requestObj.destStorageName);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
+    }
+
+    /**
+     * Create the folder
+     * @param requestObj contains request parameters
+     */
+    public async createFolder(requestObj: model.CreateFolderRequest): Promise<any> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling createFolder.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/storage/folder/{path}"
+            .replace("{" + "path" + "}", String(requestObj.path));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.path' is not null or undefined
+        if (requestObj.path === null || requestObj.path === undefined) {
+            throw new Error('Required parameter "requestObj.path" was null or undefined when calling createFolder.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
+    }
+
+    /**
+     * Delete file
+     * @param requestObj contains request parameters
+     */
+    public async deleteFile(requestObj: model.DeleteFileRequest): Promise<any> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFile.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/storage/file/{path}"
+            .replace("{" + "path" + "}", String(requestObj.path));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.path' is not null or undefined
+        if (requestObj.path === null || requestObj.path === undefined) {
+            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteFile.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", requestObj.versionId);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
+    }
+
+    /**
+     * Delete folder
+     * @param requestObj contains request parameters
+     */
+    public async deleteFolder(requestObj: model.DeleteFolderRequest): Promise<any> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFolder.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/storage/folder/{path}"
+            .replace("{" + "path" + "}", String(requestObj.path));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.path' is not null or undefined
+        if (requestObj.path === null || requestObj.path === undefined) {
+            throw new Error('Required parameter "requestObj.path" was null or undefined when calling deleteFolder.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "recursive", requestObj.recursive);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
+    }
+
+    /**
      * Deletes the search context.
      * @param requestObj contains request parameters
      */
-    public async deleteSearchContext(requestObj: model.DeleteSearchContextRequest): Promise<Buffer> {
+    public async deleteSearchContext(requestObj: model.DeleteSearchContextRequest): Promise<any> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSearchContext.');
         }
@@ -77,22 +244,18 @@ export class ImagingApi {
             method: "DELETE",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
             json: true,
         };
         
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        result = response.body;
-
-        return Promise.resolve(result);        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
     }
 
     /**
      * Delete image and images features from search context
      * @param requestObj contains request parameters
      */
-    public async deleteSearchContextImage(requestObj: model.DeleteSearchContextImageRequest): Promise<Buffer> {
+    public async deleteSearchContextImage(requestObj: model.DeleteSearchContextImageRequest): Promise<any> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSearchContextImage.');
         }
@@ -118,22 +281,18 @@ export class ImagingApi {
             method: "DELETE",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
             json: true,
         };
         
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        result = response.body;
-
-        return Promise.resolve(result);        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
     }
 
     /**
      * Deletes image features from search context.
      * @param requestObj contains request parameters
      */
-    public async deleteSearchContextImageFeatures(requestObj: model.DeleteSearchContextImageFeaturesRequest): Promise<model.SaaSposeResponse> {
+    public async deleteSearchContextImageFeatures(requestObj: model.DeleteSearchContextImageFeaturesRequest): Promise<any> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSearchContextImageFeatures.');
         }
@@ -162,11 +321,140 @@ export class ImagingApi {
             json: true,
         };
         
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
+    }
+
+    /**
+     * Download file
+     * @param requestObj contains request parameters
+     */
+    public async downloadFile(requestObj: model.DownloadFileRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling downloadFile.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/storage/file/{path}"
+            .replace("{" + "path" + "}", String(requestObj.path));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.path' is not null or undefined
+        if (requestObj.path === null || requestObj.path === undefined) {
+            throw new Error('Required parameter "requestObj.path" was null or undefined when calling downloadFile.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", requestObj.versionId);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+            json: true,
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Get disc usage
+     * @param requestObj contains request parameters
+     */
+    public async getDiscUsage(requestObj: model.GetDiscUsageRequest): Promise<model.DiscUsage> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDiscUsage.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/storage/disc";
+        const queryParameters: any = {};
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
         if (response.body) {
-            result = ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+            result = ObjectSerializer.deserialize(response.body, "DiscUsage");
+        }
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Get file versions
+     * @param requestObj contains request parameters
+     */
+    public async getFileVersions(requestObj: model.GetFileVersionsRequest): Promise<model.FileVersions> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getFileVersions.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/storage/version/{path}"
+            .replace("{" + "path" + "}", String(requestObj.path));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.path' is not null or undefined
+        if (requestObj.path === null || requestObj.path === undefined) {
+            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getFileVersions.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "FileVersions");
+        }
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Get all files and folders within a folder
+     * @param requestObj contains request parameters
+     */
+    public async getFilesList(requestObj: model.GetFilesListRequest): Promise<model.FilesList> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getFilesList.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/storage/folder/{path}"
+            .replace("{" + "path" + "}", String(requestObj.path));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.path' is not null or undefined
+        if (requestObj.path === null || requestObj.path === undefined) {
+            throw new Error('Required parameter "requestObj.path" was null or undefined when calling getFilesList.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "FilesList");
         }
         return Promise.resolve(result);        
     }
@@ -293,81 +581,7 @@ export class ImagingApi {
     }
 
     /**
-     * Rasterize existing DICOM image to PNG using given parameters.
-     * @param requestObj contains request parameters
-     */
-    public async getImageDicom(requestObj: model.GetImageDicomRequest): Promise<Buffer> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling getImageDicom.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/{name}/dicom"
-            .replace("{" + "name" + "}", String(requestObj.name));
-        const queryParameters: any = {};
-
-        // verify required parameter 'requestObj.name' is not null or undefined
-        if (requestObj.name === null || requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was null or undefined when calling getImageDicom.');
-        }
-
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            uri: localVarPath,
-            encoding: null,
-            json: true,
-        };
-        
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        result = response.body;
-
-        return Promise.resolve(result);        
-    }
-
-    /**
-     * Rasterize existing DNG image to PNG using given parameters.
-     * @param requestObj contains request parameters
-     */
-    public async getImageDng(requestObj: model.GetImageDngRequest): Promise<Buffer> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling getImageDng.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/{name}/dng"
-            .replace("{" + "name" + "}", String(requestObj.name));
-        const queryParameters: any = {};
-
-        // verify required parameter 'requestObj.name' is not null or undefined
-        if (requestObj.name === null || requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was null or undefined when calling getImageDng.');
-        }
-
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            uri: localVarPath,
-            encoding: null,
-            json: true,
-        };
-        
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        result = response.body;
-
-        return Promise.resolve(result);        
-    }
-
-    /**
-     * Rasterize existing EMF image to PNG using given parameters.
+     * Process existing EMF imaging using given parameters.
      * @param requestObj contains request parameters
      */
     public async getImageEmf(requestObj: model.GetImageEmfRequest): Promise<Buffer> {
@@ -418,6 +632,7 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -632,80 +847,6 @@ export class ImagingApi {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "quality", requestObj.quality);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "compressionType", requestObj.compressionType);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            uri: localVarPath,
-            encoding: null,
-            json: true,
-        };
-        
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        result = response.body;
-
-        return Promise.resolve(result);        
-    }
-
-    /**
-     * Rasterize existing ODG image to PNG using given parameters.
-     * @param requestObj contains request parameters
-     */
-    public async getImageOdg(requestObj: model.GetImageOdgRequest): Promise<Buffer> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling getImageOdg.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/{name}/odg"
-            .replace("{" + "name" + "}", String(requestObj.name));
-        const queryParameters: any = {};
-
-        // verify required parameter 'requestObj.name' is not null or undefined
-        if (requestObj.name === null || requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was null or undefined when calling getImageOdg.');
-        }
-
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            uri: localVarPath,
-            encoding: null,
-            json: true,
-        };
-        
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        result = response.body;
-
-        return Promise.resolve(result);        
-    }
-
-    /**
-     * Update parameters of existing PNG image.
-     * @param requestObj contains request parameters
-     */
-    public async getImagePng(requestObj: model.GetImagePngRequest): Promise<Buffer> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling getImagePng.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/{name}/png"
-            .replace("{" + "name" + "}", String(requestObj.name));
-        const queryParameters: any = {};
-
-        // verify required parameter 'requestObj.name' is not null or undefined
-        if (requestObj.name === null || requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was null or undefined when calling getImagePng.');
-        }
-
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -1147,7 +1288,7 @@ export class ImagingApi {
     }
 
     /**
-     * Rasterize existing WMF image to PNG using given parameters.
+     * Process existing WMF image using given parameters.
      * @param requestObj contains request parameters
      */
     public async getImageWmf(requestObj: model.GetImageWmfRequest): Promise<Buffer> {
@@ -1198,6 +1339,7 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
@@ -1516,6 +1658,117 @@ export class ImagingApi {
     }
 
     /**
+     * Move file
+     * @param requestObj contains request parameters
+     */
+    public async moveFile(requestObj: model.MoveFileRequest): Promise<any> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling moveFile.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/storage/file/move/{srcPath}"
+            .replace("{" + "srcPath" + "}", String(requestObj.srcPath));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.srcPath' is not null or undefined
+        if (requestObj.srcPath === null || requestObj.srcPath === undefined) {
+            throw new Error('Required parameter "requestObj.srcPath" was null or undefined when calling moveFile.');
+        }
+
+        // verify required parameter 'requestObj.destPath' is not null or undefined
+        if (requestObj.destPath === null || requestObj.destPath === undefined) {
+            throw new Error('Required parameter "requestObj.destPath" was null or undefined when calling moveFile.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", requestObj.destPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", requestObj.srcStorageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", requestObj.destStorageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", requestObj.versionId);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
+    }
+
+    /**
+     * Move folder
+     * @param requestObj contains request parameters
+     */
+    public async moveFolder(requestObj: model.MoveFolderRequest): Promise<any> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling moveFolder.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/storage/folder/move/{srcPath}"
+            .replace("{" + "srcPath" + "}", String(requestObj.srcPath));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.srcPath' is not null or undefined
+        if (requestObj.srcPath === null || requestObj.srcPath === undefined) {
+            throw new Error('Required parameter "requestObj.srcPath" was null or undefined when calling moveFolder.');
+        }
+
+        // verify required parameter 'requestObj.destPath' is not null or undefined
+        if (requestObj.destPath === null || requestObj.destPath === undefined) {
+            throw new Error('Required parameter "requestObj.destPath" was null or undefined when calling moveFolder.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", requestObj.destPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", requestObj.srcStorageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", requestObj.destStorageName);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
+    }
+
+    /**
+     * Check if file or folder exists
+     * @param requestObj contains request parameters
+     */
+    public async objectExists(requestObj: model.ObjectExistsRequest): Promise<model.ObjectExist> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling objectExists.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/storage/exist/{path}"
+            .replace("{" + "path" + "}", String(requestObj.path));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.path' is not null or undefined
+        if (requestObj.path === null || requestObj.path === undefined) {
+            throw new Error('Required parameter "requestObj.path" was null or undefined when calling objectExists.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", requestObj.versionId);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "ObjectExist");
+        }
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Create new search context.
      * @param requestObj contains request parameters
      */
@@ -1544,6 +1797,7 @@ export class ImagingApi {
         if (response.body) {
             result = ObjectSerializer.deserialize(response.body, "SearchContextStatus");
         }
+
         return Promise.resolve(result);        
     }
 
@@ -1679,91 +1933,7 @@ export class ImagingApi {
     }
 
     /**
-     * Rasterize DICOM image to PNG using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
-     * @param requestObj contains request parameters
-     */
-    public async postImageDicom(requestObj: model.PostImageDicomRequest): Promise<Buffer> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling postImageDicom.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/dicom";
-        const queryParameters: any = {};
-
-        // verify required parameter 'requestObj.imageData' is not null or undefined
-        if (requestObj.imageData === null || requestObj.imageData === undefined) {
-            throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling postImageDicom.');
-        }
-
-        const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        if (requestObj.imageData !== undefined) {
-            const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
-        }
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            uri: localVarPath,
-            encoding: null,
-        };
-        
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
-        }
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        result = response.body;
-
-        return Promise.resolve(result);        
-    }
-
-    /**
-     * Rasterize DNG image to PNG using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
-     * @param requestObj contains request parameters
-     */
-    public async postImageDng(requestObj: model.PostImageDngRequest): Promise<Buffer> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling postImageDng.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/dng";
-        const queryParameters: any = {};
-
-        // verify required parameter 'requestObj.imageData' is not null or undefined
-        if (requestObj.imageData === null || requestObj.imageData === undefined) {
-            throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling postImageDng.');
-        }
-
-        const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        if (requestObj.imageData !== undefined) {
-            const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
-        }
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            uri: localVarPath,
-            encoding: null,
-        };
-        
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
-        }
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        result = response.body;
-
-        return Promise.resolve(result);        
-    }
-
-    /**
-     * Rasterize EMF image to PNG using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+     * Process existing EMF imaging using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageEmf(requestObj: model.PostImageEmfRequest): Promise<Buffer> {
@@ -1813,6 +1983,7 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
             formParams[paramKey] = requestObj.imageData;
@@ -2052,90 +2223,6 @@ export class ImagingApi {
         const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "quality", requestObj.quality);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "compressionType", requestObj.compressionType);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        if (requestObj.imageData !== undefined) {
-            const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
-        }
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            uri: localVarPath,
-            encoding: null,
-        };
-        
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
-        }
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        result = response.body;
-
-        return Promise.resolve(result);        
-    }
-
-    /**
-     * Rasterize ODG image to PNG using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
-     * @param requestObj contains request parameters
-     */
-    public async postImageOdg(requestObj: model.PostImageOdgRequest): Promise<Buffer> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling postImageOdg.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/odg";
-        const queryParameters: any = {};
-
-        // verify required parameter 'requestObj.imageData' is not null or undefined
-        if (requestObj.imageData === null || requestObj.imageData === undefined) {
-            throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling postImageOdg.');
-        }
-
-        const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        if (requestObj.imageData !== undefined) {
-            const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
-        }
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            uri: localVarPath,
-            encoding: null,
-        };
-        
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
-        }
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        result = response.body;
-
-        return Promise.resolve(result);        
-    }
-
-    /**
-     * Update parameters of PNG image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
-     * @param requestObj contains request parameters
-     */
-    public async postImagePng(requestObj: model.PostImagePngRequest): Promise<Buffer> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling postImagePng.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/png";
-        const queryParameters: any = {};
-
-        // verify required parameter 'requestObj.imageData' is not null or undefined
-        if (requestObj.imageData === null || requestObj.imageData === undefined) {
-            throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling postImagePng.');
-        }
-
-        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -2621,7 +2708,7 @@ export class ImagingApi {
     }
 
     /**
-     * Rasterize WMF image to PNG using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+     * Process existing WMF image using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async postImageWmf(requestObj: model.PostImageWmfRequest): Promise<Buffer> {
@@ -2671,6 +2758,7 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
             formParams[paramKey] = requestObj.imageData;
@@ -2696,7 +2784,7 @@ export class ImagingApi {
      * Add image and images features to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
-    public async postSearchContextAddImage(requestObj: model.PostSearchContextAddImageRequest): Promise<Buffer> {
+    public async postSearchContextAddImage(requestObj: model.PostSearchContextAddImageRequest): Promise<any> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSearchContextAddImage.');
         }
@@ -2727,24 +2815,20 @@ export class ImagingApi {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
         };
         
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        result = response.body;
-
-        return Promise.resolve(result);        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
     }
 
     /**
      * Add tag and reference image to search context. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
-    public async postSearchContextAddTag(requestObj: model.PostSearchContextAddTagRequest): Promise<Buffer> {
+    public async postSearchContextAddTag(requestObj: model.PostSearchContextAddTagRequest): Promise<any> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSearchContextAddTag.');
         }
@@ -2780,17 +2864,13 @@ export class ImagingApi {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
         };
         
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        result = response.body;
-
-        return Promise.resolve(result);        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
     }
 
     /**
@@ -2847,7 +2927,7 @@ export class ImagingApi {
      * Extract images features and add them to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
-    public async postSearchContextExtractImageFeatures(requestObj: model.PostSearchContextExtractImageFeaturesRequest): Promise<Buffer> {
+    public async postSearchContextExtractImageFeatures(requestObj: model.PostSearchContextExtractImageFeaturesRequest): Promise<any> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSearchContextExtractImageFeatures.');
         }
@@ -2874,17 +2954,13 @@ export class ImagingApi {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
         };
         
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        result = response.body;
-
-        return Promise.resolve(result);        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
     }
 
     /**
@@ -2951,7 +3027,7 @@ export class ImagingApi {
      * Appends existing TIFF image to another existing TIFF image (i.e. merges TIFF images).
      * @param requestObj contains request parameters
      */
-    public async postTiffAppend(requestObj: model.PostTiffAppendRequest): Promise<model.SaaSposeResponse> {
+    public async postTiffAppend(requestObj: model.PostTiffAppendRequest): Promise<any> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postTiffAppend.');
         }
@@ -2980,20 +3056,15 @@ export class ImagingApi {
             json: true,
         };
         
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        
-        if (response.body) {
-            result = ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
-        }
-        return Promise.resolve(result);        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
     }
 
     /**
      * Update image and images features in search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
-    public async putSearchContextImage(requestObj: model.PutSearchContextImageRequest): Promise<Buffer> {
+    public async putSearchContextImage(requestObj: model.PutSearchContextImageRequest): Promise<any> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSearchContextImage.');
         }
@@ -3024,24 +3095,20 @@ export class ImagingApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
         };
         
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        let result = null;
-        result = response.body;
-
-        return Promise.resolve(result);        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
     }
 
     /**
      * Update images features in search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
-    public async putSearchContextImageFeatures(requestObj: model.PutSearchContextImageFeaturesRequest): Promise<Buffer> {
+    public async putSearchContextImageFeatures(requestObj: model.PutSearchContextImageFeaturesRequest): Promise<any> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putSearchContextImageFeatures.');
         }
@@ -3072,7 +3139,82 @@ export class ImagingApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
+    }
+
+    /**
+     * Check if storage exists
+     * @param requestObj contains request parameters
+     */
+    public async storageExists(requestObj: model.StorageExistsRequest): Promise<model.StorageExist> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling storageExists.');
+        }
+
+        const localVarPath = this.configuration.getApiBaseUrl() + "/imaging/storage/{storageName}/exist"
+            .replace("{" + "storageName" + "}", String(requestObj.storageName));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.storageName' is not null or undefined
+        if (requestObj.storageName === null || requestObj.storageName === undefined) {
+            throw new Error('Required parameter "requestObj.storageName" was null or undefined when calling storageExists.');
+        }
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "StorageExist");
+        }
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Upload file
+     * @param requestObj contains request parameters
+     */
+    public async uploadFile(requestObj: model.UploadFileRequest): Promise<model.FilesUploadResult> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling uploadFile.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/storage/file/{path}"
+            .replace("{" + "path" + "}", String(requestObj.path));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.path' is not null or undefined
+        if (requestObj.path === null || requestObj.path === undefined) {
+            throw new Error('Required parameter "requestObj.path" was null or undefined when calling uploadFile.');
+        }
+
+        // verify required parameter 'requestObj.file' is not null or undefined
+        if (requestObj.file === null || requestObj.file === undefined) {
+            throw new Error('Required parameter "requestObj.file" was null or undefined when calling uploadFile.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
+        if (requestObj.file !== undefined) {
+            const paramKey = "File";
+            formParams[paramKey] = requestObj.file;
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
         };
         
         if (Object.keys(formParams).length > 0) {
@@ -3080,8 +3222,10 @@ export class ImagingApi {
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
-        result = response.body;
-
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "FilesUploadResult");
+        }
         return Promise.resolve(result);        
     }
 
