@@ -1384,7 +1384,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "GET",
@@ -1482,7 +1491,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "GET",
@@ -1797,7 +1815,6 @@ export class ImagingApi {
         if (response.body) {
             result = ObjectSerializer.deserialize(response.body, "SearchContextStatus");
         }
-
         return Promise.resolve(result);        
     }
 
@@ -1842,7 +1859,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -1913,7 +1939,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -1986,7 +2021,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2041,7 +2085,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2086,7 +2139,16 @@ export class ImagingApi {
         const formParams: { [key: string]: any } = {};
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2135,7 +2197,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2184,7 +2255,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2228,7 +2308,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2267,7 +2356,16 @@ export class ImagingApi {
         const formParams: { [key: string]: any } = {};
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2312,7 +2410,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2371,7 +2478,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2424,7 +2540,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2471,7 +2596,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2533,7 +2667,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2622,7 +2765,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2688,7 +2840,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2761,7 +2922,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2809,7 +2979,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2858,7 +3037,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2903,7 +3091,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -2948,7 +3145,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -3003,7 +3209,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.tags !== undefined) {
             const paramKey = "tags";
-            formParams[paramKey]  = ObjectSerializer.serialize(requestObj.tags, "string");
+            let formValue = null;
+            formValue = ObjectSerializer.serialize(requestObj.tags, "string");
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "tags",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
@@ -3089,7 +3304,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "PUT",
@@ -3133,7 +3357,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
             const paramKey = "imageData";
-            formParams[paramKey] = requestObj.imageData;
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "PUT",
@@ -3209,7 +3442,16 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
         if (requestObj.file !== undefined) {
             const paramKey = "File";
-            formParams[paramKey] = requestObj.file;
+            let formValue = null;
+            formValue = requestObj.file;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "File",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
         }
         const requestOptions: request.Options = {
             method: "POST",
