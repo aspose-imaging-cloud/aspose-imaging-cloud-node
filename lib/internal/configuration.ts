@@ -59,7 +59,7 @@ export class Configuration {
      */
     public apiVersion: string = "v3.0";
 
-    constructor(appSID: string, appKey: string, baseUrl?: string, debugMode?: boolean, apiVersion?: string) {
+    constructor(appKey: string, appSID: string, baseUrl?: string, debugMode?: boolean, apiVersion?: string) {
         if (baseUrl) {
             this.baseUrl = baseUrl;
         }

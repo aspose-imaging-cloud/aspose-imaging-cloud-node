@@ -80,7 +80,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "node.js sdk";
-    requestOptions.headers["x-aspose-client-version"] = "19.3.0";
+    requestOptions.headers["x-aspose-client-version"] = "19.4.0";
 
     if (requestOptions.formData && requestOptions.body) {
         return Promise.reject("You can't send both form data and body.");

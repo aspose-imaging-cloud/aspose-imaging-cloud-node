@@ -229,7 +229,7 @@ export abstract class ApiTester {
                                     console.log(`Base URL: ${baseUrl}`);
                                     console.log(`API version: ${apiVersion}`);
 
-                                    this.imagingApi = new imaging.ImagingApi(appSid, appKey, baseUrl, debug, apiVersion);
+                                    this.imagingApi = new imaging.ImagingApi(appKey, appSid, baseUrl, debug, apiVersion);
                                     this.InputTestFiles = await this.fetchInputTestFilesInfo();                            
     }
 
