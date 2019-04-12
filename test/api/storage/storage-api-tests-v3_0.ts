@@ -36,11 +36,12 @@ class StorageApiTests extends StorageApiTester {
         try {
             const discUsage = await this.imagingApi.getDiscUsage(new imaging.GetDiscUsageRequest({ storageName: this.TestStorage }));
             expect(discUsage.usedSize).toBeLessThan(discUsage.totalSize);
-            expect(discUsage.totalSize).toBeGreaterThan(0);
-            expect(discUsage.usedSize).toBeGreaterThan(0);
         } catch (e) {
-            expect(e instanceof imaging.ApiError).toBeTruthy();
-            expect(e.statusCode).toEqual(501);
+            if (e instanceof imaging.ApiError) {
+                expect(e.statusCode).toEqual(501);
+            } else {
+                throw e;
+            }
         }
     }
 
