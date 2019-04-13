@@ -71,7 +71,7 @@ export abstract class ApiTester {
     /**
      * The default cloud storage
      */
-    protected readonly DefaultStorage: string = "Imaging-QA";
+    protected readonly DefaultStorage: string = "Imaging-CI";
 
     /**
      * The application key
