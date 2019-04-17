@@ -93,11 +93,9 @@ afterEach(async () =>  {
 });
 
 test(`compareLoadedImageToImageInSearchContextTest`, async () => {
-    // IMAGINGCLOUD-291
-    // await testClass.compareLoadedImageToImageInSearchContextTest();
+    await testClass.compareLoadedImageToImageInSearchContextTest();
 });
 
 test(`compareTwoImagesInSearchContextTest`, async () => {
-    // IMAGINGCLOUD-291
-    // await testClass.compareTwoImagesInSearchContextTest();
+    await testClass.compareTwoImagesInSearchContextTest();
 });
