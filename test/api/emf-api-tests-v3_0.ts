@@ -59,13 +59,8 @@ class EmfApiTests extends ApiTester {
                 (originalProperties, resultProperties) => {
                     expect(originalProperties).toBeTruthy();
                     expect(resultProperties.pngProperties).toBeTruthy();
-                    if (this.imagingApi.configuration.apiVersion.includes("v1.")) {
-                        expect(Math.round((pageWidth + borderX * 2) * (resultProperties.horizontalResolution / 72))).toEqual(resultProperties.width);
-                        expect(Math.round((pageHeight + borderX * 2) * (resultProperties.verticalResolution / 72))).toEqual(resultProperties.height);
-                    } else {
-                        expect(pageWidth + borderX * 2).toEqual(resultProperties.width);
-                        expect(pageHeight + borderX * 2).toEqual(resultProperties.height);
-                    }
+                    expect(pageWidth + borderX * 2).toEqual(resultProperties.width);
+                    expect(pageHeight + borderX * 2).toEqual(resultProperties.height);
                     return Promise.resolve();
                 },
                 folder,
@@ -98,14 +93,8 @@ class EmfApiTests extends ApiTester {
                 (originalProperties, resultProperties) => {
                     expect(originalProperties).toBeTruthy();
                     expect(resultProperties.pngProperties).toBeTruthy();
-                    if (this.imagingApi.configuration.apiVersion.includes("v1.")) {
-                        expect(Math.round((pageWidth + borderX * 2) * (resultProperties.horizontalResolution / 72))).toEqual(resultProperties.width);
-                        expect(Math.round((pageHeight + borderX * 2) * (resultProperties.verticalResolution / 72))).toEqual(resultProperties.height);
-                    } else {
-                        expect(pageWidth + borderX * 2).toEqual(resultProperties.width);
-                        expect(pageHeight + borderX * 2).toEqual(resultProperties.height);
-                    }
-                    
+                    expect(pageWidth + borderX * 2).toEqual(resultProperties.width);
+                    expect(pageHeight + borderX * 2).toEqual(resultProperties.height);
                     return Promise.resolve();
                 },
                 folder,
@@ -128,7 +117,7 @@ afterAll(async () =>  {
 });
 
 describe.each([[true], [false]])(
-    "EmfTestSuite_V1_V2",
+    "EmfTestSuite_V3",
     (saveResultToStorage) => {
         test(`getImageEmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.getImageEmfTest(saveResultToStorage);

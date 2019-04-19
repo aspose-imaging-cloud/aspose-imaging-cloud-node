@@ -165,7 +165,7 @@ afterAll(async () =>  {
 });
 
 describe.each([[true], [false]])(
-    "TiffPostFramesTestSuite_V2",
+    "TiffPostFramesTestSuite_V3",
     (saveResultToStorage) => {
         test(`postImageSingleFrameTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.postImageSingleFrameTest(saveResultToStorage);

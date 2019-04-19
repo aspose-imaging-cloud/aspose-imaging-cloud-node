@@ -23,6 +23,7 @@
 */
 
 import request = require("request");
+import { ApiError } from "./api-error";
 import { Configuration } from "./configuration";
 import { invokeApiMethod } from "./request-helper";
 
@@ -38,15 +39,14 @@ export interface IAuthentication {
     /**
      * Handle 401 response.
      */
-    handle401response(configuration: Configuration);
+    handle401response();
 }
 
 /**
- * Implements OAuth authentication 
+ * Implements JWT authentication 
  */
-export class OAuth implements IAuthentication {
+export class JwtAuth implements IAuthentication {
     private accessTokenValue: string;
-    private refreshTokenValue: string;
 
      /**
       * Apply authentication settings to header and query params.
@@ -66,8 +66,8 @@ export class OAuth implements IAuthentication {
     /**
      * Handle 401 response.
      */
-    public async handle401response(configuration: Configuration) {
-        await this.refreshToken(configuration);
+    public handle401response() {
+        throw new ApiError("Authentication failed!", 401, null);
     }
 
     private async requestToken(configuration: Configuration): Promise<void> {
@@ -77,7 +77,7 @@ export class OAuth implements IAuthentication {
 
         const requestOptions: request.Options = {
             method: "POST",
-            uri: configuration.baseUrl + "/oauth2/token",
+            uri: configuration.baseUrl + "/connect/token",
             body: postData,
             headers: { 
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -87,27 +87,6 @@ export class OAuth implements IAuthentication {
         const response = await invokeApiMethod(requestOptions, configuration, true);
         const parsedResponse = JSON.parse(response.body);
         this.accessTokenValue = parsedResponse.access_token;
-        this.refreshTokenValue = parsedResponse.refresh_token;
-        return Promise.resolve();
-    }
-
-    private async refreshToken(configuration: Configuration): Promise<void> {
-        let postData = "grant_type=refresh_token";
-        postData += "&refresh_token=" + this.refreshTokenValue;
-
-        const requestOptions: request.Options = {
-            method: "POST",
-            uri: configuration.baseUrl + "/oauth2/token",
-            body: postData,
-            headers: { 
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-        };
-
-        const response = await invokeApiMethod(requestOptions, configuration, true);
-        const parsedResponse = JSON.parse(response.body);
-        this.accessTokenValue = parsedResponse.access_token;
-        this.refreshTokenValue = parsedResponse.refresh_token;
         return Promise.resolve();
     }
 }

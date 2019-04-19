@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-import { IAuthentication, OAuth  } from "../internal/auth";
+import { IAuthentication, JwtAuth  } from "../internal/auth";
 const defaultBasePath = "https://api.aspose.cloud/";
 
 /**
@@ -57,9 +57,9 @@ export class Configuration {
     /**
      * Gets or sets the API version.
      */
-    public apiVersion: string = "v2.0";
+    public apiVersion: string = "v3.0";
 
-    constructor(appSID: string, appKey: string, baseUrl?: string, debugMode?: boolean, apiVersion?: string) {
+    constructor(appKey: string, appSID: string, baseUrl?: string, debugMode?: boolean, apiVersion?: string) {
         if (baseUrl) {
             this.baseUrl = baseUrl;
         }
@@ -69,10 +69,14 @@ export class Configuration {
         this.debugMode = debugMode;
 
         if (apiVersion) {
+            if (apiVersion.startsWith("v1") || apiVersion.startsWith("v2")) {
+                throw new Error("This Aspose.Imaging Cloud SDK version is intended to be used with API v3.0 or later!");
+            }
+
             this.apiVersion = apiVersion;
         }
 
-        this.authentication = new OAuth() as IAuthentication;
+        this.authentication = new JwtAuth() as IAuthentication;
     }
 
     /**

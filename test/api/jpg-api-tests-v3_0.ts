@@ -29,82 +29,66 @@ import * as imaging from "../../lib/api";
 import { ApiTester } from "../base/api-tester";
 
 /**
- * Class for testing GIF-related API calls
+ * Class for testing JPG-related API calls
  */
-class GifApiTests extends ApiTester {
+class JpgApiTests extends ApiTester {
 
-    public async getImageGifTest(saveResultToStorage: boolean) {
-        const name: string = "test.gif";
+    public async getImageJpgTest(saveResultToStorage: boolean) {
+        const name: string = "test.jpg";
+        const quality: number = 65;
+        const compressionType: string = "progressive";
         const fromScratch: boolean = false;
-        const hasTrailer: boolean = true;
-        const interlaced: boolean = false;
-        const isPaletteSorted: boolean = true;
-        const backgroundColorIndex: number = 5;
-        const pixelAspectRatio: number = 4;
-        const colorResolution: number = 4;
-        const outName: string = `${name}_specific.gif`;
+        const outName: string = `${name}_specific.jpg`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImageGifTest", 
+                "getImageJpgTest", 
                 saveResultToStorage,
-                `Input image: ${name}; Has trailer: ${hasTrailer}; Interlaced: ${interlaced}; Palette is sorted: ${isPaletteSorted}; 
-                    Back color index: ${backgroundColorIndex}; Pixel aspect ratio: ${pixelAspectRatio}; Color resolution: ${colorResolution}`,
+                `Input image: ${name}; Quality: ${quality}; Compression type: ${compressionType}`,
                 name,
                 outName,
                 async (fileName, outPath) => {
-                    const request = new imaging.GetImageGifRequest({ name: fileName, backgroundColorIndex, colorResolution, hasTrailer, interlaced, isPaletteSorted, 
-                        pixelAspectRatio, fromScratch, outPath, folder, storage });
-                    const response = await this.imagingApi.getImageGif(request);
+                    const request = new imaging.GetImageJpgRequest({ name: fileName, quality, compressionType, fromScratch, outPath, folder, storage });
+                    const response = await this.imagingApi.getImageJpg(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
-                    expect(originalProperties.gifProperties).toBeTruthy();
-                    expect(resultProperties.gifProperties).toBeTruthy();
+                    expect(resultProperties.jpegProperties).toBeTruthy();
+                    expect(originalProperties.jpegProperties).toBeTruthy();
                     expect(originalProperties.width).toEqual(resultProperties.width);
                     expect(originalProperties.height).toEqual(resultProperties.height);
-                    expect(pixelAspectRatio).toEqual(resultProperties.gifProperties.pixelAspectRatio);
-                    // expect(resultProperties.gifProperties.hasTrailer).toBeTruthy();
                     return Promise.resolve();
                 },
                 folder,
                 storage);
     }
 
-    public async postImageGifTest(saveResultToStorage: boolean) {
-        const name: string = "test.gif";
+    public async postImageJpgTest(saveResultToStorage: boolean) {
+        const name: string = "test.jpg";
+        const quality: number = 65;
+        const compressionType: string = "progressive";
         const fromScratch: boolean = false;
-        const hasTrailer: boolean = true;
-        const interlaced: boolean = false;
-        const isPaletteSorted: boolean = true;
-        const backgroundColorIndex: number = 5;
-        const pixelAspectRatio: number = 4;
-        const colorResolution: number = 4;
-        const outName: string = `${name}_specific.gif`;
+        const outName: string = `${name}_specific.jpg`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImageGifTest", 
+                "postImageJpgTest", 
                 saveResultToStorage,
-                `Input image: ${name}; Has trailer: ${hasTrailer}; Interlaced: ${interlaced}; Palette is sorted: ${isPaletteSorted}; 
-                    Back color index: ${backgroundColorIndex}; Pixel aspect ratio: ${pixelAspectRatio}; Color resolution: ${colorResolution}`,
+                `Input image: ${name}; Quality: ${quality}; Compression type: ${compressionType}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageGifRequest({ imageData: inputStream, backgroundColorIndex, colorResolution, hasTrailer, interlaced, isPaletteSorted, 
-                        pixelAspectRatio, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImageGif(request);
+                    const request = new imaging.PostImageJpgRequest({ imageData: inputStream, quality, compressionType, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.postImageJpg(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
-                    expect(originalProperties.gifProperties).toBeTruthy();
-                    expect(resultProperties.gifProperties).toBeTruthy();
+                    expect(resultProperties.jpegProperties).toBeTruthy();
+                    expect(originalProperties.jpegProperties).toBeTruthy();
                     expect(originalProperties.width).toEqual(resultProperties.width);
                     expect(originalProperties.height).toEqual(resultProperties.height);
-                    expect(pixelAspectRatio).toEqual(resultProperties.gifProperties.pixelAspectRatio);
-                    // expect(resultProperties.gifProperties.hasTrailer).toBeTruthy();
                     return Promise.resolve();
                 },
                 folder,
@@ -112,7 +96,7 @@ class GifApiTests extends ApiTester {
     }
 }
 
-const testClass: GifApiTests = new GifApiTests();
+const testClass: JpgApiTests = new JpgApiTests();
 
 beforeEach(() => {
     jest.setTimeout(ApiTester.DefaultTimeout);
@@ -127,14 +111,14 @@ afterAll(async () =>  {
 });
 
 describe.each([[true], [false]])(
-    "GifTestSuite_V1_V2",
+    "JpgTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageGifTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageGifTest(saveResultToStorage);
+        test(`getImageJpgTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.getImageJpgTest(saveResultToStorage);
         });
 
-        test(`postImageGifTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageGifTest(saveResultToStorage);
+        test(`postImageJpgTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.postImageJpgTest(saveResultToStorage);
         });
 
         beforeEach(() => {

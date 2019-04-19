@@ -24,9 +24,6 @@
 * </summary>
 * --------------------------------------------------------------------------------------------------------------------
 */
-import { SaaSposeResponse } from "./stable-model";
-
-export * from "./stable-model";
 
 /**
  * Represents information about image in bmp format.
@@ -349,6 +346,61 @@ export class DicomProperties {
 }
 
 /**
+ * Class for disc space information.
+ */
+export class DiscUsage {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "usedSize",
+            baseName: "UsedSize",
+            type: "number",
+        },        
+        {
+            name: "totalSize",
+            baseName: "TotalSize",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return DiscUsage.attributeTypeMap;
+    }
+
+    /**
+     * Application used disc space.
+     */
+    public usedSize: number;
+    
+    /**
+     * Total disc space.
+     */
+    public totalSize: number;
+    
+    public constructor(init?: Partial<DiscUsage>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Represents properties of djvu file.
  */
 export class DjvuProperties {
@@ -553,6 +605,61 @@ export class DngProperties {
     public translationCfaDng: Array<string>;
     
     public constructor(init?: Partial<DngProperties>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * The error details
+ */
+export class ErrorDetails {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "requestId",
+            baseName: "RequestId",
+            type: "string",
+        },        
+        {
+            name: "date",
+            baseName: "Date",
+            type: "Date",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ErrorDetails.attributeTypeMap;
+    }
+
+    /**
+     * The request id
+     */
+    public requestId: string;
+    
+    /**
+     * Date
+     */
+    public date: Date;
+    
+    public constructor(init?: Partial<ErrorDetails>) {
         
         Object.assign(this, init);
     }        
@@ -1604,6 +1711,151 @@ export class ExifData {
 }
 
 /**
+ * File versions FileVersion.
+ */
+export class FileVersions {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "value",
+            baseName: "Value",
+            type: "Array<FileVersion>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return FileVersions.attributeTypeMap;
+    }
+
+    /**
+     * File versions FileVersion.
+     */
+    public value: Array<FileVersion>;
+    
+    public constructor(init?: Partial<FileVersions>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Files list
+ */
+export class FilesList {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "value",
+            baseName: "Value",
+            type: "Array<StorageFile>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return FilesList.attributeTypeMap;
+    }
+
+    /**
+     * Files and folders contained by folder StorageFile.
+     */
+    public value: Array<StorageFile>;
+    
+    public constructor(init?: Partial<FilesList>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * File upload result
+ */
+export class FilesUploadResult {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "uploaded",
+            baseName: "Uploaded",
+            type: "Array<string>",
+        },        
+        {
+            name: "errors",
+            baseName: "Errors",
+            type: "Array<Error>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return FilesUploadResult.attributeTypeMap;
+    }
+
+    /**
+     * List of uploaded file names
+     */
+    public uploaded: Array<string>;
+    
+    /**
+     * List of errors.
+     */
+    public errors: Array<Error>;
+    
+    public constructor(init?: Partial<FilesUploadResult>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Represents information about image in GIF format.
  */
 export class GifProperties {
@@ -1679,7 +1931,7 @@ export class GifProperties {
 }
 
 /**
- * Duplicate images.
+ * Image duplicates.
  */
 export class ImageDuplicates {
 
@@ -1713,11 +1965,346 @@ export class ImageDuplicates {
     }
 
     /**
-     * Gets the array of duplicate images.
+     * Gets or sets the duplicate images.
      */
     public duplicateImages: Array<SearchResult>;
     
     public constructor(init?: Partial<ImageDuplicates>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Duplicate images set.  
+ */
+export class ImageDuplicatesSet {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "duplicates",
+            baseName: "Duplicates",
+            type: "Array<ImageDuplicates>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ImageDuplicatesSet.attributeTypeMap;
+    }
+
+    /**
+     * Gets the duplicate images.
+     */
+    public duplicates: Array<ImageDuplicates>;
+    
+    public constructor(init?: Partial<ImageDuplicatesSet>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Image features.
+ */
+export class ImageFeatures {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "imageId",
+            baseName: "ImageId",
+            type: "string",
+        },        
+        {
+            name: "featuresCount",
+            baseName: "FeaturesCount",
+            type: "number",
+        },        
+        {
+            name: "featureLengthInBits",
+            baseName: "FeatureLengthInBits",
+            type: "number",
+        },        
+        {
+            name: "features",
+            baseName: "Features",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ImageFeatures.attributeTypeMap;
+    }
+
+    /**
+     * Gets the image identifier.
+     */
+    public imageId: string;
+    
+    /**
+     * Gets the features count.
+     */
+    public featuresCount: number;
+    
+    /**
+     * Gets the feature length in bits.
+     */
+    public featureLengthInBits: number;
+    
+    /**
+     * Gets the features.
+     */
+    public features: string;
+    
+    public constructor(init?: Partial<ImageFeatures>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Represents information about image.
+ */
+export class ImagingResponse {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "height",
+            baseName: "Height",
+            type: "number",
+        },        
+        {
+            name: "width",
+            baseName: "Width",
+            type: "number",
+        },        
+        {
+            name: "bitsPerPixel",
+            baseName: "BitsPerPixel",
+            type: "number",
+        },        
+        {
+            name: "bmpProperties",
+            baseName: "BmpProperties",
+            type: "BmpProperties",
+        },        
+        {
+            name: "gifProperties",
+            baseName: "GifProperties",
+            type: "GifProperties",
+        },        
+        {
+            name: "jpegProperties",
+            baseName: "JpegProperties",
+            type: "JpegProperties",
+        },        
+        {
+            name: "pngProperties",
+            baseName: "PngProperties",
+            type: "PngProperties",
+        },        
+        {
+            name: "tiffProperties",
+            baseName: "TiffProperties",
+            type: "TiffProperties",
+        },        
+        {
+            name: "psdProperties",
+            baseName: "PsdProperties",
+            type: "PsdProperties",
+        },        
+        {
+            name: "djvuProperties",
+            baseName: "DjvuProperties",
+            type: "DjvuProperties",
+        },        
+        {
+            name: "webPProperties",
+            baseName: "WebPProperties",
+            type: "WebPProperties",
+        },        
+        {
+            name: "jpeg2000Properties",
+            baseName: "Jpeg2000Properties",
+            type: "Jpeg2000Properties",
+        },        
+        {
+            name: "dicomProperties",
+            baseName: "DicomProperties",
+            type: "DicomProperties",
+        },        
+        {
+            name: "dngProperties",
+            baseName: "DngProperties",
+            type: "DngProperties",
+        },        
+        {
+            name: "odgProperties",
+            baseName: "OdgProperties",
+            type: "OdgProperties",
+        },        
+        {
+            name: "horizontalResolution",
+            baseName: "HorizontalResolution",
+            type: "number",
+        },        
+        {
+            name: "verticalResolution",
+            baseName: "VerticalResolution",
+            type: "number",
+        },        
+        {
+            name: "isCached",
+            baseName: "IsCached",
+            type: "boolean",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ImagingResponse.attributeTypeMap;
+    }
+
+    /**
+     * Gets or sets the height of image.
+     */
+    public height: number;
+    
+    /**
+     * Gets or sets the width of image.
+     */
+    public width: number;
+    
+    /**
+     * Gets or sets the bits per pixel for image.
+     */
+    public bitsPerPixel: number;
+    
+    /**
+     * Gets or sets the BMP properties.
+     */
+    public bmpProperties: BmpProperties;
+    
+    /**
+     * Gets or sets the GIF properties.
+     */
+    public gifProperties: GifProperties;
+    
+    /**
+     * Gets or sets the JPEG properties.
+     */
+    public jpegProperties: JpegProperties;
+    
+    /**
+     * Gets or sets the PNG properties.
+     */
+    public pngProperties: PngProperties;
+    
+    /**
+     * Gets or sets the TIFF properties.
+     */
+    public tiffProperties: TiffProperties;
+    
+    /**
+     * Gets or sets the PSD properties.
+     */
+    public psdProperties: PsdProperties;
+    
+    /**
+     * Gets or sets the DJVU properties.
+     */
+    public djvuProperties: DjvuProperties;
+    
+    /**
+     * Gets or sets the WEBP properties.
+     */
+    public webPProperties: WebPProperties;
+    
+    /**
+     * Gets or sets the JPEG2000 properties.
+     */
+    public jpeg2000Properties: Jpeg2000Properties;
+    
+    /**
+     * Gets or sets the DICOM properties.
+     */
+    public dicomProperties: DicomProperties;
+    
+    /**
+     * Gets or sets the DNG properties.
+     */
+    public dngProperties: DngProperties;
+    
+    /**
+     * Gets or sets the the ODG properties.
+     */
+    public odgProperties: OdgProperties;
+    
+    /**
+     * Gets or sets the horizontal resolution of an image.
+     */
+    public horizontalResolution: number;
+    
+    /**
+     * Gets or sets the vertical resolution of an image.
+     */
+    public verticalResolution: number;
+    
+    /**
+     * Gets or sets a value indicating whether image is cached.
+     */
+    public isCached: boolean;
+    
+    public constructor(init?: Partial<ImagingResponse>) {
         
         Object.assign(this, init);
     }        
@@ -1799,42 +2386,6 @@ export class JfifData {
 }
 
 /**
- * Represents JPEG2000 image type             
- */
-export class Jpeg2000Codec {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{
-        /**
-         * Attribute name
-         */
-        name: string, 
-        /**
-         * Attribute base name
-         */
-        baseName: string,
-        /**
-         * Attribute type
-         */
-        type: string}> = [
-    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return Jpeg2000Codec.attributeTypeMap;
-    }
-
-    public constructor(init?: Partial<Jpeg2000Codec>) {
-        
-        Object.assign(this, init);
-    }        
-}
-
-/**
  * Represents information about image in JPEG2000 format.
  */
 export class Jpeg2000Properties {
@@ -1863,7 +2414,7 @@ export class Jpeg2000Properties {
         {
             name: "codec",
             baseName: "Codec",
-            type: "Jpeg2000Codec",
+            type: "string",
         }    ];
 
     /**
@@ -1881,7 +2432,7 @@ export class Jpeg2000Properties {
     /**
      * Gets or sets the JPEG2000 codec
      */
-    public codec: Jpeg2000Codec;
+    public codec: string;
     
     public constructor(init?: Partial<Jpeg2000Properties>) {
         
@@ -1949,6 +2500,136 @@ export class JpegProperties {
     public jpegJfifData: JfifData;
     
     public constructor(init?: Partial<JpegProperties>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Error
+ */
+export class ModelError {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "code",
+            baseName: "Code",
+            type: "string",
+        },        
+        {
+            name: "message",
+            baseName: "Message",
+            type: "string",
+        },        
+        {
+            name: "description",
+            baseName: "Description",
+            type: "string",
+        },        
+        {
+            name: "innerError",
+            baseName: "InnerError",
+            type: "ErrorDetails",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ModelError.attributeTypeMap;
+    }
+
+    /**
+     * Code             
+     */
+    public code: string;
+    
+    /**
+     * Message             
+     */
+    public message: string;
+    
+    /**
+     * Description             
+     */
+    public description: string;
+    
+    /**
+     * Inner Error             
+     */
+    public innerError: ErrorDetails;
+    
+    public constructor(init?: Partial<ModelError>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Object exists
+ */
+export class ObjectExist {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "exists",
+            baseName: "Exists",
+            type: "boolean",
+        },        
+        {
+            name: "isFolder",
+            baseName: "IsFolder",
+            type: "boolean",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ObjectExist.attributeTypeMap;
+    }
+
+    /**
+     * Indicates that the file or folder exists.
+     */
+    public exists: boolean;
+    
+    /**
+     * True if it is a folder, false if it is a file.
+     */
+    public isFolder: boolean;
+    
+    public constructor(init?: Partial<ObjectExist>) {
         
         Object.assign(this, init);
     }        
@@ -2074,92 +2755,92 @@ export class OdgMetadata {
     }
 
     /**
-     * Gets or sets the generator.             
+     * Gets or sets the generator.
      */
     public generator: string;
     
     /**
-     * Gets or sets the title.             
+     * Gets or sets the title.
      */
     public title: string;
     
     /**
-     * Gets or sets the description.             
+     * Gets or sets the description.
      */
     public description: string;
     
     /**
-     * Gets or sets the subject.             
+     * Gets or sets the subject.
      */
     public subject: string;
     
     /**
-     * Gets or sets the keywords.             
+     * Gets or sets the keywords.
      */
     public keywords: string;
     
     /**
-     * Gets or sets the initial creator.             
+     * Gets or sets the initial creator.
      */
     public initialCreator: string;
     
     /**
-     * Gets or sets the creator.             
+     * Gets or sets the creator.
      */
     public creator: string;
     
     /**
-     * Gets or sets the \"PrintedBy\" record.             
+     * Gets or sets the \"PrintedBy\" record.
      */
     public printedBy: string;
     
     /**
-     * Gets or sets the creation date and time.             
+     * Gets or sets the creation date and time.
      */
     public creationDateTime: string;
     
     /**
-     * Gets or sets the modification date and time.             
+     * Gets or sets the modification date and time.
      */
     public modificationDateTime: string;
     
     /**
-     * Gets or sets the print date and time.             
+     * Gets or sets the print date and time.
      */
     public printDateTime: string;
     
     /**
-     * Gets or sets the document template.             
+     * Gets or sets the document template.
      */
     public documentTemplate: string;
     
     /**
-     * Gets or sets the automatic reload.             
+     * Gets or sets the automatic reload.
      */
     public automaticReload: string;
     
     /**
-     * Gets or sets the hyperlink behavior.             
+     * Gets or sets the hyperlink behavior.
      */
     public hyperlinkBehavior: string;
     
     /**
-     * Gets or sets the language.             
+     * Gets or sets the language.
      */
     public language: string;
     
     /**
-     * Gets or sets the editing cycles.             
+     * Gets or sets the editing cycles.
      */
     public editingCycles: string;
     
     /**
-     * Gets or sets the duration of the editing.             
+     * Gets or sets the duration of the editing.
      */
     public editingDuration: string;
     
     /**
-     * Gets or sets the document statistics.             
+     * Gets or sets the document statistics.
      */
     public documentStatistics: string;
     
@@ -2401,7 +3082,62 @@ export class PsdProperties {
 }
 
 /**
- * Search result.
+ * Search context status.
+ */
+export class SearchContextStatus {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "id",
+            baseName: "Id",
+            type: "string",
+        },        
+        {
+            name: "searchStatus",
+            baseName: "SearchStatus",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return SearchContextStatus.attributeTypeMap;
+    }
+
+    /**
+     * Gets or sets the identifier.
+     */
+    public id: string;
+    
+    /**
+     * Gets or sets the status.
+     */
+    public searchStatus: string;
+    
+    public constructor(init?: Partial<SearchContextStatus>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Image search result.
  */
 export class SearchResult {
 
@@ -2440,16 +3176,191 @@ export class SearchResult {
     }
 
     /**
-     * Gets the image identifier.
+     * Gets or sets the image identifier.
      */
     public imageId: string;
     
     /**
-     * Gets the similarity.
+     * Gets or sets the similarity.
      */
     public similarity: number;
     
     public constructor(init?: Partial<SearchResult>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Search results set.
+ */
+export class SearchResultsSet {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "results",
+            baseName: "Results",
+            type: "Array<SearchResult>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return SearchResultsSet.attributeTypeMap;
+    }
+
+    /**
+     * Gets the results.
+     */
+    public results: Array<SearchResult>;
+    
+    public constructor(init?: Partial<SearchResultsSet>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Storage exists
+ */
+export class StorageExist {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "exists",
+            baseName: "Exists",
+            type: "boolean",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return StorageExist.attributeTypeMap;
+    }
+
+    /**
+     * Shows that the storage exists.             
+     */
+    public exists: boolean;
+    
+    public constructor(init?: Partial<StorageExist>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * File or folder information
+ */
+export class StorageFile {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "name",
+            baseName: "Name",
+            type: "string",
+        },        
+        {
+            name: "isFolder",
+            baseName: "IsFolder",
+            type: "boolean",
+        },        
+        {
+            name: "modifiedDate",
+            baseName: "ModifiedDate",
+            type: "Date",
+        },        
+        {
+            name: "size",
+            baseName: "Size",
+            type: "number",
+        },        
+        {
+            name: "path",
+            baseName: "Path",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return StorageFile.attributeTypeMap;
+    }
+
+    /**
+     * File or folder name.
+     */
+    public name: string;
+    
+    /**
+     * True if it is a folder.
+     */
+    public isFolder: boolean;
+    
+    /**
+     * File or folder last modified DateTime.
+     */
+    public modifiedDate: Date;
+    
+    /**
+     * File or folder size.
+     */
+    public size: number;
+    
+    /**
+     * File or folder path.
+     */
+    public path: string;
+    
+    public constructor(init?: Partial<StorageFile>) {
         
         Object.assign(this, init);
     }        
@@ -3047,6 +3958,11 @@ export class TiffProperties {
          */
         type: string}> = [
         {
+            name: "frames",
+            baseName: "Frames",
+            type: "Array<TiffFrame>",
+        },        
+        {
             name: "byteOrder",
             baseName: "ByteOrder",
             type: "string",
@@ -3055,11 +3971,6 @@ export class TiffProperties {
             name: "exifData",
             baseName: "ExifData",
             type: "ExifData",
-        },        
-        {
-            name: "frames",
-            baseName: "Frames",
-            type: "Array<TiffFrame>",
         }    ];
 
     /**
@@ -3070,6 +3981,11 @@ export class TiffProperties {
     }
 
     /**
+     * Frames information.
+     */
+    public frames: Array<TiffFrame>;
+    
+    /**
      * Gets or sets the byte order.
      */
     public byteOrder: string;
@@ -3078,11 +3994,6 @@ export class TiffProperties {
      * Gets or sets the EXIF data.
      */
     public exifData: ExifData;
-    
-    /**
-     * Frames information.
-     */
-    public frames: Array<TiffFrame>;
     
     public constructor(init?: Partial<TiffProperties>) {
         
@@ -3140,7 +4051,7 @@ export class WebPProperties {
     }
 
     /**
-     * Gets or sets a value indicating whether these  is lossless.
+     * Gets or sets a value indicating whether these WebPOptions is lossless.
      */
     public lossless: boolean;
     
@@ -3166,9 +4077,9 @@ export class WebPProperties {
 }
 
 /**
- * Duplicate images set.  
+ * File Version
  */
-export class ImageDuplicatesSet extends SaaSposeResponse {
+export class FileVersion extends StorageFile {
 
     /**
      * Attribute type map
@@ -3187,213 +4098,13 @@ export class ImageDuplicatesSet extends SaaSposeResponse {
          */
         type: string}> = [
         {
-            name: "duplicates",
-            baseName: "Duplicates",
-            type: "Array<ImageDuplicates>",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(ImageDuplicatesSet.attributeTypeMap);
-    }
-
-    /**
-     * Gets the duplicate images.
-     */
-    public duplicates: Array<ImageDuplicates>;
-    
-    public constructor(init?: Partial<ImageDuplicatesSet>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Image features.
- */
-export class ImageFeatures extends SaaSposeResponse {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{
-        /**
-         * Attribute name
-         */
-        name: string, 
-        /**
-         * Attribute base name
-         */
-        baseName: string,
-        /**
-         * Attribute type
-         */
-        type: string}> = [
-        {
-            name: "imageId",
-            baseName: "ImageId",
+            name: "versionId",
+            baseName: "VersionId",
             type: "string",
         },        
         {
-            name: "featuresCount",
-            baseName: "FeaturesCount",
-            type: "number",
-        },        
-        {
-            name: "featureLengthInBits",
-            baseName: "FeatureLengthInBits",
-            type: "number",
-        },        
-        {
-            name: "features",
-            baseName: "Features",
-            type: "string",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(ImageFeatures.attributeTypeMap);
-    }
-
-    /**
-     * Gets the image identifier.
-     */
-    public imageId: string;
-    
-    /**
-     * Gets the features count.
-     */
-    public featuresCount: number;
-    
-    /**
-     * Gets the feature length in bits.
-     */
-    public featureLengthInBits: number;
-    
-    /**
-     * Gets the features.
-     */
-    public features: string;
-    
-    public constructor(init?: Partial<ImageFeatures>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Represents information about image.
- */
-export class ImagingResponse extends SaaSposeResponse {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{
-        /**
-         * Attribute name
-         */
-        name: string, 
-        /**
-         * Attribute base name
-         */
-        baseName: string,
-        /**
-         * Attribute type
-         */
-        type: string}> = [
-        {
-            name: "height",
-            baseName: "Height",
-            type: "number",
-        },        
-        {
-            name: "width",
-            baseName: "Width",
-            type: "number",
-        },        
-        {
-            name: "bitsPerPixel",
-            baseName: "BitsPerPixel",
-            type: "number",
-        },        
-        {
-            name: "bmpProperties",
-            baseName: "BmpProperties",
-            type: "BmpProperties",
-        },        
-        {
-            name: "gifProperties",
-            baseName: "GifProperties",
-            type: "GifProperties",
-        },        
-        {
-            name: "jpegProperties",
-            baseName: "JpegProperties",
-            type: "JpegProperties",
-        },        
-        {
-            name: "pngProperties",
-            baseName: "PngProperties",
-            type: "PngProperties",
-        },        
-        {
-            name: "tiffProperties",
-            baseName: "TiffProperties",
-            type: "TiffProperties",
-        },        
-        {
-            name: "psdProperties",
-            baseName: "PsdProperties",
-            type: "PsdProperties",
-        },        
-        {
-            name: "djvuProperties",
-            baseName: "DjvuProperties",
-            type: "DjvuProperties",
-        },        
-        {
-            name: "webPProperties",
-            baseName: "WebPProperties",
-            type: "WebPProperties",
-        },        
-        {
-            name: "jpeg2000Properties",
-            baseName: "Jpeg2000Properties",
-            type: "Jpeg2000Properties",
-        },        
-        {
-            name: "dicomProperties",
-            baseName: "DicomProperties",
-            type: "DicomProperties",
-        },        
-        {
-            name: "dngProperties",
-            baseName: "DngProperties",
-            type: "DngProperties",
-        },        
-        {
-            name: "odgProperties",
-            baseName: "OdgProperties",
-            type: "OdgProperties",
-        },        
-        {
-            name: "horizontalResolution",
-            baseName: "HorizontalResolution",
-            type: "number",
-        },        
-        {
-            name: "verticalResolution",
-            baseName: "VerticalResolution",
-            type: "number",
-        },        
-        {
-            name: "isCached",
-            baseName: "IsCached",
+            name: "isLatest",
+            baseName: "IsLatest",
             type: "boolean",
         }    ];
 
@@ -3401,100 +4112,20 @@ export class ImagingResponse extends SaaSposeResponse {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(ImagingResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(FileVersion.attributeTypeMap);
     }
 
     /**
-     * Gets or sets the height of image.
+     * File Version ID.
      */
-    public height: number;
+    public versionId: string;
     
     /**
-     * Gets or sets the width of image.
+     * Specifies whether the file is (true) or is not (false) the latest version of an file.
      */
-    public width: number;
+    public isLatest: boolean;
     
-    /**
-     * Gets or sets the bits per pixel for image.
-     */
-    public bitsPerPixel: number;
-    
-    /**
-     * Gets or sets the BMP properties.
-     */
-    public bmpProperties: BmpProperties;
-    
-    /**
-     * Gets or sets the GIF properties.
-     */
-    public gifProperties: GifProperties;
-    
-    /**
-     * Gets or sets the JPEG properties.
-     */
-    public jpegProperties: JpegProperties;
-    
-    /**
-     * Gets or sets the PNG properties.
-     */
-    public pngProperties: PngProperties;
-    
-    /**
-     * Gets or sets the TIFF properties.
-     */
-    public tiffProperties: TiffProperties;
-    
-    /**
-     * Gets or sets the PSD properties.
-     */
-    public psdProperties: PsdProperties;
-    
-    /**
-     * Gets or sets the DJVU properties.
-     */
-    public djvuProperties: DjvuProperties;
-    
-    /**
-     * Gets or sets the WEBP properties.
-     */
-    public webPProperties: WebPProperties;
-    
-    /**
-     * Gets or sets the JPEG2000 properties.
-     */
-    public jpeg2000Properties: Jpeg2000Properties;
-    
-    /**
-     * Gets or sets the DICOM properties.
-     */
-    public dicomProperties: DicomProperties;
-    
-    /**
-     * Gets or sets the DNG properties.
-     */
-    public dngProperties: DngProperties;
-    
-    /**
-     * Gets or sets the the ODG properties.
-     */
-    public odgProperties: OdgProperties;
-    
-    /**
-     * Gets or sets the horizontal resolution of an image.
-     */
-    public horizontalResolution: number;
-    
-    /**
-     * Gets or sets the vertical resolution of an image.
-     */
-    public verticalResolution: number;
-    
-    /**
-     * Gets or sets a value indicating whether image is cached.
-     */
-    public isCached: boolean;
-    
-    public constructor(init?: Partial<ImagingResponse>) {
+    public constructor(init?: Partial<FileVersion>) {
         super(init);
         Object.assign(this, init);
     }        
@@ -3695,140 +4326,179 @@ export class JpegExifData extends ExifData {
     }        
 }
 
-/**
- * Search context status.
- */
-export class SearchContextStatus extends SaaSposeResponse {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{
-        /**
-         * Attribute name
-         */
-        name: string, 
-        /**
-         * Attribute base name
-         */
-        baseName: string,
-        /**
-         * Attribute type
-         */
-        type: string}> = [
-        {
-            name: "id",
-            baseName: "Id",
-            type: "string",
-        },        
-        {
-            name: "searchStatus",
-            baseName: "SearchStatus",
-            type: "string",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(SearchContextStatus.attributeTypeMap);
-    }
-
-    /**
-     * Gets or sets the identifier.
-     */
-    public id: string;
-    
-    /**
-     * Gets or sets the status.
-     */
-    public searchStatus: string;
-    
-    public constructor(init?: Partial<SearchContextStatus>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Search results set.
- */
-export class SearchResultsSet extends SaaSposeResponse {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{
-        /**
-         * Attribute name
-         */
-        name: string, 
-        /**
-         * Attribute base name
-         */
-        baseName: string,
-        /**
-         * Attribute type
-         */
-        type: string}> = [
-        {
-            name: "results",
-            baseName: "Results",
-            type: "Array<SearchResult>",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(SearchResultsSet.attributeTypeMap);
-    }
-
-    /**
-     * Gets the results.
-     */
-    public results: Array<SearchResult>;
-    
-    public constructor(init?: Partial<SearchResultsSet>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
 const enumsMap = {
 };
 
 const typeMap = {
             BmpProperties,
             DicomProperties,
+            DiscUsage,
             DjvuProperties,
             DngProperties,
+            ErrorDetails,
             ExifData,
+            FileVersions,
+            FilesList,
+            FilesUploadResult,
             GifProperties,
             ImageDuplicates,
+            ImageDuplicatesSet,
+            ImageFeatures,
+            ImagingResponse,
             JfifData,
-            Jpeg2000Codec,
             Jpeg2000Properties,
             JpegProperties,
+            ModelError,
+            ObjectExist,
             OdgMetadata,
             OdgPage,
             OdgProperties,
             PngProperties,
             PsdProperties,
+            SearchContextStatus,
             SearchResult,
+            SearchResultsSet,
+            StorageExist,
+            StorageFile,
             TiffFrame,
             TiffOptions,
             TiffProperties,
             WebPProperties,
-            ImageDuplicatesSet,
-            ImageFeatures,
-            ImagingResponse,
+            FileVersion,
             JpegExifData,
-            SearchContextStatus,
-            SearchResultsSet,
 };
 
 export {enumsMap, typeMap};
+
+/**
+ * Request model for CopyFile operation.
+ */
+export class CopyFileRequest {
+    /**
+     * Source file path e.g. '/folder/file.ext'
+     */
+    public srcPath: string;
+
+    /**
+     * Destination file path
+     */
+    public destPath: string;
+
+    /**
+     * Source storage name
+     */
+    public srcStorageName: string;
+
+    /**
+     * Destination storage name
+     */
+    public destStorageName: string;
+
+    /**
+     * File version ID to copy
+     */
+    public versionId: string;
+    
+    public constructor(init?: Partial<CopyFileRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CopyFolder operation.
+ */
+export class CopyFolderRequest {
+    /**
+     * Source folder path e.g. '/src'
+     */
+    public srcPath: string;
+
+    /**
+     * Destination folder path e.g. '/dst'
+     */
+    public destPath: string;
+
+    /**
+     * Source storage name
+     */
+    public srcStorageName: string;
+
+    /**
+     * Destination storage name
+     */
+    public destStorageName: string;
+    
+    public constructor(init?: Partial<CopyFolderRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateFolder operation.
+ */
+export class CreateFolderRequest {
+    /**
+     * Folder path to create e.g. 'folder_1/folder_2/'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+    
+    public constructor(init?: Partial<CreateFolderRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for DeleteFile operation.
+ */
+export class DeleteFileRequest {
+    /**
+     * File path e.g. '/folder/file.ext'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+
+    /**
+     * File version ID to delete
+     */
+    public versionId: string;
+    
+    public constructor(init?: Partial<DeleteFileRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for DeleteFolder operation.
+ */
+export class DeleteFolderRequest {
+    /**
+     * Folder path e.g. '/folder'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+
+    /**
+     * Enable to delete folders, subfolders and files
+     */
+    public recursive: boolean;
+    
+    public constructor(init?: Partial<DeleteFolderRequest>) {        
+        Object.assign(this, init);
+    } 
+}
 
 /**
  * Request model for DeleteSearchContext operation.
@@ -3913,6 +4583,82 @@ export class DeleteSearchContextImageFeaturesRequest {
 }
 
 /**
+ * Request model for DownloadFile operation.
+ */
+export class DownloadFileRequest {
+    /**
+     * File path e.g. '/folder/file.ext'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+
+    /**
+     * File version ID to download
+     */
+    public versionId: string;
+    
+    public constructor(init?: Partial<DownloadFileRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetDiscUsage operation.
+ */
+export class GetDiscUsageRequest {
+    /**
+     * Storage name
+     */
+    public storageName: string;
+    
+    public constructor(init?: Partial<GetDiscUsageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetFileVersions operation.
+ */
+export class GetFileVersionsRequest {
+    /**
+     * File path e.g. '/file.ext'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+    
+    public constructor(init?: Partial<GetFileVersionsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetFilesList operation.
+ */
+export class GetFilesListRequest {
+    /**
+     * Folder path e.g. '/folder'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+    
+    public constructor(init?: Partial<GetFilesListRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for GetImageBmp operation.
  */
 export class GetImageBmpRequest {
@@ -3971,7 +4717,7 @@ export class GetImageCropRequest {
     public name: string;
 
     /**
-     * Resulting image format. Currently, BMP, PSD, JPG, TIFF, GIF, PNG, J2K and WEBP are supported.
+     * Resulting image format.
      */
     public format: string;
 
@@ -4011,74 +4757,6 @@ export class GetImageCropRequest {
     public storage: string;
     
     public constructor(init?: Partial<GetImageCropRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetImageDicom operation.
- */
-export class GetImageDicomRequest {
-    /**
-     * Filename of image.
-     */
-    public name: string;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Folder with image to process.
-     */
-    public folder: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetImageDicomRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetImageDng operation.
- */
-export class GetImageDngRequest {
-    /**
-     * Filename of image.
-     */
-    public name: string;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Folder with image to process.
-     */
-    public folder: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetImageDngRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -4136,6 +4814,11 @@ export class GetImageEmfRequest {
      * Your Aspose Cloud Storage name.
      */
     public storage: string;
+
+    /**
+     * Export format (PNG is the default one).
+     */
+    public format: string;
     
     public constructor(init?: Partial<GetImageEmfRequest>) {        
         Object.assign(this, init);
@@ -4398,74 +5081,6 @@ export class GetImageJpgRequest {
 }
 
 /**
- * Request model for GetImageOdg operation.
- */
-export class GetImageOdgRequest {
-    /**
-     * Filename of image.
-     */
-    public name: string;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Folder with image to process.
-     */
-    public folder: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetImageOdgRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetImagePng operation.
- */
-export class GetImagePngRequest {
-    /**
-     * Filename of image.
-     */
-    public name: string;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Folder with image to process.
-     */
-    public folder: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetImagePngRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
  * Request model for GetImageProperties operation.
  */
 export class GetImagePropertiesRequest {
@@ -4543,7 +5158,7 @@ export class GetImageResizeRequest {
     public name: string;
 
     /**
-     * Resulting image format. Currently, BMP, PSD, JPG, TIFF, GIF, PNG, J2K and WEBP are supported.
+     * Resulting image format.
      */
     public format: string;
 
@@ -4587,7 +5202,7 @@ export class GetImageRotateFlipRequest {
     public name: string;
 
     /**
-     * Resulting image format. Currently, BMP, PSD, JPG, TIFF, GIF, PNG, J2K and WEBP are supported.
+     * Resulting image format.
      */
     public format: string;
 
@@ -4626,7 +5241,7 @@ export class GetImageSaveAsRequest {
     public name: string;
 
     /**
-     * Resulting image format. Currently, BMP, PSD, JPG, TIFF, GIF, PNG, J2K and WEBP are supported.
+     * Resulting image format.
      */
     public format: string;
 
@@ -4719,7 +5334,7 @@ export class GetImageUpdateRequest {
     public name: string;
 
     /**
-     * Resulting image format. Currently, BMP, PSD, JPG, TIFF, GIF, PNG, J2K and WEBP are supported.
+     * Resulting image format.
      */
     public format: string;
 
@@ -4885,6 +5500,11 @@ export class GetImageWmfRequest {
      * Your Aspose Cloud Storage name.
      */
     public storage: string;
+
+    /**
+     * Export format (PNG is the default one).
+     */
+    public format: string;
     
     public constructor(init?: Partial<GetImageWmfRequest>) {        
         Object.assign(this, init);
@@ -5110,6 +5730,93 @@ export class GetTiffToFaxRequest {
 }
 
 /**
+ * Request model for MoveFile operation.
+ */
+export class MoveFileRequest {
+    /**
+     * Source file path e.g. '/src.ext'
+     */
+    public srcPath: string;
+
+    /**
+     * Destination file path e.g. '/dest.ext'
+     */
+    public destPath: string;
+
+    /**
+     * Source storage name
+     */
+    public srcStorageName: string;
+
+    /**
+     * Destination storage name
+     */
+    public destStorageName: string;
+
+    /**
+     * File version ID to move
+     */
+    public versionId: string;
+    
+    public constructor(init?: Partial<MoveFileRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for MoveFolder operation.
+ */
+export class MoveFolderRequest {
+    /**
+     * Folder path to move e.g. '/folder'
+     */
+    public srcPath: string;
+
+    /**
+     * Destination folder path to move to e.g '/dst'
+     */
+    public destPath: string;
+
+    /**
+     * Source storage name
+     */
+    public srcStorageName: string;
+
+    /**
+     * Destination storage name
+     */
+    public destStorageName: string;
+    
+    public constructor(init?: Partial<MoveFolderRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for ObjectExists operation.
+ */
+export class ObjectExistsRequest {
+    /**
+     * File or folder path e.g. '/file.ext' or '/folder'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+
+    /**
+     * File version ID
+     */
+    public versionId: string;
+    
+    public constructor(init?: Partial<ObjectExistsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for PostCreateSearchContext operation.
  */
 export class PostCreateSearchContextRequest {
@@ -5192,7 +5899,7 @@ export class PostImageCropRequest {
     public imageData: Buffer;
 
     /**
-     * Resulting image format. Currently, BMP, PSD, JPG, TIFF, GIF, PNG, J2K and WEBP are supported.
+     * Resulting image format.
      */
     public format: string;
 
@@ -5227,64 +5934,6 @@ export class PostImageCropRequest {
     public storage: string;
     
     public constructor(init?: Partial<PostImageCropRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImageDicom operation.
- */
-export class PostImageDicomRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostImageDicomRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImageDng operation.
- */
-export class PostImageDngRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostImageDngRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -5337,6 +5986,11 @@ export class PostImageEmfRequest {
      * Your Aspose Cloud Storage name.
      */
     public storage: string;
+
+    /**
+     * Export format (PNG is the default one).
+     */
+    public format: string;
     
     public constructor(init?: Partial<PostImageEmfRequest>) {        
         Object.assign(this, init);
@@ -5569,64 +6223,6 @@ export class PostImageJpgRequest {
 }
 
 /**
- * Request model for PostImageOdg operation.
- */
-export class PostImageOdgRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostImageOdgRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImagePng operation.
- */
-export class PostImagePngRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostImagePngRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
  * Request model for PostImageProperties operation.
  */
 export class PostImagePropertiesRequest {
@@ -5689,7 +6285,7 @@ export class PostImageResizeRequest {
     public imageData: Buffer;
 
     /**
-     * Resulting image format. Currently, BMP, PSD, JPG, TIFF, GIF, PNG, J2K and WEBP are supported.
+     * Resulting image format.
      */
     public format: string;
 
@@ -5728,7 +6324,7 @@ export class PostImageRotateFlipRequest {
     public imageData: Buffer;
 
     /**
-     * Resulting image format. Currently, BMP, PSD, JPG, TIFF, GIF, PNG, J2K and WEBP are supported.
+     * Resulting image format.
      */
     public format: string;
 
@@ -5762,7 +6358,7 @@ export class PostImageSaveAsRequest {
     public imageData: Buffer;
 
     /**
-     * Resulting image format. Currently, BMP, PSD, JPG, TIFF, GIF, PNG, J2K and WEBP are supported.
+     * Resulting image format.
      */
     public format: string;
 
@@ -5845,7 +6441,7 @@ export class PostImageUpdateRequest {
     public imageData: Buffer;
 
     /**
-     * Resulting image format. Currently, BMP, PSD, JPG, TIFF, GIF, PNG, J2K and WEBP are supported.
+     * Resulting image format.
      */
     public format: string;
 
@@ -5996,6 +6592,11 @@ export class PostImageWmfRequest {
      * Your Aspose Cloud Storage name.
      */
     public storage: string;
+
+    /**
+     * Export format (PNG is the default one).
+     */
+    public format: string;
     
     public constructor(init?: Partial<PostImageWmfRequest>) {        
         Object.assign(this, init);
@@ -6280,6 +6881,44 @@ export class PutSearchContextImageFeaturesRequest {
     public storage: string;
     
     public constructor(init?: Partial<PutSearchContextImageFeaturesRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for StorageExists operation.
+ */
+export class StorageExistsRequest {
+    /**
+     * Storage name
+     */
+    public storageName: string;
+    
+    public constructor(init?: Partial<StorageExistsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for UploadFile operation.
+ */
+export class UploadFileRequest {
+    /**
+     * Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.             
+     */
+    public path: string;
+
+    /**
+     * File to upload
+     */
+    public file: Buffer;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+    
+    public constructor(init?: Partial<UploadFileRequest>) {        
         Object.assign(this, init);
     } 
 }

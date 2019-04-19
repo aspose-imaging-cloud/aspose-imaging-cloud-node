@@ -1,6 +1,6 @@
 {
   "name": "@asposecloud/asposeimagingcloud",
-  "version": "19.1.0",
+  "version": "19.4.0",
   "description": "Aspose.Imaging Cloud Node.js SDK",
   "homepage": "https://products.aspose.cloud/imaging",
   "author": {
@@ -45,6 +45,10 @@
     "tif",
     "webp",
     "wmf",
+    "cdr",
+    "cmx",
+    "pdf",
+    "svg",
     "reverse",
     "search"
   ],
@@ -72,14 +76,13 @@
   "devDependencies": {
     "@types/jest": "^23.3.9",
     "@types/jest-each": "^0.3.2",
-    "asposestoragecloud": "^1.0.5",
     "jest": "^23.6.0",
     "jest-each": "^23.6.0",
     "jest-junit": "^5.2.0",
     "ts-jest": "^23.10.4",
     "ts-node": "^4.0.2",
     "tslint": "^5.8.0",
-    "typescript": "^2.9.2",
+    "typescript": "^3.1.1",
     "cross-var": "^1.1.0"
   }
 }
