@@ -326,7 +326,8 @@ test(`extractAndAddImageFeaturesTest`, async () => {
 });
 
 test(`extractAndAddImageFeaturesFromFolderTest`, async () => {
-    await testClass.extractAndAddImageFeaturesFromFolderTest();
+    // IMAGINGAINET-107
+    // await testClass.extractAndAddImageFeaturesFromFolderTest();
 });
 
 test(`getImageFeaturesTest`, async () => {
