@@ -94,7 +94,7 @@ export abstract class TestImagingAIBase extends ApiTester {
     }
 
     protected async waitSearchContextIdle(maxTimeMilliseconds: number = this.WaitTimeoutInMinutes * 60 * 1000) {
-        const timeout: number = 10000;
+        const timeout: number = 20000;
         const startTime: number = new Date().getTime();
         let status: imaging.SearchContextStatus;
 
