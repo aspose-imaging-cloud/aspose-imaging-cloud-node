@@ -99,11 +99,11 @@ export abstract class TestImagingAIBase extends ApiTester {
         let status: imaging.SearchContextStatus;
 
         do {
-			await this.sleep(timeout);
-			
+            await this.sleep(timeout);
+            
             status = await this.imagingApi.getSearchContextStatus(new imaging.GetSearchContextStatusRequest({ 
                 searchContextId: this.SearchContextId, storage: this.TestStorage }));
-            if (status.searchStatus == "Idle") {            
+            if (status.searchStatus === "Idle") {
                 break;
             }
         } while (((new Date()).getTime()) - startTime < maxTimeMilliseconds);
