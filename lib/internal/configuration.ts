@@ -61,6 +61,10 @@ export class Configuration {
 
     constructor(appKey: string, appSID: string, baseUrl?: string, debugMode?: boolean, apiVersion?: string) {
         if (baseUrl) {
+            if (!baseUrl.endsWith("/")) {
+                baseUrl = baseUrl + "/";
+            }
+
             this.baseUrl = baseUrl;
         }
 
@@ -83,10 +87,6 @@ export class Configuration {
      * Returns api base url
      */
     public getApiBaseUrl(): string {
-        if (this.baseUrl.endsWith("/")) {
-            return this.baseUrl + this.apiVersion;
-        } else {
-            return this.baseUrl + "/" + this.apiVersion;
-        }
+        return this.baseUrl + this.apiVersion;
     }
 }
