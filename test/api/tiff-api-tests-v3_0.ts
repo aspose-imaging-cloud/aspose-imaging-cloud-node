@@ -179,15 +179,22 @@ class TiffApiTests extends ApiTester {
 
           outPath = folder + "/" + resultFileName;
         
-          if (await this.getIsExistAsync(outPath, storage)) {
-              await this.deleteFileAsync(outPath, storage);
+          if ((await this.imagingApi.objectExists(
+            new imaging.ObjectExistsRequest ({ path: outPath, storageName: storage }))).exists) {
+            await this.imagingApi.deleteFile(
+                new imaging.DeleteFileRequest({ path: outPath, storageName: storage }));
           }
 
-          await this.copyInputFile(inputFileName, resultFileName, folder, storage);
+          await this.imagingApi.copyFile(
+            new imaging.CopyFileRequest({ srcPath: `${this.OriginalDataFolder}/${inputFileName}`, destPath: `${folder}/${resultFileName}`, 
+            srcStorageName: storage, destStorageName: storage }));
+          await this.imagingApi.copyFile(
+            new imaging.CopyFileRequest({ srcPath: `${this.OriginalDataFolder}/${inputFileName}`, destPath: `${folder}/${inputFileName}`, 
+            srcStorageName: storage, destStorageName: storage }));
 
           const request: imaging.PostTiffAppendRequest = new imaging.PostTiffAppendRequest({ name: resultFileName, appendFile: inputFileName, storage, folder});
           await this.imagingApi.postTiffAppend(request);
-
+          
           const resultInfo = await this.getStorageFileInfo(folder, resultFileName, storage);
           if (resultInfo == null) {
                   throw new Error(
@@ -197,6 +204,7 @@ class TiffApiTests extends ApiTester {
           const resultProperties = await this.imagingApi.getImageProperties(
             new imaging.GetImagePropertiesRequest({ name: resultFileName, folder, storage }));
           expect(resultProperties).toBeTruthy();
+
           const originalProperties = await this.imagingApi.getImageProperties(
             new imaging.GetImagePropertiesRequest({ name: inputFileName, folder, storage }));
           expect(originalProperties).toBeTruthy();
@@ -216,8 +224,10 @@ class TiffApiTests extends ApiTester {
           console.log(e);
           throw e;
       } finally {
-          if (!ApiTester.FailedAnyTest && passed && this.RemoveResult && await this.getIsExistAsync(outPath, storage)) {
-             await this.deleteFileAsync(outPath, storage);
+          if (!ApiTester.FailedAnyTest && passed && this.RemoveResult && (await this.imagingApi.objectExists(
+            new imaging.ObjectExistsRequest ({ path: outPath, storageName: storage }))).exists) {
+            await this.imagingApi.deleteFile(
+                new imaging.DeleteFileRequest({ path: outPath, storageName: storage }));
           }
 
           console.log(`Test passed: ${passed}`);
@@ -240,7 +250,7 @@ afterAll(async () =>  {
 });
 
 describe.each([[true], [false]])(
-    "TiffTestSuite_V1_V2",
+    "TiffTestSuite_V3",
     (saveResultToStorage) => {
         test(`getImageTiffTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.getImageTiffTest(saveResultToStorage);

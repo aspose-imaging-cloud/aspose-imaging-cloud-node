@@ -56,7 +56,7 @@ export abstract class ApiTester {
     /**
      * The API version
      */
-    protected readonly ApiVersion: string = "v2.0";
+    protected readonly ApiVersion: string = "v3.0";
 
     /**
      * The base URL
@@ -71,7 +71,7 @@ export abstract class ApiTester {
     /**
      * The default cloud storage
      */
-    protected readonly DefaultStorage: string = "Imaging-QA";
+    protected readonly DefaultStorage: string = "Imaging-CI";
 
     /**
      * The application key
@@ -94,6 +94,8 @@ export abstract class ApiTester {
         "png",
         "psd",
         "tiff",
+        "webp",
+        "pdf",
     ];
 
     /**
@@ -104,7 +106,7 @@ export abstract class ApiTester {
     /**
      * Original data folder.
      */
-    protected readonly OriginalDataFolder: string = "ImagingCloudSdkInputTestData";
+    protected readonly OriginalDataFolder: string = "ImagingIntegrationTestData";
 
     /**
      * Gets or sets a value indicating whether resulting images should be removed from cloud storage.
@@ -114,7 +116,7 @@ export abstract class ApiTester {
     /**
      * Input test files info
      */
-    protected InputTestFiles: any[];
+    protected InputTestFiles: imaging.StorageFile[];
 
     /**
      * Dynamic temp folder name.
@@ -130,11 +132,6 @@ export abstract class ApiTester {
      * Aspose.Imaging API
      */
     protected imagingApi: imaging.ImagingApi;
-
-    /**
-     * Aspose.Storage API
-     */
-    protected storageApi;
 
     /**
      * Setup method
@@ -154,9 +151,13 @@ export abstract class ApiTester {
         }
 
         await this.createApiInstances();
-        if (!ApiTester.FailedAnyTest && this.RemoveResult && await this.getIsExistAsync(this.TempFolder, this.TestStorage)) {
-            await this.deleteFolderAsync(this.TempFolder, this.TestStorage);
-            await this.putCreateFolderAsync(this.TempFolder, this.TestStorage);
+        if (!ApiTester.FailedAnyTest && this.RemoveResult && 
+            (await this.imagingApi.objectExists(
+                new imaging.ObjectExistsRequest ({ path: this.TempFolder, storageName: this.TestStorage }))).exists) {
+            await this.imagingApi.deleteFolder(
+                new imaging.DeleteFolderRequest({ storageName: this.TestStorage, path: this.TempFolder, recursive: true }));
+            await this.imagingApi.createFolder(
+                new imaging.CreateFolderRequest({ path: this.TempFolder, storageName: this.TestStorage }));
         } 
     }
     
@@ -164,8 +165,11 @@ export abstract class ApiTester {
      * Teardown method
      */
     public async afterAll() {
-        if (!ApiTester.FailedAnyTest && this.RemoveResult && await this.getIsExistAsync(this.TempFolder, this.TestStorage)) {
-            await this.deleteFolderAsync(this.TempFolder, this.TestStorage);
+        if (!ApiTester.FailedAnyTest && this.RemoveResult && 
+            (await this.imagingApi.objectExists(
+                new imaging.ObjectExistsRequest ({ path: this.TempFolder, storageName: this.TestStorage }))).exists) {
+            await this.imagingApi.deleteFolder(
+                new imaging.DeleteFolderRequest({ storageName: this.TestStorage, path: this.TempFolder, recursive: true }));
         } 
     }
 
@@ -182,8 +186,8 @@ export abstract class ApiTester {
                                     if (appKey === this.AppKey || appSid === this.AppSid) {
                                         console.log("Access data isn't set explicitly. Trying to obtain it from environment variables.");
                         
-                                        appKey = process.env.AppKEY;
-                                        appSid = process.env.AppSID;
+                                        appKey = process.env.AppKey;
+                                        appSid = process.env.AppSid;
                                         baseUrl = process.env.ApiEndpoint;
                                         apiVersion = process.env.ApiVersion;
                                     }
@@ -225,20 +229,13 @@ export abstract class ApiTester {
                                     console.log(`Base URL: ${baseUrl}`);
                                     console.log(`API version: ${apiVersion}`);
 
-                                    this.imagingApi = new imaging.ImagingApi(appSid, appKey, baseUrl, debug, apiVersion);
-                                    const StorageApi = require("asposestoragecloud");
-                                    let storageBaseUrl: string = baseUrl;
-                                    if (!storageBaseUrl.startsWith("https")) {
-                                            storageBaseUrl = storageBaseUrl.replace("http", "https");
-                                    }
-                                    this.storageApi = new StorageApi({ appSid, apiKey: appKey, baseURI: "https://api-dev.aspose.cloud/" + "v1.1", debug });
-                        
+                                    this.imagingApi = new imaging.ImagingApi(appKey, appSid, baseUrl, debug, apiVersion);
                                     this.InputTestFiles = await this.fetchInputTestFilesInfo();                            
     }
 
     protected checkInputFileExists(inputFileName: string): boolean {
         for (const storageFileInfo of this.InputTestFiles) {
-            if (storageFileInfo.Name === inputFileName) {
+            if (storageFileInfo.name === inputFileName) {
                 return true;
             }
         }
@@ -252,23 +249,16 @@ export abstract class ApiTester {
      * @param fileName Name of the file.
      * @param storage The storage.
      */
-    protected getStorageFileInfo(folder: string, fileName: string, storage: string): Promise<any> {
-        return new Promise((resolve, reject) => {
-            try {
-                this.storageApi.GetListFiles(folder, storage, (responseMessage) => {
-                    const files = responseMessage.body.Files;
-                    for (const storageFileInfo of files) {
-                        if (storageFileInfo.Name === fileName) {
-                            resolve(storageFileInfo);
-                        }
-                    }
-
-                    resolve(null);
-                });
-            } catch (error) {
-                reject(error);
+    protected async getStorageFileInfo(folder: string, fileName: string, storage: string): Promise<imaging.StorageFile> {
+        const files = await this.imagingApi.getFilesList(
+            new imaging.GetFilesListRequest({ path: folder, storageName: storage }));
+        for (const storageFileInfo of files.value) {
+            if (storageFileInfo.name === fileName) {
+                return Promise.resolve(storageFileInfo);
             }
-        });
+        }
+
+        return Promise.resolve(null);
     }
 
      /**
@@ -320,121 +310,6 @@ export abstract class ApiTester {
     }
 
     /**
-     * Gets existence status of path using Promise to call Storage SDK.
-     * @param outPath Storage path to check.
-     * @param storage Storage name.
-     */
-    protected getIsExistAsync(outPath: string, storage: string): Promise<boolean> {
-        return new Promise((resolve, reject) => {
-            try {
-                this.storageApi.GetIsExist(outPath, null, storage, (responseMessage) => {
-                    resolve(responseMessage.body.FileExist.IsExist);
-                });
-            } catch (error) {
-                console.log(error);
-                reject(false);
-            }
-        });
-    }
-
-    /**
-     * Copies input file to temp folder using Promises to call Storage SDK.
-     * @param fileName File to copy.
-     * @param destFolder Destination folder.
-     * @param storage Storage name.
-     */
-    protected async copyInputFile(fileName: string, destFileName: string, destFolder: string, storage: string) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                if (!(await this.getIsExistAsync(destFolder + "/" + destFileName, storage))) {
-                    this.storageApi.PutCopy(this.OriginalDataFolder + "/" + fileName, destFolder + "/" + destFileName, null, storage, storage, null, (copyResponse) => {
-                        try {
-                            expect(copyResponse.body.Status.toUpperCase()).toBe("OK");
-                            resolve();
-                        } catch (error) {
-                            reject(error);
-                        }
-                    });
-                } else {
-                    resolve();
-                }
-            } catch (error) {
-                reject(error);
-            }
-        });
-    }
-
-    /**
-     * Deletes folder using Promise to call Storage SDK.
-     * @param folder Storage folder.
-     * @param storage Storage name.
-     */
-    protected deleteFolderAsync(folder: string, storage: string) {
-        return new Promise((resolve, reject) => {
-            try {
-                this.storageApi.DeleteFolder(folder, storage, true, (responseMessage) => {
-                    resolve(responseMessage);
-                });
-            } catch (error) {
-                reject(error);
-            }
-        });
-    }
-
-    /**
-     * Deletes file using Promise to call Storage SDK.
-     * @param file Storage file path.
-     * @param storage Storage name.
-     */
-    protected deleteFileAsync(file: string, storage: string) {
-        return new Promise((resolve, reject) => {
-            try {
-                this.storageApi.DeleteFile(file, null, storage, (responseMessage) => {
-                    resolve(responseMessage);
-                });
-            } catch (error) {
-                reject(error);
-            }
-        });
-    }
-
-    /**
-     * Downloads file using Promise to call Storage SDK.
-     * @param downloadPath  Storage file path.
-     * @param storage Storage name.
-     */
-    protected getDownloadAsync(downloadPath: string, storage: string): Promise<Buffer> {
-        return new Promise((resolve, reject) => {
-            try {
-                this.storageApi.GetDownload(downloadPath, null, storage, async (responseMessage) => {
-                    resolve(responseMessage.body);
-                });
-            } catch (error) {
-                console.log(error);
-                reject(error);
-            }
-        });
-    }
-
-    /**
-     * Creates folder using Promise to call Storage SDK.
-     * @param downloadPath  Storage folder path.
-     * @param storage Storage name.
-     */
-    protected async putCreateFolderAsync(folder: string, storage: string) {
-        return new Promise((resolve, reject) => {
-            try {
-                this.storageApi.PutCreateFolder(folder, storage, storage, async (responseMessage) => {
-                    resolve(responseMessage.body);
-                });
-            } catch (error) {
-                console.log(error);
-                reject(error);
-            }
-        });
-    }
-
-    /**
      * Obtains the typical GET request response.
      * @param inputFileName Name of the input file.
      * @param outPath The request invoker.
@@ -459,7 +334,8 @@ export abstract class ApiTester {
      * @param requestInvoker The request invoker.
      */
     private async obtainPostResponse(inputPath: string, outPath: string, storage: string, requestInvoker: PostRequestInvokerDelegate) {
-        const responseBody = await this.getDownloadAsync(inputPath, storage);
+        const responseBody = await this.imagingApi.downloadFile(
+            new imaging.DownloadFileRequest({ path: inputPath, storageName: storage}));
         const response: Buffer = await requestInvoker.call(null, responseBody, outPath);
         if (!outPath) {
             expect(response).toBeTruthy();
@@ -473,16 +349,10 @@ export abstract class ApiTester {
     /**
      * Fetches the input test files info.
      */
-    private fetchInputTestFilesInfo(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            try {
-                this.storageApi.GetListFiles(this.OriginalDataFolder, this.TestStorage, (responseMessage) => {
-                    resolve(responseMessage.body.Files);
-                });
-            } catch (error) {
-                reject(error);
-            }
-        });
+    private async fetchInputTestFilesInfo(): Promise<imaging.StorageFile[]> {
+        return (await this.imagingApi.getFilesList(
+            new imaging.GetFilesListRequest({path: this.OriginalDataFolder, storageName: this.TestStorage}))).
+            value;
     }
 
     /**
@@ -505,7 +375,9 @@ export abstract class ApiTester {
                                 throw new Error(`Input file ${inputFileName} doesn't exist in the specified storage folder: ${folder}. Please, upload it first.`);
                             }
 
-                            await this.copyInputFile(inputFileName, inputFileName, folder, storage);
+                            await this.imagingApi.copyFile(
+                                new imaging.CopyFileRequest({ srcPath: `${this.OriginalDataFolder}/${inputFileName}`, destPath: `${folder}/${inputFileName}`, 
+                                srcStorageName: storage, destStorageName: storage }));
 
                             let passed: boolean = false;
                             let outPath: string = null;
@@ -515,8 +387,10 @@ export abstract class ApiTester {
 
                                 if (saveResultToStorage) {
                                     outPath = folder + "/" + resultFileName;
-                                    if (await this.getIsExistAsync(outPath, storage)) {
-                                        await this.deleteFileAsync(outPath, storage);
+                                    if ((await this.imagingApi.objectExists(
+                                        new imaging.ObjectExistsRequest ({ path: outPath, storageName: storage }))).exists) {
+                                        await this.imagingApi.deleteFile(
+                                            new imaging.DeleteFileRequest({ path: outPath, storageName: storage }));
                                     }
                                 }
 
@@ -527,14 +401,18 @@ export abstract class ApiTester {
                                     const resultInfo = await this.getStorageFileInfo(folder, resultFileName, storage);
                                     if (resultInfo == null) {
                                         throw new Error(
-                                            `Result file ${resultFileName} doesn't exist in the specified storage folder: ${folder}. Result isn't present in the storage by an unknown reason.`);
+                                            `Result file ${resultFileName} doesn't exist in the specified storage folder: ${folder}. 
+                                            Result isn't present in the storage by an unknown reason.`);
                                     }
 
-                                    resultProperties = await this.imagingApi.getImageProperties(
-                                        new imaging.GetImagePropertiesRequest({ name: resultFileName, folder, storage }));
-                                    expect(resultProperties).toBeTruthy();
-                                } else if (!this.imagingApi.configuration.apiVersion.includes("v1.")) {
-                                    resultProperties = await this.imagingApi.postImageProperties(new imaging.PostImagePropertiesRequest({ imageData: response }));
+                                    if (!resultFileName.endsWith(".pdf")) {
+                                        resultProperties = await this.imagingApi.getImageProperties(
+                                            new imaging.GetImagePropertiesRequest({ name: resultFileName, folder, storage }));
+                                        expect(resultProperties).toBeTruthy();
+                                    }
+                                } else if (!resultFileName.endsWith(".pdf")) {
+                                    resultProperties = await this.imagingApi.postImageProperties(
+                                        new imaging.PostImagePropertiesRequest({ imageData: response }));
                                     expect(resultProperties).toBeTruthy();
                                 }
                                 
@@ -553,8 +431,10 @@ export abstract class ApiTester {
                                 console.log(e);
                                 throw e;
                             } finally {
-                                if (!ApiTester.FailedAnyTest && passed && saveResultToStorage && this.RemoveResult && await this.getIsExistAsync(outPath, storage)) {
-                                    await this.deleteFileAsync(outPath, storage);
+                                if (!ApiTester.FailedAnyTest && passed && saveResultToStorage && this.RemoveResult && (await this.imagingApi.objectExists(
+                                    new imaging.ObjectExistsRequest ({ path: outPath, storageName: storage }))).exists) {
+                                    await this.imagingApi.deleteFile(
+                                        new imaging.DeleteFileRequest({ path: outPath, storageName: storage }));
                                 }
                 
                                 console.log(`Test passed: ${passed}`);

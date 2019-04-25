@@ -22,6 +22,8 @@
 * SOFTWARE.
 */
 
+import * as model from "../model/model";
+
 /**
  * API error class.
  */
@@ -33,14 +35,21 @@ export class ApiError extends Error {
     public readonly statusCode: number;
 
     /**
+     * Request error
+     */
+    public readonly error: model.ModelError;
+
+    /**
      * 
      * @param message Error message
      * @param status Status code
+     * @param requestError Request error
      */
-    constructor(message: string, status: number) {
+    constructor(message: string, status: number, requestError: model.ModelError) {
         super(message);
 
         this.statusCode = status;
+        this.error = requestError;
 
         // Set the prototype explicitly.
         Object.setPrototypeOf(this, ApiError.prototype);

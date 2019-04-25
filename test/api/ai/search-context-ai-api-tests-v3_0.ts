@@ -50,10 +50,16 @@ class SearchContextTests extends TestImagingAIBase {
                 async () => {
                     await this.deleteSearchContext(this.SearchContextId);
 
-                    await this.imagingApi.getSearchContextStatus(
-                        new imaging.GetSearchContextStatusRequest({ searchContextId: this.SearchContextId, storage: this.TestStorage })).catch((reason) => {
-                            expect(reason.message.includes("not found")).toBeTruthy();
-                        });
+                    let caught: boolean;
+                    try {
+                        await this.imagingApi.getSearchContextStatus(
+                            new imaging.GetSearchContextStatusRequest({ searchContextId: this.SearchContextId, storage: this.TestStorage }));
+                    } catch (error) {
+                        expect(error instanceof imaging.ApiError).toBeTruthy();
+                        caught = true;
+                    }
+
+                    expect(caught).toBeTruthy();
                 });
         }
 
@@ -75,11 +81,16 @@ class SearchContextTests extends TestImagingAIBase {
                     await this.imagingApi.deleteSearchContextImage(
                         new imaging.DeleteSearchContextImageRequest({ searchContextId: this.SearchContextId, imageId: destServerPath, storage: this.TestStorage }));
 
-                    await this.imagingApi.getSearchContextImage(
-                        new imaging.GetSearchContextImageRequest({ searchContextId: this.SearchContextId, imageId: destServerPath, storage: this.TestStorage })).
-                        catch((reason) => {
-                            expect(reason.message.includes("not found")).toBeTruthy();
-                        });
+                    let caught: boolean;
+                    try {
+                        await this.imagingApi.getSearchContextImage(
+                            new imaging.GetSearchContextImageRequest({ searchContextId: this.SearchContextId, imageId: destServerPath, storage: this.TestStorage }));
+                    } catch (error) {
+                        expect(error instanceof imaging.ApiError).toBeTruthy();
+                        caught = true;
+                    }
+
+                    expect(caught).toBeTruthy();
                 });
         }
 
@@ -107,7 +118,8 @@ class SearchContextTests extends TestImagingAIBase {
                     const destServerPath = `${this.TempFolder}/${image}`;
 
                     const storagePath = this.OriginalDataFolder + "/" + image;
-                    const imageStream = await this.getDownloadAsync(storagePath,  this.TestStorage);
+                    const imageStream = await this.imagingApi.downloadFile(
+                        new imaging.DownloadFileRequest({ path: storagePath, storageName: this.TestStorage}));
                     expect(imageStream).toBeTruthy();
 
                     await this.imagingApi.putSearchContextImage(
@@ -129,7 +141,6 @@ class SearchContextTests extends TestImagingAIBase {
                     const response = await this.imagingApi.getSearchContextExtractImageFeatures(
                             new imaging.GetSearchContextExtractImageFeaturesRequest({ 
                                 searchContextId: this.SearchContextId, imageId: destServerPath, storage: this.TestStorage }));
-                    expect(response.code).toEqual(200);
                     expect(response.imageId.includes(image)).toBeTruthy();
                     expect(response.features).toBeTruthy();
                     expect(response.features.length).toBeGreaterThan(0);
@@ -156,7 +167,6 @@ class SearchContextTests extends TestImagingAIBase {
                         new imaging.GetSearchContextImageFeaturesRequest({
                             searchContextId: this.SearchContextId, imageId: `${this.OriginalDataFolder}/FindSimilar/3.jpg`, storage: this.TestStorage }));
 
-                    expect(response.code).toEqual(200);
                     expect(response.imageId.includes("3.jp")).toBeTruthy();
                     expect(response.features).toBeTruthy();
                     expect(response.features.length).toBeGreaterThan(0);
@@ -183,11 +193,16 @@ class SearchContextTests extends TestImagingAIBase {
                     await this.imagingApi.deleteSearchContextImage(
                         new imaging.DeleteSearchContextImageRequest({ searchContextId: this.SearchContextId, imageId: destServerPath, storage: this.TestStorage }));
                     
-                    await this.imagingApi.getSearchContextImage(
-                        new imaging.GetSearchContextImageRequest({ searchContextId: this.SearchContextId, imageId: destServerPath, storage: this.TestStorage })).
-                        catch((reason) => {
-                            expect(reason.message.includes("not found")).toBeTruthy();
-                        });
+                    let caught: boolean;
+                    try {
+                        await this.imagingApi.getSearchContextImage(
+                            new imaging.GetSearchContextImageRequest({ searchContextId: this.SearchContextId, imageId: destServerPath, storage: this.TestStorage }));
+                    } catch (error) {
+                        expect(error instanceof imaging.ApiError).toBeTruthy();
+                        caught = true;
+                    }
+
+                    expect(caught).toBeTruthy();
                 });
         }
 
@@ -204,7 +219,8 @@ class SearchContextTests extends TestImagingAIBase {
                     const destServerPath = `${this.OriginalDataFolder}/${image}`;
 
                     const storagePath = this.OriginalDataFolder + "/" + this.SmallTestImage;
-                    const imageStream = await this.getDownloadAsync(storagePath, this.TestStorage);
+                    const imageStream = await this.imagingApi.downloadFile(
+                        new imaging.DownloadFileRequest({ path: storagePath, storageName: this.TestStorage}));
                     expect(imageStream).toBeTruthy();
 
                     await this.imagingApi.putSearchContextImageFeatures(
@@ -221,14 +237,16 @@ class SearchContextTests extends TestImagingAIBase {
             const destServerPath = `${this.TempFolder}/${image}`;
 
             const storagePath = this.OriginalDataFolder + "/" + image;
-            const imageStream = await this.getDownloadAsync(storagePath, this.TestStorage);
+            const imageStream = await this.imagingApi.downloadFile(
+                new imaging.DownloadFileRequest({ path: storagePath, storageName: this.TestStorage}));
             expect(imageStream).toBeTruthy();
 
             await this.imagingApi.postSearchContextAddImage(
                 new imaging.PostSearchContextAddImageRequest({searchContextId: this.SearchContextId, imageId: destServerPath, imageData: imageStream,
                     storage: this.TestStorage }));
 
-            expect(await this.getIsExistAsync(destServerPath, this.TestStorage)).toBeTruthy();
+            expect((await this.imagingApi.objectExists(
+                new imaging.ObjectExistsRequest ({ path: destServerPath, storageName: this.TestStorage }))).exists).toBeTruthy();
         }
 
         private async getImage(image: string) {
@@ -252,7 +270,6 @@ class SearchContextTests extends TestImagingAIBase {
             const response = await this.imagingApi.getSearchContextImageFeatures(
                 new imaging.GetSearchContextImageFeaturesRequest({ searchContextId: this.SearchContextId, imageId: destServerPath, storage: this.TestStorage }));
 
-            expect(200).toEqual(response.code);
             return response;
         }
 }
@@ -309,7 +326,8 @@ test(`extractAndAddImageFeaturesTest`, async () => {
 });
 
 test(`extractAndAddImageFeaturesFromFolderTest`, async () => {
-    await testClass.extractAndAddImageFeaturesFromFolderTest();
+    // IMAGINGAINET-107
+    // await testClass.extractAndAddImageFeaturesFromFolderTest();
 });
 
 test(`getImageFeaturesTest`, async () => {

@@ -42,7 +42,6 @@ class FindImagesTests extends TestImagingAIBase {
                         new imaging.GetSearchContextFindSimilarRequest({ searchContextId: this.SearchContextId, similarityThreshold: 3, maxCount: 3, 
                             imageId: findImageId, storage: this.TestStorage }));
                     expect(response.results.length).toBeGreaterThanOrEqual(1);
-                    expect(200).toEqual(response.code);
                 });
         }
 
@@ -52,7 +51,8 @@ class FindImagesTests extends TestImagingAIBase {
                     await this.addImageFeaturesToSearchContext(`${this.OriginalDataFolder}/FindSimilar`, true);
                     const tag = "TestTag";
                     const storagePath: string = this.OriginalDataFolder + "/" + this.ImageToFindByTag;
-                    const tagImageStream: Buffer = await this.getDownloadAsync(storagePath, this.TestStorage);
+                    const tagImageStream: Buffer = await this.imagingApi.downloadFile(
+                        new imaging.DownloadFileRequest({ path: storagePath, storageName: this.TestStorage}));
                     expect(tagImageStream).toBeTruthy();
                     await this.imagingApi.postSearchContextAddTag(
                         new imaging.PostSearchContextAddTagRequest({ imageData: tagImageStream, searchContextId: this.SearchContextId, 
@@ -61,7 +61,6 @@ class FindImagesTests extends TestImagingAIBase {
                     const response = await this.imagingApi.postSearchContextFindByTags(
                         new imaging.PostSearchContextFindByTagsRequest({ tags, searchContextId: this.SearchContextId, similarityThreshold: 60, 
                             maxCount: 5, storage: this.TestStorage }));
-                    expect(200).toEqual(response.code);
                     expect(1).toEqual(response.results.length);
                     expect(response.results[0].imageId.includes("2.jpg")).toBeTruthy();
                 });

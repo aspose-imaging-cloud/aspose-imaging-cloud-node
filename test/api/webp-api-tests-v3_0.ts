@@ -29,37 +29,35 @@ import * as imaging from "../../lib/api";
 import { ApiTester } from "../base/api-tester";
 
 /**
- * Class for testing PSD-related API calls
+ * Class for testing WEBP-related API calls
  */
-class PsdApiTests extends ApiTester {
+class WebpApiTests extends ApiTester {
 
-    public async getImagePsdTest(saveResultToStorage: boolean) {
-        const name: string = "test.psd";
-        const channelsCount: number = 3;
-        const compressionMethod: string = "raw";
+    public async getImageWebpTest(saveResultToStorage: boolean) {
+        const name: string = "Animation.webp";
+        const animBackgroundColor: string = "gray";
+        const animLoopCount: number = 5;
+        const quality: number = 90;
+        const lossLess: boolean  = true;
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.psd`;
+        const outName: string = `${name}_specific.webp`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImagePsdTest", 
+                "getImageWebpTest", 
                 saveResultToStorage,
-                `Input image: ${name}; Channels count: ${channelsCount}; Compression method: ${compressionMethod}`,
+                `Input image: ${name}; Animation loop count: ${animLoopCount}; Quality: ${quality}; Animation background color: ${animBackgroundColor}; Lossless: ${lossLess}`,
                 name,
                 outName,
                 async (fileName, outPath) => {
-                    const request = new imaging.GetImagePsdRequest({ name: fileName, channelsCount, compressionMethod, fromScratch, outPath, folder, storage });
-                    const response = await this.imagingApi.getImagePsd(request);
+                    const request = new imaging.GetImageWebPRequest({ name: fileName, lossLess, quality, animLoopCount, animBackgroundColor, fromScratch, outPath, folder, storage });
+                    const response = await this.imagingApi.getImageWebP(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
-                    expect(resultProperties.psdProperties).toBeTruthy();
-                    expect(compressionMethod).toEqual(resultProperties.psdProperties.compression.toLowerCase());
-                    expect(channelsCount).toEqual(Math.ceil(resultProperties.psdProperties.channelsCount));
-
-                    expect(originalProperties.psdProperties).toBeTruthy();
-                    expect(originalProperties.psdProperties.bitsPerChannel).toEqual(resultProperties.psdProperties.bitsPerChannel);
+                    expect(resultProperties.webPProperties).toBeTruthy();
+                    expect(originalProperties.webPProperties).toBeTruthy();
                     expect(originalProperties.width).toEqual(resultProperties.width);
                     expect(originalProperties.height).toEqual(resultProperties.height);
                     return Promise.resolve();
@@ -68,33 +66,31 @@ class PsdApiTests extends ApiTester {
                 storage);
     }
 
-    public async postImagePsdTest(saveResultToStorage: boolean) {
-        const name: string = "test.psd";
-        const channelsCount: number = 3;
-        const compressionMethod: string = "raw";
+    public async postImageWebpTest(saveResultToStorage: boolean) {
+        const name: string = "Animation.webp";
+        const animBackgroundColor: string = "gray";
+        const animLoopCount: number = 5;
+        const quality: number = 90;
+        const lossLess: boolean  = true;
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.psd`;
+        const outName: string = `${name}_specific.webp`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImagePsdTest", 
+                "postImageWebpTest", 
                 saveResultToStorage,
-                `Input image: ${name}; Channels count: ${channelsCount}; Compression method: ${compressionMethod}`,
+                `Input image: ${name}; Animation loop count: ${animLoopCount}; Quality: ${quality}; Animation background color: ${animBackgroundColor}; Lossless: ${lossLess}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImagePsdRequest({ imageData: inputStream, channelsCount, compressionMethod, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImagePsd(request);
+                    const request = new imaging.PostImageWebPRequest({ imageData: inputStream, lossLess, quality, animLoopCount, animBackgroundColor, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.postImageWebP(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
-                    expect(resultProperties.psdProperties).toBeTruthy();
-                    expect(compressionMethod).toEqual(resultProperties.psdProperties.compression.toLowerCase());
-                    expect(channelsCount).toEqual(Math.ceil(resultProperties.psdProperties.channelsCount));
-
-                    expect(originalProperties.psdProperties).toBeTruthy();
-                    expect(originalProperties.psdProperties.bitsPerChannel).toEqual(resultProperties.psdProperties.bitsPerChannel);
+                    expect(resultProperties.webPProperties).toBeTruthy();
+                    expect(originalProperties.webPProperties).toBeTruthy();
                     expect(originalProperties.width).toEqual(resultProperties.width);
                     expect(originalProperties.height).toEqual(resultProperties.height);
                     return Promise.resolve();
@@ -104,7 +100,7 @@ class PsdApiTests extends ApiTester {
     }
 }
 
-const testClass: PsdApiTests = new PsdApiTests();
+const testClass: WebpApiTests = new WebpApiTests();
 
 beforeEach(() => {
     jest.setTimeout(ApiTester.DefaultTimeout);
@@ -119,14 +115,14 @@ afterAll(async () =>  {
 });
 
 describe.each([[true], [false]])(
-    "PsdTestSuite_V1_V2",
+    "WebpTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImagePsdTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImagePsdTest(saveResultToStorage);
+        test(`getImageWebpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.getImageWebpTest(saveResultToStorage);
         });
 
-        test(`postImagePsdTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImagePsdTest(saveResultToStorage);
+        test(`postImageWebpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.postImageWebpTest(saveResultToStorage);
         });
 
         beforeEach(() => {

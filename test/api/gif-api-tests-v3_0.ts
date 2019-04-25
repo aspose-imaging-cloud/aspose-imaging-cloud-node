@@ -29,78 +29,82 @@ import * as imaging from "../../lib/api";
 import { ApiTester } from "../base/api-tester";
 
 /**
- * Class for testing BMP-related API calls
+ * Class for testing GIF-related API calls
  */
-class BmpApiTests extends ApiTester {
+class GifApiTests extends ApiTester {
 
-    public async getImageBmpTest(saveResultToStorage: boolean) {
-        const name: string = "test.bmp";
-        const bitsPerPixel: number = 32;
-        const horizontalResolution: number = 300;
-        const verticalResolution: number  = 300;
+    public async getImageGifTest(saveResultToStorage: boolean) {
+        const name: string = "test.gif";
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.bmp`;
+        const hasTrailer: boolean = true;
+        const interlaced: boolean = false;
+        const isPaletteSorted: boolean = true;
+        const backgroundColorIndex: number = 5;
+        const pixelAspectRatio: number = 4;
+        const colorResolution: number = 4;
+        const outName: string = `${name}_specific.gif`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImageBmpTest", 
+                "getImageGifTest", 
                 saveResultToStorage,
-                `Input image: ${name}; Bits per pixel: ${bitsPerPixel}; Horizontal resolution: ${horizontalResolution}; Vertical resolution: ${verticalResolution}`,
+                `Input image: ${name}; Has trailer: ${hasTrailer}; Interlaced: ${interlaced}; Palette is sorted: ${isPaletteSorted}; 
+                    Back color index: ${backgroundColorIndex}; Pixel aspect ratio: ${pixelAspectRatio}; Color resolution: ${colorResolution}`,
                 name,
                 outName,
                 async (fileName, outPath) => {
-                    const request = new imaging.GetImageBmpRequest({ name: fileName, bitsPerPixel, horizontalResolution, verticalResolution, fromScratch, outPath, folder, storage });
-                    const response = await this.imagingApi.getImageBmp(request);
+                    const request = new imaging.GetImageGifRequest({ name: fileName, backgroundColorIndex, colorResolution, hasTrailer, interlaced, isPaletteSorted, 
+                        pixelAspectRatio, fromScratch, outPath, folder, storage });
+                    const response = await this.imagingApi.getImageGif(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
-                    expect(resultProperties.bmpProperties).toBeTruthy();
-                    expect(bitsPerPixel).toEqual(resultProperties.bitsPerPixel);
-                    expect(verticalResolution).toEqual(Math.ceil(resultProperties.verticalResolution));
-                    expect(horizontalResolution).toEqual(Math.ceil(resultProperties.horizontalResolution));
-
-                    expect(originalProperties.bmpProperties).toBeTruthy();
-                    expect(originalProperties.bmpProperties.compression).toEqual(resultProperties.bmpProperties.compression);
+                    expect(originalProperties.gifProperties).toBeTruthy();
+                    expect(resultProperties.gifProperties).toBeTruthy();
                     expect(originalProperties.width).toEqual(resultProperties.width);
                     expect(originalProperties.height).toEqual(resultProperties.height);
+                    expect(pixelAspectRatio).toEqual(resultProperties.gifProperties.pixelAspectRatio);
+                    // expect(resultProperties.gifProperties.hasTrailer).toBeTruthy();
                     return Promise.resolve();
                 },
                 folder,
                 storage);
     }
 
-    public async postImageBmpTest(saveResultToStorage: boolean) {
-        const name: string = "test.bmp";
-        const bitsPerPixel: number = 32;
-        const horizontalResolution: number = 300;
-        const verticalResolution: number  = 300;
+    public async postImageGifTest(saveResultToStorage: boolean) {
+        const name: string = "test.gif";
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.bmp`;
+        const hasTrailer: boolean = true;
+        const interlaced: boolean = false;
+        const isPaletteSorted: boolean = true;
+        const backgroundColorIndex: number = 5;
+        const pixelAspectRatio: number = 4;
+        const colorResolution: number = 4;
+        const outName: string = `${name}_specific.gif`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImageBmpTest", 
+                "postImageGifTest", 
                 saveResultToStorage,
-                `Input image: ${name}; Bits per pixel: ${bitsPerPixel}; Horizontal resolution: ${horizontalResolution}; Vertical resolution: ${verticalResolution}`,
+                `Input image: ${name}; Has trailer: ${hasTrailer}; Interlaced: ${interlaced}; Palette is sorted: ${isPaletteSorted}; 
+                    Back color index: ${backgroundColorIndex}; Pixel aspect ratio: ${pixelAspectRatio}; Color resolution: ${colorResolution}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageBmpRequest({ imageData: inputStream, bitsPerPixel, horizontalResolution, verticalResolution, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImageBmp(request);
+                    const request = new imaging.PostImageGifRequest({ imageData: inputStream, backgroundColorIndex, colorResolution, hasTrailer, interlaced, isPaletteSorted, 
+                        pixelAspectRatio, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.postImageGif(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
-                    expect(resultProperties.bmpProperties).toBeTruthy();
-                    expect(bitsPerPixel).toEqual(resultProperties.bitsPerPixel);
-                    expect(verticalResolution).toEqual(Math.ceil(resultProperties.verticalResolution));
-                    expect(horizontalResolution).toEqual(Math.ceil(resultProperties.horizontalResolution));
-
-                    expect(originalProperties.bmpProperties).toBeTruthy();
-                    expect(originalProperties.bmpProperties.compression).toEqual(resultProperties.bmpProperties.compression);
+                    expect(originalProperties.gifProperties).toBeTruthy();
+                    expect(resultProperties.gifProperties).toBeTruthy();
                     expect(originalProperties.width).toEqual(resultProperties.width);
                     expect(originalProperties.height).toEqual(resultProperties.height);
+                    expect(pixelAspectRatio).toEqual(resultProperties.gifProperties.pixelAspectRatio);
+                    // expect(resultProperties.gifProperties.hasTrailer).toBeTruthy();
                     return Promise.resolve();
                 },
                 folder,
@@ -108,7 +112,7 @@ class BmpApiTests extends ApiTester {
     }
 }
 
-const testClass: BmpApiTests = new BmpApiTests();
+const testClass: GifApiTests = new GifApiTests();
 
 beforeEach(() => {
     jest.setTimeout(ApiTester.DefaultTimeout);
@@ -123,14 +127,14 @@ afterAll(async () =>  {
 });
 
 describe.each([[true], [false]])(
-    "BmpTestSuite_V1_V2",
+    "GifTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageBmpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageBmpTest(saveResultToStorage);
+        test(`getImageGifTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.getImageGifTest(saveResultToStorage);
         });
 
-        test(`postImageBmpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageBmpTest(saveResultToStorage);
+        test(`postImageGifTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.postImageGifTest(saveResultToStorage);
         });
 
         beforeEach(() => {

@@ -29,72 +29,74 @@ import * as imaging from "../../lib/api";
 import { ApiTester } from "../base/api-tester";
 
 /**
- * Class for testing PNG-related API calls
+ * Class for testing JPEG2000-related API calls
  */
-class PngApiTests extends ApiTester {
+class Jpeg2000ApiTests extends ApiTester {
 
-    public async getImagePngTest(saveResultToStorage: boolean) {
-        const name: string = "test.png";
+    public async getImageJpeg2000Test(saveResultToStorage: boolean) {
+        const name: string = "test.j2k";
+        const codec: string = "jp2";
+        const comment: string = "Aspose";
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.png`;
+        const outName: string = `${name}_specific.jp2`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImagePngTest", 
+                "getImageJpeg2000Test", 
                 saveResultToStorage,
-                `Input image: ${name}`,
+                `Input image: ${name}; Comment: ${comment}; Codec: ${codec}`,
                 name,
                 outName,
                 async (fileName, outPath) => {
-                    const request = new imaging.GetImagePngRequest({ name: fileName, fromScratch, outPath, folder, storage });
-                    const response = await this.imagingApi.getImagePng(request);
+                    const request = new imaging.GetImageJpeg2000Request({ name: fileName, comment, codec, fromScratch, outPath, folder, storage });
+                    const response = await this.imagingApi.getImageJpeg2000(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
-                    expect(resultProperties.pngProperties).toBeTruthy();
-                    expect(originalProperties.pngProperties).toBeTruthy();
+                    expect(resultProperties.jpeg2000Properties).toBeTruthy();
+                    expect(originalProperties.jpeg2000Properties).toBeTruthy();
                     expect(originalProperties.width).toEqual(resultProperties.width);
                     expect(originalProperties.height).toEqual(resultProperties.height);
-                    
-                    // TODO: this should be uncommented when IMAGINGCLOUD-48 is done
-                    // expect(originalProperties.bitsPerPixel).toEqual(resultProperties.bitsPerPixel);
-                    expect(originalProperties.horizontalResolution).toEqual(resultProperties.horizontalResolution);
-                    expect(originalProperties.verticalResolution).toEqual(resultProperties.verticalResolution);
+                    expect(resultProperties.jpeg2000Properties.comments).toBeTruthy();
+                    expect(originalProperties.jpeg2000Properties.comments).toBeTruthy();
+                    expect(resultProperties.jpeg2000Properties.comments[0]).toEqual(comment);
+                    expect(originalProperties.jpeg2000Properties.comments[2]).toContain(comment);
                     return Promise.resolve();
                 },
                 folder,
                 storage);
     }
 
-    public async postImagePngTest(saveResultToStorage: boolean) {
-        const name: string = "test.png";
+    public async postImageJpeg2000Test(saveResultToStorage: boolean) {
+        const name: string = "test.j2k";
+        const codec: string = "jp2";
+        const comment: string = "Aspose";
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.png`;
+        const outName: string = `${name}_specific.jp2`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImagePngTest", 
+                "postImageJpeg2000Test", 
                 saveResultToStorage,
-                `Input image: ${name}`,
+                `Input image: ${name}; Comment: ${comment}; Codec: ${codec}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImagePngRequest({ imageData: inputStream, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImagePng(request);
+                    const request = new imaging.PostImageJpeg2000Request({ imageData: inputStream, comment, codec, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.postImageJpeg2000(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
-                    expect(resultProperties.pngProperties).toBeTruthy();
-                    expect(originalProperties.pngProperties).toBeTruthy();
+                    expect(resultProperties.jpeg2000Properties).toBeTruthy();
+                    expect(originalProperties.jpeg2000Properties).toBeTruthy();
                     expect(originalProperties.width).toEqual(resultProperties.width);
                     expect(originalProperties.height).toEqual(resultProperties.height);
-
-                    // TODO: this should be uncommented when IMAGINGCLOUD-48 is done
-                    // expect(originalProperties.bitsPerPixel).toEqual(resultProperties.bitsPerPixel);
-                    expect(originalProperties.horizontalResolution).toEqual(resultProperties.horizontalResolution);
-                    expect(originalProperties.verticalResolution).toEqual(resultProperties.verticalResolution);
+                    expect(resultProperties.jpeg2000Properties.comments).toBeTruthy();
+                    expect(originalProperties.jpeg2000Properties.comments).toBeTruthy();
+                    expect(resultProperties.jpeg2000Properties.comments[0]).toEqual(comment);
+                    expect(originalProperties.jpeg2000Properties.comments[2]).toContain(comment);
                     return Promise.resolve();
                 },
                 folder,
@@ -102,7 +104,7 @@ class PngApiTests extends ApiTester {
     }
 }
 
-const testClass: PngApiTests = new PngApiTests();
+const testClass: Jpeg2000ApiTests = new Jpeg2000ApiTests();
 
 beforeEach(() => {
     jest.setTimeout(ApiTester.DefaultTimeout);
@@ -117,14 +119,14 @@ afterAll(async () =>  {
 });
 
 describe.each([[true], [false]])(
-    "PngTestSuite_V1_V2",
+    "Jpeg2000TestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImagePngTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImagePngTest(saveResultToStorage);
+        test(`getImageJpeg2000Test: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.getImageJpeg2000Test(saveResultToStorage);
         });
 
-        test(`postImagePngTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImagePngTest(saveResultToStorage);
+        test(`postImageJpeg2000Test: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.postImageJpeg2000Test(saveResultToStorage);
         });
 
         beforeEach(() => {

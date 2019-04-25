@@ -1,7 +1,7 @@
-/*
+﻿/*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2019 Aspose Pty Ltd.
+*   Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,57 +24,28 @@
 * </summary>
 * --------------------------------------------------------------------------------------------------------------------
 */
-/**
- * The basic response class kept from the old Aspose for Cloud Platform. We keep this base class and use it because most probably users are already using it to get API responses. The plan in future is to get rid of it.
- */
-export class SaaSposeResponse {
-    
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{
-        /**
-         * Attribute name
-         */
-        name: string, 
-        /**
-         * Attribute base name
-         */
-        baseName: string,
-        /**
-         * Attribute type
-         */
-        type: string}> = [
-        {
-            name: "code",
-            baseName: "Code",
-            type: "number",
-        },        
-        {
-            name: "status",
-            baseName: "Status",
-            type: "string",
-        }];
 
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return SaaSposeResponse.attributeTypeMap;
+import { ApiTester } from "../../base/api-tester";
+
+/**
+ * Storage API tester.
+ */
+export abstract class StorageApiTester extends ApiTester {
+
+    protected readonly OriginalDataFolder: string = "ImagingIntegrationTestData/Storage";
+
+    protected readonly CloudTestFolderPrefix: string = "ImagingStorageCloudTestDotNet";
+
+    protected trim(input: string, toTrim: string): string {
+        let result = input;
+        while (result.startsWith(toTrim)) {
+            result = result.substring(toTrim.length);
+        }
+
+        while (result.endsWith(toTrim)) {
+            result = result.substring(0, result.length - toTrim.length);
+        }
+
+        return result;
     }
-    
-    /**
-     * HTTP status code.
-     */
-    public code: number;
-    
-    /**
-     * Status description.
-     */
-    public status: string;
-    
-    public constructor(init?: Partial<SaaSposeResponse>) {
-        
-        Object.assign(this, init);
-    }        
 }
