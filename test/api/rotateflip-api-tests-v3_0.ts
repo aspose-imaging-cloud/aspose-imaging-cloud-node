@@ -33,13 +33,13 @@ import { ApiTester } from "../base/api-tester";
  */
 class RotateFlipApiTests extends ApiTester {
 
-    public async getImageRotateFlipTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async getImageRotateFlipTest(formatExtension: string, ...additionalExportFormats: string[]) {
         let name: string = null;
         const method: string = "Rotate90FlipX";
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
-        let outName: string = null;
         const formatsToExport: string[] = Object.assign([], this.BasicExportFormats);
+
         for (const additionalExportFormat of additionalExportFormats) {
             if (!formatsToExport.includes(additionalExportFormat)) {
                 formatsToExport.push(additionalExportFormat);
@@ -54,16 +54,13 @@ class RotateFlipApiTests extends ApiTester {
             }
 
             for (const format of formatsToExport) {
-                outName = `${name}_rotateFlip.${format}`;
 
                 await this.testGetRequest(
                         "getImageRotateFlipTest",
-                        saveResultToStorage,
                         `Input image: ${name}; Output format: ${format}; Method: ${method}`,
                         name,
-                        outName,
-                        async (fileName, outPath) => {
-                            const request: imaging.GetImageRotateFlipRequest = new imaging.GetImageRotateFlipRequest({ name: fileName, format, method, outPath, 
+                        async () => {
+                            const request: imaging.GetImageRotateFlipRequest = new imaging.GetImageRotateFlipRequest({ name, format, method,  
                                 folder, storage });
                             const response = await this.imagingApi.getImageRotateFlip(request);
                             return response;
@@ -164,9 +161,11 @@ afterAll(async () =>  {
 describe.each([[".jpg", true], [".jpg", false]])(
     "RotateFlipTestSuite_V3",
     (formatExtension, saveResultToStorage) => {
-        test(`getImageRotateFlipTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageRotateFlipTest(formatExtension, saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`getImageRotateFlipTest`, async () => {
+                await testClass.getImageRotateFlipTest(formatExtension);
+            });
+        }
 
         test(`postImageRotateFlipTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.postImageRotateFlipTest(formatExtension, saveResultToStorage);
@@ -196,9 +195,11 @@ if (useExtendedTests) {
         ])
         ("RotateFlipTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage) => {
-            test(`getImageRotateFlipTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.getImageRotateFlipTest(formatExtension, saveResultToStorage);
-            });
+            if (!saveResultToStorage) {
+                test(`getImageRotateFlipTest`, async () => {
+                    await testClass.getImageRotateFlipTest(formatExtension);
+                });
+            }
     
             test(`postImageRotateFlipTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
                 await testClass.postImageRotateFlipTest(formatExtension, saveResultToStorage);

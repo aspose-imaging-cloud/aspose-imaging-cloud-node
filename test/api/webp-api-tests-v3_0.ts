@@ -33,25 +33,22 @@ import { ApiTester } from "../base/api-tester";
  */
 class WebpApiTests extends ApiTester {
 
-    public async getImageWebpTest(saveResultToStorage: boolean) {
+    public async getImageWebpTest() {
         const name: string = "Animation.webp";
         const animBackgroundColor: string = "gray";
         const animLoopCount: number = 5;
         const quality: number = 90;
         const lossLess: boolean  = true;
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.webp`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
                 "getImageWebpTest", 
-                saveResultToStorage,
                 `Input image: ${name}; Animation loop count: ${animLoopCount}; Quality: ${quality}; Animation background color: ${animBackgroundColor}; Lossless: ${lossLess}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImageWebPRequest({ name: fileName, lossLess, quality, animLoopCount, animBackgroundColor, fromScratch, outPath, folder, storage });
+                async () => {
+                    const request = new imaging.GetImageWebPRequest({ name, lossLess, quality, animLoopCount, animBackgroundColor, fromScratch, folder, storage });
                     const response = await this.imagingApi.getImageWebP(request);
                     return response;
                 },
@@ -117,9 +114,11 @@ afterAll(async () =>  {
 describe.each([[true], [false]])(
     "WebpTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageWebpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageWebpTest(saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`getImageWebpTest`, async () => {
+                await testClass.getImageWebpTest();
+            });
+        }
 
         test(`postImageWebpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.postImageWebpTest(saveResultToStorage);

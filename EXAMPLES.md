@@ -14,34 +14,27 @@ try {
     // inspect result.errors list if there were any
     // inspect result.uploaded list for uploaded file names
 
-    // convert image from storage to JPEG and save it to storage
-    // please, use outPath parameter for saving the result to storage
-    const getSaveToStorageRequest =
+    // convert image from storage to JPEG
+     const getSaveAsRequest =
         new imaging.GetImageSaveAsRequest({
-        name: "inputImage.png", format: "jpg", outPath: "ExampleFolderNet/resultImage.jpg",
-        folder: "ExampleFolderNet" });
+            name: "inputImage.png", format: "jpg", folder: "ExampleFolderNet" });
 
-    await imagingApi.getImageSaveAs(getSaveToStorageRequest);
+    const convertedFile =
+        await imagingApi.getImageSaveAs(getSaveAsRequest);
 
-    // download saved image from storage and process it
-    const savedFile =
-        await imagingApi.downloadFile(
-            new imaging.DownloadFileRequest({ path: "ExampleFolderNet/resultImage.jpg" }));
-
-    // convert image from storage to JPEG and read it from resulting stream
-    // please, set outPath parameter as null to return result in request stream instead of saving to storage
-    const getSaveToStreamRequest =
-        new imaging.GetImageSaveAsRequest({
-            name: "inputImage.png", format: "jpg", outPath: null, folder: "ExampleFolderNet" });
-
-    // process resulting image from response stream
-    const resultGetImageStream = await imagingApi.getImageSaveAs(getSaveToStreamRequest);
+    // process resulting image
+    // for example, save it to storage
+    uploadFileRequest =
+        new imaging.UploadFileRequest({ path: "ExampleFolderNet/resultImage.jpg", file: convertedFile });
+    result = await imagingApi.uploadFile(uploadFileRequest);
+    // inspect result.errors list if there were any
+    // inspect result.uploaded list for uploaded file names
 } finally {
     // remove files from storage
     await imagingApi.deleteFile(
-        new imaging.DeleteFileRequest({ path: "ExampleFolderNet/inputImage.jpg" }));
+        new imaging.DeleteFileRequest({ path: "ExampleFolderNet/inputImage.png" }));
     await imagingApi.deleteFile(
-        new imaging.DeleteFileRequest({ path: "ExampleFolderNet/resultImage.png" }));
+        new imaging.DeleteFileRequest({ path: "ExampleFolderNet/resultImage.jpg" }));
 }
 
 // other Imaging requests typically follow the same principles regarding stream/storage relations
@@ -79,7 +72,7 @@ try {
 } finally {
     // remove files from storage
     await imagingApi.deleteFile(
-        new imaging.DeleteFileRequest({ path: "ExampleFolderNet/resultImage.png" }));
+        new imaging.DeleteFileRequest({ path: "ExampleFolderNet/resultImage.jpg" }));
 }
 
 // other Imaging requests typically follow the same principles regarding stream/storage relations

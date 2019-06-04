@@ -33,23 +33,20 @@ import { ApiTester } from "../base/api-tester";
  */
 class Jpeg2000ApiTests extends ApiTester {
 
-    public async getImageJpeg2000Test(saveResultToStorage: boolean) {
+    public async getImageJpeg2000Test() {
         const name: string = "test.j2k";
         const codec: string = "jp2";
         const comment: string = "Aspose";
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.jp2`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
                 "getImageJpeg2000Test", 
-                saveResultToStorage,
                 `Input image: ${name}; Comment: ${comment}; Codec: ${codec}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImageJpeg2000Request({ name: fileName, comment, codec, fromScratch, outPath, folder, storage });
+                async () => {
+                    const request = new imaging.GetImageJpeg2000Request({ name, comment, codec, fromScratch, folder, storage });
                     const response = await this.imagingApi.getImageJpeg2000(request);
                     return response;
                 },
@@ -121,9 +118,11 @@ afterAll(async () =>  {
 describe.each([[true], [false]])(
     "Jpeg2000TestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageJpeg2000Test: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageJpeg2000Test(saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`getImageJpeg2000Test`, async () => {
+                await testClass.getImageJpeg2000Test();
+            });
+        }
 
         test(`postImageJpeg2000Test: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.postImageJpeg2000Test(saveResultToStorage);

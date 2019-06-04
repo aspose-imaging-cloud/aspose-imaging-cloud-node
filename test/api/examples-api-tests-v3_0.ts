@@ -47,39 +47,33 @@ class ExamplesApiTests extends ApiTester {
             const localInputImage = fs.readFileSync(testFilePath);
 
             // upload local image to storage
-            const uploadFileRequest =
+            let uploadFileRequest =
                 new imaging.UploadFileRequest({ path: "ExampleFolderNet/inputImage.png", file: localInputImage });
-            const result: imaging.FilesUploadResult = await imagingApi.uploadFile(uploadFileRequest);
+            let result: imaging.FilesUploadResult = await imagingApi.uploadFile(uploadFileRequest);
             // inspect result.errors list if there were any
             // inspect result.uploaded list for uploaded file names
             console.log(result);
 
-            // convert image from storage to JPEG and save it to storage
-            // please, use outPath parameter for saving the result to storage
-            const getSaveToStorageRequest =
+            // convert image from storage to JPEG
+            const getSaveAsRequest =
                 new imaging.GetImageSaveAsRequest({
-                    name: "inputImage.png", format: "jpg", outPath: "ExampleFolderNet/resultImage.jpg",
-                    folder: "ExampleFolderNet" });
+                    name: "inputImage.png", format: "jpg", folder: "ExampleFolderNet" });
 
-            await imagingApi.getImageSaveAs(getSaveToStorageRequest);
+            const convertedFile =
+                await imagingApi.getImageSaveAs(getSaveAsRequest);
 
-            // download saved image from storage and process it
-            const savedFile =
-                await imagingApi.downloadFile(new imaging.DownloadFileRequest({ path: "ExampleFolderNet/resultImage.jpg" }));
-            console.log(savedFile);
-
-            // convert image from storage to JPEG and read it from resulting stream
-            // please, set outPath parameter as null to return result in request stream instead of saving to storage
-            const getSaveToStreamRequest =
-                new imaging.GetImageSaveAsRequest({ name: "inputImage.png", format: "jpg", outPath: null, folder: "ExampleFolderNet" });
-
-            // process resulting image from response stream
-            const resultGetImageStream = await imagingApi.getImageSaveAs(getSaveToStreamRequest);
-            console.log(resultGetImageStream);
+            // process resulting image
+            // for example, save it to storage
+            uploadFileRequest =
+                new imaging.UploadFileRequest({ path: "ExampleFolderNet/resultImage.jpg", file: convertedFile });
+            result = await imagingApi.uploadFile(uploadFileRequest);
+            // inspect result.errors list if there were any
+            // inspect result.uploaded list for uploaded file names
+            console.log(result);
         } finally {
             // remove files from storage
-            await imagingApi.deleteFile(new imaging.DeleteFileRequest({ path: "ExampleFolderNet/inputImage.jpg" }));
-            await imagingApi.deleteFile(new imaging.DeleteFileRequest({ path: "ExampleFolderNet/resultImage.png" }));
+            await imagingApi.deleteFile(new imaging.DeleteFileRequest({ path: "ExampleFolderNet/inputImage.png" }));
+            await imagingApi.deleteFile(new imaging.DeleteFileRequest({ path: "ExampleFolderNet/resultImage.jpg" }));
         }
     }
 
@@ -117,7 +111,7 @@ class ExamplesApiTests extends ApiTester {
             console.log(resultPostImageStream);
         } finally {
             // remove files from storage
-            await imagingApi.deleteFile(new imaging.DeleteFileRequest({ path: "ExampleFolderNet/resultImage.png" }));
+            await imagingApi.deleteFile(new imaging.DeleteFileRequest({ path: "ExampleFolderNet/resultImage.jpg" }));
         }
     }
 }

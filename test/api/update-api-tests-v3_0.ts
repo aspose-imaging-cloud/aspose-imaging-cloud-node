@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class UpdateApiTests extends ApiTester {
 
-    public async getImageUpdateTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async getImageUpdateTest(formatExtension: string, ...additionalExportFormats: string[]) {
         let name: string = null;
         const newWidth: number = 300;
         const newHeight: number = 450;
@@ -44,7 +44,6 @@ class UpdateApiTests extends ApiTester {
         const rotateFlipMethod: string = "Rotate90FlipX";
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
-        let outName: string = null;
         const formatsToExport: string[] = Object.assign([], this.BasicExportFormats);
         for (const additionalExportFormat of additionalExportFormats) {
             if (!formatsToExport.includes(additionalExportFormat)) {
@@ -60,18 +59,15 @@ class UpdateApiTests extends ApiTester {
             }
 
             for (const format of formatsToExport) {
-                outName = `${name}_update.${format}`;
 
                 await this.testGetRequest(
                         "getImageUpdateTest",
-                        saveResultToStorage,
                         `Input image: ${name}; Output format: ${format}; New width: ${newWidth}; New height: ${newHeight}; X: ${x}; Y: ${y}; 
                             Rect width: ${rectWidth}; Rect height: ${rectHeight}; Rotate/flip method: ${rotateFlipMethod}`,
                         name,
-                        outName,
-                        async (fileName, outPath) => {
-                            const request: imaging.GetImageUpdateRequest = new imaging.GetImageUpdateRequest({ name: fileName, format, newWidth, newHeight, x, y, rectWidth, 
-                                rectHeight, rotateFlipMethod, outPath, folder, storage });
+                        async () => {
+                            const request: imaging.GetImageUpdateRequest = new imaging.GetImageUpdateRequest({ name, format, newWidth, newHeight, x, y, rectWidth, 
+                                rectHeight, rotateFlipMethod, folder, storage });
                             const response = await this.imagingApi.getImageUpdate(request);
                             return response;
                         },
@@ -117,7 +113,7 @@ class UpdateApiTests extends ApiTester {
                 outName = `${name}_update.${format}`;
 
                 await this.testPostRequest(
-                        "getImageUpdateTest",
+                        "postImageUpdateTest",
                         saveResultToStorage,
                         `Input image: ${name}; Output format: ${format}; New width: ${newWidth}; New height: ${newHeight}; X: ${x}; Y: ${y}; 
                             Rect width: ${rectWidth}; Rect height: ${rectHeight}; Rotate/flip method: ${rotateFlipMethod}`,
@@ -160,9 +156,11 @@ afterAll(async () =>  {
 describe.each([[".jpg", true], [".jpg", false]])(
     "UpdateTestSuite_V3",
     (formatExtension, saveResultToStorage) => {
-        test(`getImageUpdateTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageUpdateTest(formatExtension, saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`getImageUpdateTest`, async () => {
+                await testClass.getImageUpdateTest(formatExtension);
+            });
+        }
 
         test(`postImageUpdateTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.postImageUpdateTest(formatExtension, saveResultToStorage);
@@ -192,10 +190,12 @@ if (useExtendedTests) {
         ])
         ("UpdateTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage) => {
-            test(`getImageUpdateTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.getImageUpdateTest(formatExtension, saveResultToStorage);
-            });
-    
+            if (!saveResultToStorage) {
+                test(`getImageUpdateTest`, async () => {
+                    await testClass.getImageUpdateTest(formatExtension);
+                });
+            }
+
             test(`postImageUpdateTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
                 await testClass.postImageUpdateTest(formatExtension, saveResultToStorage);
             });

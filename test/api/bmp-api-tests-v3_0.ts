@@ -33,24 +33,22 @@ import { ApiTester } from "../base/api-tester";
  */
 class BmpApiTests extends ApiTester {
 
-    public async getImageBmpTest(saveResultToStorage: boolean) {
+    public async getImageBmpTest() {
+
         const name: string = "test.bmp";
         const bitsPerPixel: number = 32;
         const horizontalResolution: number = 300;
         const verticalResolution: number  = 300;
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.bmp`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
                 "getImageBmpTest", 
-                saveResultToStorage,
                 `Input image: ${name}; Bits per pixel: ${bitsPerPixel}; Horizontal resolution: ${horizontalResolution}; Vertical resolution: ${verticalResolution}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImageBmpRequest({ name: fileName, bitsPerPixel, horizontalResolution, verticalResolution, fromScratch, outPath, folder, storage });
+                async () => {
+                    const request = new imaging.GetImageBmpRequest({ name, bitsPerPixel, horizontalResolution, verticalResolution, fromScratch, folder, storage });
                     const response = await this.imagingApi.getImageBmp(request);
                     return response;
                 },
@@ -125,10 +123,13 @@ afterAll(async () =>  {
 describe.each([[true], [false]])(
     "BmpTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageBmpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageBmpTest(saveResultToStorage);
-        });
 
+        if (!saveResultToStorage) {
+            test(`getImageBmpTest`, async () => {
+                await testClass.getImageBmpTest();
+            });
+        }
+        
         test(`postImageBmpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.postImageBmpTest(saveResultToStorage);
         });

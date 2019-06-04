@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class TiffApiTests extends ApiTester {
 
-    public async getImageTiffTest(saveResultToStorage: boolean) {
+    public async getImageTiffTest() {
         const name: string = "test.tiff";
         const fromScratch: boolean = false;
         const compression: string = "adobedeflate";
@@ -41,20 +41,17 @@ class TiffApiTests extends ApiTester {
         const bitDepth: number = 1;
         const horizontalResolution: number = 150;
         const verticalResolution: number = 150;
-        const outName: string = `${name}_specific.tiff`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
                 "getImageTiffTest", 
-                saveResultToStorage,
                 `Input image: ${name}; Compression: ${compression}; Resolution unit: ${resolutionUnit}; Bit depth: ${bitDepth}; 
                     Horizontal resolution: ${horizontalResolution}; Vertical resolution: ${verticalResolution}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImageTiffRequest({ name: fileName, compression, resolutionUnit, bitDepth, fromScratch, 
-                        horizontalResolution, verticalResolution, outPath, folder, storage });
+                async () => {
+                    const request = new imaging.GetImageTiffRequest({ name, compression, resolutionUnit, bitDepth, fromScratch, 
+                        horizontalResolution, verticalResolution, folder, storage });
                     const response = await this.imagingApi.getImageTiff(request);
                     return response;
                 },
@@ -129,18 +126,15 @@ class TiffApiTests extends ApiTester {
 
     public async getTiffToFaxTest() {
         const name: string = "test.tiff";
-        const outName: string = `${name}_fax.tiff`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
                 "getTiffToFaxTest", 
-                true,
                 `Input image: ${name}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetTiffToFaxRequest({ name: fileName, storage, folder, outPath });
+                async () => {
+                    const request = new imaging.GetTiffToFaxRequest({ name, storage, folder });
                     const response = await this.imagingApi.getTiffToFax(request);
                     return response;
                 },
@@ -252,9 +246,11 @@ afterAll(async () =>  {
 describe.each([[true], [false]])(
     "TiffTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageTiffTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageTiffTest(saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`getImageTiffTest`, async () => {
+                await testClass.getImageTiffTest();
+            });
+        }
 
         test(`postImageTiffTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.postImageTiffTest(saveResultToStorage);

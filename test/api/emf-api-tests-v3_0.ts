@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class EmfApiTests extends ApiTester {
 
-    public async getImageEmfTest(saveResultToStorage: boolean) {
+    public async getImageEmfTest() {
         const name: string = "test.emf";
         const fromScratch: boolean = false;
         const bkColor: string = "gray";
@@ -41,18 +41,15 @@ class EmfApiTests extends ApiTester {
         const pageHeight: number = 300;
         const borderX: number = 50;
         const borderY: number = 50;
-        const outName: string = `${name}_specific.png`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
                 "getImageEmfTest", 
-                saveResultToStorage,
                 `Input image: ${name}; BackColor: ${bkColor}; Page width: ${pageWidth}; Page height: ${pageHeight}; BorderX: ${borderX}; BorderY: ${borderY}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImageEmfRequest({ name: fileName, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, outPath, folder, storage });
+                async () => {
+                    const request = new imaging.GetImageEmfRequest({ name, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, folder, storage });
                     const response = await this.imagingApi.getImageEmf(request);
                     return response;
                 },
@@ -119,9 +116,11 @@ afterAll(async () =>  {
 describe.each([[true], [false]])(
     "EmfTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageEmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageEmfTest(saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`getImageEmfTest`, async () => {
+                await testClass.getImageEmfTest();
+            });
+        }
 
         test(`postImageEmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.postImageEmfTest(saveResultToStorage);

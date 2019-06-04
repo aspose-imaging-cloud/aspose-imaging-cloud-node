@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class WmfApiTests extends ApiTester {
 
-    public async getImageWmfTest(saveResultToStorage: boolean) {
+    public async getImageWmfTest() {
         const name: string = "test.wmf";
         const fromScratch: boolean = false;
         const bkColor: string = "gray";
@@ -41,18 +41,15 @@ class WmfApiTests extends ApiTester {
         const pageHeight: number = 300;
         const borderX: number = 50;
         const borderY: number = 50;
-        const outName: string = `${name}_specific.png`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
                 "getImageWmfTest", 
-                saveResultToStorage,
                 `Input image: ${name}; BackColor: ${bkColor}; Page width: ${pageWidth}; Page height: ${pageHeight}; BorderX: ${borderX}; BorderY: ${borderY}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImageWmfRequest({ name: fileName, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, outPath, folder, storage });
+                async () => {
+                    const request = new imaging.GetImageWmfRequest({ name, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, folder, storage });
                     const response = await this.imagingApi.getImageWmf(request);
                     return response;
                 },
@@ -119,9 +116,11 @@ afterAll(async () =>  {
 describe.each([[true], [false]])(
     "WmfTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageWmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageWmfTest(saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`getImageWmfTest`, async () => {
+                await testClass.getImageWmfTest();
+            });
+        }
 
         test(`postImageWmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.postImageWmfTest(saveResultToStorage);

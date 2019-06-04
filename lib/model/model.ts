@@ -4688,11 +4688,6 @@ export class GetImageBmpRequest {
     public fromScratch: boolean;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
      * Folder with image to process.
      */
     public folder: string;
@@ -4717,7 +4712,7 @@ export class GetImageCropRequest {
     public name: string;
 
     /**
-     * Resulting image format.
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
 
@@ -4740,11 +4735,6 @@ export class GetImageCropRequest {
      * Height of cropping rectangle.
      */
     public height: number;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
 
     /**
      * Folder with image to process.
@@ -4801,11 +4791,6 @@ export class GetImageEmfRequest {
     public fromScratch: boolean;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
      * Folder with image to process.
      */
     public folder: string;
@@ -4816,7 +4801,7 @@ export class GetImageEmfRequest {
     public storage: string;
 
     /**
-     * Export format (PNG is the default one).
+     * Export format (PNG is the default one). Please, refer to the export table from https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
     
@@ -4878,11 +4863,6 @@ export class GetImageFrameRequest {
      * If result will include all other frames or just a specified frame.
      */
     public saveOtherFrames: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
 
     /**
      * Folder with image to process.
@@ -4973,11 +4953,6 @@ export class GetImageGifRequest {
     public fromScratch: boolean;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
      * Folder with image to process.
      */
     public folder: string;
@@ -5002,12 +4977,12 @@ export class GetImageJpeg2000Request {
     public name: string;
 
     /**
-     * The comment.
+     * The comment (can be either single or comma-separated).
      */
     public comment: string;
 
     /**
-     * The codec.
+     * The codec (j2k or jp2).
      */
     public codec: string;
 
@@ -5015,11 +4990,6 @@ export class GetImageJpeg2000Request {
      * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
      */
     public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
 
     /**
      * Folder with image to process.
@@ -5051,7 +5021,7 @@ export class GetImageJpgRequest {
     public quality: number;
 
     /**
-     * Compression type.
+     * Compression type: baseline (default), progressive, lossless or jpegls.
      */
     public compressionType: string;
 
@@ -5059,11 +5029,6 @@ export class GetImageJpgRequest {
      * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
      */
     public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
 
     /**
      * Folder with image to process.
@@ -5119,7 +5084,7 @@ export class GetImagePsdRequest {
     public channelsCount: number;
 
     /**
-     * Compression method.
+     * Compression method (for now, raw and RLE are supported).
      */
     public compressionMethod: string;
 
@@ -5127,11 +5092,6 @@ export class GetImagePsdRequest {
      * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
      */
     public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
 
     /**
      * Folder with image to process.
@@ -5158,7 +5118,7 @@ export class GetImageResizeRequest {
     public name: string;
 
     /**
-     * Resulting image format.
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
 
@@ -5171,11 +5131,6 @@ export class GetImageResizeRequest {
      * New height.
      */
     public newHeight: number;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
 
     /**
      * Folder with image to process.
@@ -5202,7 +5157,7 @@ export class GetImageRotateFlipRequest {
     public name: string;
 
     /**
-     * Resulting image format.
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
 
@@ -5210,11 +5165,6 @@ export class GetImageRotateFlipRequest {
      * RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY).
      */
     public method: string;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
 
     /**
      * Folder with image to process.
@@ -5241,14 +5191,9 @@ export class GetImageSaveAsRequest {
     public name: string;
 
     /**
-     * Resulting image format.
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
 
     /**
      * Folder with image to process.
@@ -5275,24 +5220,19 @@ export class GetImageTiffRequest {
     public name: string;
 
     /**
-     * Compression.
-     */
-    public compression: string;
-
-    /**
-     * New resolution unit.
-     */
-    public resolutionUnit: string;
-
-    /**
      * Bit depth.
      */
     public bitDepth: number;
 
     /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     * Compression (none is default). Please, refer to https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.tiff.enums/tiffcompressions for all possible values.
      */
-    public fromScratch: boolean;
+    public compression: string;
+
+    /**
+     * New resolution unit (none - the default one, inch or centimeter).
+     */
+    public resolutionUnit: string;
 
     /**
      * New horizontal resolution.
@@ -5300,14 +5240,14 @@ export class GetImageTiffRequest {
     public horizontalResolution: number;
 
     /**
-     * New verstical resolution.
+     * New vertical resolution.
      */
     public verticalResolution: number;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
      */
-    public outPath: string;
+    public fromScratch: boolean;
 
     /**
      * Folder with image to process.
@@ -5334,7 +5274,7 @@ export class GetImageUpdateRequest {
     public name: string;
 
     /**
-     * Resulting image format.
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
 
@@ -5374,11 +5314,6 @@ export class GetImageUpdateRequest {
     public rotateFlipMethod: string;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
      * Folder with image to process.
      */
     public folder: string;
@@ -5403,12 +5338,12 @@ export class GetImageWebPRequest {
     public name: string;
 
     /**
-     * If WEBP is lossless.
+     * If WEBP should be in lossless format.
      */
     public lossLess: boolean;
 
     /**
-     * Quality.
+     * Quality (0-100).
      */
     public quality: number;
 
@@ -5426,11 +5361,6 @@ export class GetImageWebPRequest {
      * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
      */
     public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
 
     /**
      * Folder with image to process.
@@ -5487,11 +5417,6 @@ export class GetImageWmfRequest {
     public fromScratch: boolean;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
      * Folder with image to process.
      */
     public folder: string;
@@ -5502,7 +5427,7 @@ export class GetImageWmfRequest {
     public storage: string;
 
     /**
-     * Export format (PNG is the default one).
+     * Export format (PNG is the default one). Please, refer to the export table from https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
     
@@ -5718,11 +5643,6 @@ export class GetTiffToFaxRequest {
      * Folder with image to process.
      */
     public folder: string;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
     
     public constructor(init?: Partial<GetTiffToFaxRequest>) {        
         Object.assign(this, init);
@@ -5899,7 +5819,7 @@ export class PostImageCropRequest {
     public imageData: Buffer;
 
     /**
-     * Resulting image format.
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
 
@@ -5988,7 +5908,7 @@ export class PostImageEmfRequest {
     public storage: string;
 
     /**
-     * Export format (PNG is the default one).
+     * Export format (PNG is the default one). Please, refer to the export table from https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
     
@@ -6154,12 +6074,12 @@ export class PostImageJpeg2000Request {
     public imageData: Buffer;
 
     /**
-     * The comment.
+     * The comment (can be either single or comma-separated).
      */
     public comment: string;
 
     /**
-     * The codec.
+     * The codec (j2k or jp2).
      */
     public codec: string;
 
@@ -6198,7 +6118,7 @@ export class PostImageJpgRequest {
     public quality: number;
 
     /**
-     * Compression type.
+     * Compression type: baseline (default), progressive, lossless or jpegls.
      */
     public compressionType: string;
 
@@ -6251,7 +6171,7 @@ export class PostImagePsdRequest {
     public channelsCount: number;
 
     /**
-     * Compression method.
+     * Compression method (for now, raw and RLE are supported).
      */
     public compressionMethod: string;
 
@@ -6285,7 +6205,7 @@ export class PostImageResizeRequest {
     public imageData: Buffer;
 
     /**
-     * Resulting image format.
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
 
@@ -6324,7 +6244,7 @@ export class PostImageRotateFlipRequest {
     public imageData: Buffer;
 
     /**
-     * Resulting image format.
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
 
@@ -6358,7 +6278,7 @@ export class PostImageSaveAsRequest {
     public imageData: Buffer;
 
     /**
-     * Resulting image format.
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
 
@@ -6387,24 +6307,19 @@ export class PostImageTiffRequest {
     public imageData: Buffer;
 
     /**
-     * Compression.
-     */
-    public compression: string;
-
-    /**
-     * New resolution unit.
-     */
-    public resolutionUnit: string;
-
-    /**
      * Bit depth.
      */
     public bitDepth: number;
 
     /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     * Compression (none is default). Please, refer to https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.tiff.enums/tiffcompressions for all possible values.
      */
-    public fromScratch: boolean;
+    public compression: string;
+
+    /**
+     * New resolution unit (none - the default one, inch or centimeter).
+     */
+    public resolutionUnit: string;
 
     /**
      * New horizontal resolution.
@@ -6412,9 +6327,14 @@ export class PostImageTiffRequest {
     public horizontalResolution: number;
 
     /**
-     * New verstical resolution.
+     * New vertical resolution.
      */
     public verticalResolution: number;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
 
     /**
      * Path to updated file (if this is empty, response contains streamed image).
@@ -6441,7 +6361,7 @@ export class PostImageUpdateRequest {
     public imageData: Buffer;
 
     /**
-     * Resulting image format.
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
 
@@ -6505,12 +6425,12 @@ export class PostImageWebPRequest {
     public imageData: Buffer;
 
     /**
-     * If WEBP is lossless.
+     * If WEBP should be in lossless format.
      */
     public lossLess: boolean;
 
     /**
-     * Quality.
+     * Quality (0-100).
      */
     public quality: number;
 
@@ -6594,7 +6514,7 @@ export class PostImageWmfRequest {
     public storage: string;
 
     /**
-     * Export format (PNG is the default one).
+     * Export format (PNG is the default one). Please, refer to the export table from https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
     

@@ -33,13 +33,12 @@ import { ApiTester } from "../base/api-tester";
  */
 class ResizeApiTests extends ApiTester {
 
-    public async getImageResizeTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async getImageResizeTest(formatExtension: string, ...additionalExportFormats: string[]) {
         let name: string = null;
         const newWidth: number = 100;
         const newHeight: number = 150;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
-        let outName: string = null;
         const formatsToExport: string[] = Object.assign([], this.BasicExportFormats);
         for (const additionalExportFormat of additionalExportFormats) {
             if (!formatsToExport.includes(additionalExportFormat)) {
@@ -55,16 +54,13 @@ class ResizeApiTests extends ApiTester {
             }
 
             for (const format of formatsToExport) {
-                outName = `${name}_resize.${format}`;
 
                 await this.testGetRequest(
                         "getImageResizeTest",
-                        saveResultToStorage,
                         `Input image: ${name}; Output format: ${format}; New width: ${newWidth}; New height: ${newHeight}`,
                         name,
-                        outName,
-                        async (fileName, outPath) => {
-                            const request: imaging.GetImageResizeRequest = new imaging.GetImageResizeRequest({ name: fileName, format, newWidth, newHeight, outPath, 
+                        async () => {
+                            const request: imaging.GetImageResizeRequest = new imaging.GetImageResizeRequest({ name, format, newWidth, newHeight, 
                                 folder, storage });
                             const response = await this.imagingApi.getImageResize(request);
                             return response;
@@ -148,9 +144,11 @@ afterAll(async () =>  {
 describe.each([[".jpg", true], [".jpg", false]])(
     "ResizeTestSuite_V3",
     (formatExtension, saveResultToStorage) => {
-        test(`getImageResizeTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageResizeTest(formatExtension, saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`getImageResizeTest`, async () => {
+                await testClass.getImageResizeTest(formatExtension);
+            });
+        }
 
         test(`postImageResizeTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.postImageResizeTest(formatExtension, saveResultToStorage);
@@ -180,9 +178,11 @@ if (useExtendedTests) {
         ])
         ("ResizeTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage) => {
-            test(`getImageResizeTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.getImageResizeTest(formatExtension, saveResultToStorage);
-            });
+            if (!saveResultToStorage) {
+                test(`getImageResizeTest`, async () => {
+                    await testClass.getImageResizeTest(formatExtension);
+                });
+            }
     
             test(`postImageResizeTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
                 await testClass.postImageResizeTest(formatExtension, saveResultToStorage);

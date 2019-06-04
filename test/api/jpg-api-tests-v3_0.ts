@@ -33,23 +33,20 @@ import { ApiTester } from "../base/api-tester";
  */
 class JpgApiTests extends ApiTester {
 
-    public async getImageJpgTest(saveResultToStorage: boolean) {
+    public async getImageJpgTest() {
         const name: string = "test.jpg";
         const quality: number = 65;
         const compressionType: string = "progressive";
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.jpg`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
                 "getImageJpgTest", 
-                saveResultToStorage,
                 `Input image: ${name}; Quality: ${quality}; Compression type: ${compressionType}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImageJpgRequest({ name: fileName, quality, compressionType, fromScratch, outPath, folder, storage });
+                async () => {
+                    const request = new imaging.GetImageJpgRequest({ name, quality, compressionType, fromScratch, folder, storage });
                     const response = await this.imagingApi.getImageJpg(request);
                     return response;
                 },
@@ -113,9 +110,11 @@ afterAll(async () =>  {
 describe.each([[true], [false]])(
     "JpgTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageJpgTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageJpgTest(saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`getImageJpgTest`, async () => {
+                await testClass.getImageJpgTest();
+            });
+        }
 
         test(`postImageJpgTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.postImageJpgTest(saveResultToStorage);

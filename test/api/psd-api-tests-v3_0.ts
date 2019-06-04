@@ -33,23 +33,20 @@ import { ApiTester } from "../base/api-tester";
  */
 class PsdApiTests extends ApiTester {
 
-    public async getImagePsdTest(saveResultToStorage: boolean) {
+    public async getImagePsdTest() {
         const name: string = "test.psd";
         const channelsCount: number = 3;
         const compressionMethod: string = "raw";
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.psd`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
                 "getImagePsdTest", 
-                saveResultToStorage,
                 `Input image: ${name}; Channels count: ${channelsCount}; Compression method: ${compressionMethod}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImagePsdRequest({ name: fileName, channelsCount, compressionMethod, fromScratch, outPath, folder, storage });
+                async () => {
+                    const request = new imaging.GetImagePsdRequest({ name, channelsCount, compressionMethod, fromScratch, folder, storage });
                     const response = await this.imagingApi.getImagePsd(request);
                     return response;
                 },
@@ -121,9 +118,11 @@ afterAll(async () =>  {
 describe.each([[true], [false]])(
     "PsdTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImagePsdTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImagePsdTest(saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`getImagePsdTest`, async () => {
+                await testClass.getImagePsdTest();
+            });
+        }
 
         test(`postImagePsdTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.postImagePsdTest(saveResultToStorage);
