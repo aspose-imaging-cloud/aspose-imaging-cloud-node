@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class BmpApiTests extends ApiTester {
 
-    public async getImageBmpTest() {
+    public async modifyBmpTest() {
 
         const name: string = "test.bmp";
         const bitsPerPixel: number = 32;
@@ -44,12 +44,12 @@ class BmpApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImageBmpTest", 
+                "modifyBmpTest", 
                 `Input image: ${name}; Bits per pixel: ${bitsPerPixel}; Horizontal resolution: ${horizontalResolution}; Vertical resolution: ${verticalResolution}`,
                 name,
                 async () => {
-                    const request = new imaging.GetImageBmpRequest({ name, bitsPerPixel, horizontalResolution, verticalResolution, fromScratch, folder, storage });
-                    const response = await this.imagingApi.getImageBmp(request);
+                    const request = new imaging.ModifyBmpRequest({ name, bitsPerPixel, horizontalResolution, verticalResolution, fromScratch, folder, storage });
+                    const response = await this.imagingApi.modifyBmp(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -68,7 +68,7 @@ class BmpApiTests extends ApiTester {
                 storage);
     }
 
-    public async postImageBmpTest(saveResultToStorage: boolean) {
+    public async createModifiedBmpTest(saveResultToStorage: boolean) {
         const name: string = "test.bmp";
         const bitsPerPixel: number = 32;
         const horizontalResolution: number = 300;
@@ -79,14 +79,14 @@ class BmpApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImageBmpTest", 
+                "createModifiedBmpTest", 
                 saveResultToStorage,
                 `Input image: ${name}; Bits per pixel: ${bitsPerPixel}; Horizontal resolution: ${horizontalResolution}; Vertical resolution: ${verticalResolution}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageBmpRequest({ imageData: inputStream, bitsPerPixel, horizontalResolution, verticalResolution, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImageBmp(request);
+                    const request = new imaging.CreateModifiedBmpRequest({ imageData: inputStream, bitsPerPixel, horizontalResolution, verticalResolution, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.createModifiedBmp(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -125,13 +125,13 @@ describe.each([[true], [false]])(
     (saveResultToStorage) => {
 
         if (!saveResultToStorage) {
-            test(`getImageBmpTest`, async () => {
-                await testClass.getImageBmpTest();
+            test(`modifyBmpTest`, async () => {
+                await testClass.modifyBmpTest();
             });
         }
         
-        test(`postImageBmpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageBmpTest(saveResultToStorage);
+        test(`createModifiedBmpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedBmpTest(saveResultToStorage);
         });
 
         beforeEach(() => {

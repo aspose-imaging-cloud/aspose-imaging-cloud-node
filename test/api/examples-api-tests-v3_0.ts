@@ -56,11 +56,11 @@ class ExamplesApiTests extends ApiTester {
 
             // convert image from storage to JPEG
             const getSaveAsRequest =
-                new imaging.GetImageSaveAsRequest({
+                new imaging.SaveImageAsRequest({
                     name: "inputImage.png", format: "jpg", folder: "ExampleFolderNet" });
 
             const convertedFile =
-                await imagingApi.getImageSaveAs(getSaveAsRequest);
+                await imagingApi.saveImageAs(getSaveAsRequest);
 
             // process resulting image
             // for example, save it to storage
@@ -91,10 +91,10 @@ class ExamplesApiTests extends ApiTester {
             // convert image from request stream to JPEG and save it to storage
             // please, use outPath parameter for saving the result to storage
             const postSaveToStorageRequest =
-                new imaging.PostImageSaveAsRequest({
+                new imaging.CreateSavedImageAsRequest({
                     imageData: localInputImage, format: "jpg", outPath: "ExampleFolderNet/resultImage.jpg" });
 
-            await imagingApi.postImageSaveAs(postSaveToStorageRequest);
+            await imagingApi.createSavedImageAs(postSaveToStorageRequest);
 
             // download saved image from storage and process it
             const savedFile =
@@ -104,10 +104,10 @@ class ExamplesApiTests extends ApiTester {
             // convert image from request stream to JPEG and read it from resulting stream
             // please, set outPath parameter as null to return result in request stream instead of saving to storage
             const postSaveToStreamRequest =
-                new imaging.PostImageSaveAsRequest({ imageData: localInputImage, format: "jpg", outPath: null });
+                new imaging.CreateSavedImageAsRequest({ imageData: localInputImage, format: "jpg", outPath: null });
 
             // process resulting image from response stream
-            const resultPostImageStream = await imagingApi.postImageSaveAs(postSaveToStreamRequest);
+            const resultPostImageStream = await imagingApi.createSavedImageAs(postSaveToStreamRequest);
             console.log(resultPostImageStream);
         } finally {
             // remove files from storage

@@ -44,7 +44,7 @@ export abstract class TestImagingAIBase extends ApiTester {
 
     public async afterEach() {
         if (this.SearchContextId) {
-            await this.deleteSearchContext(this.SearchContextId);
+            await this.deleteImageSearch(this.SearchContextId);
         }
 
         const isExist: boolean = (await this.imagingApi.objectExists(
@@ -65,30 +65,30 @@ export abstract class TestImagingAIBase extends ApiTester {
     }
 
     protected async createSearchContext() {
-        const status = await this.imagingApi.postCreateSearchContext(new imaging.PostCreateSearchContextRequest({ storage: this.TestStorage }));
+        const status = await this.imagingApi.createImageSearch(new imaging.CreateImageSearchRequest({ storage: this.TestStorage }));
         return status.id;
     }
 
-    protected async deleteSearchContext(searchContextId: string) {
-        await this.imagingApi.deleteSearchContext(new imaging.DeleteSearchContextRequest({ searchContextId, storage: this.TestStorage}));
+    protected async deleteImageSearch(searchContextId: string) {
+        await this.imagingApi.deleteImageSearch(new imaging.DeleteImageSearchRequest({ searchContextId, storage: this.TestStorage}));
     }
 
-    protected async getSearchContextStatus(searchContextId: string) {
-        const status = await this.imagingApi.getSearchContextStatus(new imaging.GetSearchContextStatusRequest({ searchContextId, storage: this.TestStorage }));
+    protected async getImageSearchStatus(searchContextId: string) {
+        const status = await this.imagingApi.getImageSearchStatus(new imaging.GetImageSearchStatusRequest({ searchContextId, storage: this.TestStorage }));
         return status.searchStatus;
     }
 
     protected async addImageFeaturesToSearchContext(storageSourcePath: string, isFolder: boolean = false) {
-        let request: imaging.PostSearchContextExtractImageFeaturesRequest;
+        let request: imaging.CreateImageFeaturesRequest;
         if (isFolder) {
-            request = new imaging.PostSearchContextExtractImageFeaturesRequest({ 
+            request = new imaging.CreateImageFeaturesRequest({ 
                 searchContextId: this.SearchContextId, imageId: "", imagesFolder: storageSourcePath, storage: this.TestStorage });
         } else {
-            request = new imaging.PostSearchContextExtractImageFeaturesRequest({ 
+            request = new imaging.CreateImageFeaturesRequest({ 
                 searchContextId: this.SearchContextId, imageId: storageSourcePath, storage: this.TestStorage });
         }
 
-        await this.imagingApi.postSearchContextExtractImageFeatures(request);
+        await this.imagingApi.createImageFeatures(request);
 
         await this.waitSearchContextIdle();
     }
@@ -99,7 +99,7 @@ export abstract class TestImagingAIBase extends ApiTester {
         let status: imaging.SearchContextStatus;
 
         do {
-            status = await this.imagingApi.getSearchContextStatus(new imaging.GetSearchContextStatusRequest({ 
+            status = await this.imagingApi.getImageSearchStatus(new imaging.GetImageSearchStatusRequest({ 
                 searchContextId: this.SearchContextId, storage: this.TestStorage }));
             if (status.searchStatus !== "Idle") {
                 await this.sleep(timeout);

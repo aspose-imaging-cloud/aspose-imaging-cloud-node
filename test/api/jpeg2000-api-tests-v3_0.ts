@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class Jpeg2000ApiTests extends ApiTester {
 
-    public async getImageJpeg2000Test() {
+    public async modifyJpeg2000Test() {
         const name: string = "test.j2k";
         const codec: string = "jp2";
         const comment: string = "Aspose";
@@ -42,12 +42,12 @@ class Jpeg2000ApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImageJpeg2000Test", 
+                "modifyJpeg2000Test", 
                 `Input image: ${name}; Comment: ${comment}; Codec: ${codec}`,
                 name,
                 async () => {
-                    const request = new imaging.GetImageJpeg2000Request({ name, comment, codec, fromScratch, folder, storage });
-                    const response = await this.imagingApi.getImageJpeg2000(request);
+                    const request = new imaging.ModifyJpeg2000Request({ name, comment, codec, fromScratch, folder, storage });
+                    const response = await this.imagingApi.modifyJpeg2000(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -65,7 +65,7 @@ class Jpeg2000ApiTests extends ApiTester {
                 storage);
     }
 
-    public async postImageJpeg2000Test(saveResultToStorage: boolean) {
+    public async createModifiedJpeg2000Test(saveResultToStorage: boolean) {
         const name: string = "test.j2k";
         const codec: string = "jp2";
         const comment: string = "Aspose";
@@ -75,14 +75,14 @@ class Jpeg2000ApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImageJpeg2000Test", 
+                "createModifiedJpeg2000Test", 
                 saveResultToStorage,
                 `Input image: ${name}; Comment: ${comment}; Codec: ${codec}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageJpeg2000Request({ imageData: inputStream, comment, codec, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImageJpeg2000(request);
+                    const request = new imaging.CreateModifiedJpeg2000Request({ imageData: inputStream, comment, codec, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.createModifiedJpeg2000(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -119,13 +119,13 @@ describe.each([[true], [false]])(
     "Jpeg2000TestSuite_V3",
     (saveResultToStorage) => {
         if (!saveResultToStorage) {
-            test(`getImageJpeg2000Test`, async () => {
-                await testClass.getImageJpeg2000Test();
+            test(`modifyJpeg2000Test`, async () => {
+                await testClass.modifyJpeg2000Test();
             });
         }
 
-        test(`postImageJpeg2000Test: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageJpeg2000Test(saveResultToStorage);
+        test(`createModifiedJpeg2000Test: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedJpeg2000Test(saveResultToStorage);
         });
 
         beforeEach(() => {

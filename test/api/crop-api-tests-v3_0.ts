@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class CropApiTests extends ApiTester {
 
-    public async getImageCropTest(formatExtension: string, ...additionalExportFormats: string[]) {
+    public async cropImageTest(formatExtension: string, ...additionalExportFormats: string[]) {
         let name: string = null;
         const x: number = 10;
         const y: number = 10;
@@ -57,13 +57,13 @@ class CropApiTests extends ApiTester {
 
             for (const format of formatsToExport) {
                 await this.testGetRequest(
-                        "getImageCropTest",
+                        "cropImageTest",
                         `Input image: ${name}; Output format: ${format}; Width: ${width}; Height: ${height}; X: ${x}; Y: ${y}`,
                         name,
                         async () => {
-                            const request: imaging.GetImageCropRequest = new imaging.GetImageCropRequest({ name, format, x, y, width, height,  
+                            const request: imaging.CropImageRequest = new imaging.CropImageRequest({ name, format, x, y, width, height,  
                                 folder, storage });
-                            const response = await this.imagingApi.getImageCrop(request);
+                            const response = await this.imagingApi.cropImage(request);
                             return response;
                         },
                         (originalProperties, resultProperties) => {
@@ -78,7 +78,7 @@ class CropApiTests extends ApiTester {
         }
     }
 
-    public async postImageCropTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async createCroppedImageTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
         let name: string = null;
         const x: number = 10;
         const y: number = 10;
@@ -105,15 +105,15 @@ class CropApiTests extends ApiTester {
                 outName = `${name}_crop.${format}`;
 
                 await this.testPostRequest(
-                        "postImageCropTest",
+                        "createCroppedImageTest",
                         saveResultToStorage,
                         `Input image: ${name}; Output format: ${format}; Width: ${width}; Height: ${height}; X: ${x}; Y: ${y}`,
                         name,
                         outName,
                         async (inputStream, outPath) => {
-                            const request: imaging.PostImageCropRequest = new imaging.PostImageCropRequest({ imageData: inputStream, format, x, y, width, height, 
+                            const request: imaging.CreateCroppedImageRequest = new imaging.CreateCroppedImageRequest({ imageData: inputStream, format, x, y, width, height, 
                                 outPath, storage });
-                            const response = await this.imagingApi.postImageCrop(request);
+                            const response = await this.imagingApi.createCroppedImage(request);
                             return response;
                         },
                         (originalProperties, resultProperties) => {
@@ -149,13 +149,13 @@ describe.each([[".jpg", true], [".jpg", false]])(
     (formatExtension, saveResultToStorage) => {
 
         if (!saveResultToStorage) {
-            test(`getImageCropTest`, async () => {
-                await testClass.getImageCropTest(formatExtension);
+            test(`cropImageTest`, async () => {
+                await testClass.cropImageTest(formatExtension);
             });
         }
 
-        test(`postImageCropTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageCropTest(formatExtension, saveResultToStorage);
+        test(`createCroppedImageTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createCroppedImageTest(formatExtension, saveResultToStorage);
         });
 
         beforeEach(() => {
@@ -183,13 +183,13 @@ if (useExtendedTests) {
         ("CropTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage) => {
             if (!saveResultToStorage) {
-                test(`getImageCropTest`, async () => {
-                    await testClass.getImageCropTest(formatExtension);
+                test(`cropImageTest`, async () => {
+                    await testClass.cropImageTest(formatExtension);
                 });
             }
     
-            test(`postImageCropTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.postImageCropTest(formatExtension, saveResultToStorage);
+            test(`createCroppedImageTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+                await testClass.createCroppedImageTest(formatExtension, saveResultToStorage);
             });
 
             beforeEach(() => {

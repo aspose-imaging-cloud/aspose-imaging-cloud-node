@@ -395,8 +395,8 @@ export abstract class ApiTester {
                                         new imaging.GetImagePropertiesRequest({ name: resultFileName, folder, storage }));
                                     expect(resultProperties).toBeTruthy();
                                 } else {
-                                    resultProperties = await this.imagingApi.postImageProperties(
-                                        new imaging.PostImagePropertiesRequest({ imageData: response }));
+                                    resultProperties = await this.imagingApi.extractImageProperties(
+                                        new imaging.ExtractImagePropertiesRequest({ imageData: response }));
                                     expect(resultProperties).toBeTruthy();
                                 }
                                 

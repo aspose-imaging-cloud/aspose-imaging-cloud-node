@@ -32,7 +32,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class SaveAsApiTests extends ApiTester {
 
-    public async getImageSaveAsTest(formatExtension: string, ...additionalExportFormats: string[]) {
+    public async saveImageAsTest(formatExtension: string, ...additionalExportFormats: string[]) {
         let name: string = null;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
@@ -53,13 +53,13 @@ class SaveAsApiTests extends ApiTester {
             for (const format of formatsToExport) {
 
                 await this.testGetRequest(
-                        "getImageSaveAsTest",
+                        "saveImageAsTest",
                         `Input image: ${name}; Output format: ${format}`,
                         name,
                         async () => {
-                            const request: imaging.GetImageSaveAsRequest = new imaging.GetImageSaveAsRequest({ name, format, 
+                            const request: imaging.SaveImageAsRequest = new imaging.SaveImageAsRequest({ name, format, 
                                 folder, storage });
-                            const response = await this.imagingApi.getImageSaveAs(request);
+                            const response = await this.imagingApi.saveImageAs(request);
                             return response;
                         },
                         null,
@@ -69,7 +69,7 @@ class SaveAsApiTests extends ApiTester {
         }
     }
 
-    public async postImageSaveAsTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async createSavedImageAsTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
         let name: string = null;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
@@ -92,15 +92,15 @@ class SaveAsApiTests extends ApiTester {
                 outName = `${name}.${format}`;
 
                 await this.testPostRequest(
-                        "postImageSaveAsTest",
+                        "createSavedImageAsTest",
                         saveResultToStorage,
                         `Input image: ${name}; Output format: ${format}`,
                         name,
                         outName,
                         async (inputStream, outPath) => {
-                            const request: imaging.PostImageSaveAsRequest = new imaging.PostImageSaveAsRequest({ imageData: inputStream, format,  
+                            const request: imaging.CreateSavedImageAsRequest = new imaging.CreateSavedImageAsRequest({ imageData: inputStream, format,  
                                 outPath, storage });
-                            const response = await this.imagingApi.postImageSaveAs(request);
+                            const response = await this.imagingApi.createSavedImageAs(request);
                             return response;
                         },
                         null,
@@ -130,13 +130,13 @@ describe.each([[".jpg", true], [".jpg", false]])(
     "SaveAsTestSuite_V3",
     (formatExtension, saveResultToStorage) => {
         if (!saveResultToStorage) {
-            test(`getImageSaveAsTest`, async () => {
-                await testClass.getImageSaveAsTest(formatExtension);
+            test(`saveImageAsTest`, async () => {
+                await testClass.saveImageAsTest(formatExtension);
             });
         }
 
-        test(`postImageSaveAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageSaveAsTest(formatExtension, saveResultToStorage);
+        test(`createSavedImageAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createSavedImageAsTest(formatExtension, saveResultToStorage);
         });
 
         beforeEach(() => {
@@ -164,13 +164,13 @@ if (useExtendedTests) {
         ("SaveAsTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage) => {
             if (!saveResultToStorage) {
-                test(`getImageSaveAsTest`, async () => {
-                    await testClass.getImageSaveAsTest(formatExtension);
+                test(`saveImageAsTest`, async () => {
+                    await testClass.saveImageAsTest(formatExtension);
                 });
             }
     
-            test(`postImageSaveAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.postImageSaveAsTest(formatExtension, saveResultToStorage);
+            test(`createSavedImageAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+                await testClass.createSavedImageAsTest(formatExtension, saveResultToStorage);
             });
 
             beforeEach(() => {

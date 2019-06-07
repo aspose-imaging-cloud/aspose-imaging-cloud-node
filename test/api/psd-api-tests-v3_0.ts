@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class PsdApiTests extends ApiTester {
 
-    public async getImagePsdTest() {
+    public async modifyPsdTest() {
         const name: string = "test.psd";
         const channelsCount: number = 3;
         const compressionMethod: string = "raw";
@@ -42,12 +42,12 @@ class PsdApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImagePsdTest", 
+                "modifyPsdTest", 
                 `Input image: ${name}; Channels count: ${channelsCount}; Compression method: ${compressionMethod}`,
                 name,
                 async () => {
-                    const request = new imaging.GetImagePsdRequest({ name, channelsCount, compressionMethod, fromScratch, folder, storage });
-                    const response = await this.imagingApi.getImagePsd(request);
+                    const request = new imaging.ModifyPsdRequest({ name, channelsCount, compressionMethod, fromScratch, folder, storage });
+                    const response = await this.imagingApi.modifyPsd(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -65,7 +65,7 @@ class PsdApiTests extends ApiTester {
                 storage);
     }
 
-    public async postImagePsdTest(saveResultToStorage: boolean) {
+    public async createModifiedPsdTest(saveResultToStorage: boolean) {
         const name: string = "test.psd";
         const channelsCount: number = 3;
         const compressionMethod: string = "raw";
@@ -75,14 +75,14 @@ class PsdApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImagePsdTest", 
+                "createModifiedPsdTest", 
                 saveResultToStorage,
                 `Input image: ${name}; Channels count: ${channelsCount}; Compression method: ${compressionMethod}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImagePsdRequest({ imageData: inputStream, channelsCount, compressionMethod, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImagePsd(request);
+                    const request = new imaging.CreateModifiedPsdRequest({ imageData: inputStream, channelsCount, compressionMethod, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.createModifiedPsd(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -119,13 +119,13 @@ describe.each([[true], [false]])(
     "PsdTestSuite_V3",
     (saveResultToStorage) => {
         if (!saveResultToStorage) {
-            test(`getImagePsdTest`, async () => {
-                await testClass.getImagePsdTest();
+            test(`modifyPsdTest`, async () => {
+                await testClass.modifyPsdTest();
             });
         }
 
-        test(`postImagePsdTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImagePsdTest(saveResultToStorage);
+        test(`createModifiedPsdTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedPsdTest(saveResultToStorage);
         });
 
         beforeEach(() => {

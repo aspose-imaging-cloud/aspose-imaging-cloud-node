@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class ResizeApiTests extends ApiTester {
 
-    public async getImageResizeTest(formatExtension: string, ...additionalExportFormats: string[]) {
+    public async resizeImageTest(formatExtension: string, ...additionalExportFormats: string[]) {
         let name: string = null;
         const newWidth: number = 100;
         const newHeight: number = 150;
@@ -56,13 +56,13 @@ class ResizeApiTests extends ApiTester {
             for (const format of formatsToExport) {
 
                 await this.testGetRequest(
-                        "getImageResizeTest",
+                        "resizeImageTest",
                         `Input image: ${name}; Output format: ${format}; New width: ${newWidth}; New height: ${newHeight}`,
                         name,
                         async () => {
-                            const request: imaging.GetImageResizeRequest = new imaging.GetImageResizeRequest({ name, format, newWidth, newHeight, 
+                            const request: imaging.ResizeImageRequest = new imaging.ResizeImageRequest({ name, format, newWidth, newHeight, 
                                 folder, storage });
-                            const response = await this.imagingApi.getImageResize(request);
+                            const response = await this.imagingApi.resizeImage(request);
                             return response;
                         },
                         (originalProperties, resultProperties) => {
@@ -77,7 +77,7 @@ class ResizeApiTests extends ApiTester {
         }
     }
 
-    public async postImageResizeTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async createResizedImageTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
         let name: string = null;
         const newWidth: number = 100;
         const newHeight: number = 150;
@@ -102,15 +102,15 @@ class ResizeApiTests extends ApiTester {
                 outName = `${name}_resize.${format}`;
 
                 await this.testPostRequest(
-                        "postImageResizeTest",
+                        "createResizedImageTest",
                         saveResultToStorage,
                         `Input image: ${name}; Output format: ${format}; New width: ${newWidth}; New height: ${newHeight}`,
                         name,
                         outName,
                         async (inputStream, outPath) => {
-                            const request: imaging.PostImageResizeRequest = new imaging.PostImageResizeRequest({ imageData: inputStream, format, newWidth, newHeight, 
+                            const request: imaging.CreateResizedImageRequest = new imaging.CreateResizedImageRequest({ imageData: inputStream, format, newWidth, newHeight, 
                                 outPath, storage });
-                            const response = await this.imagingApi.postImageResize(request);
+                            const response = await this.imagingApi.createResizedImage(request);
                             return response;
                         },
                         (originalProperties, resultProperties) => {
@@ -145,13 +145,13 @@ describe.each([[".jpg", true], [".jpg", false]])(
     "ResizeTestSuite_V3",
     (formatExtension, saveResultToStorage) => {
         if (!saveResultToStorage) {
-            test(`getImageResizeTest`, async () => {
-                await testClass.getImageResizeTest(formatExtension);
+            test(`resizeImageTest`, async () => {
+                await testClass.resizeImageTest(formatExtension);
             });
         }
 
-        test(`postImageResizeTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageResizeTest(formatExtension, saveResultToStorage);
+        test(`createResizedImageTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createResizedImageTest(formatExtension, saveResultToStorage);
         });
 
         beforeEach(() => {
@@ -179,13 +179,13 @@ if (useExtendedTests) {
         ("ResizeTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage) => {
             if (!saveResultToStorage) {
-                test(`getImageResizeTest`, async () => {
-                    await testClass.getImageResizeTest(formatExtension);
+                test(`resizeImageTest`, async () => {
+                    await testClass.resizeImageTest(formatExtension);
                 });
             }
     
-            test(`postImageResizeTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.postImageResizeTest(formatExtension, saveResultToStorage);
+            test(`createResizedImageTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+                await testClass.createResizedImageTest(formatExtension, saveResultToStorage);
             });
 
             beforeEach(() => {

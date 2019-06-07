@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class WebpApiTests extends ApiTester {
 
-    public async getImageWebpTest() {
+    public async modifyWebpTest() {
         const name: string = "Animation.webp";
         const animBackgroundColor: string = "gray";
         const animLoopCount: number = 5;
@@ -44,12 +44,12 @@ class WebpApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImageWebpTest", 
+                "modifyWebpTest", 
                 `Input image: ${name}; Animation loop count: ${animLoopCount}; Quality: ${quality}; Animation background color: ${animBackgroundColor}; Lossless: ${lossLess}`,
                 name,
                 async () => {
-                    const request = new imaging.GetImageWebPRequest({ name, lossLess, quality, animLoopCount, animBackgroundColor, fromScratch, folder, storage });
-                    const response = await this.imagingApi.getImageWebP(request);
+                    const request = new imaging.ModifyWebPRequest({ name, lossLess, quality, animLoopCount, animBackgroundColor, fromScratch, folder, storage });
+                    const response = await this.imagingApi.modifyWebP(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -63,7 +63,7 @@ class WebpApiTests extends ApiTester {
                 storage);
     }
 
-    public async postImageWebpTest(saveResultToStorage: boolean) {
+    public async createModifiedWebpTest(saveResultToStorage: boolean) {
         const name: string = "Animation.webp";
         const animBackgroundColor: string = "gray";
         const animLoopCount: number = 5;
@@ -75,14 +75,14 @@ class WebpApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImageWebpTest", 
+                "createModifiedWebpTest", 
                 saveResultToStorage,
                 `Input image: ${name}; Animation loop count: ${animLoopCount}; Quality: ${quality}; Animation background color: ${animBackgroundColor}; Lossless: ${lossLess}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageWebPRequest({ imageData: inputStream, lossLess, quality, animLoopCount, animBackgroundColor, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImageWebP(request);
+                    const request = new imaging.CreateModifiedWebPRequest({ imageData: inputStream, lossLess, quality, animLoopCount, animBackgroundColor, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.createModifiedWebP(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -115,13 +115,13 @@ describe.each([[true], [false]])(
     "WebpTestSuite_V3",
     (saveResultToStorage) => {
         if (!saveResultToStorage) {
-            test(`getImageWebpTest`, async () => {
-                await testClass.getImageWebpTest();
+            test(`modifyWebpTest`, async () => {
+                await testClass.modifyWebpTest();
             });
         }
 
-        test(`postImageWebpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageWebpTest(saveResultToStorage);
+        test(`createModifiedWebpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedWebpTest(saveResultToStorage);
         });
 
         beforeEach(() => {

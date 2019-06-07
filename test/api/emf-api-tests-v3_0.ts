@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class EmfApiTests extends ApiTester {
 
-    public async getImageEmfTest() {
+    public async modifyEmfTest() {
         const name: string = "test.emf";
         const fromScratch: boolean = false;
         const bkColor: string = "gray";
@@ -45,12 +45,12 @@ class EmfApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImageEmfTest", 
+                "modifyEmfTest", 
                 `Input image: ${name}; BackColor: ${bkColor}; Page width: ${pageWidth}; Page height: ${pageHeight}; BorderX: ${borderX}; BorderY: ${borderY}`,
                 name,
                 async () => {
-                    const request = new imaging.GetImageEmfRequest({ name, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, folder, storage });
-                    const response = await this.imagingApi.getImageEmf(request);
+                    const request = new imaging.ModifyEmfRequest({ name, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, folder, storage });
+                    const response = await this.imagingApi.modifyEmf(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -64,7 +64,7 @@ class EmfApiTests extends ApiTester {
                 storage);
     }
 
-    public async postImageEmfTest(saveResultToStorage: boolean) {
+    public async createModifiedEmfTest(saveResultToStorage: boolean) {
         const name: string = "test.emf";
         const fromScratch: boolean = false;
         const bkColor: string = "gray";
@@ -77,14 +77,14 @@ class EmfApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImageEmfTest", 
+                "createModifiedEmfTest", 
                 saveResultToStorage,
                 `Input image: ${name}; BackColor: ${bkColor}; Page width: ${pageWidth}; Page height: ${pageHeight}; BorderX: ${borderX}; BorderY: ${borderY}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageEmfRequest({ imageData: inputStream, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImageEmf(request);
+                    const request = new imaging.CreateModifiedEmfRequest({ imageData: inputStream, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.createModifiedEmf(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -117,13 +117,13 @@ describe.each([[true], [false]])(
     "EmfTestSuite_V3",
     (saveResultToStorage) => {
         if (!saveResultToStorage) {
-            test(`getImageEmfTest`, async () => {
-                await testClass.getImageEmfTest();
+            test(`modifyEmfTest`, async () => {
+                await testClass.modifyEmfTest();
             });
         }
 
-        test(`postImageEmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageEmfTest(saveResultToStorage);
+        test(`createModifiedEmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedEmfTest(saveResultToStorage);
         });
 
         beforeEach(() => {

@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class GifApiTests extends ApiTester {
 
-    public async getImageGifTest() {
+    public async modifyGifTest() {
         const name: string = "test.gif";
         const fromScratch: boolean = false;
         const hasTrailer: boolean = true;
@@ -46,14 +46,14 @@ class GifApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImageGifTest", 
+                "modifyGifTest", 
                 `Input image: ${name}; Has trailer: ${hasTrailer}; Interlaced: ${interlaced}; Palette is sorted: ${isPaletteSorted}; 
                     Back color index: ${backgroundColorIndex}; Pixel aspect ratio: ${pixelAspectRatio}; Color resolution: ${colorResolution}`,
                 name,
                 async () => {
-                    const request = new imaging.GetImageGifRequest({ name, backgroundColorIndex, colorResolution, hasTrailer, interlaced, isPaletteSorted, 
+                    const request = new imaging.ModifyGifRequest({ name, backgroundColorIndex, colorResolution, hasTrailer, interlaced, isPaletteSorted, 
                         pixelAspectRatio, fromScratch, folder, storage });
-                    const response = await this.imagingApi.getImageGif(request);
+                    const response = await this.imagingApi.modifyGif(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -69,7 +69,7 @@ class GifApiTests extends ApiTester {
                 storage);
     }
 
-    public async postImageGifTest(saveResultToStorage: boolean) {
+    public async createModifiedGifTest(saveResultToStorage: boolean) {
         const name: string = "test.gif";
         const fromScratch: boolean = false;
         const hasTrailer: boolean = true;
@@ -83,16 +83,16 @@ class GifApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImageGifTest", 
+                "createModifiedGifTest", 
                 saveResultToStorage,
                 `Input image: ${name}; Has trailer: ${hasTrailer}; Interlaced: ${interlaced}; Palette is sorted: ${isPaletteSorted}; 
                     Back color index: ${backgroundColorIndex}; Pixel aspect ratio: ${pixelAspectRatio}; Color resolution: ${colorResolution}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageGifRequest({ imageData: inputStream, backgroundColorIndex, colorResolution, hasTrailer, interlaced, isPaletteSorted, 
+                    const request = new imaging.CreateModifiedGifRequest({ imageData: inputStream, backgroundColorIndex, colorResolution, hasTrailer, interlaced, isPaletteSorted, 
                         pixelAspectRatio, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImageGif(request);
+                    const response = await this.imagingApi.createModifiedGif(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -127,13 +127,13 @@ describe.each([[true], [false]])(
     "GifTestSuite_V3",
     (saveResultToStorage) => {
         if (!saveResultToStorage) {
-            test(`getImageGifTest`, async () => {
-                await testClass.getImageGifTest();
+            test(`modifyGifTest`, async () => {
+                await testClass.modifyGifTest();
             });
         }
 
-        test(`postImageGifTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageGifTest(saveResultToStorage);
+        test(`createModifiedGifTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedGifTest(saveResultToStorage);
         });
 
         beforeEach(() => {

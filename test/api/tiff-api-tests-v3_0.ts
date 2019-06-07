@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class TiffApiTests extends ApiTester {
 
-    public async getImageTiffTest() {
+    public async modifyTiffTest() {
         const name: string = "test.tiff";
         const fromScratch: boolean = false;
         const compression: string = "adobedeflate";
@@ -45,14 +45,14 @@ class TiffApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImageTiffTest", 
+                "modifyTiffTest", 
                 `Input image: ${name}; Compression: ${compression}; Resolution unit: ${resolutionUnit}; Bit depth: ${bitDepth}; 
                     Horizontal resolution: ${horizontalResolution}; Vertical resolution: ${verticalResolution}`,
                 name,
                 async () => {
-                    const request = new imaging.GetImageTiffRequest({ name, compression, resolutionUnit, bitDepth, fromScratch, 
+                    const request = new imaging.ModifyTiffRequest({ name, compression, resolutionUnit, bitDepth, fromScratch, 
                         horizontalResolution, verticalResolution, folder, storage });
-                    const response = await this.imagingApi.getImageTiff(request);
+                    const response = await this.imagingApi.modifyTiff(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -77,7 +77,7 @@ class TiffApiTests extends ApiTester {
                 storage);
     }
 
-    public async postImageTiffTest(saveResultToStorage: boolean) {
+    public async createModifiedTiffTest(saveResultToStorage: boolean) {
         const name: string = "test.tiff";
         const fromScratch: boolean = false;
         const compression: string = "adobedeflate";
@@ -90,16 +90,16 @@ class TiffApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImageTiffTest", 
+                "createModifiedTiffTest", 
                 saveResultToStorage,
                 `Input image: ${name}; Compression: ${compression}; Resolution unit: ${resolutionUnit}; Bit depth: ${bitDepth}; 
                     Horizontal resolution: ${horizontalResolution}; Vertical resolution: ${verticalResolution}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageTiffRequest({ imageData: inputStream, compression, resolutionUnit, bitDepth, fromScratch, 
+                    const request = new imaging.CreateModifiedTiffRequest({ imageData: inputStream, compression, resolutionUnit, bitDepth, fromScratch, 
                         horizontalResolution, verticalResolution, outPath, storage });
-                    const response = await this.imagingApi.postImageTiff(request);
+                    const response = await this.imagingApi.createModifiedTiff(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -124,18 +124,18 @@ class TiffApiTests extends ApiTester {
                 storage);
     }
 
-    public async getTiffToFaxTest() {
+    public async convertTiffToFaxTest() {
         const name: string = "test.tiff";
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getTiffToFaxTest", 
+                "convertTiffToFaxTest", 
                 `Input image: ${name}`,
                 name,
                 async () => {
-                    const request = new imaging.GetTiffToFaxRequest({ name, storage, folder });
-                    const response = await this.imagingApi.getTiffToFax(request);
+                    const request = new imaging.ConvertTiffToFaxRequest({ name, storage, folder });
+                    const response = await this.imagingApi.convertTiffToFax(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -152,8 +152,8 @@ class TiffApiTests extends ApiTester {
                 storage);
     }
 
-    public async postTiffAppendTest() {
-        console.log("postTiffAppendTest");
+    public async appendTiffTest() {
+        console.log("appendTiffTest");
 
         const inputFileName: string = "test.tiff";
         const folder: string = this.TempFolder;
@@ -186,8 +186,8 @@ class TiffApiTests extends ApiTester {
             new imaging.CopyFileRequest({ srcPath: `${this.OriginalDataFolder}/${inputFileName}`, destPath: `${folder}/${inputFileName}`, 
             srcStorageName: storage, destStorageName: storage }));
 
-          const request: imaging.PostTiffAppendRequest = new imaging.PostTiffAppendRequest({ name: resultFileName, appendFile: inputFileName, storage, folder});
-          await this.imagingApi.postTiffAppend(request);
+          const request: imaging.AppendTiffRequest = new imaging.AppendTiffRequest({ name: resultFileName, appendFile: inputFileName, storage, folder});
+          await this.imagingApi.appendTiff(request);
           
           const resultInfo = await this.getStorageFileInfo(folder, resultFileName, storage);
           if (resultInfo == null) {
@@ -247,13 +247,13 @@ describe.each([[true], [false]])(
     "TiffTestSuite_V3",
     (saveResultToStorage) => {
         if (!saveResultToStorage) {
-            test(`getImageTiffTest`, async () => {
-                await testClass.getImageTiffTest();
+            test(`modifyTiffTest`, async () => {
+                await testClass.modifyTiffTest();
             });
         }
 
-        test(`postImageTiffTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageTiffTest(saveResultToStorage);
+        test(`createModifiedTiffTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedTiffTest(saveResultToStorage);
         });
 
         beforeEach(() => {
@@ -262,10 +262,10 @@ describe.each([[true], [false]])(
     },
 );
 
-test(`getTiffToFaxTest`, async () => {
-    await testClass.getTiffToFaxTest();
+test(`convertTiffToFaxTest`, async () => {
+    await testClass.convertTiffToFaxTest();
 });
 
-test(`postTiffAppendTest`, async () => {
-    await testClass.postTiffAppendTest();
+test(`appendTiffTest`, async () => {
+    await testClass.appendTiffTest();
 });
