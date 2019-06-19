@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class WmfApiTests extends ApiTester {
 
-    public async getImageWmfTest(saveResultToStorage: boolean) {
+    public async modifyWmfTest() {
         const name: string = "test.wmf";
         const fromScratch: boolean = false;
         const bkColor: string = "gray";
@@ -41,19 +41,16 @@ class WmfApiTests extends ApiTester {
         const pageHeight: number = 300;
         const borderX: number = 50;
         const borderY: number = 50;
-        const outName: string = `${name}_specific.png`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImageWmfTest", 
-                saveResultToStorage,
+                "modifyWmfTest", 
                 `Input image: ${name}; BackColor: ${bkColor}; Page width: ${pageWidth}; Page height: ${pageHeight}; BorderX: ${borderX}; BorderY: ${borderY}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImageWmfRequest({ name: fileName, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, outPath, folder, storage });
-                    const response = await this.imagingApi.getImageWmf(request);
+                async () => {
+                    const request = new imaging.ModifyWmfRequest({ name, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, folder, storage });
+                    const response = await this.imagingApi.modifyWmf(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -67,7 +64,7 @@ class WmfApiTests extends ApiTester {
                 storage);
     }
 
-    public async postImageWmfTest(saveResultToStorage: boolean) {
+    public async createModifiedWmfTest(saveResultToStorage: boolean) {
         const name: string = "test.wmf";
         const fromScratch: boolean = false;
         const bkColor: string = "gray";
@@ -80,14 +77,14 @@ class WmfApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImageWmfTest", 
+                "createModifiedWmfTest", 
                 saveResultToStorage,
                 `Input image: ${name}; BackColor: ${bkColor}; Page width: ${pageWidth}; Page height: ${pageHeight}; BorderX: ${borderX}; BorderY: ${borderY}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageWmfRequest({ imageData: inputStream, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImageWmf(request);
+                    const request = new imaging.CreateModifiedWmfRequest({ imageData: inputStream, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.createModifiedWmf(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -119,12 +116,14 @@ afterAll(async () =>  {
 describe.each([[true], [false]])(
     "WmfTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageWmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageWmfTest(saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`modifyWmfTest`, async () => {
+                await testClass.modifyWmfTest();
+            });
+        }
 
-        test(`postImageWmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageWmfTest(saveResultToStorage);
+        test(`createModifiedWmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedWmfTest(saveResultToStorage);
         });
 
         beforeEach(() => {

@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class TiffGetFramesApiTests extends ApiTester {
 
-    public async getImageSingleFrameTest(saveResultToStorage: boolean) {
+    public async getImageSingleFrameTest() {
         const name: string = "test.tiff";
         const frameId: number = 2;
         const newWidth: number = 300;
@@ -44,20 +44,17 @@ class TiffGetFramesApiTests extends ApiTester {
         const rectHeight: number = 300;
         const rotateFlipMethod: string = "Rotate90FlipX";
         const saveOtherFrames: boolean = false;
-        const outName: string = `${name}_singleFrame.tiff`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
                 "getImageSingleFrameTest", 
-                saveResultToStorage,
                 `Input image: ${name}; Frame ID: ${frameId}; New width: ${newWidth}; New height: ${newHeight}; X: ${x}; Y: ${y}; Rect width: ${rectWidth}; 
                     Rect height: ${rectHeight}; Rotate/flip method: ${rotateFlipMethod}; Save other frames: ${saveOtherFrames}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImageFrameRequest({ name: fileName, frameId, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod,
-                        saveOtherFrames, outPath, folder, storage });
+                async () => {
+                    const request = new imaging.GetImageFrameRequest({ name, frameId, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod,
+                        saveOtherFrames, folder, storage });
                     const response = await this.imagingApi.getImageFrame(request);
                     return response;
                 },
@@ -74,30 +71,13 @@ class TiffGetFramesApiTests extends ApiTester {
                     expect(rectWidth).toEqual(resultProperties.tiffProperties.frames[0].frameOptions.imageLength);
                     expect(rectHeight).toEqual(resultProperties.width);
                     expect(rectWidth).toEqual(resultProperties.height);
-
-                    if (!saveResultToStorage) { 
-                        return; 
-                    }
-
-                    const framePropertiesRequest: imaging.GetImageFramePropertiesRequest = 
-                        new imaging.GetImageFramePropertiesRequest({ name: outName, frameId: 0, folder, storage });
-                    const framePropertiesResponse = await this.imagingApi.getImageFrameProperties(framePropertiesRequest);
-                    expect(framePropertiesResponse).toBeTruthy();
-                    expect(framePropertiesResponse.tiffProperties).toBeTruthy();
-                    expect(framePropertiesResponse.tiffProperties.frames).toBeTruthy();
-                    expect(rectHeight).toEqual(framePropertiesResponse.width);
-                    expect(rectWidth).toEqual(framePropertiesResponse.height);
-                    expect(framePropertiesResponse.tiffProperties.frames[0].width).toEqual(framePropertiesResponse.width);
-                    expect(framePropertiesResponse.tiffProperties.frames[0].height).toEqual(framePropertiesResponse.height);
-                    expect(framePropertiesResponse.tiffProperties.frames[0].frameOptions.imageWidth).toEqual(framePropertiesResponse.width);
-                    expect(framePropertiesResponse.tiffProperties.frames[0].frameOptions.imageLength).toEqual(framePropertiesResponse.height);
                     return Promise.resolve();
                 },
                 folder,
                 storage);
     }
 
-    public async getImageAllFramesTest(saveResultToStorage: boolean) {
+    public async getImageAllFramesTest() {
         const name: string = "test.tiff";
         const frameId: number = 2;
         const newWidth: number = 300;
@@ -108,20 +88,17 @@ class TiffGetFramesApiTests extends ApiTester {
         const rectHeight: number = 300;
         const rotateFlipMethod: string = "Rotate90FlipX";
         const saveOtherFrames: boolean = true;
-        const outName: string = `${name}_allFrames.tiff`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
                 "getImageAllFramesTest", 
-                saveResultToStorage,
                 `Input image: ${name}; Frame ID: ${frameId}; New width: ${newWidth}; New height: ${newHeight}; X: ${x}; Y: ${y}; Rect width: ${rectWidth}; 
                     Rect height: ${rectHeight}; Rotate/flip method: ${rotateFlipMethod}; Save other frames: ${saveOtherFrames}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImageFrameRequest({ name: fileName, frameId, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod,
-                        saveOtherFrames, outPath, folder, storage });
+                async () => {
+                    const request = new imaging.GetImageFrameRequest({ name, frameId, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod,
+                        saveOtherFrames, folder, storage });
                     const response = await this.imagingApi.getImageFrame(request);
                     return response;
                 },
@@ -161,19 +138,10 @@ afterAll(async () =>  {
     await testClass.afterAll();
 });
 
-describe.each([[true], [false]])(
-    "TiffGetFramesTestSuite_V3",
-    (saveResultToStorage) => {
-        test(`getImageSingleFrameTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageSingleFrameTest(saveResultToStorage);
-        });
+test(`getImageSingleFrameTest`, async () => {
+    await testClass.getImageSingleFrameTest();
+});
 
-        test(`getImageAllFramesTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageAllFramesTest(saveResultToStorage);
-        });
-
-        beforeEach(() => {
-            jest.setTimeout(ApiTester.DefaultTimeout);
-        });
-    },
-);
+test(`getImageAllFramesTest`, async () => {
+    await testClass.getImageAllFramesTest();
+});

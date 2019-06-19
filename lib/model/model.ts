@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -4371,6 +4371,132 @@ const typeMap = {
 export {enumsMap, typeMap};
 
 /**
+ * Request model for AddSearchImage operation.
+ */
+export class AddSearchImageRequest {
+    /**
+     * Search context identifier.
+     */
+    public searchContextId: string;
+
+    /**
+     * Image identifier.
+     */
+    public imageId: string;
+
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Folder.
+     */
+    public folder: string;
+
+    /**
+     * Storage
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<AddSearchImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for AppendTiff operation.
+ */
+export class AppendTiffRequest {
+    /**
+     * Original image file name.
+     */
+    public name: string;
+
+    /**
+     * Image file name to be appended to original one.
+     */
+    public appendFile: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+
+    /**
+     * Folder with images to process.
+     */
+    public folder: string;
+    
+    public constructor(init?: Partial<AppendTiffRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CompareImages operation.
+ */
+export class CompareImagesRequest {
+    /**
+     * The search context identifier.
+     */
+    public searchContextId: string;
+
+    /**
+     * The first image Id in storage.
+     */
+    public imageId1: string;
+
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * The second image Id in storage or null (if image loading in request).
+     */
+    public imageId2: string;
+
+    /**
+     * The folder.
+     */
+    public folder: string;
+
+    /**
+     * The storage.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CompareImagesRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for ConvertTiffToFax operation.
+ */
+export class ConvertTiffToFaxRequest {
+    /**
+     * Filename of image.
+     */
+    public name: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+
+    /**
+     * Folder with image to process.
+     */
+    public folder: string;
+    
+    public constructor(init?: Partial<ConvertTiffToFaxRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for CopyFile operation.
  */
 export class CopyFileRequest {
@@ -4434,6 +4560,55 @@ export class CopyFolderRequest {
 }
 
 /**
+ * Request model for CreateCroppedImage operation.
+ */
+export class CreateCroppedImageRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+
+    /**
+     * X position of start point for cropping rectangle.
+     */
+    public x: number;
+
+    /**
+     * Y position of start point for cropping rectangle.
+     */
+    public y: number;
+
+    /**
+     * Width of cropping rectangle.
+     */
+    public width: number;
+
+    /**
+     * Height of cropping rectangle.
+     */
+    public height: number;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateCroppedImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for CreateFolder operation.
  */
 export class CreateFolderRequest {
@@ -4448,6 +4623,833 @@ export class CreateFolderRequest {
     public storageName: string;
     
     public constructor(init?: Partial<CreateFolderRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateImageFeatures operation.
+ */
+export class CreateImageFeaturesRequest {
+    /**
+     * The search context identifier.
+     */
+    public searchContextId: string;
+
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * The image identifier.
+     */
+    public imageId: string;
+
+    /**
+     * Images folder.
+     */
+    public imagesFolder: string;
+
+    /**
+     * The folder.
+     */
+    public folder: string;
+
+    /**
+     * The storage.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateImageFeaturesRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateImageFrame operation.
+ */
+export class CreateImageFrameRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Number of a frame.
+     */
+    public frameId: number;
+
+    /**
+     * New width.
+     */
+    public newWidth: number;
+
+    /**
+     * New height.
+     */
+    public newHeight: number;
+
+    /**
+     * X position of start point for cropping rectangle.
+     */
+    public x: number;
+
+    /**
+     * Y position of start point for cropping rectangle.
+     */
+    public y: number;
+
+    /**
+     * Width of cropping rectangle.
+     */
+    public rectWidth: number;
+
+    /**
+     * Height of cropping rectangle.
+     */
+    public rectHeight: number;
+
+    /**
+     * RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone.
+     */
+    public rotateFlipMethod: string;
+
+    /**
+     * If result will include all other frames or just a specified frame.
+     */
+    public saveOtherFrames: boolean;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateImageFrameRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateImageSearch operation.
+ */
+export class CreateImageSearchRequest {
+    /**
+     * The image features detector.
+     */
+    public detector: string;
+
+    /**
+     * The matching algorithm.
+     */
+    public matchingAlgorithm: string;
+
+    /**
+     * The folder.
+     */
+    public folder: string;
+
+    /**
+     * The storage.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateImageSearchRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateImageTag operation.
+ */
+export class CreateImageTagRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * The search context identifier.
+     */
+    public searchContextId: string;
+
+    /**
+     * The tag.
+     */
+    public tagName: string;
+
+    /**
+     * The folder.
+     */
+    public folder: string;
+
+    /**
+     * The storage.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateImageTagRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateModifiedBmp operation.
+ */
+export class CreateModifiedBmpRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Color depth.
+     */
+    public bitsPerPixel: number;
+
+    /**
+     * New horizontal resolution.
+     */
+    public horizontalResolution: number;
+
+    /**
+     * New vertical resolution.
+     */
+    public verticalResolution: number;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateModifiedBmpRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateModifiedEmf operation.
+ */
+export class CreateModifiedEmfRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Color of the background.
+     */
+    public bkColor: string;
+
+    /**
+     * Width of the page.
+     */
+    public pageWidth: number;
+
+    /**
+     * Height of the page.
+     */
+    public pageHeight: number;
+
+    /**
+     * Border width.
+     */
+    public borderX: number;
+
+    /**
+     * Border height.
+     */
+    public borderY: number;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+
+    /**
+     * Export format (PNG is the default one). Please, refer to the export table from https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+    
+    public constructor(init?: Partial<CreateModifiedEmfRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateModifiedGif operation.
+ */
+export class CreateModifiedGifRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Index of the background color.
+     */
+    public backgroundColorIndex: number;
+
+    /**
+     * Color resolution.
+     */
+    public colorResolution: number;
+
+    /**
+     * Specifies if image has trailer.
+     */
+    public hasTrailer: boolean;
+
+    /**
+     * Specifies if image is interlaced.
+     */
+    public interlaced: boolean;
+
+    /**
+     * Specifies if palette is sorted.
+     */
+    public isPaletteSorted: boolean;
+
+    /**
+     * Pixel aspect ratio.
+     */
+    public pixelAspectRatio: number;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateModifiedGifRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateModifiedJpeg operation.
+ */
+export class CreateModifiedJpegRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Quality of an image from 0 to 100. Default is 75.
+     */
+    public quality: number;
+
+    /**
+     * Compression type: baseline (default), progressive, lossless or jpegls.
+     */
+    public compressionType: string;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateModifiedJpegRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateModifiedJpeg2000 operation.
+ */
+export class CreateModifiedJpeg2000Request {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * The comment (can be either single or comma-separated).
+     */
+    public comment: string;
+
+    /**
+     * The codec (j2k or jp2).
+     */
+    public codec: string;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateModifiedJpeg2000Request>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateModifiedPsd operation.
+ */
+export class CreateModifiedPsdRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Count of color channels.
+     */
+    public channelsCount: number;
+
+    /**
+     * Compression method (for now, raw and RLE are supported).
+     */
+    public compressionMethod: string;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateModifiedPsdRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateModifiedTiff operation.
+ */
+export class CreateModifiedTiffRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Bit depth.
+     */
+    public bitDepth: number;
+
+    /**
+     * Compression (none is default). Please, refer to https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.tiff.enums/tiffcompressions for all possible values.
+     */
+    public compression: string;
+
+    /**
+     * New resolution unit (none - the default one, inch or centimeter).
+     */
+    public resolutionUnit: string;
+
+    /**
+     * New horizontal resolution.
+     */
+    public horizontalResolution: number;
+
+    /**
+     * New vertical resolution.
+     */
+    public verticalResolution: number;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateModifiedTiffRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateModifiedWebP operation.
+ */
+export class CreateModifiedWebPRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * If WEBP should be in lossless format.
+     */
+    public lossLess: boolean;
+
+    /**
+     * Quality (0-100).
+     */
+    public quality: number;
+
+    /**
+     * The animation loop count.
+     */
+    public animLoopCount: number;
+
+    /**
+     * Color of the animation background.
+     */
+    public animBackgroundColor: string;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateModifiedWebPRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateModifiedWmf operation.
+ */
+export class CreateModifiedWmfRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Color of the background.
+     */
+    public bkColor: string;
+
+    /**
+     * Width of the page.
+     */
+    public pageWidth: number;
+
+    /**
+     * Height of the page.
+     */
+    public pageHeight: number;
+
+    /**
+     * Border width.
+     */
+    public borderX: number;
+
+    /**
+     * Border height.
+     */
+    public borderY: number;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+
+    /**
+     * Export format (PNG is the default one). Please, refer to the export table from https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+    
+    public constructor(init?: Partial<CreateModifiedWmfRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateResizedImage operation.
+ */
+export class CreateResizedImageRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+
+    /**
+     * New width.
+     */
+    public newWidth: number;
+
+    /**
+     * New height.
+     */
+    public newHeight: number;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateResizedImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateRotateFlippedImage operation.
+ */
+export class CreateRotateFlippedImageRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+
+    /**
+     * RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY).
+     */
+    public method: string;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateRotateFlippedImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateSavedImageAs operation.
+ */
+export class CreateSavedImageAsRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateSavedImageAsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateUpdatedImage operation.
+ */
+export class CreateUpdatedImageRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+
+    /**
+     * New width of the scaled image.
+     */
+    public newWidth: number;
+
+    /**
+     * New height of the scaled image.
+     */
+    public newHeight: number;
+
+    /**
+     * X position of start point for cropping rectangle.
+     */
+    public x: number;
+
+    /**
+     * Y position of start point for cropping rectangle.
+     */
+    public y: number;
+
+    /**
+     * Width of cropping rectangle.
+     */
+    public rectWidth: number;
+
+    /**
+     * Height of cropping rectangle.
+     */
+    public rectHeight: number;
+
+    /**
+     * RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone.
+     */
+    public rotateFlipMethod: string;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateUpdatedImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CropImage operation.
+ */
+export class CropImageRequest {
+    /**
+     * Filename of an image.
+     */
+    public name: string;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+
+    /**
+     * X position of start point for cropping rectangle.
+     */
+    public x: number;
+
+    /**
+     * Y position of start point for cropping rectangle.
+     */
+    public y: number;
+
+    /**
+     * Width of cropping rectangle
+     */
+    public width: number;
+
+    /**
+     * Height of cropping rectangle.
+     */
+    public height: number;
+
+    /**
+     * Folder with image to process.
+     */
+    public folder: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CropImageRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -4501,62 +5503,9 @@ export class DeleteFolderRequest {
 }
 
 /**
- * Request model for DeleteSearchContext operation.
+ * Request model for DeleteImageFeatures operation.
  */
-export class DeleteSearchContextRequest {
-    /**
-     * The search context identifier.
-     */
-    public searchContextId: string;
-
-    /**
-     * The folder.
-     */
-    public folder: string;
-
-    /**
-     * The storage.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<DeleteSearchContextRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for DeleteSearchContextImage operation.
- */
-export class DeleteSearchContextImageRequest {
-    /**
-     * Search context identifier.
-     */
-    public searchContextId: string;
-
-    /**
-     * Image identifier.
-     */
-    public imageId: string;
-
-    /**
-     * Folder.
-     */
-    public folder: string;
-
-    /**
-     * Storage
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<DeleteSearchContextImageRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for DeleteSearchContextImageFeatures operation.
- */
-export class DeleteSearchContextImageFeaturesRequest {
+export class DeleteImageFeaturesRequest {
     /**
      * The search context identifier.
      */
@@ -4577,7 +5526,60 @@ export class DeleteSearchContextImageFeaturesRequest {
      */
     public storage: string;
     
-    public constructor(init?: Partial<DeleteSearchContextImageFeaturesRequest>) {        
+    public constructor(init?: Partial<DeleteImageFeaturesRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for DeleteImageSearch operation.
+ */
+export class DeleteImageSearchRequest {
+    /**
+     * The search context identifier.
+     */
+    public searchContextId: string;
+
+    /**
+     * The folder.
+     */
+    public folder: string;
+
+    /**
+     * The storage.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<DeleteImageSearchRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for DeleteSearchImage operation.
+ */
+export class DeleteSearchImageRequest {
+    /**
+     * Search context identifier.
+     */
+    public searchContextId: string;
+
+    /**
+     * Image identifier.
+     */
+    public imageId: string;
+
+    /**
+     * Folder.
+     */
+    public folder: string;
+
+    /**
+     * Storage
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<DeleteSearchImageRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -4602,6 +5604,185 @@ export class DownloadFileRequest {
     public versionId: string;
     
     public constructor(init?: Partial<DownloadFileRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for ExtractImageFeatures operation.
+ */
+export class ExtractImageFeaturesRequest {
+    /**
+     * The search context identifier.
+     */
+    public searchContextId: string;
+
+    /**
+     * The image identifier.
+     */
+    public imageId: string;
+
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * The folder.
+     */
+    public folder: string;
+
+    /**
+     * The storage.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<ExtractImageFeaturesRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for ExtractImageFrameProperties operation.
+ */
+export class ExtractImageFramePropertiesRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Number of a frame.
+     */
+    public frameId: number;
+    
+    public constructor(init?: Partial<ExtractImageFramePropertiesRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for ExtractImageProperties operation.
+ */
+export class ExtractImagePropertiesRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+    
+    public constructor(init?: Partial<ExtractImagePropertiesRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for FindImageDuplicates operation.
+ */
+export class FindImageDuplicatesRequest {
+    /**
+     * The search context identifier.
+     */
+    public searchContextId: string;
+
+    /**
+     * The similarity threshold.
+     */
+    public similarityThreshold: number;
+
+    /**
+     * The folder.
+     */
+    public folder: string;
+
+    /**
+     * The storage.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<FindImageDuplicatesRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for FindImagesByTags operation.
+ */
+export class FindImagesByTagsRequest {
+    /**
+     * Tags array for searching
+     */
+    public tags: string;
+
+    /**
+     * The search context identifier.
+     */
+    public searchContextId: string;
+
+    /**
+     * The similarity threshold.
+     */
+    public similarityThreshold: number;
+
+    /**
+     * The maximum count.
+     */
+    public maxCount: number;
+
+    /**
+     * The folder.
+     */
+    public folder: string;
+
+    /**
+     * The storage.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<FindImagesByTagsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for FindSimilarImages operation.
+ */
+export class FindSimilarImagesRequest {
+    /**
+     * The search context identifier.
+     */
+    public searchContextId: string;
+
+    /**
+     * The similarity threshold.
+     */
+    public similarityThreshold: number;
+
+    /**
+     * The maximum count.
+     */
+    public maxCount: number;
+
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * The search image identifier.
+     */
+    public imageId: string;
+
+    /**
+     * The folder.
+     */
+    public folder: string;
+
+    /**
+     * The storage.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<FindSimilarImagesRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -4659,168 +5840,30 @@ export class GetFilesListRequest {
 }
 
 /**
- * Request model for GetImageBmp operation.
+ * Request model for GetImageFeatures operation.
  */
-export class GetImageBmpRequest {
+export class GetImageFeaturesRequest {
     /**
-     * Filename of image.
+     * The search context identifier.
      */
-    public name: string;
+    public searchContextId: string;
 
     /**
-     * Color depth.
+     * The image identifier.
      */
-    public bitsPerPixel: number;
+    public imageId: string;
 
     /**
-     * New horizontal resolution.
-     */
-    public horizontalResolution: number;
-
-    /**
-     * New vertical resolution.
-     */
-    public verticalResolution: number;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Folder with image to process.
+     * The folder.
      */
     public folder: string;
 
     /**
-     * Your Aspose Cloud Storage name.
+     * The storage.
      */
     public storage: string;
     
-    public constructor(init?: Partial<GetImageBmpRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetImageCrop operation.
- */
-export class GetImageCropRequest {
-    /**
-     * Filename of an image.
-     */
-    public name: string;
-
-    /**
-     * Resulting image format.
-     */
-    public format: string;
-
-    /**
-     * X position of start point for cropping rectangle.
-     */
-    public x: number;
-
-    /**
-     * Y position of start point for cropping rectangle.
-     */
-    public y: number;
-
-    /**
-     * Width of cropping rectangle
-     */
-    public width: number;
-
-    /**
-     * Height of cropping rectangle.
-     */
-    public height: number;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Folder with image to process.
-     */
-    public folder: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetImageCropRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetImageEmf operation.
- */
-export class GetImageEmfRequest {
-    /**
-     * Filename of image.
-     */
-    public name: string;
-
-    /**
-     * Color of the background.
-     */
-    public bkColor: string;
-
-    /**
-     * Width of the page.
-     */
-    public pageWidth: number;
-
-    /**
-     * Height of the page.
-     */
-    public pageHeight: number;
-
-    /**
-     * Border width.
-     */
-    public borderX: number;
-
-    /**
-     * Border height.
-     */
-    public borderY: number;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Folder with image to process.
-     */
-    public folder: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-
-    /**
-     * Export format (PNG is the default one).
-     */
-    public format: string;
-    
-    public constructor(init?: Partial<GetImageEmfRequest>) {        
+    public constructor(init?: Partial<GetImageFeaturesRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -4880,11 +5923,6 @@ export class GetImageFrameRequest {
     public saveOtherFrames: boolean;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
      * Folder with image to process.
      */
     public folder: string;
@@ -4929,9 +5967,189 @@ export class GetImageFramePropertiesRequest {
 }
 
 /**
- * Request model for GetImageGif operation.
+ * Request model for GetImageProperties operation.
  */
-export class GetImageGifRequest {
+export class GetImagePropertiesRequest {
+    /**
+     * Filename of an image.
+     */
+    public name: string;
+
+    /**
+     * Folder with image to process.
+     */
+    public folder: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<GetImagePropertiesRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetImageSearchStatus operation.
+ */
+export class GetImageSearchStatusRequest {
+    /**
+     * The search context identifier.
+     */
+    public searchContextId: string;
+
+    /**
+     * The folder.
+     */
+    public folder: string;
+
+    /**
+     * The storage.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<GetImageSearchStatusRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetSearchImage operation.
+ */
+export class GetSearchImageRequest {
+    /**
+     * Search context identifier.
+     */
+    public searchContextId: string;
+
+    /**
+     * Image identifier.
+     */
+    public imageId: string;
+
+    /**
+     * Folder.
+     */
+    public folder: string;
+
+    /**
+     * Storage
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<GetSearchImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for ModifyBmp operation.
+ */
+export class ModifyBmpRequest {
+    /**
+     * Filename of image.
+     */
+    public name: string;
+
+    /**
+     * Color depth.
+     */
+    public bitsPerPixel: number;
+
+    /**
+     * New horizontal resolution.
+     */
+    public horizontalResolution: number;
+
+    /**
+     * New vertical resolution.
+     */
+    public verticalResolution: number;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
+
+    /**
+     * Folder with image to process.
+     */
+    public folder: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<ModifyBmpRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for ModifyEmf operation.
+ */
+export class ModifyEmfRequest {
+    /**
+     * Filename of image.
+     */
+    public name: string;
+
+    /**
+     * Color of the background.
+     */
+    public bkColor: string;
+
+    /**
+     * Width of the page.
+     */
+    public pageWidth: number;
+
+    /**
+     * Height of the page.
+     */
+    public pageHeight: number;
+
+    /**
+     * Border width.
+     */
+    public borderX: number;
+
+    /**
+     * Border height.
+     */
+    public borderY: number;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
+
+    /**
+     * Folder with image to process.
+     */
+    public folder: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+
+    /**
+     * Export format (PNG is the default one). Please, refer to the export table from https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+    
+    public constructor(init?: Partial<ModifyEmfRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for ModifyGif operation.
+ */
+export class ModifyGifRequest {
     /**
      * Filename of image.
      */
@@ -4973,11 +6191,6 @@ export class GetImageGifRequest {
     public fromScratch: boolean;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
      * Folder with image to process.
      */
     public folder: string;
@@ -4987,59 +6200,15 @@ export class GetImageGifRequest {
      */
     public storage: string;
     
-    public constructor(init?: Partial<GetImageGifRequest>) {        
+    public constructor(init?: Partial<ModifyGifRequest>) {        
         Object.assign(this, init);
     } 
 }
 
 /**
- * Request model for GetImageJpeg2000 operation.
+ * Request model for ModifyJpeg operation.
  */
-export class GetImageJpeg2000Request {
-    /**
-     * Filename of image.
-     */
-    public name: string;
-
-    /**
-     * The comment.
-     */
-    public comment: string;
-
-    /**
-     * The codec.
-     */
-    public codec: string;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Folder with image to process.
-     */
-    public folder: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetImageJpeg2000Request>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetImageJpg operation.
- */
-export class GetImageJpgRequest {
+export class ModifyJpegRequest {
     /**
      * Filename of image.
      */
@@ -5051,7 +6220,7 @@ export class GetImageJpgRequest {
     public quality: number;
 
     /**
-     * Compression type.
+     * Compression type: baseline (default), progressive, lossless or jpegls.
      */
     public compressionType: string;
 
@@ -5061,11 +6230,6 @@ export class GetImageJpgRequest {
     public fromScratch: boolean;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
      * Folder with image to process.
      */
     public folder: string;
@@ -5075,21 +6239,36 @@ export class GetImageJpgRequest {
      */
     public storage: string;
     
-    public constructor(init?: Partial<GetImageJpgRequest>) {        
+    public constructor(init?: Partial<ModifyJpegRequest>) {        
         Object.assign(this, init);
     } 
 }
 
 /**
- * Request model for GetImageProperties operation.
+ * Request model for ModifyJpeg2000 operation.
  */
-export class GetImagePropertiesRequest {
+export class ModifyJpeg2000Request {
     /**
-     * Filename of an image.
+     * Filename of image.
      */
     public name: string;
 
     /**
+     * The comment (can be either single or comma-separated).
+     */
+    public comment: string;
+
+    /**
+     * The codec (j2k or jp2).
+     */
+    public codec: string;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
+
+    /**
      * Folder with image to process.
      */
     public folder: string;
@@ -5099,15 +6278,15 @@ export class GetImagePropertiesRequest {
      */
     public storage: string;
     
-    public constructor(init?: Partial<GetImagePropertiesRequest>) {        
+    public constructor(init?: Partial<ModifyJpeg2000Request>) {        
         Object.assign(this, init);
     } 
 }
 
 /**
- * Request model for GetImagePsd operation.
+ * Request model for ModifyPsd operation.
  */
-export class GetImagePsdRequest {
+export class ModifyPsdRequest {
     /**
      * Filename of image.
      */
@@ -5119,7 +6298,7 @@ export class GetImagePsdRequest {
     public channelsCount: number;
 
     /**
-     * Compression method.
+     * Compression method (for now, raw and RLE are supported).
      */
     public compressionMethod: string;
 
@@ -5129,11 +6308,6 @@ export class GetImagePsdRequest {
     public fromScratch: boolean;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
      * Folder with image to process.
      */
     public folder: string;
@@ -5143,146 +6317,19 @@ export class GetImagePsdRequest {
      */
     public storage: string;
     
-    public constructor(init?: Partial<GetImagePsdRequest>) {        
+    public constructor(init?: Partial<ModifyPsdRequest>) {        
         Object.assign(this, init);
     } 
 }
 
 /**
- * Request model for GetImageResize operation.
+ * Request model for ModifyTiff operation.
  */
-export class GetImageResizeRequest {
-    /**
-     * Filename of an image.
-     */
-    public name: string;
-
-    /**
-     * Resulting image format.
-     */
-    public format: string;
-
-    /**
-     * New width.
-     */
-    public newWidth: number;
-
-    /**
-     * New height.
-     */
-    public newHeight: number;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Folder with image to process.
-     */
-    public folder: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetImageResizeRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetImageRotateFlip operation.
- */
-export class GetImageRotateFlipRequest {
-    /**
-     * Filename of an image.
-     */
-    public name: string;
-
-    /**
-     * Resulting image format.
-     */
-    public format: string;
-
-    /**
-     * RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY).
-     */
-    public method: string;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Folder with image to process.
-     */
-    public folder: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetImageRotateFlipRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetImageSaveAs operation.
- */
-export class GetImageSaveAsRequest {
+export class ModifyTiffRequest {
     /**
      * Filename of image.
      */
     public name: string;
-
-    /**
-     * Resulting image format.
-     */
-    public format: string;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Folder with image to process.
-     */
-    public folder: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetImageSaveAsRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetImageTiff operation.
- */
-export class GetImageTiffRequest {
-    /**
-     * Filename of image.
-     */
-    public name: string;
-
-    /**
-     * Compression.
-     */
-    public compression: string;
-
-    /**
-     * New resolution unit.
-     */
-    public resolutionUnit: string;
 
     /**
      * Bit depth.
@@ -5290,9 +6337,14 @@ export class GetImageTiffRequest {
     public bitDepth: number;
 
     /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     * Compression (none is default). Please, refer to https://apireference.aspose.com/net/imaging/aspose.imaging.fileformats.tiff.enums/tiffcompressions for all possible values.
      */
-    public fromScratch: boolean;
+    public compression: string;
+
+    /**
+     * New resolution unit (none - the default one, inch or centimeter).
+     */
+    public resolutionUnit: string;
 
     /**
      * New horizontal resolution.
@@ -5300,14 +6352,14 @@ export class GetImageTiffRequest {
     public horizontalResolution: number;
 
     /**
-     * New verstical resolution.
+     * New vertical resolution.
      */
     public verticalResolution: number;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
      */
-    public outPath: string;
+    public fromScratch: boolean;
 
     /**
      * Folder with image to process.
@@ -5319,96 +6371,27 @@ export class GetImageTiffRequest {
      */
     public storage: string;
     
-    public constructor(init?: Partial<GetImageTiffRequest>) {        
+    public constructor(init?: Partial<ModifyTiffRequest>) {        
         Object.assign(this, init);
     } 
 }
 
 /**
- * Request model for GetImageUpdate operation.
+ * Request model for ModifyWebP operation.
  */
-export class GetImageUpdateRequest {
-    /**
-     * Filename of an image.
-     */
-    public name: string;
-
-    /**
-     * Resulting image format.
-     */
-    public format: string;
-
-    /**
-     * New width of the scaled image.
-     */
-    public newWidth: number;
-
-    /**
-     * New height of the scaled image.
-     */
-    public newHeight: number;
-
-    /**
-     * X position of start point for cropping rectangle.
-     */
-    public x: number;
-
-    /**
-     * Y position of start point for cropping rectangle.
-     */
-    public y: number;
-
-    /**
-     * Width of cropping rectangle.
-     */
-    public rectWidth: number;
-
-    /**
-     * Height of cropping rectangle.
-     */
-    public rectHeight: number;
-
-    /**
-     * RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone.
-     */
-    public rotateFlipMethod: string;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Folder with image to process.
-     */
-    public folder: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetImageUpdateRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetImageWebP operation.
- */
-export class GetImageWebPRequest {
+export class ModifyWebPRequest {
     /**
      * Filename of image.
      */
     public name: string;
 
     /**
-     * If WEBP is lossless.
+     * If WEBP should be in lossless format.
      */
     public lossLess: boolean;
 
     /**
-     * Quality.
+     * Quality (0-100).
      */
     public quality: number;
 
@@ -5428,11 +6411,6 @@ export class GetImageWebPRequest {
     public fromScratch: boolean;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
      * Folder with image to process.
      */
     public folder: string;
@@ -5442,15 +6420,15 @@ export class GetImageWebPRequest {
      */
     public storage: string;
     
-    public constructor(init?: Partial<GetImageWebPRequest>) {        
+    public constructor(init?: Partial<ModifyWebPRequest>) {        
         Object.assign(this, init);
     } 
 }
 
 /**
- * Request model for GetImageWmf operation.
+ * Request model for ModifyWmf operation.
  */
-export class GetImageWmfRequest {
+export class ModifyWmfRequest {
     /**
      * Filename of image.
      */
@@ -5487,11 +6465,6 @@ export class GetImageWmfRequest {
     public fromScratch: boolean;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
      * Folder with image to process.
      */
     public folder: string;
@@ -5502,229 +6475,11 @@ export class GetImageWmfRequest {
     public storage: string;
 
     /**
-     * Export format (PNG is the default one).
+     * Export format (PNG is the default one). Please, refer to the export table from https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
     
-    public constructor(init?: Partial<GetImageWmfRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetSearchContextExtractImageFeatures operation.
- */
-export class GetSearchContextExtractImageFeaturesRequest {
-    /**
-     * The search context identifier.
-     */
-    public searchContextId: string;
-
-    /**
-     * The image identifier.
-     */
-    public imageId: string;
-
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * The folder.
-     */
-    public folder: string;
-
-    /**
-     * The storage.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetSearchContextExtractImageFeaturesRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetSearchContextFindDuplicates operation.
- */
-export class GetSearchContextFindDuplicatesRequest {
-    /**
-     * The search context identifier.
-     */
-    public searchContextId: string;
-
-    /**
-     * The similarity threshold.
-     */
-    public similarityThreshold: number;
-
-    /**
-     * The folder.
-     */
-    public folder: string;
-
-    /**
-     * The storage.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetSearchContextFindDuplicatesRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetSearchContextFindSimilar operation.
- */
-export class GetSearchContextFindSimilarRequest {
-    /**
-     * The search context identifier.
-     */
-    public searchContextId: string;
-
-    /**
-     * The similarity threshold.
-     */
-    public similarityThreshold: number;
-
-    /**
-     * The maximum count.
-     */
-    public maxCount: number;
-
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * The search image identifier.
-     */
-    public imageId: string;
-
-    /**
-     * The folder.
-     */
-    public folder: string;
-
-    /**
-     * The storage.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetSearchContextFindSimilarRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetSearchContextImage operation.
- */
-export class GetSearchContextImageRequest {
-    /**
-     * Search context identifier.
-     */
-    public searchContextId: string;
-
-    /**
-     * Image identifier.
-     */
-    public imageId: string;
-
-    /**
-     * Folder.
-     */
-    public folder: string;
-
-    /**
-     * Storage
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetSearchContextImageRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetSearchContextImageFeatures operation.
- */
-export class GetSearchContextImageFeaturesRequest {
-    /**
-     * The search context identifier.
-     */
-    public searchContextId: string;
-
-    /**
-     * The image identifier.
-     */
-    public imageId: string;
-
-    /**
-     * The folder.
-     */
-    public folder: string;
-
-    /**
-     * The storage.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetSearchContextImageFeaturesRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetSearchContextStatus operation.
- */
-export class GetSearchContextStatusRequest {
-    /**
-     * The search context identifier.
-     */
-    public searchContextId: string;
-
-    /**
-     * The folder.
-     */
-    public folder: string;
-
-    /**
-     * The storage.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<GetSearchContextStatusRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetTiffToFax operation.
- */
-export class GetTiffToFaxRequest {
-    /**
-     * Filename of image.
-     */
-    public name: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-
-    /**
-     * Folder with image to process.
-     */
-    public folder: string;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-    
-    public constructor(init?: Partial<GetTiffToFaxRequest>) {        
+    public constructor(init?: Partial<ModifyWmfRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -5817,514 +6572,55 @@ export class ObjectExistsRequest {
 }
 
 /**
- * Request model for PostCreateSearchContext operation.
+ * Request model for ResizeImage operation.
  */
-export class PostCreateSearchContextRequest {
+export class ResizeImageRequest {
     /**
-     * The image features detector.
+     * Filename of an image.
      */
-    public detector: string;
+    public name: string;
 
     /**
-     * The matching algorithm.
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
-    public matchingAlgorithm: string;
+    public format: string;
 
     /**
-     * The folder.
+     * New width.
+     */
+    public newWidth: number;
+
+    /**
+     * New height.
+     */
+    public newHeight: number;
+
+    /**
+     * Folder with image to process.
      */
     public folder: string;
 
     /**
-     * The storage.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostCreateSearchContextRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImageBmp operation.
- */
-export class PostImageBmpRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Color depth.
-     */
-    public bitsPerPixel: number;
-
-    /**
-     * New horizontal resolution.
-     */
-    public horizontalResolution: number;
-
-    /**
-     * New vertical resolution.
-     */
-    public verticalResolution: number;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
      * Your Aspose Cloud Storage name.
      */
     public storage: string;
     
-    public constructor(init?: Partial<PostImageBmpRequest>) {        
+    public constructor(init?: Partial<ResizeImageRequest>) {        
         Object.assign(this, init);
     } 
 }
 
 /**
- * Request model for PostImageCrop operation.
+ * Request model for RotateFlipImage operation.
  */
-export class PostImageCropRequest {
+export class RotateFlipImageRequest {
     /**
-     * Input image
+     * Filename of an image.
      */
-    public imageData: Buffer;
+    public name: string;
 
     /**
-     * Resulting image format.
-     */
-    public format: string;
-
-    /**
-     * X position of start point for cropping rectangle.
-     */
-    public x: number;
-
-    /**
-     * Y position of start point for cropping rectangle.
-     */
-    public y: number;
-
-    /**
-     * Width of cropping rectangle.
-     */
-    public width: number;
-
-    /**
-     * Height of cropping rectangle.
-     */
-    public height: number;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostImageCropRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImageEmf operation.
- */
-export class PostImageEmfRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Color of the background.
-     */
-    public bkColor: string;
-
-    /**
-     * Width of the page.
-     */
-    public pageWidth: number;
-
-    /**
-     * Height of the page.
-     */
-    public pageHeight: number;
-
-    /**
-     * Border width.
-     */
-    public borderX: number;
-
-    /**
-     * Border height.
-     */
-    public borderY: number;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-
-    /**
-     * Export format (PNG is the default one).
-     */
-    public format: string;
-    
-    public constructor(init?: Partial<PostImageEmfRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImageFrame operation.
- */
-export class PostImageFrameRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Number of a frame.
-     */
-    public frameId: number;
-
-    /**
-     * New width.
-     */
-    public newWidth: number;
-
-    /**
-     * New height.
-     */
-    public newHeight: number;
-
-    /**
-     * X position of start point for cropping rectangle.
-     */
-    public x: number;
-
-    /**
-     * Y position of start point for cropping rectangle.
-     */
-    public y: number;
-
-    /**
-     * Width of cropping rectangle.
-     */
-    public rectWidth: number;
-
-    /**
-     * Height of cropping rectangle.
-     */
-    public rectHeight: number;
-
-    /**
-     * RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone.
-     */
-    public rotateFlipMethod: string;
-
-    /**
-     * If result will include all other frames or just a specified frame.
-     */
-    public saveOtherFrames: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostImageFrameRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImageFrameProperties operation.
- */
-export class PostImageFramePropertiesRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Number of a frame.
-     */
-    public frameId: number;
-    
-    public constructor(init?: Partial<PostImageFramePropertiesRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImageGif operation.
- */
-export class PostImageGifRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Index of the background color.
-     */
-    public backgroundColorIndex: number;
-
-    /**
-     * Color resolution.
-     */
-    public colorResolution: number;
-
-    /**
-     * Specifies if image has trailer.
-     */
-    public hasTrailer: boolean;
-
-    /**
-     * Specifies if image is interlaced.
-     */
-    public interlaced: boolean;
-
-    /**
-     * Specifies if palette is sorted.
-     */
-    public isPaletteSorted: boolean;
-
-    /**
-     * Pixel aspect ratio.
-     */
-    public pixelAspectRatio: number;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostImageGifRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImageJpeg2000 operation.
- */
-export class PostImageJpeg2000Request {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * The comment.
-     */
-    public comment: string;
-
-    /**
-     * The codec.
-     */
-    public codec: string;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostImageJpeg2000Request>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImageJpg operation.
- */
-export class PostImageJpgRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Quality of an image from 0 to 100. Default is 75.
-     */
-    public quality: number;
-
-    /**
-     * Compression type.
-     */
-    public compressionType: string;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostImageJpgRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImageProperties operation.
- */
-export class PostImagePropertiesRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-    
-    public constructor(init?: Partial<PostImagePropertiesRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImagePsd operation.
- */
-export class PostImagePsdRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Count of color channels.
-     */
-    public channelsCount: number;
-
-    /**
-     * Compression method.
-     */
-    public compressionMethod: string;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostImagePsdRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImageResize operation.
- */
-export class PostImageResizeRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Resulting image format.
-     */
-    public format: string;
-
-    /**
-     * New width.
-     */
-    public newWidth: number;
-
-    /**
-     * New height.
-     */
-    public newHeight: number;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostImageResizeRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImageRotateFlip operation.
- */
-export class PostImageRotateFlipRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Resulting image format.
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
 
@@ -6334,114 +6630,74 @@ export class PostImageRotateFlipRequest {
     public method: string;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
+     * Folder with image to process.
      */
-    public outPath: string;
+    public folder: string;
 
     /**
      * Your Aspose Cloud Storage name.
      */
     public storage: string;
     
-    public constructor(init?: Partial<PostImageRotateFlipRequest>) {        
+    public constructor(init?: Partial<RotateFlipImageRequest>) {        
         Object.assign(this, init);
     } 
 }
 
 /**
- * Request model for PostImageSaveAs operation.
+ * Request model for SaveImageAs operation.
  */
-export class PostImageSaveAsRequest {
+export class SaveImageAsRequest {
     /**
-     * Input image
+     * Filename of image.
      */
-    public imageData: Buffer;
+    public name: string;
 
     /**
-     * Resulting image format.
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
+     * Folder with image to process.
      */
-    public outPath: string;
+    public folder: string;
 
     /**
      * Your Aspose Cloud Storage name.
      */
     public storage: string;
     
-    public constructor(init?: Partial<PostImageSaveAsRequest>) {        
+    public constructor(init?: Partial<SaveImageAsRequest>) {        
         Object.assign(this, init);
     } 
 }
 
 /**
- * Request model for PostImageTiff operation.
+ * Request model for StorageExists operation.
  */
-export class PostImageTiffRequest {
+export class StorageExistsRequest {
     /**
-     * Input image
+     * Storage name
      */
-    public imageData: Buffer;
-
-    /**
-     * Compression.
-     */
-    public compression: string;
-
-    /**
-     * New resolution unit.
-     */
-    public resolutionUnit: string;
-
-    /**
-     * Bit depth.
-     */
-    public bitDepth: number;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * New horizontal resolution.
-     */
-    public horizontalResolution: number;
-
-    /**
-     * New verstical resolution.
-     */
-    public verticalResolution: number;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
+    public storageName: string;
     
-    public constructor(init?: Partial<PostImageTiffRequest>) {        
+    public constructor(init?: Partial<StorageExistsRequest>) {        
         Object.assign(this, init);
     } 
 }
 
 /**
- * Request model for PostImageUpdate operation.
+ * Request model for UpdateImage operation.
  */
-export class PostImageUpdateRequest {
+export class UpdateImageRequest {
     /**
-     * Input image
+     * Filename of an image.
      */
-    public imageData: Buffer;
+    public name: string;
 
     /**
-     * Resulting image format.
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
     public format: string;
 
@@ -6481,380 +6737,24 @@ export class PostImageUpdateRequest {
     public rotateFlipMethod: string;
 
     /**
-     * Path to updated file (if this is empty, response contains streamed image).
+     * Folder with image to process.
      */
-    public outPath: string;
+    public folder: string;
 
     /**
      * Your Aspose Cloud Storage name.
      */
     public storage: string;
     
-    public constructor(init?: Partial<PostImageUpdateRequest>) {        
+    public constructor(init?: Partial<UpdateImageRequest>) {        
         Object.assign(this, init);
     } 
 }
 
 /**
- * Request model for PostImageWebP operation.
+ * Request model for UpdateImageFeatures operation.
  */
-export class PostImageWebPRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * If WEBP is lossless.
-     */
-    public lossLess: boolean;
-
-    /**
-     * Quality.
-     */
-    public quality: number;
-
-    /**
-     * The animation loop count.
-     */
-    public animLoopCount: number;
-
-    /**
-     * Color of the animation background.
-     */
-    public animBackgroundColor: string;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostImageWebPRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostImageWmf operation.
- */
-export class PostImageWmfRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Color of the background.
-     */
-    public bkColor: string;
-
-    /**
-     * Width of the page.
-     */
-    public pageWidth: number;
-
-    /**
-     * Height of the page.
-     */
-    public pageHeight: number;
-
-    /**
-     * Border width.
-     */
-    public borderX: number;
-
-    /**
-     * Border height.
-     */
-    public borderY: number;
-
-    /**
-     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
-     */
-    public fromScratch: boolean;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-
-    /**
-     * Export format (PNG is the default one).
-     */
-    public format: string;
-    
-    public constructor(init?: Partial<PostImageWmfRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostSearchContextAddImage operation.
- */
-export class PostSearchContextAddImageRequest {
-    /**
-     * Search context identifier.
-     */
-    public searchContextId: string;
-
-    /**
-     * Image identifier.
-     */
-    public imageId: string;
-
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Folder.
-     */
-    public folder: string;
-
-    /**
-     * Storage
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostSearchContextAddImageRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostSearchContextAddTag operation.
- */
-export class PostSearchContextAddTagRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * The search context identifier.
-     */
-    public searchContextId: string;
-
-    /**
-     * The tag.
-     */
-    public tagName: string;
-
-    /**
-     * The folder.
-     */
-    public folder: string;
-
-    /**
-     * The storage.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostSearchContextAddTagRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostSearchContextCompareImages operation.
- */
-export class PostSearchContextCompareImagesRequest {
-    /**
-     * The search context identifier.
-     */
-    public searchContextId: string;
-
-    /**
-     * The first image Id in storage.
-     */
-    public imageId1: string;
-
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * The second image Idin storage or null(if image loading in request).
-     */
-    public imageId2: string;
-
-    /**
-     * The folder.
-     */
-    public folder: string;
-
-    /**
-     * The storage.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostSearchContextCompareImagesRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostSearchContextExtractImageFeatures operation.
- */
-export class PostSearchContextExtractImageFeaturesRequest {
-    /**
-     * The search context identifier.
-     */
-    public searchContextId: string;
-
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * The image identifier.
-     */
-    public imageId: string;
-
-    /**
-     * Images folder.
-     */
-    public imagesFolder: string;
-
-    /**
-     * The folder.
-     */
-    public folder: string;
-
-    /**
-     * The storage.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostSearchContextExtractImageFeaturesRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostSearchContextFindByTags operation.
- */
-export class PostSearchContextFindByTagsRequest {
-    /**
-     * Tags array for searching
-     */
-    public tags: string;
-
-    /**
-     * The search context identifier.
-     */
-    public searchContextId: string;
-
-    /**
-     * The similarity threshold.
-     */
-    public similarityThreshold: number;
-
-    /**
-     * The maximum count.
-     */
-    public maxCount: number;
-
-    /**
-     * The folder.
-     */
-    public folder: string;
-
-    /**
-     * The storage.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PostSearchContextFindByTagsRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PostTiffAppend operation.
- */
-export class PostTiffAppendRequest {
-    /**
-     * Original image file name.
-     */
-    public name: string;
-
-    /**
-     * Image file name to be appended to original one.
-     */
-    public appendFile: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-
-    /**
-     * Folder with images to process.
-     */
-    public folder: string;
-    
-    public constructor(init?: Partial<PostTiffAppendRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PutSearchContextImage operation.
- */
-export class PutSearchContextImageRequest {
-    /**
-     * Search context identifier.
-     */
-    public searchContextId: string;
-
-    /**
-     * Image identifier.
-     */
-    public imageId: string;
-
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Folder.
-     */
-    public folder: string;
-
-    /**
-     * Storage
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<PutSearchContextImageRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for PutSearchContextImageFeatures operation.
- */
-export class PutSearchContextImageFeaturesRequest {
+export class UpdateImageFeaturesRequest {
     /**
      * The search context identifier.
      */
@@ -6880,21 +6780,41 @@ export class PutSearchContextImageFeaturesRequest {
      */
     public storage: string;
     
-    public constructor(init?: Partial<PutSearchContextImageFeaturesRequest>) {        
+    public constructor(init?: Partial<UpdateImageFeaturesRequest>) {        
         Object.assign(this, init);
     } 
 }
 
 /**
- * Request model for StorageExists operation.
+ * Request model for UpdateSearchImage operation.
  */
-export class StorageExistsRequest {
+export class UpdateSearchImageRequest {
     /**
-     * Storage name
+     * Search context identifier.
      */
-    public storageName: string;
+    public searchContextId: string;
+
+    /**
+     * Image identifier.
+     */
+    public imageId: string;
+
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Folder.
+     */
+    public folder: string;
+
+    /**
+     * Storage
+     */
+    public storage: string;
     
-    public constructor(init?: Partial<StorageExistsRequest>) {        
+    public constructor(init?: Partial<UpdateSearchImageRequest>) {        
         Object.assign(this, init);
     } 
 }

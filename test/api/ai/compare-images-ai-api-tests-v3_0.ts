@@ -43,8 +43,8 @@ class CompareImagesTests extends TestImagingAIBase {
                     const image2: string = this.getStoragePath(this.ComparingImageSimilarMore75);
                     await this.addImageFeaturesToSearchContext(image2);
 
-                    const response = await this.imagingApi.postSearchContextCompareImages(
-                        new imaging.PostSearchContextCompareImagesRequest({ 
+                    const response = await this.imagingApi.compareImages(
+                        new imaging.CompareImagesRequest({ 
                             searchContextId: this.SearchContextId, imageId1: image1, imageId2: image2, storage: this.TestStorage} ));
 
                     expect(1).toEqual(response.results.length);
@@ -63,8 +63,8 @@ class CompareImagesTests extends TestImagingAIBase {
                         new imaging.DownloadFileRequest({ path: storagePath, storageName: this.TestStorage}));
                       expect(imageStream).toBeTruthy();
 
-                      const response = await this.imagingApi.postSearchContextCompareImages(
-                          new imaging.PostSearchContextCompareImagesRequest({ 
+                      const response = await this.imagingApi.compareImages(
+                          new imaging.CompareImagesRequest({ 
                               searchContextId: this.SearchContextId, imageId1: image, imageData: imageStream, storage: this.TestStorage} ));
 
                       expect(1).toEqual(response.results.length);

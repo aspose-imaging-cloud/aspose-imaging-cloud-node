@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,25 +33,23 @@ import { ApiTester } from "../base/api-tester";
  */
 class BmpApiTests extends ApiTester {
 
-    public async getImageBmpTest(saveResultToStorage: boolean) {
+    public async modifyBmpTest() {
+
         const name: string = "test.bmp";
         const bitsPerPixel: number = 32;
         const horizontalResolution: number = 300;
         const verticalResolution: number  = 300;
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.bmp`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImageBmpTest", 
-                saveResultToStorage,
+                "modifyBmpTest", 
                 `Input image: ${name}; Bits per pixel: ${bitsPerPixel}; Horizontal resolution: ${horizontalResolution}; Vertical resolution: ${verticalResolution}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImageBmpRequest({ name: fileName, bitsPerPixel, horizontalResolution, verticalResolution, fromScratch, outPath, folder, storage });
-                    const response = await this.imagingApi.getImageBmp(request);
+                async () => {
+                    const request = new imaging.ModifyBmpRequest({ name, bitsPerPixel, horizontalResolution, verticalResolution, fromScratch, folder, storage });
+                    const response = await this.imagingApi.modifyBmp(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -70,7 +68,7 @@ class BmpApiTests extends ApiTester {
                 storage);
     }
 
-    public async postImageBmpTest(saveResultToStorage: boolean) {
+    public async createModifiedBmpTest(saveResultToStorage: boolean) {
         const name: string = "test.bmp";
         const bitsPerPixel: number = 32;
         const horizontalResolution: number = 300;
@@ -81,14 +79,14 @@ class BmpApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImageBmpTest", 
+                "createModifiedBmpTest", 
                 saveResultToStorage,
                 `Input image: ${name}; Bits per pixel: ${bitsPerPixel}; Horizontal resolution: ${horizontalResolution}; Vertical resolution: ${verticalResolution}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageBmpRequest({ imageData: inputStream, bitsPerPixel, horizontalResolution, verticalResolution, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImageBmp(request);
+                    const request = new imaging.CreateModifiedBmpRequest({ imageData: inputStream, bitsPerPixel, horizontalResolution, verticalResolution, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.createModifiedBmp(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -125,12 +123,15 @@ afterAll(async () =>  {
 describe.each([[true], [false]])(
     "BmpTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageBmpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageBmpTest(saveResultToStorage);
-        });
 
-        test(`postImageBmpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageBmpTest(saveResultToStorage);
+        if (!saveResultToStorage) {
+            test(`modifyBmpTest`, async () => {
+                await testClass.modifyBmpTest();
+            });
+        }
+        
+        test(`createModifiedBmpTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedBmpTest(saveResultToStorage);
         });
 
         beforeEach(() => {

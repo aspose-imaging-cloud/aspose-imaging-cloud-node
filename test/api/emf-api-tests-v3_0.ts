@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class EmfApiTests extends ApiTester {
 
-    public async getImageEmfTest(saveResultToStorage: boolean) {
+    public async modifyEmfTest() {
         const name: string = "test.emf";
         const fromScratch: boolean = false;
         const bkColor: string = "gray";
@@ -41,19 +41,16 @@ class EmfApiTests extends ApiTester {
         const pageHeight: number = 300;
         const borderX: number = 50;
         const borderY: number = 50;
-        const outName: string = `${name}_specific.png`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImageEmfTest", 
-                saveResultToStorage,
+                "modifyEmfTest", 
                 `Input image: ${name}; BackColor: ${bkColor}; Page width: ${pageWidth}; Page height: ${pageHeight}; BorderX: ${borderX}; BorderY: ${borderY}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImageEmfRequest({ name: fileName, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, outPath, folder, storage });
-                    const response = await this.imagingApi.getImageEmf(request);
+                async () => {
+                    const request = new imaging.ModifyEmfRequest({ name, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, folder, storage });
+                    const response = await this.imagingApi.modifyEmf(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -67,7 +64,7 @@ class EmfApiTests extends ApiTester {
                 storage);
     }
 
-    public async postImageEmfTest(saveResultToStorage: boolean) {
+    public async createModifiedEmfTest(saveResultToStorage: boolean) {
         const name: string = "test.emf";
         const fromScratch: boolean = false;
         const bkColor: string = "gray";
@@ -80,14 +77,14 @@ class EmfApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImageEmfTest", 
+                "createModifiedEmfTest", 
                 saveResultToStorage,
                 `Input image: ${name}; BackColor: ${bkColor}; Page width: ${pageWidth}; Page height: ${pageHeight}; BorderX: ${borderX}; BorderY: ${borderY}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageEmfRequest({ imageData: inputStream, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImageEmf(request);
+                    const request = new imaging.CreateModifiedEmfRequest({ imageData: inputStream, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.createModifiedEmf(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -119,12 +116,14 @@ afterAll(async () =>  {
 describe.each([[true], [false]])(
     "EmfTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageEmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageEmfTest(saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`modifyEmfTest`, async () => {
+                await testClass.modifyEmfTest();
+            });
+        }
 
-        test(`postImageEmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageEmfTest(saveResultToStorage);
+        test(`createModifiedEmfTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedEmfTest(saveResultToStorage);
         });
 
         beforeEach(() => {

@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -56,9 +56,9 @@ class TiffPostFramesApiTests extends ApiTester {
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageFrameRequest({ imageData: inputStream, frameId, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod,
+                    const request = new imaging.CreateImageFrameRequest({ imageData: inputStream, frameId, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod,
                         saveOtherFrames, outPath, storage });
-                    const response = await this.imagingApi.postImageFrame(request);
+                    const response = await this.imagingApi.createImageFrame(request);
                     return response;
                 },
                 async (originalProperties, resultProperties, resultBuffer) => {
@@ -81,8 +81,8 @@ class TiffPostFramesApiTests extends ApiTester {
                             new imaging.GetImageFramePropertiesRequest({ name: outName, frameId: 0, folder, storage });
                         framePropertiesResponse = await this.imagingApi.getImageFrameProperties(framePropertiesRequest);
                     } else {
-                        const framePropertiesRequest = new imaging.PostImageFramePropertiesRequest({ imageData: resultBuffer, frameId: 0 });
-                        framePropertiesResponse = await this.imagingApi.postImageFrameProperties(framePropertiesRequest);
+                        const framePropertiesRequest = new imaging.ExtractImageFramePropertiesRequest({ imageData: resultBuffer, frameId: 0 });
+                        framePropertiesResponse = await this.imagingApi.extractImageFrameProperties(framePropertiesRequest);
                     }
                     
                     expect(framePropertiesResponse).toBeTruthy();
@@ -123,9 +123,9 @@ class TiffPostFramesApiTests extends ApiTester {
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageFrameRequest({ imageData: inputStream, frameId, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod,
+                    const request = new imaging.CreateImageFrameRequest({ imageData: inputStream, frameId, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod,
                         saveOtherFrames, outPath, storage });
-                    const response = await this.imagingApi.postImageFrame(request);
+                    const response = await this.imagingApi.createImageFrame(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {

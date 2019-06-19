@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,7 +33,7 @@ import { ApiTester } from "../base/api-tester";
  */
 class UpdateApiTests extends ApiTester {
 
-    public async getImageUpdateTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async updateImageTest(formatExtension: string, ...additionalExportFormats: string[]) {
         let name: string = null;
         const newWidth: number = 300;
         const newHeight: number = 450;
@@ -44,7 +44,6 @@ class UpdateApiTests extends ApiTester {
         const rotateFlipMethod: string = "Rotate90FlipX";
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
-        let outName: string = null;
         const formatsToExport: string[] = Object.assign([], this.BasicExportFormats);
         for (const additionalExportFormat of additionalExportFormats) {
             if (!formatsToExport.includes(additionalExportFormat)) {
@@ -60,19 +59,16 @@ class UpdateApiTests extends ApiTester {
             }
 
             for (const format of formatsToExport) {
-                outName = `${name}_update.${format}`;
 
                 await this.testGetRequest(
-                        "getImageUpdateTest",
-                        saveResultToStorage,
+                        "updateImageTest",
                         `Input image: ${name}; Output format: ${format}; New width: ${newWidth}; New height: ${newHeight}; X: ${x}; Y: ${y}; 
                             Rect width: ${rectWidth}; Rect height: ${rectHeight}; Rotate/flip method: ${rotateFlipMethod}`,
                         name,
-                        outName,
-                        async (fileName, outPath) => {
-                            const request: imaging.GetImageUpdateRequest = new imaging.GetImageUpdateRequest({ name: fileName, format, newWidth, newHeight, x, y, rectWidth, 
-                                rectHeight, rotateFlipMethod, outPath, folder, storage });
-                            const response = await this.imagingApi.getImageUpdate(request);
+                        async () => {
+                            const request: imaging.UpdateImageRequest = new imaging.UpdateImageRequest({ name, format, newWidth, newHeight, x, y, rectWidth, 
+                                rectHeight, rotateFlipMethod, folder, storage });
+                            const response = await this.imagingApi.updateImage(request);
                             return response;
                         },
                         (originalProperties, resultProperties) => {
@@ -87,7 +83,7 @@ class UpdateApiTests extends ApiTester {
         }
     }
 
-    public async postImageUpdateTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async createUpdatedImageTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
         let name: string = null;
         const newWidth: number = 300;
         const newHeight: number = 450;
@@ -117,16 +113,16 @@ class UpdateApiTests extends ApiTester {
                 outName = `${name}_update.${format}`;
 
                 await this.testPostRequest(
-                        "getImageUpdateTest",
+                        "createUpdatedImageTest",
                         saveResultToStorage,
                         `Input image: ${name}; Output format: ${format}; New width: ${newWidth}; New height: ${newHeight}; X: ${x}; Y: ${y}; 
                             Rect width: ${rectWidth}; Rect height: ${rectHeight}; Rotate/flip method: ${rotateFlipMethod}`,
                         name,
                         outName,
                         async (inputStream, outPath) => {
-                            const request: imaging.PostImageUpdateRequest = new imaging.PostImageUpdateRequest({ imageData: inputStream, format, newWidth, newHeight, 
+                            const request: imaging.CreateUpdatedImageRequest = new imaging.CreateUpdatedImageRequest({ imageData: inputStream, format, newWidth, newHeight, 
                                 x, y, rectWidth, rectHeight, rotateFlipMethod, outPath, storage });
-                            const response = await this.imagingApi.postImageUpdate(request);
+                            const response = await this.imagingApi.createUpdatedImage(request);
                             return response;
                         },
                         (originalProperties, resultProperties) => {
@@ -160,12 +156,14 @@ afterAll(async () =>  {
 describe.each([[".jpg", true], [".jpg", false]])(
     "UpdateTestSuite_V3",
     (formatExtension, saveResultToStorage) => {
-        test(`getImageUpdateTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageUpdateTest(formatExtension, saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`updateImageTest`, async () => {
+                await testClass.updateImageTest(formatExtension);
+            });
+        }
 
-        test(`postImageUpdateTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageUpdateTest(formatExtension, saveResultToStorage);
+        test(`createUpdatedImageTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createUpdatedImageTest(formatExtension, saveResultToStorage);
         });
 
         beforeEach(() => {
@@ -192,12 +190,14 @@ if (useExtendedTests) {
         ])
         ("UpdateTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage) => {
-            test(`getImageUpdateTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.getImageUpdateTest(formatExtension, saveResultToStorage);
-            });
-    
-            test(`postImageUpdateTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.postImageUpdateTest(formatExtension, saveResultToStorage);
+            if (!saveResultToStorage) {
+                test(`updateImageTest`, async () => {
+                    await testClass.updateImageTest(formatExtension);
+                });
+            }
+
+            test(`createUpdatedImageTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+                await testClass.createUpdatedImageTest(formatExtension, saveResultToStorage);
             });
 
             beforeEach(() => {

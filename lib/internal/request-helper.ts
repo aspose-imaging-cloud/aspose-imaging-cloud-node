@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
+* Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -80,7 +80,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "node.js sdk";
-    requestOptions.headers["x-aspose-client-version"] = "19.4.0";
+    requestOptions.headers["x-aspose-client-version"] = "19.6.0";
 
     requestOptions.timeout = 600000;
 
