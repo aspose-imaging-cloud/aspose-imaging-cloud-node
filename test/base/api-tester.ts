@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,7 +30,7 @@ import * as path from "path";
 import * as imaging from "../../lib/api";
 
 export type PropertiesTesterDelegate = (originalProperties: imaging.ImagingResponse, resultProperties: imaging.ImagingResponse, resultBuffer: Buffer) => Promise<void>;
-export type GetRequestInvokerDelegate = (fileName: string, outPath: string) => Promise<Buffer>;
+export type GetRequestInvokerDelegate = () => Promise<Buffer>;
 export type PostRequestInvokerDelegate = (inputStream: Buffer, outPath: string) => Promise<Buffer>;
 
 /**
@@ -95,7 +95,6 @@ export abstract class ApiTester {
         "psd",
         "tiff",
         "webp",
-        "pdf",
     ];
 
     /**
@@ -264,25 +263,19 @@ export abstract class ApiTester {
      /**
       * Tests the typical GET request.
       * @param testMethodName Name of the test method.
-      * @param saveResultToStorage If set to true, save result to storage.
       * @param parametersLine The parameters line.
       * @param inputFileName Name of the input file.
-      * @param resultFileName Name of the result file.
       * @param requestInvoker The request invoker.
       * @param propertiesTester The properties tester.
       * @param folder The input folder.
       * @param storage The storage.
       */
-    protected async testGetRequest(testMethodName: string, saveResultToStorage: boolean, parametersLine: string, inputFileName: string, resultFileName: string,
+    protected async testGetRequest(testMethodName: string, parametersLine: string, inputFileName: string,
                                    requestInvoker: GetRequestInvokerDelegate, propertiesTester: PropertiesTesterDelegate, folder: string, 
                                    storage: string = this.DefaultStorage) {
-            let outPath: string = "";
-            if (saveResultToStorage) {
-                outPath = `${folder}/${resultFileName}`;
-            }
 
-            await this.testRequest(testMethodName, saveResultToStorage, parametersLine, inputFileName, resultFileName, 
-                () => this.obtainGetResponse(inputFileName, outPath, requestInvoker), propertiesTester, folder, storage);
+            await this.testRequest(testMethodName, false, parametersLine, inputFileName, null, 
+                () => this.obtainGetResponse(requestInvoker), propertiesTester, folder, storage);
     }
 
      /**
@@ -311,19 +304,13 @@ export abstract class ApiTester {
 
     /**
      * Obtains the typical GET request response.
-     * @param inputFileName Name of the input file.
-     * @param outPath The request invoker.
      * @param requestInvoker The output path to save the result.
      */
-    private async obtainGetResponse(inputFileName: string, outPath: string, requestInvoker: GetRequestInvokerDelegate) {
-        const response: Buffer = await requestInvoker.call(null, inputFileName, outPath);
-        if (!outPath) {
-            expect(response).toBeTruthy();
-            expect(response.length).toBeGreaterThan(0);
-            return response;
-        }
-
-        return null;
+    private async obtainGetResponse(requestInvoker: GetRequestInvokerDelegate) {
+        const response: Buffer = await requestInvoker.call(null);
+        expect(response).toBeTruthy();
+        expect(response.length).toBeGreaterThan(0);
+        return response;
     }
 
     /**
@@ -404,15 +391,12 @@ export abstract class ApiTester {
                                             `Result file ${resultFileName} doesn't exist in the specified storage folder: ${folder}. 
                                             Result isn't present in the storage by an unknown reason.`);
                                     }
-
-                                    if (!resultFileName.endsWith(".pdf")) {
-                                        resultProperties = await this.imagingApi.getImageProperties(
-                                            new imaging.GetImagePropertiesRequest({ name: resultFileName, folder, storage }));
-                                        expect(resultProperties).toBeTruthy();
-                                    }
-                                } else if (!resultFileName.endsWith(".pdf")) {
-                                    resultProperties = await this.imagingApi.postImageProperties(
-                                        new imaging.PostImagePropertiesRequest({ imageData: response }));
+                                    resultProperties = await this.imagingApi.getImageProperties(
+                                        new imaging.GetImagePropertiesRequest({ name: resultFileName, folder, storage }));
+                                    expect(resultProperties).toBeTruthy();
+                                } else {
+                                    resultProperties = await this.imagingApi.extractImageProperties(
+                                        new imaging.ExtractImagePropertiesRequest({ imageData: response }));
                                     expect(resultProperties).toBeTruthy();
                                 }
                                 

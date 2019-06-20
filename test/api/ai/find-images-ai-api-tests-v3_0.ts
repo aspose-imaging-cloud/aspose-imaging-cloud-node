@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -38,8 +38,8 @@ class FindImagesTests extends TestImagingAIBase {
                 async () => {
                     await this.addImageFeaturesToSearchContext(`${this.OriginalDataFolder}/FindSimilar`, true);
                     const findImageId: string = `${this.OriginalDataFolder}/FindSimilar/${this.ImageToFind}`;
-                    const response = await this.imagingApi.getSearchContextFindSimilar(
-                        new imaging.GetSearchContextFindSimilarRequest({ searchContextId: this.SearchContextId, similarityThreshold: 3, maxCount: 3, 
+                    const response = await this.imagingApi.findSimilarImages(
+                        new imaging.FindSimilarImagesRequest({ searchContextId: this.SearchContextId, similarityThreshold: 3, maxCount: 3, 
                             imageId: findImageId, storage: this.TestStorage }));
                     expect(response.results.length).toBeGreaterThanOrEqual(1);
                 });
@@ -54,12 +54,12 @@ class FindImagesTests extends TestImagingAIBase {
                     const tagImageStream: Buffer = await this.imagingApi.downloadFile(
                         new imaging.DownloadFileRequest({ path: storagePath, storageName: this.TestStorage}));
                     expect(tagImageStream).toBeTruthy();
-                    await this.imagingApi.postSearchContextAddTag(
-                        new imaging.PostSearchContextAddTagRequest({ imageData: tagImageStream, searchContextId: this.SearchContextId, 
+                    await this.imagingApi.createImageTag(
+                        new imaging.CreateImageTagRequest({ imageData: tagImageStream, searchContextId: this.SearchContextId, 
                             tagName: tag, storage: this.TestStorage }));
                     const tags = JSON.stringify([ tag ]);
-                    const response = await this.imagingApi.postSearchContextFindByTags(
-                        new imaging.PostSearchContextFindByTagsRequest({ tags, searchContextId: this.SearchContextId, similarityThreshold: 60, 
+                    const response = await this.imagingApi.findImagesByTags(
+                        new imaging.FindImagesByTagsRequest({ tags, searchContextId: this.SearchContextId, similarityThreshold: 60, 
                             maxCount: 5, storage: this.TestStorage }));
                     expect(1).toEqual(response.results.length);
                     expect(response.results[0].imageId.includes("2.jpg")).toBeTruthy();

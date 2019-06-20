@@ -48,8 +48,8 @@ class FindDuplicatesTests extends TestImagingAIBase {
                     image = this.getStoragePath(this.ComparingImageSimilarMore75);
                     await this.addImageFeaturesToSearchContext(image);
                     
-                    const response = await this.imagingApi.getSearchContextFindDuplicates(
-                        new imaging.GetSearchContextFindDuplicatesRequest({ 
+                    const response = await this.imagingApi.findImageDuplicates(
+                        new imaging.FindImageDuplicatesRequest({ 
                             searchContextId: this.SearchContextId, similarityThreshold: 80, storage: this.TestStorage }));
                     expect(1).toEqual(response.duplicates.length);
                 });

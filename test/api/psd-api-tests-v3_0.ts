@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,24 +33,21 @@ import { ApiTester } from "../base/api-tester";
  */
 class PsdApiTests extends ApiTester {
 
-    public async getImagePsdTest(saveResultToStorage: boolean) {
+    public async modifyPsdTest() {
         const name: string = "test.psd";
         const channelsCount: number = 3;
         const compressionMethod: string = "raw";
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.psd`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImagePsdTest", 
-                saveResultToStorage,
+                "modifyPsdTest", 
                 `Input image: ${name}; Channels count: ${channelsCount}; Compression method: ${compressionMethod}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImagePsdRequest({ name: fileName, channelsCount, compressionMethod, fromScratch, outPath, folder, storage });
-                    const response = await this.imagingApi.getImagePsd(request);
+                async () => {
+                    const request = new imaging.ModifyPsdRequest({ name, channelsCount, compressionMethod, fromScratch, folder, storage });
+                    const response = await this.imagingApi.modifyPsd(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -68,7 +65,7 @@ class PsdApiTests extends ApiTester {
                 storage);
     }
 
-    public async postImagePsdTest(saveResultToStorage: boolean) {
+    public async createModifiedPsdTest(saveResultToStorage: boolean) {
         const name: string = "test.psd";
         const channelsCount: number = 3;
         const compressionMethod: string = "raw";
@@ -78,14 +75,14 @@ class PsdApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImagePsdTest", 
+                "createModifiedPsdTest", 
                 saveResultToStorage,
                 `Input image: ${name}; Channels count: ${channelsCount}; Compression method: ${compressionMethod}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImagePsdRequest({ imageData: inputStream, channelsCount, compressionMethod, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImagePsd(request);
+                    const request = new imaging.CreateModifiedPsdRequest({ imageData: inputStream, channelsCount, compressionMethod, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.createModifiedPsd(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -121,12 +118,14 @@ afterAll(async () =>  {
 describe.each([[true], [false]])(
     "PsdTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImagePsdTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImagePsdTest(saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`modifyPsdTest`, async () => {
+                await testClass.modifyPsdTest();
+            });
+        }
 
-        test(`postImagePsdTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImagePsdTest(saveResultToStorage);
+        test(`createModifiedPsdTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedPsdTest(saveResultToStorage);
         });
 
         beforeEach(() => {

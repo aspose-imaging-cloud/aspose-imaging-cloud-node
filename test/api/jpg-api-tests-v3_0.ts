@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2019 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,24 +33,21 @@ import { ApiTester } from "../base/api-tester";
  */
 class JpgApiTests extends ApiTester {
 
-    public async getImageJpgTest(saveResultToStorage: boolean) {
+    public async modifyJpegTest() {
         const name: string = "test.jpg";
         const quality: number = 65;
         const compressionType: string = "progressive";
         const fromScratch: boolean = false;
-        const outName: string = `${name}_specific.jpg`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-                "getImageJpgTest", 
-                saveResultToStorage,
+                "modifyJpegTest", 
                 `Input image: ${name}; Quality: ${quality}; Compression type: ${compressionType}`,
                 name,
-                outName,
-                async (fileName, outPath) => {
-                    const request = new imaging.GetImageJpgRequest({ name: fileName, quality, compressionType, fromScratch, outPath, folder, storage });
-                    const response = await this.imagingApi.getImageJpg(request);
+                async () => {
+                    const request = new imaging.ModifyJpegRequest({ name, quality, compressionType, fromScratch, folder, storage });
+                    const response = await this.imagingApi.modifyJpeg(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -64,7 +61,7 @@ class JpgApiTests extends ApiTester {
                 storage);
     }
 
-    public async postImageJpgTest(saveResultToStorage: boolean) {
+    public async createModifiedJpegTest(saveResultToStorage: boolean) {
         const name: string = "test.jpg";
         const quality: number = 65;
         const compressionType: string = "progressive";
@@ -74,14 +71,14 @@ class JpgApiTests extends ApiTester {
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-                "postImageJpgTest", 
+                "createModifiedJpegTest", 
                 saveResultToStorage,
                 `Input image: ${name}; Quality: ${quality}; Compression type: ${compressionType}`,
                 name,
                 outName,
                 async (inputStream, outPath) => {
-                    const request = new imaging.PostImageJpgRequest({ imageData: inputStream, quality, compressionType, fromScratch, outPath, storage });
-                    const response = await this.imagingApi.postImageJpg(request);
+                    const request = new imaging.CreateModifiedJpegRequest({ imageData: inputStream, quality, compressionType, fromScratch, outPath, storage });
+                    const response = await this.imagingApi.createModifiedJpeg(request);
                     return response;
                 },
                 (originalProperties, resultProperties) => {
@@ -113,12 +110,14 @@ afterAll(async () =>  {
 describe.each([[true], [false]])(
     "JpgTestSuite_V3",
     (saveResultToStorage) => {
-        test(`getImageJpgTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.getImageJpgTest(saveResultToStorage);
-        });
+        if (!saveResultToStorage) {
+            test(`modifyJpegTest`, async () => {
+                await testClass.modifyJpegTest();
+            });
+        }
 
-        test(`postImageJpgTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.postImageJpgTest(saveResultToStorage);
+        test(`createModifiedJpegTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedJpegTest(saveResultToStorage);
         });
 
         beforeEach(() => {

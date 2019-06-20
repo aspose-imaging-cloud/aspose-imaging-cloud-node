@@ -14,34 +14,27 @@ try {
     // inspect result.errors list if there were any
     // inspect result.uploaded list for uploaded file names
 
-    // convert image from storage to JPEG and save it to storage
-    // please, use outPath parameter for saving the result to storage
-    const getSaveToStorageRequest =
-        new imaging.GetImageSaveAsRequest({
-        name: "inputImage.png", format: "jpg", outPath: "ExampleFolderNet/resultImage.jpg",
-        folder: "ExampleFolderNet" });
+    // convert image from storage to JPEG
+     const saveAsRequest =
+        new imaging.SaveImageAsRequest({
+            name: "inputImage.png", format: "jpg", folder: "ExampleFolderNet" });
 
-    await imagingApi.getImageSaveAs(getSaveToStorageRequest);
+    const convertedImage =
+        await imagingApi.saveImageAs(saveAsRequest);
 
-    // download saved image from storage and process it
-    const savedFile =
-        await imagingApi.downloadFile(
-            new imaging.DownloadFileRequest({ path: "ExampleFolderNet/resultImage.jpg" }));
-
-    // convert image from storage to JPEG and read it from resulting stream
-    // please, set outPath parameter as null to return result in request stream instead of saving to storage
-    const getSaveToStreamRequest =
-        new imaging.GetImageSaveAsRequest({
-            name: "inputImage.png", format: "jpg", outPath: null, folder: "ExampleFolderNet" });
-
-    // process resulting image from response stream
-    const resultGetImageStream = await imagingApi.getImageSaveAs(getSaveToStreamRequest);
+    // process resulting image
+    // for example, save it to storage
+    uploadFileRequest =
+        new imaging.UploadFileRequest({ path: "ExampleFolderNet/resultImage.jpg", file: convertedImage });
+    result = await imagingApi.uploadFile(uploadFileRequest);
+    // inspect result.errors list if there were any
+    // inspect result.uploaded list for uploaded file names
 } finally {
     // remove files from storage
     await imagingApi.deleteFile(
-        new imaging.DeleteFileRequest({ path: "ExampleFolderNet/inputImage.jpg" }));
+        new imaging.DeleteFileRequest({ path: "ExampleFolderNet/inputImage.png" }));
     await imagingApi.deleteFile(
-        new imaging.DeleteFileRequest({ path: "ExampleFolderNet/resultImage.png" }));
+        new imaging.DeleteFileRequest({ path: "ExampleFolderNet/resultImage.jpg" }));
 }
 
 // other Imaging requests typically follow the same principles regarding stream/storage relations
@@ -58,11 +51,11 @@ try {
 
     // convert image from request stream to JPEG and save it to storage
     // please, use outPath parameter for saving the result to storage
-    const postSaveToStorageRequest =
-        new imaging.PostImageSaveAsRequest({
+    const saveAsToStorageRequest =
+        new imaging.CreateSavedImageAsRequest({
     imageData: localInputImage, format: "jpg", outPath: "ExampleFolderNet/resultImage.jpg" });
 
-    await imagingApi.postImageSaveAs(postSaveToStorageRequest);
+    await imagingApi.createSavedImageAs(saveAsToStorageRequest);
 
     // download saved image from storage and process it
     const savedFile =
@@ -71,15 +64,15 @@ try {
     
     // convert image from request stream to JPEG and read it from resulting stream
     // please, set outPath parameter as null to return result in request stream instead of saving to storage
-    const postSaveToStreamRequest =
-        new imaging.PostImageSaveAsRequest({ imageData: localInputImage, format: "jpg", outPath: null });
+    const saveAsToStreamRequest =
+        new imaging.CreateSavedImageAsRequest({ imageData: localInputImage, format: "jpg", outPath: null });
 
     // process resulting image from response stream
-    const resultPostImageStream = await imagingApi.postImageSaveAs(postSaveToStreamRequest);
+    const convertedImage = await imagingApi.createSavedImageAs(saveAsToStreamRequest);
 } finally {
     // remove files from storage
     await imagingApi.deleteFile(
-        new imaging.DeleteFileRequest({ path: "ExampleFolderNet/resultImage.png" }));
+        new imaging.DeleteFileRequest({ path: "ExampleFolderNet/resultImage.jpg" }));
 }
 
 // other Imaging requests typically follow the same principles regarding stream/storage relations
@@ -90,8 +83,8 @@ try {
 const imagingApi = new imaging.ImagingApi("yourAppKey", "yourAppSID");
  
 // create search context or use existing search context ID if search context was created earlier
-const apiResponse = await imagingApi.postCreateSearchContext(
-    new imaging.PostCreateSearchContextRequest());
+const apiResponse = await imagingApi.createImageSearch(
+    new imaging.CreateImageSearchRequest());
 const searchContextId = apiResponse.id;
  
 // specify images for comparing (image ID is a path to image in storage)
@@ -99,8 +92,8 @@ const imageInStorage1 = "WorkFolder\Image1.jpg";
 const imageInStorage2 = "WorkFolder\Image2.jpg";
   
 // compare images
-const response = await imagingApi.postSearchContextCompareImages(
-    new imaging.PostSearchContextCompareImagesRequest({ 
+const response = await imagingApi.compareImages(
+    new imaging.CompareImagesRequest({ 
         searchContextId, imageId1: imageInStorage1, imageId2: imageInStorage2 }));
 const similarity = response.results[0].similarity;
 ```
@@ -110,18 +103,18 @@ const similarity = response.results[0].similarity;
 const imagingApi = new imaging.ImagingApi("yourAppKey", "yourAppSID");
  
 // create search context or use existing search context ID if search context was created earlier
-const apiResponse = await imagingApi.postCreateSearchContext(
-    new imaging.PostCreateSearchContextRequest());
+const apiResponse = await imagingApi.createImageSearch(
+    new imaging.CreateImageSearchRequest());
 const searchContextId = apiResponse.id;
  
 // extract images features if it was not done before
-await imagingApi.postSearchContextExtractImageFeatures(
-    new imaging.PostSearchContextExtractImageFeaturesRequest({ 
+await imagingApi.createImageFeatures(
+    new imaging.CreateImageFeaturesRequest({ 
         searchContextId, imageId: null, imagesFolder: "WorkFolder" }));
  
 // wait 'till image features extraction is completed
-while ((await imagingApi.getSearchContextStatus(
-    new imaging.GetSearchContextStatusRequest({ searchContextId }))).searchStatus !== "Idle") {
+while ((await imagingApi.getImageSearchStatus(
+    new imaging.GetImageSearchStatusRequest({ searchContextId }))).searchStatus !== "Idle") {
         await new Promise((resolve) => setTimeout(resolve, 10000));
 }    
  
@@ -131,15 +124,15 @@ let results: imaging.SearchResultsSet;
 if (imageFromStorage) {
     // use search image from storage
     const storageImageId = "searhImage.jpg";
-    results = await imagingApi.getSearchContextFindSimilar(
-        new imaging.GetSearchContextFindSimilarRequest({ 
+    results = await imagingApi.findSimilarImages(
+        new imaging.FindSimilarImagesRequest({ 
             searchContextId: apiResponse.id, similarityThreshold: 90,
                 maxCount: 5, imageData: null, imageId: storageImageId }));
 } else {
     // load search image as a stream
     const imageStream: Buffer = fs.readFileSync("yourLocalImagePath");
-    results = await imagingApi.getSearchContextFindSimilar(
-            new imaging.GetSearchContextFindSimilarRequest({ 
+    results = await imagingApi.findSimilarImages(
+            new imaging.FindSimilarImagesRequest({ 
                 searchContextId: apiResponse.id, similarityThreshold: 90, 
                     maxCount: 5, imageData: imageStream }));
 }
@@ -155,24 +148,24 @@ for (const searchResult of results.results) {
 const imagingApi = new imaging.ImagingApi("yourAppKey", "yourAppSID");
  
 // create search context or use existing search context ID if search context was created earlier
-const apiResponse = await imagingApi.postCreateSearchContext(
-    new imaging.PostCreateSearchContextRequest());
+const apiResponse = await imagingApi.createImageSearch(
+    new imaging.CreateImageSearchRequest());
 const searchContextId = apiResponse.id;
  
 // extract images features if it was not done before
-await imagingApi.postSearchContextExtractImageFeatures(
-    new imaging.PostSearchContextExtractImageFeaturesRequest({ 
+await imagingApi.createImageFeatures(
+    new imaging.CreateImageFeaturesRequest({ 
         searchContextId, imageId: null, imagesFolder: "WorkFolder" }));
  
 // wait 'till image features extraction is completed
-while ((await imagingApi.getSearchContextStatus(
-    new imaging.GetSearchContextStatusRequest({ searchContextId }))).searchStatus !== "Idle") {
+while ((await imagingApi.getImageSearchStatus(
+    new imaging.GetImageSearchStatusRequest({ searchContextId }))).searchStatus !== "Idle") {
         await new Promise((resolve) => setTimeout(resolve, 10000));
 }    
 
 // request finding duplicates
-const response = await imagingApi.getSearchContextFindDuplicates(
-    new imaging.GetSearchContextFindDuplicatesRequest({ searchContextId, similarityThreshold: 90 }));
+const response = await imagingApi.findImageDuplicates(
+    new imaging.FindImageDuplicatesRequest({ searchContextId, similarityThreshold: 90 }));
  
 // process duplicates search results
 for (const duplicates of response.duplicates) {
@@ -189,34 +182,34 @@ for (const duplicates of response.duplicates) {
 const imagingApi = new imaging.ImagingApi("yourAppKey", "yourAppSID");
  
 // create search context or use existing search context ID if search context was created earlier
-const apiResponse = await imagingApi.postCreateSearchContext(
-    new imaging.PostCreateSearchContextRequest());
+const apiResponse = await imagingApi.createImageSearch(
+    new imaging.CreateImageSearchRequest());
 const searchContextId = apiResponse.id;
  
 // extract images features if it was not done before
-await imagingApi.postSearchContextExtractImageFeatures(
-    new imaging.PostSearchContextExtractImageFeaturesRequest({
+await imagingApi.createImageFeatures(
+    new imaging.CreateImageFeaturesRequest({
         searchContextId, imageId: null, imagesFolder: "WorkFolder" }));
  
 // wait 'till image features extraction is completed
-while ((await imagingApi.getSearchContextStatus(
-    new imaging.GetSearchContextStatusRequest({ searchContextId }))).searchStatus !== "Idle") {
+while ((await imagingApi.getImageSearchStatus(
+    new imaging.GetImageSearchStatusRequest({ searchContextId }))).searchStatus !== "Idle") {
         await new Promise((resolve) => setTimeout(resolve, 10000));
 }    
  
 const tag = "MyTag";
 // load tag image as a stream
 const tagImageStream: Buffer = fs.readFileSync("yourLocalImage");
-await imagingApi.postSearchContextAddTag(
-    new imaging.PostSearchContextAddTagRequest({ 
+await imagingApi.createImageTag(
+    new imaging.CreateImageTagRequest({ 
         imageData: tagImageStream, searchContextId, tagName: tag }));
  
 // serialize search tags collection to JSON
 const searchTags = JSON.stringify([ tag ]);
  
 // search images by tags
-const response = await imagingApi.postSearchContextFindByTags(
-    new imaging.PostSearchContextFindByTagsRequest({ 
+const response = await imagingApi.findImagesByTags(
+    new imaging.FindImagesByTagsRequest({ 
         tags: searchTags, searchContextId, similarityThreshold: 90, maxCount: 10 }));
  
 // process search results
@@ -228,14 +221,14 @@ for (const searchResult of response.results) {
 ### Imaging.AI - Delete search context
 ```ts
 // search context is stored in the storage, and in case if search context is not needed anymore it should be removed
-await imagingApi.deleteSearchContext(new imaging.DeleteSearchContextRequest({ searchContextId }));
+await imagingApi.deleteImageSearch(new imaging.DeleteImageSearchRequest({ searchContextId }));
 ```
 
 ### Exception handling and error codes
 ```ts
 try {
-    await imagingApi.deleteSearchContext(
-        new imaging.DeleteSearchContextRequest({ searchContextId: "xxx" }));
+    await imagingApi.deleteImageSearch(
+        new imaging.DeleteImageSearchRequest({ searchContextId: "xxx" }));
 } catch (err) {
     console.log(`Error status code: ${err.statusCode}`);
     console.log(`Error message: ${err.message}`);
