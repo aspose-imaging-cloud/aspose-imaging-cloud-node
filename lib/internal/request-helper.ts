@@ -80,7 +80,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "node.js sdk";
-    requestOptions.headers["x-aspose-client-version"] = "19.6.0";
+    requestOptions.headers["x-aspose-client-version"] = "19.7.0";
 
     requestOptions.timeout = 600000;
 
@@ -95,7 +95,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     const auth = confguration.authentication;
-    if (!notApplyAuthToRequest) {
+    if (!confguration.isMetered && !notApplyAuthToRequest) {
         await auth.applyToRequest(requestOptions, confguration);
     }
 

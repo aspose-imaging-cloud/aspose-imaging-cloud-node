@@ -76,11 +76,10 @@ It gives you an ability to:
 ```json
 {
   "dependencies": {
-    "@asposecloud/asposeimagingcloud": "^19.6.0"
+    "@asposecloud/asposeimagingcloud": "^19.7.0"
   }
 }
 ```
-
 2. Import the dependencies to your code as follows.
 ```ts
 import * as imaging from "@asposecloud/asposeimagingcloud";
@@ -88,6 +87,17 @@ import * as imaging from "@asposecloud/asposeimagingcloud";
 
 # Examples
 Please, look at [Examples](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-node/blob/master/EXAMPLES.md) document.
+
+### Aspose Cloud-hosted service VS on-premise deployment
+Starting from v19.7, you can choose either to use Aspose Cloud-hosted image processing service (the standard way) or the Docker image from Docker Hub deployed on-premise to serve the requests.
+The details about key differences and deployment process is described on the dedicated Docker Hub page.
+
+To succeed with your on-premise service usage by the SDK, you need to:
+1. Set the *appKey* and *appSID* parameters as null and use *baseUrl* parameter according to your on-premise deployment with additional API version and debug mode parameters.
+```ts
+const imagingApi: imaging.ImagingApi  = new imaging.ImagingApi(null, null, "yourServiceUrl");
+```
+2. Set *storage* or *storageName* parameters for each request where they're present (mandatory!).
 
 # Tests
 Tests are intended for internal usage only.
