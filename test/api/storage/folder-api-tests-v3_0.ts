@@ -82,9 +82,8 @@ class FolderApiTests extends StorageApiTester {
             const count = originalFiles.length;
             let x: number;
             for (x = 0; x < count; x++) {
-                expect(originalFiles[x].isFolder).toEqual(copiedFiles[x].isFolder);
-                expect(originalFiles[x].name).toEqual(copiedFiles[x].name);
-                expect(originalFiles[x].size).toEqual(copiedFiles[x].size);
+                const curFile = originalFiles[x];
+                expect(copiedFiles.find((f) => f.isFolder === curFile.isFolder && f.name === curFile.name && f.size === curFile.size)).not.toBeNull();
             }
         } finally {
             if ((await this.imagingApi.objectExists(
@@ -139,9 +138,8 @@ class FolderApiTests extends StorageApiTester {
             const count: number = originalFiles.length;
             let x: number;
             for (x = 0; x < count; x++) {
-                expect(originalFiles[x].isFolder).toEqual(copiedFiles[x].isFolder);
-                expect(originalFiles[x].name).toEqual(copiedFiles[x].name);
-                expect(originalFiles[x].size).toEqual(copiedFiles[x].size);
+                const curFile = originalFiles[x];
+                expect(copiedFiles.find((f) => f.isFolder === curFile.isFolder && f.name === curFile.name && f.size === curFile.size)).not.toBeNull();
             }
         } finally {
             if ((await this.imagingApi.objectExists(

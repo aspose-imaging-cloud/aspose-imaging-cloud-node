@@ -59,7 +59,19 @@ export class Configuration {
      */
     public apiVersion: string = "v3.0";
 
+    /**
+     * If you use custom on-premise server with metered license.
+     * This way, you only need to specify the API base URL.
+     */
+    public isMetered: boolean = false;
+
     constructor(appKey: string, appSID: string, baseUrl?: string, debugMode?: boolean, apiVersion?: string) {
+        if (appKey && appSID) {
+            this.isMetered = false;
+        } else if (baseUrl) {
+            this.isMetered = true;
+        }  
+        
         if (baseUrl) {
             if (!baseUrl.endsWith("/")) {
                 baseUrl = baseUrl + "/";
@@ -80,7 +92,9 @@ export class Configuration {
             this.apiVersion = apiVersion;
         }
 
-        this.authentication = new JwtAuth() as IAuthentication;
+        if (!this.isMetered) {
+            this.authentication = new JwtAuth() as IAuthentication;
+        } 
     }
 
     /**

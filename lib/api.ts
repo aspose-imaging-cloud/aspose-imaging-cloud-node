@@ -34,7 +34,7 @@ export { ApiError } from "./internal/api-error";
 export * from "./model/model";
 
 /**
- * Library for communicating with Aspose.Imaging Cloud API
+ * Library for communication with Aspose.Imaging Cloud API
  */
 export class ImagingApi {
     /**
@@ -43,9 +43,9 @@ export class ImagingApi {
     public configuration: Configuration;
 
     /**
-     * @param appKey App key.
-     * @param appSID App SID.
-     * @param baseUrl Base api Url.
+     * @param appKey App key. Please, set this value as null in case of on-premise hosting.
+     * @param appSID App SID. Please, set this value as null in case of on-premise hosting.
+     * @param baseUrl Base api Url. This param is required in case of on-premise hosting.
      * @param debugMode A value indicating whether debug mode. In debug mode all requests and responses are logged to console.
      * @param version API version.
      */
