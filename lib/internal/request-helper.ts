@@ -95,7 +95,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     const auth = confguration.authentication;
-    if (!confguration.isMetered && !notApplyAuthToRequest) {
+    if (!confguration.onPremise && !notApplyAuthToRequest) {
         await auth.applyToRequest(requestOptions, confguration);
     }
 

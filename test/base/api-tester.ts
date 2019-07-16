@@ -167,13 +167,13 @@ export abstract class ApiTester {
      */
     protected async createApiInstances() {
         console.log("Trying to obtain the creds from environment variables.");
-        const isMetered = process.env.IsMetered === "true";
-        let appKey = isMetered ? undefined : process.env.AppKey;
-        let appSid = isMetered ? undefined : process.env.AppSid;
+        const onPremise = process.env.OnPremise === "true";
+        let appKey = onPremise ? undefined : process.env.AppKey;
+        let appSid = onPremise ? undefined : process.env.AppSid;
         let baseUrl = process.env.ApiEndpoint;
         let apiVersion = process.env.ApiVersion;
 
-        if ((!isMetered && (!appKey || !appSid)) || !baseUrl || !apiVersion) {
+        if ((!onPremise && (!appKey || !appSid)) || !baseUrl || !apiVersion) {
             console.log("Access data isn't set completely by environment variables. Filling unset data with default values.");
         }
 
@@ -186,12 +186,12 @@ export abstract class ApiTester {
         const stats = fs.statSync(serverAccessPath);
         if (stats && stats.isFile() && stats.size > 0) {
             const accessData: any = JSON.parse(fs.readFileSync(serverAccessPath).toString());
-            if (!appKey && !isMetered) {
+            if (!appKey && !onPremise) {
                 appKey = accessData.AppKey;
                 console.log("Set default App key");
             }
 
-            if (!appSid && !isMetered) {
+            if (!appSid && !onPremise) {
                 appSid = accessData.AppSid;
                 console.log("Set default App SID");
             }
@@ -200,11 +200,11 @@ export abstract class ApiTester {
                 baseUrl = accessData.BaseURL;
                 console.log("Set default base URL");
             }
-        } else if (!isMetered) {
+        } else if (!onPremise) {
             throw new Error("Please, specify valid access data (AppKey, AppSid, Base URL)");
         }
 
-        console.log(`Is metered: ${isMetered}`);
+        console.log(`On-premise: ${onPremise}`);
         console.log(`App key: ${appKey}`);
         console.log(`App SID: ${appSid}`);
         console.log(`Storage: ${this.TestStorage}`);
@@ -215,6 +215,10 @@ export abstract class ApiTester {
         this.InputTestFiles = await this.fetchInputTestFilesInfo();
     }
 
+    /**
+     * Checks if input file exists
+     * @param inputFileName Input file name
+     */
     protected checkInputFileExists(inputFileName: string): boolean {
         for (const storageFileInfo of this.InputTestFiles) {
             if (storageFileInfo.name === inputFileName) {

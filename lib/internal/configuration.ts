@@ -63,13 +63,13 @@ export class Configuration {
      * If you use custom on-premise server with metered license.
      * This way, you only need to specify the API base URL.
      */
-    public isMetered: boolean = false;
+    public onPremise: boolean = false;
 
     constructor(appKey: string, appSID: string, baseUrl?: string, debugMode?: boolean, apiVersion?: string) {
         if (appKey && appSID) {
-            this.isMetered = false;
+            this.onPremise = false;
         } else if (baseUrl) {
-            this.isMetered = true;
+            this.onPremise = true;
         }  
         
         if (baseUrl) {
@@ -92,7 +92,7 @@ export class Configuration {
             this.apiVersion = apiVersion;
         }
 
-        if (!this.isMetered) {
+        if (!this.onPremise) {
             this.authentication = new JwtAuth() as IAuthentication;
         } 
     }
