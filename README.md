@@ -1,5 +1,5 @@
 # Aspose.Imaging Cloud Node.js SDK
-[Aspose.Imaging Cloud](https://products.aspose.cloud/imaging/cloud) is a true REST API that enables you to perform a wide range of image processing operations including creation, manipulation and conversion in the cloud, with zero initial costs. Our Cloud SDKs are wrappers around REST API in various programming languages, allowing you to process images in language of your choice quickly and easily, gaining all benefits of strong types and IDE highlights. 
+[Aspose.Imaging Cloud](https://products.aspose.cloud/imaging) is a true REST API that enables you to perform a wide range of image processing operations including creation, manipulation and conversion in the cloud, with zero initial costs. Our Cloud SDKs are wrappers around REST API in various programming languages, allowing you to process images in language of your choice quickly and easily, gaining all benefits of strong types and IDE highlights. 
 
 This repository contains Aspose.Imaging Cloud Node.js SDK source code which is written in TypeScript. This SDK allows you to work with Aspose.Imaging Cloud REST APIs in your Node.js applications quickly and easily, with zero initial cost.
 
@@ -24,6 +24,7 @@ Export the following images to various formats (generally supported ones are BMP
 * DICOM
 * CDR
 * ODG
+* OTG
 * DNG
 * SVG
 * CMX
@@ -76,11 +77,10 @@ It gives you an ability to:
 ```json
 {
   "dependencies": {
-    "@asposecloud/asposeimagingcloud": "^19.6.0"
+    "@asposecloud/asposeimagingcloud": "^19.7.0"
   }
 }
 ```
-
 2. Import the dependencies to your code as follows.
 ```ts
 import * as imaging from "@asposecloud/asposeimagingcloud";
@@ -88,6 +88,17 @@ import * as imaging from "@asposecloud/asposeimagingcloud";
 
 # Examples
 Please, look at [Examples](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-node/blob/master/EXAMPLES.md) document.
+
+### Aspose Cloud-hosted service VS on-premise deployment (*experimental feature*)
+Starting from v19.7, you can choose either to use Aspose Cloud-hosted image processing service (the standard way) or the Docker image from Docker Hub deployed on-premise to serve the requests.
+The details about key differences and deployment process will be described on the dedicated Docker Hub page as soon as it's released.
+
+To succeed with your on-premise service usage by the SDK, you need to:
+1. Set the *appKey* and *appSID* parameters as null and use *baseUrl* parameter according to your on-premise deployment with additional API version and debug mode parameters.
+```ts
+const imagingApi: imaging.ImagingApi  = new imaging.ImagingApi(null, null, "yourServiceUrl");
+```
+2. Set *storage* or *storageName* parameters for each request where they're present (mandatory!).
 
 # Tests
 Tests are intended for internal usage only.
@@ -103,6 +114,6 @@ Your feedback is very important to us. Please feel free to contact via
 # Resources
 + [**Web API reference**](https://apireference.aspose.cloud/imaging/)
 + [**Website**](https://www.aspose.cloud)
-+ [**Product Home**](https://products.aspose.cloud/imaging/cloud)
++ [**Product Home**](https://products.aspose.cloud/imaging)
 + [**Documentation**](https://docs.aspose.cloud/display/imagingcloud/Home)
 + [**Blog**](https://blog.aspose.cloud/category/aspose-products/aspose.imaging-cloud/)

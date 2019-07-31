@@ -239,6 +239,10 @@ class FileApiTests extends StorageApiTester {
     }
 
     public async fileVersionsCreateTest() {
+        if (this.imagingApi.configuration.onPremise) {
+            return;
+        }
+        
         const folder = `${this.TempFolder}/Storage`;
         const file1 = "Storage.txt";
         const file2 = "Folder1/Folder1.txt";
@@ -288,6 +292,10 @@ class FileApiTests extends StorageApiTester {
     }
 
     public async fileVersionsDownloadTest() {
+        if (this.imagingApi.configuration.onPremise) {
+            return;
+        }
+
         const folder = `${this.TempFolder}/Storage`;
         const file1 = "Storage.txt";
         const file2 = "Folder1/Folder1.txt";
@@ -336,6 +344,10 @@ class FileApiTests extends StorageApiTester {
     }
 
     public async fileVersionsCopyTest() {
+        if (this.imagingApi.configuration.onPremise) {
+            return;
+        }
+
         const folder = `${this.TempFolder}/Storage`;
         const file1 = "Storage.txt";
         const file2 = "Folder1/Folder1.txt";
@@ -393,6 +405,10 @@ class FileApiTests extends StorageApiTester {
     }
 
     public async fileVersionsMoveTest() {
+        if (this.imagingApi.configuration.onPremise) {
+            return;
+        }
+
         const folder = `${this.TempFolder}/Storage`;
         const file1 = "Storage.txt";
         const file2 = "Folder1/Folder1.txt";
@@ -459,6 +475,10 @@ class FileApiTests extends StorageApiTester {
     }
 
     public async fileVersionsDeleteTest() {
+        if (this.imagingApi.configuration.onPremise) {
+            return;
+        }
+
         const folder = `${this.TempFolder}/Storage`;
         const file1 = "Storage.txt";
         const file2 = "Folder1/Folder1.txt";

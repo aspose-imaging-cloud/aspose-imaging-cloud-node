@@ -74,16 +74,6 @@ export abstract class ApiTester {
     protected readonly DefaultStorage: string = "Imaging-CI";
 
     /**
-     * The application key
-     */
-    protected AppKey: string = "XXX";
-
-    /**
-     * The application SID
-     */
-    protected AppSid: string = "XXX";
-
-    /**
      * The basic export formats
      */
     protected readonly BasicExportFormats: string[] =
@@ -128,7 +118,7 @@ export abstract class ApiTester {
     protected TestStorage: string;
 
     /**
-     * Aspose.Imaging API
+     * Aspose.Imaging Cloud API
      */
     protected imagingApi: imaging.ImagingApi;
 
@@ -174,64 +164,61 @@ export abstract class ApiTester {
 
     /**
      * Creates the API instances using given access parameters.
-     * @param appKey The application key.
-     * @param appSid The application SID.
-     * @param baseUrl The base URL.
-     * @param apiVersion The API version.
-     * @param debug If set to true, debug.
      */
-    protected async createApiInstances(appKey: string = this.AppKey, appSid: string = this.AppSid, baseUrl: string = this.BaseUrl, 
-                                       apiVersion: string = this.ApiVersion, debug: boolean = false) {
-                                    if (appKey === this.AppKey || appSid === this.AppSid) {
-                                        console.log("Access data isn't set explicitly. Trying to obtain it from environment variables.");
-                        
-                                        appKey = process.env.AppKey;
-                                        appSid = process.env.AppSid;
-                                        baseUrl = process.env.ApiEndpoint;
-                                        apiVersion = process.env.ApiVersion;
-                                    }
-                        
-                                    if (!appKey || !appSid || !baseUrl || !apiVersion) {
-                                        console.log("Access data isn't set completely by environment variables. Filling unset data with default values.");
-                                    }
-                        
-                                    if (!apiVersion) {
-                                        apiVersion = this.ApiVersion;
-                                        console.log("Set default API version");
-                                    }
-                        
-                                    const serverAccessPath: string = path.join(this.LocalTestFolder, this.ServerAccessFile);
-                                    const stats = fs.statSync(serverAccessPath);
-                                    if (stats && stats.isFile() && stats.size > 0) {
-                                            const accessData: any = JSON.parse(fs.readFileSync(serverAccessPath).toString());
-                                            if (!appKey) {
-                                                appKey = accessData.AppKey;
-                                                console.log("Set default App key");
-                                            }
-                            
-                                            if (!appSid) {
-                                                appSid = accessData.AppSid;
-                                                console.log("Set default App SID");
-                                            }
-                            
-                                            if (!baseUrl) {
-                                                baseUrl = accessData.BaseURL;
-                                                console.log("Set default base URL");
-                                            }
-                                        } else {
-                                            throw new Error("Please, specify valid access data (AppKey, AppSid, Base URL)");
-                                        }
+    protected async createApiInstances() {
+        console.log("Trying to obtain the creds from environment variables.");
+        const onPremise = process.env.OnPremise === "true";
+        let appKey = onPremise ? undefined : process.env.AppKey;
+        let appSid = onPremise ? undefined : process.env.AppSid;
+        let baseUrl = process.env.ApiEndpoint;
+        let apiVersion = process.env.ApiVersion;
 
-                                    console.log(`App key: ${appKey}`);
-                                    console.log(`App SID: ${appSid}`);
-                                    console.log(`Storage: ${this.TestStorage}`);
-                                    console.log(`Base URL: ${baseUrl}`);
-                                    console.log(`API version: ${apiVersion}`);
+        if ((!onPremise && (!appKey || !appSid)) || !baseUrl || !apiVersion) {
+            console.log("Access data isn't set completely by environment variables. Filling unset data with default values.");
+        }
 
-                                    this.imagingApi = new imaging.ImagingApi(appKey, appSid, baseUrl, debug, apiVersion);
-                                    this.InputTestFiles = await this.fetchInputTestFilesInfo();                            
+        if (!apiVersion) {
+            apiVersion = this.ApiVersion;
+            console.log("Set default API version");
+        }
+
+        const serverAccessPath: string = path.join(this.LocalTestFolder, this.ServerAccessFile);
+        const stats = fs.statSync(serverAccessPath);
+        if (stats && stats.isFile() && stats.size > 0) {
+            const accessData: any = JSON.parse(fs.readFileSync(serverAccessPath).toString());
+            if (!appKey && !onPremise) {
+                appKey = accessData.AppKey;
+                console.log("Set default App key");
+            }
+
+            if (!appSid && !onPremise) {
+                appSid = accessData.AppSid;
+                console.log("Set default App SID");
+            }
+
+            if (!baseUrl) {
+                baseUrl = accessData.BaseURL;
+                console.log("Set default base URL");
+            }
+        } else if (!onPremise) {
+            throw new Error("Please, specify valid access data (AppKey, AppSid, Base URL)");
+        }
+
+        console.log(`On-premise: ${onPremise}`);
+        console.log(`App key: ${appKey}`);
+        console.log(`App SID: ${appSid}`);
+        console.log(`Storage: ${this.TestStorage}`);
+        console.log(`Base URL: ${baseUrl}`);
+        console.log(`API version: ${apiVersion}`);
+
+        this.imagingApi = new imaging.ImagingApi(appKey, appSid, baseUrl, false, apiVersion);
+        this.InputTestFiles = await this.fetchInputTestFilesInfo();
     }
 
+    /**
+     * Checks if input file exists
+     * @param inputFileName Input file name
+     */
     protected checkInputFileExists(inputFileName: string): boolean {
         for (const storageFileInfo of this.InputTestFiles) {
             if (storageFileInfo.name === inputFileName) {
