@@ -77,7 +77,7 @@ It gives you an ability to:
 ```json
 {
   "dependencies": {
-    "@asposecloud/asposeimagingcloud": "^19.7.0"
+    "@asposecloud/asposeimagingcloud": "^19.8.0"
   }
 }
 ```
