@@ -99,6 +99,8 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
         await auth.applyToRequest(requestOptions, confguration);
     }
 
+    requestOptions.pool = {maxSockets: 5};
+
     return new Promise<request.RequestResponse>((resolve, reject) => {
         const r = request(requestOptions, async (error, response) => {
             if (error) {
