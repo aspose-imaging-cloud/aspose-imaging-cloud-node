@@ -5078,6 +5078,85 @@ export class CreateModifiedPsdRequest {
 }
 
 /**
+ * Request model for CreateModifiedSvg operation.
+ */
+export class CreateModifiedSvgRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Color type for SVG image.
+     */
+    public colorType: string;
+
+    /**
+     * Whether text must be converted as shapes. true if all text is turned into SVG shapes in the convertion; otherwise, false
+     */
+    public textAsShapes: boolean;
+
+    /**
+     * Scale X.
+     */
+    public scaleX: number;
+
+    /**
+     * Scale Y.
+     */
+    public scaleY: number;
+
+    /**
+     * Width of the page.
+     */
+    public pageWidth: number;
+
+    /**
+     * Height of the page.
+     */
+    public pageHeight: number;
+
+    /**
+     * Border width.
+     */
+    public borderX: number;
+
+    /**
+     * Border height.
+     */
+    public borderY: number;
+
+    /**
+     * Background color (Default is white).
+     */
+    public bkColor: string;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+
+    /**
+     * Export format (PNG is the default one). Please, refer to the export table from https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+    
+    public constructor(init?: Partial<CreateModifiedSvgRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for CreateModifiedTiff operation.
  */
 export class CreateModifiedTiffRequest {
@@ -6318,6 +6397,85 @@ export class ModifyPsdRequest {
     public storage: string;
     
     public constructor(init?: Partial<ModifyPsdRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for ModifySvg operation.
+ */
+export class ModifySvgRequest {
+    /**
+     * Filename of image.
+     */
+    public name: string;
+
+    /**
+     * Color type for SVG image.
+     */
+    public colorType: string;
+
+    /**
+     * Whether text must be converted as shapes. true if all text is turned into SVG shapes in the convertion; otherwise, false
+     */
+    public textAsShapes: boolean;
+
+    /**
+     * Scale X.
+     */
+    public scaleX: number;
+
+    /**
+     * Scale Y.
+     */
+    public scaleY: number;
+
+    /**
+     * Width of the page.
+     */
+    public pageWidth: number;
+
+    /**
+     * Height of the page.
+     */
+    public pageHeight: number;
+
+    /**
+     * Border width.
+     */
+    public borderX: number;
+
+    /**
+     * Border height.
+     */
+    public borderY: number;
+
+    /**
+     * Background color (Default is white).
+     */
+    public bkColor: string;
+
+    /**
+     * Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     */
+    public fromScratch: boolean;
+
+    /**
+     * Folder with image to process.
+     */
+    public folder: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+
+    /**
+     * Export format (PNG is the default one). Please, refer to the export table from https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+    
+    public constructor(init?: Partial<ModifySvgRequest>) {        
         Object.assign(this, init);
     } 
 }
