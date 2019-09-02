@@ -2192,6 +2192,11 @@ export class ImagingResponse {
             type: "OdgProperties",
         },        
         {
+            name: "svgProperties",
+            baseName: "SvgProperties",
+            type: "SvgProperties",
+        },        
+        {
             name: "horizontalResolution",
             baseName: "HorizontalResolution",
             type: "number",
@@ -2288,6 +2293,11 @@ export class ImagingResponse {
      * Gets or sets the the ODG properties.
      */
     public odgProperties: OdgProperties;
+    
+    /**
+     * Gets or sets the SVG properties.
+     */
+    public svgProperties: SvgProperties;
     
     /**
      * Gets or sets the horizontal resolution of an image.
@@ -3367,6 +3377,51 @@ export class StorageFile {
 }
 
 /**
+ * Represents information about image in PNG format.
+ */
+export class SvgProperties {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "colorType",
+            baseName: "ColorType",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return SvgProperties.attributeTypeMap;
+    }
+
+    /**
+     * Gets or sets the color type for SVG image.
+     */
+    public colorType: string;
+    
+    public constructor(init?: Partial<SvgProperties>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Represents information about TIFF frame.
  */
 export class TiffFrame {
@@ -4360,6 +4415,7 @@ const typeMap = {
             SearchResultsSet,
             StorageExist,
             StorageFile,
+            SvgProperties,
             TiffFrame,
             TiffOptions,
             TiffProperties,
@@ -5087,7 +5143,7 @@ export class CreateModifiedSvgRequest {
     public imageData: Buffer;
 
     /**
-     * Color type for SVG image.
+     * Color type for SVG image. Only RGB is supported for now.
      */
     public colorType: string;
 
@@ -6411,7 +6467,7 @@ export class ModifySvgRequest {
     public name: string;
 
     /**
-     * Color type for SVG image.
+     * Color type for SVG image. Only RGB is supported for now.
      */
     public colorType: string;
 

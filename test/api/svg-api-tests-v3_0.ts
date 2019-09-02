@@ -33,23 +33,25 @@ import { ApiTester } from "../base/api-tester";
  */
 class SvgApiTests extends ApiTester {
 
-    public async modifySvgTest() {
+    public async modifySvgSizeRasterizationTest() {
         const name: string = "test.svg";
         const fromScratch: boolean = false;
         const bkColor: string = "gray";
         const pageWidth: number = 300;
         const pageHeight: number = 300;
-        const borderX: number = 50;
-        const borderY: number = 50;
+        // borderX and borderY are not supported right now, see IMAGINGNET-3543
+        const borderX: number = 0;
+        const borderY: number = 0;
+        const format: string = "png";
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testGetRequest(
-            "modifySvgTest",
+            "modifySvgSizeRasterizationTest",
             `Input image: ${name}; BackColor: ${bkColor}; Page width: ${pageWidth}; Page height: ${pageHeight}; BorderX: ${borderX}; BorderY: ${borderY}`,
             name,
             async () => {
-                const request = new imaging.ModifySvgRequest({ name, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, folder, storage });
+                const request = new imaging.ModifySvgRequest({ name, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, folder, storage, format });
                 const response = await this.imagingApi.modifySvg(request);
                 return response;
             },
@@ -64,26 +66,87 @@ class SvgApiTests extends ApiTester {
             storage);
     }
 
-    public async createModifiedSvgTest(saveResultToStorage: boolean) {
+    public async modifySvgScaleRasterizationTest() {
+        const name: string = "test.svg";
+        const fromScratch: boolean = false;
+        const bkColor: string = "gray";
+        const scaleX: number = 2.0;
+        const scaleY: number = 2.0;
+        const format: string = "png";
+        const folder: string = this.TempFolder;
+        const storage: string = this.TestStorage;
+
+        await this.testGetRequest(
+            "modifySvgScaleRasterizationTest",
+            `Input image: ${name}; BackColor: ${bkColor}; Scale X: ${scaleX}; Scale Y: ${scaleY}`,
+            name,
+            async () => {
+                const request = new imaging.ModifySvgRequest({ name, bkColor, scaleX, scaleY, fromScratch, folder, storage, format });
+                const response = await this.imagingApi.modifySvg(request);
+                return response;
+            },
+            (originalProperties, resultProperties) => {
+                expect(originalProperties).toBeTruthy();
+                expect(resultProperties.pngProperties).toBeTruthy();
+                expect(originalProperties.width * scaleX).toEqual(resultProperties.width);
+                expect(originalProperties.height * scaleY).toEqual(resultProperties.height);
+                return Promise.resolve();
+            },
+            folder,
+            storage);
+    }
+
+    public async modifySvgUpdatePropertiesTest() {
+        const name: string = "test.svg";
+        const fromScratch: boolean = false;
+        // Only RGB color type is supported right now, see IMAGINGNET-3543
+        const colorType: string = "rgb";
+        const textAsShapes: boolean = true;
+        const format: string = "svg";
+        const folder: string = this.TempFolder;
+        const storage: string = this.TestStorage;
+
+        await this.testGetRequest(
+            "modifySvgUpdatePropertiesTest",
+            `Input image: ${name}; Color type: ${colorType}; Text as shapes: ${textAsShapes}`,
+            name,
+            async () => {
+                const request = new imaging.ModifySvgRequest({ name, colorType, textAsShapes, fromScratch, folder, storage, format });
+                const response = await this.imagingApi.modifySvg(request);
+                return response;
+            },
+            (originalProperties, resultProperties) => {
+                expect(originalProperties).toBeTruthy();
+                expect(resultProperties.svgProperties).toBeTruthy();
+                expect(colorType).toEqual(resultProperties.svgProperties.colorType);
+                return Promise.resolve();
+            },
+            folder,
+            storage);
+    }
+
+    public async createModifiedSizeRasterizationSvgTest(saveResultToStorage: boolean) {
         const name: string = "test.svg";
         const fromScratch: boolean = false;
         const bkColor: string = "gray";
         const pageWidth: number = 300;
         const pageHeight: number = 300;
-        const borderX: number = 50;
-        const borderY: number = 50;
+        // borderX and borderY are not supported right now, see IMAGINGNET-3543
+        const borderX: number = 0;
+        const borderY: number = 0;
+        const format: string = "png";
         const outName: string = `${name}_specific.png`;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
         await this.testPostRequest(
-            "createModifiedSvgTest",
+            "createModifiedSizeRasterizationSvgTest",
             saveResultToStorage,
             `Input image: ${name}; BackColor: ${bkColor}; Page width: ${pageWidth}; Page height: ${pageHeight}; BorderX: ${borderX}; BorderY: ${borderY}`,
             name,
             outName,
             async (inputStream, outPath) => {
-                const request = new imaging.CreateModifiedSvgRequest({ imageData: inputStream, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, outPath, storage });
+                const request = new imaging.CreateModifiedSvgRequest({ imageData: inputStream, bkColor, pageWidth, pageHeight, borderX, borderY, fromScratch, outPath, storage, format });
                 const response = await this.imagingApi.createModifiedSvg(request);
                 return response;
             },
@@ -92,6 +155,71 @@ class SvgApiTests extends ApiTester {
                 expect(resultProperties.pngProperties).toBeTruthy();
                 expect(pageWidth + borderX * 2).toEqual(resultProperties.width);
                 expect(pageHeight + borderX * 2).toEqual(resultProperties.height);
+                return Promise.resolve();
+            },
+            folder,
+            storage);
+    }
+
+    public async createModifiedScaleRasterizationSvgTest(saveResultToStorage: boolean) {
+        const name: string = "test.svg";
+        const fromScratch: boolean = false;
+        const bkColor: string = "gray";
+        const scaleX: number = 2.0;
+        const scaleY: number = 2.0;
+        const format: string = "png";
+        const outName: string = `${name}_specific.png`;
+        const folder: string = this.TempFolder;
+        const storage: string = this.TestStorage;
+
+        await this.testPostRequest(
+            "createModifiedScaleRasterizationSvgTest",
+            saveResultToStorage,
+            `Input image: ${name}; BackColor: ${bkColor}; Scale X: ${scaleX}; Scale Y: ${scaleY}`,
+            name,
+            outName,
+            async (inputStream, outPath) => {
+                const request = new imaging.CreateModifiedSvgRequest({ imageData: inputStream, bkColor, scaleX, scaleY, fromScratch, outPath, storage, format });
+                const response = await this.imagingApi.createModifiedSvg(request);
+                return response;
+            },
+            (originalProperties, resultProperties) => {
+                expect(originalProperties).toBeTruthy();
+                expect(resultProperties.pngProperties).toBeTruthy();
+                expect(originalProperties.width * scaleX).toEqual(resultProperties.width);
+                expect(originalProperties.height * scaleY).toEqual(resultProperties.height);
+                return Promise.resolve();
+            },
+            folder,
+            storage);
+    }
+
+    public async createModifiedUpdatePropertiesSvgTest(saveResultToStorage: boolean) {
+        const name: string = "test.svg";
+        const fromScratch: boolean = false;
+        // Only RGB color type is supported right now, see IMAGINGNET-3543
+        const colorType: string = "rgb";
+        const textAsShapes: boolean = true;
+        const format: string = "svg";
+        const outName: string = `${name}_specific.png`;
+        const folder: string = this.TempFolder;
+        const storage: string = this.TestStorage;
+
+        await this.testPostRequest(
+            "createModifiedUpdatePropertiesSvgTest",
+            saveResultToStorage,
+            `Input image: ${name}; Color type: ${colorType}; Text as shapes: ${textAsShapes}`,
+            name,
+            outName,
+            async (inputStream, outPath) => {
+                const request = new imaging.CreateModifiedSvgRequest({ imageData: inputStream, colorType, textAsShapes, fromScratch, outPath, storage, format });
+                const response = await this.imagingApi.createModifiedSvg(request);
+                return response;
+            },
+            (originalProperties, resultProperties) => {
+                expect(originalProperties).toBeTruthy();
+                expect(resultProperties.svgProperties).toBeTruthy();
+                expect(colorType).toEqual(resultProperties.svgProperties.colorType);
                 return Promise.resolve();
             },
             folder,
@@ -117,13 +245,25 @@ describe.each([[true], [false]])(
     "SvgTestSuite_V3",
     (saveResultToStorage) => {
         if (!saveResultToStorage) {
-            test(`modifySvgTest`, async () => {
-                await testClass.modifySvgTest();
+            test(`modifySvgSizeRasterizationTest`, async () => {
+                await testClass.modifySvgSizeRasterizationTest();
+            });
+            test(`modifySvgScaleRasterizationTest`, async () => {
+                await testClass.modifySvgScaleRasterizationTest();
+            });
+            test(`modifySvgUpdatePropertiesTest`, async () => {
+                await testClass.modifySvgUpdatePropertiesTest();
             });
         }
 
-        test(`createModifiedSvgTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.createModifiedSvgTest(saveResultToStorage);
+        test(`createModifiedSizeRasterizationSvgTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedSizeRasterizationSvgTest(saveResultToStorage);
+        });
+        test(`createModifiedScaleRasterizationSvgTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedScaleRasterizationSvgTest(saveResultToStorage);
+        });
+        test(`createModifiedUpdatePropertiesSvgTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createModifiedUpdatePropertiesSvgTest(saveResultToStorage);
         });
 
         beforeEach(() => {
