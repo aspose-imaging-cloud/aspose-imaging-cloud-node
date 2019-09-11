@@ -5173,12 +5173,12 @@ export class CreateModifiedSvgRequest {
     public pageHeight: number;
 
     /**
-     * Border width.
+     * Border width. Only 0 is supported for now.
      */
     public borderX: number;
 
     /**
-     * Border height.
+     * Border height. Only 0 is supported for now.
      */
     public borderY: number;
 
@@ -6497,12 +6497,12 @@ export class ModifySvgRequest {
     public pageHeight: number;
 
     /**
-     * Border width.
+     * Border width. Only 0 is supported for now.
      */
     public borderX: number;
 
     /**
-     * Border height.
+     * Border height. Only 0 is supported for now.
      */
     public borderY: number;
 
