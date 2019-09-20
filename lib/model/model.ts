@@ -1856,6 +1856,48 @@ export class FilesUploadResult {
 }
 
 /**
+ * Filter Options Base, abstract class
+ */
+export class FilterPropertiesBase {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "discriminator",
+            baseName: "discriminator",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return FilterPropertiesBase.attributeTypeMap;
+    }
+
+    public discriminator: string;
+    
+    public constructor(init?: Partial<FilterPropertiesBase>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Represents information about image in GIF format.
  */
 export class GifProperties {
@@ -4132,6 +4174,257 @@ export class WebPProperties {
 }
 
 /**
+ * Big Rectangular Filter Options
+ */
+export class BigRectangularFilterProperties extends FilterPropertiesBase {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(BigRectangularFilterProperties.attributeTypeMap);
+    }
+
+    public constructor(init?: Partial<BigRectangularFilterProperties>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * The Bilateral Smoothing Filter Options.
+ */
+export class BilateralSmoothingFilterProperties extends FilterPropertiesBase {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "size",
+            baseName: "Size",
+            type: "number",
+        },        
+        {
+            name: "spatialFactor",
+            baseName: "SpatialFactor",
+            type: "number",
+        },        
+        {
+            name: "spatialPower",
+            baseName: "SpatialPower",
+            type: "number",
+        },        
+        {
+            name: "colorFactor",
+            baseName: "ColorFactor",
+            type: "number",
+        },        
+        {
+            name: "colorPower",
+            baseName: "ColorPower",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(BilateralSmoothingFilterProperties.attributeTypeMap);
+    }
+
+    /**
+     * Gets or sets the size of the kernel.
+     */
+    public size: number;
+    
+    /**
+     * Gets or sets the spatial factor.
+     */
+    public spatialFactor: number;
+    
+    /**
+     * Gets or sets the spatial power.
+     */
+    public spatialPower: number;
+    
+    /**
+     * Gets or sets the color factor.
+     */
+    public colorFactor: number;
+    
+    /**
+     * Gets or sets the color power.
+     */
+    public colorPower: number;
+    
+    public constructor(init?: Partial<BilateralSmoothingFilterProperties>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * The convolution filter.
+ */
+export class ConvolutionFilterProperties extends FilterPropertiesBase {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "factor",
+            baseName: "Factor",
+            type: "number",
+        },        
+        {
+            name: "bias",
+            baseName: "Bias",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(ConvolutionFilterProperties.attributeTypeMap);
+    }
+
+    /**
+     * Gets or sets the factor.
+     */
+    public factor: number;
+    
+    /**
+     * Gets or sets the bias.
+     */
+    public bias: number;
+    
+    public constructor(init?: Partial<ConvolutionFilterProperties>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Deconvolution Filter Options, abstract class
+ */
+export class DeconvolutionFilterProperties extends FilterPropertiesBase {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "snr",
+            baseName: "Snr",
+            type: "number",
+        },        
+        {
+            name: "brightness",
+            baseName: "Brightness",
+            type: "number",
+        },        
+        {
+            name: "grayscale",
+            baseName: "Grayscale",
+            type: "boolean",
+        },        
+        {
+            name: "isPartialLoaded",
+            baseName: "IsPartialLoaded",
+            type: "boolean",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(DeconvolutionFilterProperties.attributeTypeMap);
+    }
+
+    /**
+     * Gets or sets the SNR(signal-to-noise ratio) recommended range 0.002 - 0.009, default value = 0.007
+     */
+    public snr: number;
+    
+    /**
+     * Gets or sets the brightness. recommended range 1 - 1.5 default value = 1.15
+     */
+    public brightness: number;
+    
+    /**
+     * Gets or sets a value indicating whether this DeconvolutionFilterProperties is grayscale. Return grayscale mode or RGB mode.
+     */
+    public grayscale: boolean;
+    
+    /**
+     * Gets a value indicating whether this instance is partial loaded.
+     */
+    public isPartialLoaded: boolean;
+    
+    public constructor(init?: Partial<DeconvolutionFilterProperties>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * File Version
  */
 export class FileVersion extends StorageFile {
@@ -4381,6 +4674,317 @@ export class JpegExifData extends ExifData {
     }        
 }
 
+/**
+ * Median filter
+ */
+export class MedianFilterProperties extends FilterPropertiesBase {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "size",
+            baseName: "Size",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(MedianFilterProperties.attributeTypeMap);
+    }
+
+    /**
+     * Gets or sets the size.
+     */
+    public size: number;
+    
+    public constructor(init?: Partial<MedianFilterProperties>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Small rectangular filter options
+ */
+export class SmallRectangularFilterProperties extends FilterPropertiesBase {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(SmallRectangularFilterProperties.attributeTypeMap);
+    }
+
+    public constructor(init?: Partial<SmallRectangularFilterProperties>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Gauss Wiener Filter Options Deblur gauss
+ */
+export class GaussWienerFilterProperties extends DeconvolutionFilterProperties {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "radius",
+            baseName: "Radius",
+            type: "number",
+        },        
+        {
+            name: "smooth",
+            baseName: "Smooth",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(GaussWienerFilterProperties.attributeTypeMap);
+    }
+
+    /**
+     * Gets or sets the radius.
+     */
+    public radius: number;
+    
+    /**
+     * Gets or sets the smooth.
+     */
+    public smooth: number;
+    
+    public constructor(init?: Partial<GaussWienerFilterProperties>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * The Gaussian blur
+ */
+export class GaussianBlurFilterProperties extends ConvolutionFilterProperties {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "radius",
+            baseName: "Radius",
+            type: "number",
+        },        
+        {
+            name: "sigma",
+            baseName: "Sigma",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(GaussianBlurFilterProperties.attributeTypeMap);
+    }
+
+    /**
+     * Gets or sets the radius.
+     */
+    public radius: number;
+    
+    /**
+     * Gets or sets the sigma.
+     */
+    public sigma: number;
+    
+    public constructor(init?: Partial<GaussianBlurFilterProperties>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Deconvolution filter options deblur motion             
+ */
+export class MotionWienerFilterProperties extends DeconvolutionFilterProperties {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "length",
+            baseName: "Length",
+            type: "number",
+        },        
+        {
+            name: "smooth",
+            baseName: "Smooth",
+            type: "number",
+        },        
+        {
+            name: "angle",
+            baseName: "Angle",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(MotionWienerFilterProperties.attributeTypeMap);
+    }
+
+    /**
+     * Gets or sets the length.             
+     */
+    public length: number;
+    
+    /**
+     * Gets or sets the smooth.             
+     */
+    public smooth: number;
+    
+    /**
+     * Gets or sets the angle in gradus.             
+     */
+    public angle: number;
+    
+    public constructor(init?: Partial<MotionWienerFilterProperties>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * The Sharpen filter options             
+ */
+export class SharpenFilterProperties extends ConvolutionFilterProperties {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "size",
+            baseName: "Size",
+            type: "number",
+        },        
+        {
+            name: "sigma",
+            baseName: "Sigma",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(SharpenFilterProperties.attributeTypeMap);
+    }
+
+    /**
+     * Gets or sets the size.             
+     */
+    public size: number;
+    
+    /**
+     * Gets or sets the sigma.             
+     */
+    public sigma: number;
+    
+    public constructor(init?: Partial<SharpenFilterProperties>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
 const enumsMap = {
 };
 
@@ -4395,6 +4999,7 @@ const typeMap = {
             FileVersions,
             FilesList,
             FilesUploadResult,
+            FilterPropertiesBase,
             GifProperties,
             ImageDuplicates,
             ImageDuplicatesSet,
@@ -4420,8 +5025,18 @@ const typeMap = {
             TiffOptions,
             TiffProperties,
             WebPProperties,
+            BigRectangularFilterProperties,
+            BilateralSmoothingFilterProperties,
+            ConvolutionFilterProperties,
+            DeconvolutionFilterProperties,
             FileVersion,
             JpegExifData,
+            MedianFilterProperties,
+            SmallRectangularFilterProperties,
+            GaussWienerFilterProperties,
+            GaussianBlurFilterProperties,
+            MotionWienerFilterProperties,
+            SharpenFilterProperties,
 };
 
 export {enumsMap, typeMap};
@@ -5806,6 +6421,45 @@ export class ExtractImagePropertiesRequest {
     public imageData: Buffer;
     
     public constructor(init?: Partial<ExtractImagePropertiesRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for FilterEffectImage operation.
+ */
+export class FilterEffectImageRequest {
+    /**
+     * Filename of an image.
+     */
+    public name: string;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+
+    /**
+     * Filter type (BigRectangular, SmallRectangular, Median, GaussWiener, MotionWiener, GaussianBlur, Sharpen, BilateralSmoothing).
+     */
+    public filterType: string;
+
+    /**
+     * Filter properties.
+     */
+    public filterProperties: FilterPropertiesBase;
+
+    /**
+     * Folder with image to process.
+     */
+    public folder: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<FilterEffectImageRequest>) {        
         Object.assign(this, init);
     } 
 }

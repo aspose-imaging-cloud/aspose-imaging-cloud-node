@@ -1990,6 +1990,59 @@ export class ImagingApi {
     }
 
     /**
+     * Performs filtering effects on an existing image.
+     * @param requestObj contains request parameters
+     */
+    public async filterEffectImage(requestObj: model.FilterEffectImageRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling filterEffectImage.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/{name}/filterEffect"
+            .replace("{" + "name" + "}", String(requestObj.name));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling filterEffectImage.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling filterEffectImage.');
+        }
+
+        // verify required parameter 'requestObj.filterType' is not null or undefined
+        if (requestObj.filterType === null || requestObj.filterType === undefined) {
+            throw new Error('Required parameter "requestObj.filterType" was null or undefined when calling filterEffectImage.');
+        }
+
+        // verify required parameter 'requestObj.filterProperties' is not null or undefined
+        if (requestObj.filterProperties === null || requestObj.filterProperties === undefined) {
+            throw new Error('Required parameter "requestObj.filterProperties" was null or undefined when calling filterEffectImage.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterType", requestObj.filterType);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.filterProperties, requestObj.filterProperties.constructor.name === "Object" ? "FilterPropertiesBase" : requestObj.filterProperties.constructor.name),
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Find images duplicates.
      * @param requestObj contains request parameters
      */
