@@ -108,6 +108,7 @@ class Filter {
 }
 
 const testClass: FilterEffectApiTests = new FilterEffectApiTests();
+const useExtendedTests: boolean = process.env.ExtendedTests === "true";
 
 beforeEach(() => {
     jest.setTimeout(ApiTester.DefaultTimeout);
@@ -121,7 +122,7 @@ afterAll(async () => {
     await testClass.afterAll();
 });
 
-describe.each([".dicom", ".djvu", ".gif", ".psd", ".tiff", "webp"])(
+describe.each(useExtendedTests ? [".dicom", ".djvu", ".gif", ".psd", ".tiff", "webp"] : [".psd"])(
     "FilterEffectTestSuite_V3",
     (formatExtension) => {
         test(`filterEffectpedImageTest: format - ${formatExtension}`, async () => {
