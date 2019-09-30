@@ -1990,7 +1990,7 @@ export class ImagingApi {
     }
 
     /**
-     * Performs filtering effects on an existing image.
+     * Apply filtering effects to an existing image.
      * @param requestObj contains request parameters
      */
     public async filterEffectImage(requestObj: model.FilterEffectImageRequest): Promise<Buffer> {
