@@ -998,6 +998,67 @@ export class ImagingApi {
     }
 
     /**
+     * Update parameters of SVG image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+     * @param requestObj contains request parameters
+     */
+    public async createModifiedSvg(requestObj: model.CreateModifiedSvgRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling createModifiedSvg.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/svg";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.imageData' is not null or undefined
+        if (requestObj.imageData === null || requestObj.imageData === undefined) {
+            throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling createModifiedSvg.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "colorType", requestObj.colorType);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "textAsShapes", requestObj.textAsShapes);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleX", requestObj.scaleX);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleY", requestObj.scaleY);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageWidth", requestObj.pageWidth);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageHeight", requestObj.pageHeight);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "borderX", requestObj.borderX);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "borderY", requestObj.borderY);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bkColor", requestObj.bkColor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Update parameters of TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
@@ -2716,6 +2777,52 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+            json: true,
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Update parameters of existing SVG image.
+     * @param requestObj contains request parameters
+     */
+    public async modifySvg(requestObj: model.ModifySvgRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling modifySvg.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/{name}/svg"
+            .replace("{" + "name" + "}", String(requestObj.name));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling modifySvg.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "colorType", requestObj.colorType);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "textAsShapes", requestObj.textAsShapes);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleX", requestObj.scaleX);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scaleY", requestObj.scaleY);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageWidth", requestObj.pageWidth);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageHeight", requestObj.pageHeight);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "borderX", requestObj.borderX);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "borderY", requestObj.borderY);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bkColor", requestObj.bkColor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fromScratch", requestObj.fromScratch);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
