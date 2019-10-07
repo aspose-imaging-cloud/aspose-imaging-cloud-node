@@ -1889,6 +1889,9 @@ export class FilterPropertiesBase {
         return FilterPropertiesBase.attributeTypeMap;
     }
 
+    /**
+     * discriminator
+     */
     public discriminator: string;
     
     public constructor(init?: Partial<FilterPropertiesBase>) {
