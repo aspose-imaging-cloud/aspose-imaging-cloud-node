@@ -1561,6 +1561,43 @@ export class ImagingApi {
     }
 
     /**
+     * Extract images features from web page and add them to search context
+     * @param requestObj contains request parameters
+     */
+    public async createWebSiteImageFeatures(requestObj: model.CreateWebSiteImageFeaturesRequest): Promise<any> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling createWebSiteImageFeatures.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/ai/imageSearch/{searchContextId}/features/web"
+            .replace("{" + "searchContextId" + "}", String(requestObj.searchContextId));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.searchContextId' is not null or undefined
+        if (requestObj.searchContextId === null || requestObj.searchContextId === undefined) {
+            throw new Error('Required parameter "requestObj.searchContextId" was null or undefined when calling createWebSiteImageFeatures.');
+        }
+
+        // verify required parameter 'requestObj.imagesSource' is not null or undefined
+        if (requestObj.imagesSource === null || requestObj.imagesSource === undefined) {
+            throw new Error('Required parameter "requestObj.imagesSource" was null or undefined when calling createWebSiteImageFeatures.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imagesSource", requestObj.imagesSource);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
+        await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve();        
+    }
+
+    /**
      * Crop an existing image.
      * @param requestObj contains request parameters
      */

@@ -5321,7 +5321,7 @@ export class CreateImageFeaturesRequest {
     public imageId: string;
 
     /**
-     * Images folder.
+     * Images source - a folder
      */
     public imagesFolder: string;
 
@@ -6154,6 +6154,35 @@ export class CreateUpdatedImageRequest {
     public storage: string;
     
     public constructor(init?: Partial<CreateUpdatedImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateWebSiteImageFeatures operation.
+ */
+export class CreateWebSiteImageFeaturesRequest {
+    /**
+     * The search context identifier.
+     */
+    public searchContextId: string;
+
+    /**
+     * Images source - a web page
+     */
+    public imagesSource: string;
+
+    /**
+     * The folder.
+     */
+    public folder: string;
+
+    /**
+     * The storage.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateWebSiteImageFeaturesRequest>) {        
         Object.assign(this, init);
     } 
 }

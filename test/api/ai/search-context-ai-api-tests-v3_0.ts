@@ -173,6 +173,21 @@ class SearchContextTests extends TestImagingAIBase {
                 });
         }
 
+        public async extractAndAddImageFeaturesFromWebsiteTest() {
+            await this.runTestWithLogging("ExtractAndAddImageFeaturesFromWebsiteTest", async () => {
+                const imageSourceUrl = encodeURI("https://www.f1news.ru/interview/hamilton/140909.shtml");
+                await this.imagingApi.createWebSiteImageFeatures(new imaging.CreateWebSiteImageFeaturesRequest({searchContextId: this.SearchContextId, imagesSource: imageSourceUrl, storage: this.TestStorage}));
+
+                await this.waitSearchContextIdle();
+
+                const imageUrl =  encodeURI("https://cdn.f1ne.ws/userfiles/hamilton/140909.jpg");
+                const response = await this.imagingApi.getImageFeatures(new imaging.GetImageFeaturesRequest({
+                    searchContextId: this.SearchContextId, imageId: imageUrl, storage: this.TestStorage }));
+
+                expect(response.features.length).toBeGreaterThan(0);
+            })
+        }
+
         public async getImageFeaturesTest() {
             await this.runTestWithLogging("getImageFeaturesTest",
                 async () => {
@@ -327,6 +342,10 @@ test(`extractAndAddImageFeaturesTest`, async () => {
 
 test(`extractAndAddImageFeaturesFromFolderTest`, async () => {   
      await testClass.extractAndAddImageFeaturesFromFolderTest();
+});
+
+test(`extractAndAddImageFeaturesFromWebsiteTest`, async () => {
+    await testClass.extractAndAddImageFeaturesFromWebsiteTest();
 });
 
 test(`getImageFeaturesTest`, async () => {
