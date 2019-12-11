@@ -1583,32 +1583,16 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.imagesSource" was null or undefined when calling createWebSiteImageFeatures.');
         }
 
-        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imagesSource", requestObj.imagesSource);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        if (requestObj.imageData !== undefined) {
-            const paramKey = "imageData";
-            let formValue = null;
-            formValue = requestObj.imageData;
-            formParams[paramKey] = {
-                value: formValue,
-                options: {
-                    filename: "imageData",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                },
-            };
-        }
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
+            json: true,
         };
         
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
-        }
         await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve();        
     }
