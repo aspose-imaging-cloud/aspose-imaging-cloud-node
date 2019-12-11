@@ -6173,6 +6173,11 @@ export class CreateWebSiteImageFeaturesRequest {
     public imagesSource: string;
 
     /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
      * The folder.
      */
     public folder: string;
