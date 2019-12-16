@@ -58,6 +58,8 @@ class SearchContextTests extends TestImagingAIBase {
                         expect(error instanceof imaging.ApiError).toBeTruthy();
                         caught = true;
                     }
+					
+					this.SearchContextId = null;
 
                     expect(caught).toBeTruthy();
                 });
