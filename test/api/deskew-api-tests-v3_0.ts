@@ -155,6 +155,8 @@ if (useExtendedTests) {
         [".jpg", true, true, null], [".jpg", false, true, null],
         [".tiff", true, true, null], [".tiff", false, true, null],
         [".webp", true, true, null], [".webp", false, true, null],
+        [".dng", true, true, null], [".dng", false, true, null],
+        [".djvu", true, true, null], [".djvu", false, true, null]
         ])
         ("DeskewTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage, resizeProportionally, bkColor) => {
