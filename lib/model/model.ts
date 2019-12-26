@@ -5297,7 +5297,7 @@ export class CreateDeskewedImageRequest {
     public resizeProportionally: boolean;
 
     /**
-     * background color
+     * Background color
      */
     public bkColor: string;
 

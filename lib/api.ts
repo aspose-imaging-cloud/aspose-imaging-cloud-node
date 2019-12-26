@@ -393,7 +393,7 @@ export class ImagingApi {
     }
 
     /**
-     * Crop an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+     * Deskew an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async createDeskewedImage(requestObj: model.CreateDeskewedImageRequest): Promise<Buffer> {
