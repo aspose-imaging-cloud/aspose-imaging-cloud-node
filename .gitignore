@@ -1,9 +1,10 @@
 wwwroot/*.js
 node_modules
+examples/node_modules
 typings
 .vs/
 .vscode/
 dist/
+examples/dist
 package-lock.json
 .swagger-codegen-ignore
-.idea/
