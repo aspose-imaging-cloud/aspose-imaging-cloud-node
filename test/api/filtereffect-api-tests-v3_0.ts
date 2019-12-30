@@ -126,7 +126,7 @@ describe.each(useExtendedTests ? [".dicom", ".djvu", ".gif", ".psd", ".tiff", "w
     "FilterEffectTestSuite_V3",
     (formatExtension) => {
         test(`filterEffectpedImageTest: format - ${formatExtension}`, async () => {
-            await testClass.filterEffectImageTest(formatExtension, null);
+            await testClass.filterEffectImageTest(formatExtension);
         });
 
         beforeEach(() => {
