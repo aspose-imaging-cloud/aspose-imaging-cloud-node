@@ -62,12 +62,12 @@ class UpdateApiTests extends ApiTester {
 
                 await this.testGetRequest(
                         "updateImageTest",
-                        `Input image: ${name}; Output format: ${format}; New width: ${newWidth}; New height: ${newHeight}; X: ${x}; Y: ${y}; 
+                        `Input image: ${name}; Output format: ${format ? format : "null"}; New width: ${newWidth}; New height: ${newHeight}; X: ${x}; Y: ${y}; 
                             Rect width: ${rectWidth}; Rect height: ${rectHeight}; Rotate/flip method: ${rotateFlipMethod}`,
                         name,
                         async () => {
-                            const request: imaging.UpdateImageRequest = new imaging.UpdateImageRequest({ name, format, newWidth, newHeight, x, y, rectWidth, 
-                                rectHeight, rotateFlipMethod, folder, storage });
+                            const request: imaging.UpdateImageRequest = new imaging.UpdateImageRequest({ name, newWidth, newHeight, x, y, rectWidth,
+                                rectHeight, rotateFlipMethod, format, folder, storage });
                             const response = await this.imagingApi.updateImage(request);
                             return response;
                         },
@@ -110,18 +110,18 @@ class UpdateApiTests extends ApiTester {
             }
 
             for (const format of formatsToExport) {
-                outName = `${name}_update.${format}`;
+                outName = `${name}_update.${format ? format : formatExtension}`;
 
                 await this.testPostRequest(
                         "createUpdatedImageTest",
                         saveResultToStorage,
-                        `Input image: ${name}; Output format: ${format}; New width: ${newWidth}; New height: ${newHeight}; X: ${x}; Y: ${y}; 
+                        `Input image: ${name}; Output format: ${format ? format : "null"}; New width: ${newWidth}; New height: ${newHeight}; X: ${x}; Y: ${y}; 
                             Rect width: ${rectWidth}; Rect height: ${rectHeight}; Rotate/flip method: ${rotateFlipMethod}`,
                         name,
                         outName,
                         async (inputStream, outPath) => {
-                            const request: imaging.CreateUpdatedImageRequest = new imaging.CreateUpdatedImageRequest({ imageData: inputStream, format, newWidth, newHeight, 
-                                x, y, rectWidth, rectHeight, rotateFlipMethod, outPath, storage });
+                            const request: imaging.CreateUpdatedImageRequest = new imaging.CreateUpdatedImageRequest({ imageData: inputStream, newWidth, newHeight,
+                                x, y, rectWidth, rectHeight, rotateFlipMethod, format, outPath, storage });
                             const response = await this.imagingApi.createUpdatedImage(request);
                             return response;
                         },
@@ -176,17 +176,17 @@ if (useExtendedTests) {
     console.log("Extended tests enabled");
     
     describe.each([
-        [".bmp", true],  [".bmp", false], 
-        [".dicom", true], [".dicom", false], 
+        [".bmp", true, [null]],  [".bmp", false, [null]],
+        [".dicom", true, [null]], [".dicom", false, [null]],
         /* TODO: enable after IMAGINGCLOUD-51 is resolved
-        [".gif", true], [".gif", false], 
+        [".gif", true, [null]], [".gif", false, [null]],
         */
-        [".j2k", true], [".j2k", false],
-        [".png", true], [".png", false],
-        [".psd", true], [".psd", false],
-        [".jpg", true], [".jpg", false],
-        [".tiff", true], [".tiff", false],
-        [".webp", true], [".webp", false],
+        [".j2k", true, [null]], [".j2k", false, [null]],
+        [".png", true, [null]], [".png", false, [null]],
+        [".psd", true, [null]], [".psd", false, [null]],
+        [".jpg", true, [null]], [".jpg", false, [null]],
+        [".tiff", true, [null]], [".tiff", false, [null]],
+        [".webp", true, [null]], [".webp", false, [null]],
         ])
         ("UpdateTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage) => {

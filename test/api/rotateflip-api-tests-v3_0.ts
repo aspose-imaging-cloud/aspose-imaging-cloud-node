@@ -57,10 +57,10 @@ class RotateFlipApiTests extends ApiTester {
 
                 await this.testGetRequest(
                         "rotateFlipImageTest",
-                        `Input image: ${name}; Output format: ${format}; Method: ${method}`,
+                        `Input image: ${name}; Output format: ${format ? format : "null"}; Method: ${method}`,
                         name,
                         async () => {
-                            const request: imaging.RotateFlipImageRequest = new imaging.RotateFlipImageRequest({ name, format, method,  
+                            const request: imaging.RotateFlipImageRequest = new imaging.RotateFlipImageRequest({ name, method, format,
                                 folder, storage });
                             const response = await this.imagingApi.rotateFlipImage(request);
                             return response;
@@ -107,16 +107,16 @@ class RotateFlipApiTests extends ApiTester {
             }
 
             for (const format of formatsToExport) {
-                outName = `${name}_rotateFlip.${format}`;
+                outName = `${name}_rotateFlip.${format ? format : formatExtension}`;
 
                 await this.testPostRequest(
                         "createRotateFlippedImageTest",
                         saveResultToStorage,
-                        `Input image: ${name}; Output format: ${format}; Method: ${method}`,
+                        `Input image: ${name}; Output format: ${format ? format : "null"}; Method: ${method}`,
                         name,
                         outName,
                         async (inputStream, outPath) => {
-                            const request: imaging.CreateRotateFlippedImageRequest = new imaging.CreateRotateFlippedImageRequest({ imageData: inputStream, format, method, 
+                            const request: imaging.CreateRotateFlippedImageRequest = new imaging.CreateRotateFlippedImageRequest({ imageData: inputStream, method, format,
                                 outPath, storage });
                             const response = await this.imagingApi.createRotateFlippedImage(request);
                             return response;

@@ -79,9 +79,9 @@ class FilterEffectApiTests extends ApiTester {
                         async () => {
                             const request: imaging.FilterEffectImageRequest = new imaging.FilterEffectImageRequest({
                                 name,
-                                format,
                                 filterType: filter.filterType,
                                 filterProperties: filter.filterProperties,
+                                format,
                                 folder,
                                 storage
                             });
@@ -126,7 +126,7 @@ describe.each(useExtendedTests ? [".dicom", ".djvu", ".gif", ".psd", ".tiff", "w
     "FilterEffectTestSuite_V3",
     (formatExtension) => {
         test(`filterEffectpedImageTest: format - ${formatExtension}`, async () => {
-            await testClass.filterEffectImageTest(formatExtension);
+            await testClass.filterEffectImageTest(formatExtension, null);
         });
 
         beforeEach(() => {

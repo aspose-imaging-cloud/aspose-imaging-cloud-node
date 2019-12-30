@@ -57,10 +57,10 @@ class ResizeApiTests extends ApiTester {
 
                 await this.testGetRequest(
                         "resizeImageTest",
-                        `Input image: ${name}; Output format: ${format}; New width: ${newWidth}; New height: ${newHeight}`,
+                        `Input image: ${name}; Output format: ${format ? format : "null"}; New width: ${newWidth}; New height: ${newHeight}`,
                         name,
                         async () => {
-                            const request: imaging.ResizeImageRequest = new imaging.ResizeImageRequest({ name, format, newWidth, newHeight, 
+                            const request: imaging.ResizeImageRequest = new imaging.ResizeImageRequest({ name, newWidth, newHeight, format,
                                 folder, storage });
                             const response = await this.imagingApi.resizeImage(request);
                             return response;
@@ -99,12 +99,12 @@ class ResizeApiTests extends ApiTester {
             }
 
             for (const format of formatsToExport) {
-                outName = `${name}_resize.${format}`;
+                outName = `${name}_resize.${format ? format : formatExtension}`;
 
                 await this.testPostRequest(
                         "createResizedImageTest",
                         saveResultToStorage,
-                        `Input image: ${name}; Output format: ${format}; New width: ${newWidth}; New height: ${newHeight}`,
+                        `Input image: ${name}; Output format: ${format ? format : "null"}; New width: ${newWidth}; New height: ${newHeight}`,
                         name,
                         outName,
                         async (inputStream, outPath) => {
@@ -164,17 +164,17 @@ if (useExtendedTests) {
     console.log("Extended tests enabled");
     
     describe.each([
-        [".bmp", true],  [".bmp", false], 
-        [".dicom", true], [".dicom", false], 
+        [".bmp", true, [null]],  [".bmp", false, [null]],
+        [".dicom", true, [null]], [".dicom", false, [null]],
         /* TODO: enable after IMAGINGCLOUD-51 is resolved
-        [".gif", true], [".gif", false], 
+        [".gif", true, [null]], [".gif", false, [null]],
         */
-        [".j2k", true], [".j2k", false],
-        [".png", true], [".png", false],
-        [".psd", true], [".psd", false],
-        [".jpg", true], [".jpg", false],
-        [".tiff", true], [".tiff", false],
-        [".webp", true], [".webp", false],
+        [".j2k", true, [null]], [".j2k", false, [null]],
+        [".png", true, [null]], [".png", false, [null]],
+        [".psd", true, [null]], [".psd", false, [null]],
+        [".jpg", true, [null]], [".jpg", false, [null]],
+        [".tiff", true, [null]], [".tiff", false, [null]],
+        [".webp", true, [null]], [".webp", false, [null]],
         ])
         ("ResizeTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage) => {

@@ -68,8 +68,7 @@ class DeskewApiTests extends ApiTester {
         formatExtension: string,
         saveResultToStorage: boolean,
         resizeProportionally: boolean,
-        bkColor: string)
-    {
+        bkColor: string) {
         let name: string = null;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
@@ -156,7 +155,7 @@ if (useExtendedTests) {
         [".tiff", true, true, null], [".tiff", false, true, null],
         [".webp", true, true, null], [".webp", false, true, null],
         [".dng", true, true, null], [".dng", false, true, null],
-        [".djvu", true, true, null], [".djvu", false, true, null]
+        [".djvu", true, true, null], [".djvu", false, true, null],
         ])
         ("DeskewTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage, resizeProportionally, bkColor) => {

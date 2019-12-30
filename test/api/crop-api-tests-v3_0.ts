@@ -58,11 +58,11 @@ class CropApiTests extends ApiTester {
             for (const format of formatsToExport) {
                 await this.testGetRequest(
                         "cropImageTest",
-                        `Input image: ${name}; Output format: ${format}; Width: ${width}; Height: ${height}; X: ${x}; Y: ${y}`,
+                        `Input image: ${name}; Output format: ${format ? format : "null"}; Width: ${width}; Height: ${height}; X: ${x}; Y: ${y}`,
                         name,
                         async () => {
-                            const request: imaging.CropImageRequest = new imaging.CropImageRequest({ name, format, x, y, width, height,  
-                                folder, storage });
+                            const request: imaging.CropImageRequest = new imaging.CropImageRequest({ name, x, y, width, height,
+                                format, folder, storage });
                             const response = await this.imagingApi.cropImage(request);
                             return response;
                         },
@@ -102,17 +102,17 @@ class CropApiTests extends ApiTester {
             }
 
             for (const format of formatsToExport) {
-                outName = `${name}_crop.${format}`;
+                outName = `${name}_crop.${format ? format : formatExtension}`;
 
                 await this.testPostRequest(
                         "createCroppedImageTest",
                         saveResultToStorage,
-                        `Input image: ${name}; Output format: ${format}; Width: ${width}; Height: ${height}; X: ${x}; Y: ${y}`,
+                        `Input image: ${name}; Output format: ${format ? format : "null"}; Width: ${width}; Height: ${height}; X: ${x}; Y: ${y}`,
                         name,
                         outName,
                         async (inputStream, outPath) => {
-                            const request: imaging.CreateCroppedImageRequest = new imaging.CreateCroppedImageRequest({ imageData: inputStream, format, x, y, width, height, 
-                                outPath, storage });
+                            const request: imaging.CreateCroppedImageRequest = new imaging.CreateCroppedImageRequest({ imageData: inputStream, x, y, width, height,
+                                format, outPath, storage });
                             const response = await this.imagingApi.createCroppedImage(request);
                             return response;
                         },
@@ -144,7 +144,7 @@ afterAll(async () =>  {
     await testClass.afterAll();
 });
 
-describe.each([[".jpg", true], [".jpg", false]])(
+describe.each([[".jpg", true, [null]], [".jpg", false, [null]]])(
     "CropTestSuite_V3",
     (formatExtension, saveResultToStorage) => {
 
@@ -168,17 +168,17 @@ if (useExtendedTests) {
     console.log("Extended tests enabled");
     
     describe.each([
-        [".bmp", true],  [".bmp", false], 
-        [".dicom", true], [".dicom", false], 
+        [".bmp", true, [null]],  [".bmp", false, [null]],
+        [".dicom", true, [null]], [".dicom", false, [null]],
         /* TODO: enable after IMAGINGCLOUD-51 is resolved
-        [".gif", true], [".gif", false], 
+        [".gif", true, [null]], [".gif", false, [null]],
         */
-        [".j2k", true], [".j2k", false],
-        [".png", true], [".png", false],
-        [".psd", true], [".psd", false],
-        [".jpg", true], [".jpg", false],
-        [".tiff", true], [".tiff", false],
-        [".webp", true], [".webp", false],
+        [".j2k", true, [null]], [".j2k", false, [null]],
+        [".png", true, [null]], [".png", false, [null]],
+        [".psd", true, [null]], [".psd", false, [null]],
+        [".jpg", true, [null]], [".jpg", false, [null]],
+        [".tiff", true, [null]], [".tiff", false, [null]],
+        [".webp", true, [null]], [".webp", false, [null]],
         ])
         ("CropTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage) => {
