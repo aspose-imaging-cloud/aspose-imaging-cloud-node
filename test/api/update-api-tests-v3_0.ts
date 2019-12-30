@@ -183,7 +183,7 @@ if (useExtendedTests) {
         */
         [".j2k", true, [null]], [".j2k", false, [null]],
         [".png", true, [null]], [".png", false, [null]],
-        [".psd", true, [null]], [".psd", false, [null]],
+        [".psd", true], [".psd", false],
         [".jpg", true, [null]], [".jpg", false, [null]],
         [".tiff", true, [null]], [".tiff", false, [null]],
         [".webp", true, [null]], [".webp", false, [null]],
