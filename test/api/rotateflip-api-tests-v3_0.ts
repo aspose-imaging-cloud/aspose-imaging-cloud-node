@@ -158,17 +158,17 @@ afterAll(async () =>  {
     await testClass.afterAll();
 });
 
-describe.each([[".jpg", true], [".jpg", false]])(
+describe.each([[".jpg", true, [null]], [".jpg", false, [null]]])(
     "RotateFlipTestSuite_V3",
-    (formatExtension, saveResultToStorage) => {
+    (formatExtension, saveResultToStorage, additionalExportFormats) => {
         if (!saveResultToStorage) {
             test(`rotateFlipImageTest`, async () => {
-                await testClass.rotateFlipImageTest(formatExtension);
+                await testClass.rotateFlipImageTest(formatExtension, additionalExportFormats);
             });
         }
 
         test(`createRotateFlippedImageTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.createRotateFlippedImageTest(formatExtension, saveResultToStorage);
+            await testClass.createRotateFlippedImageTest(formatExtension, saveResultToStorage, additionalExportFormats);
         });
 
         beforeEach(() => {
@@ -181,28 +181,28 @@ if (useExtendedTests) {
     console.log("Extended tests enabled");
     
     describe.each([
-        [".bmp", true],  [".bmp", false], 
-        [".dicom", true], [".dicom", false], 
+        [".bmp", true, [null]],  [".bmp", false, [null]],
+        [".dicom", true, []], [".dicom", false, []],
         /* TODO: enable after IMAGINGCLOUD-51 is resolved
         [".gif", true], [".gif", false], 
         */
-        [".j2k", true], [".j2k", false],
-        [".png", true], [".png", false],
-        [".psd", true], [".psd", false],
-        [".jpg", true], [".jpg", false],
-        [".tiff", true], [".tiff", false],
-        [".webp", true], [".webp", false],
+        [".j2k", true, [null]], [".j2k", false, [null]],
+        [".png", true, [null]], [".png", false, [null]],
+        [".psd", true, [null]], [".psd", false, [null]],
+        [".jpg", true, [null]], [".jpg", false, [null]],
+        [".tiff", true, [null]], [".tiff", false, [null]],
+        [".webp", true, [null]], [".webp", false, [null]],
         ])
         ("RotateFlipTestSuite_Extended_V3",
-        (formatExtension, saveResultToStorage) => {
+        (formatExtension, saveResultToStorage, additionalExportFormats) => {
             if (!saveResultToStorage) {
                 test(`rotateFlipImageTest`, async () => {
-                    await testClass.rotateFlipImageTest(formatExtension);
+                    await testClass.rotateFlipImageTest(formatExtension, additionalExportFormats);
                 });
             }
     
             test(`createRotateFlippedImageTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.createRotateFlippedImageTest(formatExtension, saveResultToStorage);
+                await testClass.createRotateFlippedImageTest(formatExtension, saveResultToStorage, additionalExportFormats);
             });
 
             beforeEach(() => {

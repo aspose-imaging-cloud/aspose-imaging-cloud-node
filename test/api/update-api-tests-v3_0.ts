@@ -153,17 +153,17 @@ afterAll(async () =>  {
     await testClass.afterAll();
 });
 
-describe.each([[".jpg", true], [".jpg", false]])(
+describe.each([[".jpg", true, [null]], [".jpg", false, [null]]])(
     "UpdateTestSuite_V3",
-    (formatExtension, saveResultToStorage) => {
+    (formatExtension, saveResultToStorage, additionalExportFormats) => {
         if (!saveResultToStorage) {
             test(`updateImageTest`, async () => {
-                await testClass.updateImageTest(formatExtension);
+                await testClass.updateImageTest(formatExtension, additionalExportFormats);
             });
         }
 
         test(`createUpdatedImageTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.createUpdatedImageTest(formatExtension, saveResultToStorage);
+            await testClass.createUpdatedImageTest(formatExtension, saveResultToStorage, additionalExportFormats);
         });
 
         beforeEach(() => {
@@ -177,7 +177,7 @@ if (useExtendedTests) {
     
     describe.each([
         [".bmp", true, [null]],  [".bmp", false, [null]],
-        [".dicom", true, [null]], [".dicom", false, [null]],
+        [".dicom", true, []], [".dicom", false, []],
         /* TODO: enable after IMAGINGCLOUD-51 is resolved
         [".gif", true, [null]], [".gif", false, [null]],
         */
@@ -189,15 +189,15 @@ if (useExtendedTests) {
         [".webp", true, [null]], [".webp", false, [null]],
         ])
         ("UpdateTestSuite_Extended_V3",
-        (formatExtension, saveResultToStorage) => {
+        (formatExtension, saveResultToStorage, additionalExportFormats) => {
             if (!saveResultToStorage) {
                 test(`updateImageTest`, async () => {
-                    await testClass.updateImageTest(formatExtension);
+                    await testClass.updateImageTest(formatExtension, additionalExportFormats);
                 });
             }
 
             test(`createUpdatedImageTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.createUpdatedImageTest(formatExtension, saveResultToStorage);
+                await testClass.createUpdatedImageTest(formatExtension, saveResultToStorage, additionalExportFormats);
             });
 
             beforeEach(() => {
