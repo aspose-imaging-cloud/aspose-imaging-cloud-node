@@ -144,8 +144,7 @@ if (useExtendedTests) {
     
     describe.each([
         [".bmp", true, true, null],  [".bmp", false, true, null],
-        [".dicom", true, true, null], [".dicom", false, true, null],
-        /* TODO: enable after IMAGINGCLOUD-51 is resolved
+         /* TODO: enable after IMAGINGCLOUD-51 is resolved
         [".gif", true], [".gif", false], 
         */
         [".j2k", true, true, null], [".j2k", false, true, null],
@@ -154,8 +153,10 @@ if (useExtendedTests) {
         [".jpg", true, true, null], [".jpg", false, true, null],
         [".tiff", true, true, null], [".tiff", false, true, null],
         [".webp", true, true, null], [".webp", false, true, null],
-        [".dng", true, true, null], [".dng", false, true, null],
-        [".djvu", true, true, null], [".djvu", false, true, null],
+        // TODO: enable after those image formats save is implemented
+        // [".dng", true, true, null], [".dng", false, true, null],
+        // [".djvu", true, true, null], [".djvu", false, true, null],
+        // [".dicom", true, true, null], [".dicom", false, true, null],
         ])
         ("DeskewTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage, resizeProportionally, bkColor) => {

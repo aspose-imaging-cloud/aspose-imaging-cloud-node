@@ -6405,7 +6405,7 @@ export class DeleteSearchImageRequest {
  */
 export class DeskewImageRequest {
     /**
-     * Filename of an image.
+     * Image file name.
      */
     public name: string;
 
