@@ -146,16 +146,16 @@ afterAll(async () =>  {
 
 describe.each([[".jpg", true, [null]], [".jpg", false, [null]]])(
     "CropTestSuite_V3",
-    (formatExtension, saveResultToStorage) => {
+    (formatExtension, saveResultToStorage, additionalExportFormats) => {
 
         if (!saveResultToStorage) {
             test(`cropImageTest`, async () => {
-                await testClass.cropImageTest(formatExtension);
+                await testClass.cropImageTest(formatExtension, additionalExportFormats);
             });
         }
 
         test(`createCroppedImageTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.createCroppedImageTest(formatExtension, saveResultToStorage);
+            await testClass.createCroppedImageTest(formatExtension, saveResultToStorage, additionalExportFormats);
         });
 
         beforeEach(() => {
@@ -168,28 +168,28 @@ if (useExtendedTests) {
     console.log("Extended tests enabled");
     
     describe.each([
-        [".bmp", true],  [".bmp", false],
+        [".bmp", true, [null]],  [".bmp", false, [null]],
         [".dicom", true], [".dicom", false],
         /* TODO: enable after IMAGINGCLOUD-51 is resolved
         [".gif", true], [".gif", false],
         */
-        [".j2k", true], [".j2k", false],
-        [".png", true], [".png", false],
-        [".psd", true], [".psd", false],
-        [".jpg", true], [".jpg", false],
-        [".tiff", true], [".tiff", false],
-        [".webp", true], [".webp", false],
+        [".j2k", true, [null]], [".j2k", false, [null]],
+        [".png", true, [null]], [".png", false, [null]],
+        [".psd", true, [null]], [".psd", false, [null]],
+        [".jpg", true, [null]], [".jpg", false, [null]],
+        [".tiff", true, [null]], [".tiff", false, [null]],
+        [".webp", true, [null]], [".webp", false, [null]],
         ])
         ("CropTestSuite_Extended_V3",
-        (formatExtension, saveResultToStorage) => {
+        (formatExtension, saveResultToStorage, additionalExportFormats) => {
             if (!saveResultToStorage) {
                 test(`cropImageTest`, async () => {
-                    await testClass.cropImageTest(formatExtension);
+                    await testClass.cropImageTest(formatExtension, additionalExportFormats);
                 });
             }
     
             test(`createCroppedImageTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.createCroppedImageTest(formatExtension, saveResultToStorage);
+                await testClass.createCroppedImageTest(formatExtension, saveResultToStorage, additionalExportFormats);
             });
 
             beforeEach(() => {
