@@ -393,6 +393,63 @@ export class ImagingApi {
     }
 
     /**
+     * Deskew an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+     * @param requestObj contains request parameters
+     */
+    public async createDeskewedImage(requestObj: model.CreateDeskewedImageRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling createDeskewedImage.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/deskew";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.imageData' is not null or undefined
+        if (requestObj.imageData === null || requestObj.imageData === undefined) {
+            throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling createDeskewedImage.');
+        }
+
+        // verify required parameter 'requestObj.resizeProportionally' is not null or undefined
+        if (requestObj.resizeProportionally === null || requestObj.resizeProportionally === undefined) {
+            throw new Error('Required parameter "requestObj.resizeProportionally" was null or undefined when calling createDeskewedImage.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resizeProportionally", requestObj.resizeProportionally);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bkColor", requestObj.bkColor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Create the folder
      * @param requestObj contains request parameters
      */
@@ -1827,6 +1884,48 @@ export class ImagingApi {
         
         await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve();        
+    }
+
+    /**
+     * Deskew an existing image.
+     * @param requestObj contains request parameters
+     */
+    public async deskewImage(requestObj: model.DeskewImageRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deskewImage.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/{name}/deskew"
+            .replace("{" + "name" + "}", String(requestObj.name));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling deskewImage.');
+        }
+
+        // verify required parameter 'requestObj.resizeProportionally' is not null or undefined
+        if (requestObj.resizeProportionally === null || requestObj.resizeProportionally === undefined) {
+            throw new Error('Required parameter "requestObj.resizeProportionally" was null or undefined when calling deskewImage.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resizeProportionally", requestObj.resizeProportionally);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bkColor", requestObj.bkColor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+            json: true,
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
     }
 
     /**

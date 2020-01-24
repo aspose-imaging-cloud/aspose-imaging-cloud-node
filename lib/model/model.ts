@@ -5283,6 +5283,40 @@ export class CreateCroppedImageRequest {
 }
 
 /**
+ * Request model for CreateDeskewedImage operation.
+ */
+export class CreateDeskewedImageRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Resize proportionally
+     */
+    public resizeProportionally: boolean;
+
+    /**
+     * Background color
+     */
+    public bkColor: string;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image)
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateDeskewedImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for CreateFolder operation.
  */
 export class CreateFolderRequest {
@@ -6362,6 +6396,40 @@ export class DeleteSearchImageRequest {
     public storage: string;
     
     public constructor(init?: Partial<DeleteSearchImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for DeskewImage operation.
+ */
+export class DeskewImageRequest {
+    /**
+     * Image file name.
+     */
+    public name: string;
+
+    /**
+     * Resize proportionally
+     */
+    public resizeProportionally: boolean;
+
+    /**
+     * Background color
+     */
+    public bkColor: string;
+
+    /**
+     * Folder
+     */
+    public folder: string;
+
+    /**
+     * Storage
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<DeskewImageRequest>) {        
         Object.assign(this, init);
     } 
 }
