@@ -5243,11 +5243,6 @@ export class CreateCroppedImageRequest {
     public imageData: Buffer;
 
     /**
-     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-     */
-    public format: string;
-
-    /**
      * X position of start point for cropping rectangle.
      */
     public x: number;
@@ -5266,6 +5261,11 @@ export class CreateCroppedImageRequest {
      * Height of cropping rectangle.
      */
     public height: number;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
 
     /**
      * Path to updated file (if this is empty, response contains streamed image).
@@ -6036,11 +6036,6 @@ export class CreateResizedImageRequest {
     public imageData: Buffer;
 
     /**
-     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-     */
-    public format: string;
-
-    /**
      * New width.
      */
     public newWidth: number;
@@ -6049,6 +6044,11 @@ export class CreateResizedImageRequest {
      * New height.
      */
     public newHeight: number;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
 
     /**
      * Path to updated file (if this is empty, response contains streamed image).
@@ -6075,14 +6075,14 @@ export class CreateRotateFlippedImageRequest {
     public imageData: Buffer;
 
     /**
-     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-     */
-    public format: string;
-
-    /**
      * RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY).
      */
     public method: string;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
 
     /**
      * Path to updated file (if this is empty, response contains streamed image).
@@ -6138,11 +6138,6 @@ export class CreateUpdatedImageRequest {
     public imageData: Buffer;
 
     /**
-     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-     */
-    public format: string;
-
-    /**
      * New width of the scaled image.
      */
     public newWidth: number;
@@ -6176,6 +6171,11 @@ export class CreateUpdatedImageRequest {
      * RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone.
      */
     public rotateFlipMethod: string;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
 
     /**
      * Path to updated file (if this is empty, response contains streamed image).
@@ -6231,11 +6231,6 @@ export class CropImageRequest {
     public name: string;
 
     /**
-     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-     */
-    public format: string;
-
-    /**
      * X position of start point for cropping rectangle.
      */
     public x: number;
@@ -6254,6 +6249,11 @@ export class CropImageRequest {
      * Height of cropping rectangle.
      */
     public height: number;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
 
     /**
      * Folder with image to process.
@@ -6535,11 +6535,6 @@ export class FilterEffectImageRequest {
     public name: string;
 
     /**
-     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-     */
-    public format: string;
-
-    /**
      * Filter type (BigRectangular, SmallRectangular, Median, GaussWiener, MotionWiener, GaussianBlur, Sharpen, BilateralSmoothing).
      */
     public filterType: string;
@@ -6548,6 +6543,11 @@ export class FilterEffectImageRequest {
      * Filter properties.
      */
     public filterProperties: FilterPropertiesBase;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
 
     /**
      * Folder with image to process.
@@ -7549,11 +7549,6 @@ export class ResizeImageRequest {
     public name: string;
 
     /**
-     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-     */
-    public format: string;
-
-    /**
      * New width.
      */
     public newWidth: number;
@@ -7562,6 +7557,11 @@ export class ResizeImageRequest {
      * New height.
      */
     public newHeight: number;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
 
     /**
      * Folder with image to process.
@@ -7588,14 +7588,14 @@ export class RotateFlipImageRequest {
     public name: string;
 
     /**
-     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-     */
-    public format: string;
-
-    /**
      * RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY).
      */
     public method: string;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
 
     /**
      * Folder with image to process.
@@ -7665,11 +7665,6 @@ export class UpdateImageRequest {
     public name: string;
 
     /**
-     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-     */
-    public format: string;
-
-    /**
      * New width of the scaled image.
      */
     public newWidth: number;
@@ -7703,6 +7698,11 @@ export class UpdateImageRequest {
      * RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone.
      */
     public rotateFlipMethod: string;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
 
     /**
      * Folder with image to process.

@@ -79,9 +79,9 @@ class FilterEffectApiTests extends ApiTester {
                         async () => {
                             const request: imaging.FilterEffectImageRequest = new imaging.FilterEffectImageRequest({
                                 name,
-                                format,
                                 filterType: filter.filterType,
                                 filterProperties: filter.filterProperties,
+                                format,
                                 folder,
                                 storage
                             });
