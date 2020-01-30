@@ -1,10 +1,10 @@
 {
-  "name": "@asposecloud/asposeimagingcloud",
-  "version": "19.12.0",
+  "name": "@asposecloud/aspose-imaging-cloud",
+  "version": "20.1.0",
   "description": "Aspose.Imaging Cloud Node.js SDK",
   "homepage": "https://products.aspose.cloud/imaging",
   "author": {
-    "name": "Maksym Shnurenok",
+    "name": "Aspose.Imaging Cloud",
     "url": "https://github.com/aspose-imaging-cloud"
   },
   "license": "MIT",
@@ -25,7 +25,7 @@
     "image",
     "bmp",
     "dicom",
-    "dng", 
+    "dng",
     "djvu",
     "djv",
     "emf",

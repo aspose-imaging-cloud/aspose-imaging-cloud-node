@@ -329,11 +329,6 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling createCroppedImage.');
         }
 
-        // verify required parameter 'requestObj.format' is not null or undefined
-        if (requestObj.format === null || requestObj.format === undefined) {
-            throw new Error('Required parameter "requestObj.format" was null or undefined when calling createCroppedImage.');
-        }
-
         // verify required parameter 'requestObj.x' is not null or undefined
         if (requestObj.x === null || requestObj.x === undefined) {
             throw new Error('Required parameter "requestObj.x" was null or undefined when calling createCroppedImage.');
@@ -355,11 +350,68 @@ export class ImagingApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "x", requestObj.x);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "y", requestObj.y);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", requestObj.width);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", requestObj.height);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Deskew an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+     * @param requestObj contains request parameters
+     */
+    public async createDeskewedImage(requestObj: model.CreateDeskewedImageRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling createDeskewedImage.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/deskew";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.imageData' is not null or undefined
+        if (requestObj.imageData === null || requestObj.imageData === undefined) {
+            throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling createDeskewedImage.');
+        }
+
+        // verify required parameter 'requestObj.resizeProportionally' is not null or undefined
+        if (requestObj.resizeProportionally === null || requestObj.resizeProportionally === undefined) {
+            throw new Error('Required parameter "requestObj.resizeProportionally" was null or undefined when calling createDeskewedImage.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resizeProportionally", requestObj.resizeProportionally);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bkColor", requestObj.bkColor);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
@@ -1293,11 +1345,6 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling createResizedImage.');
         }
 
-        // verify required parameter 'requestObj.format' is not null or undefined
-        if (requestObj.format === null || requestObj.format === undefined) {
-            throw new Error('Required parameter "requestObj.format" was null or undefined when calling createResizedImage.');
-        }
-
         // verify required parameter 'requestObj.newWidth' is not null or undefined
         if (requestObj.newWidth === null || requestObj.newWidth === undefined) {
             throw new Error('Required parameter "requestObj.newWidth" was null or undefined when calling createResizedImage.');
@@ -1309,9 +1356,9 @@ export class ImagingApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
@@ -1361,19 +1408,14 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling createRotateFlippedImage.');
         }
 
-        // verify required parameter 'requestObj.format' is not null or undefined
-        if (requestObj.format === null || requestObj.format === undefined) {
-            throw new Error('Required parameter "requestObj.format" was null or undefined when calling createRotateFlippedImage.');
-        }
-
         // verify required parameter 'requestObj.method' is not null or undefined
         if (requestObj.method === null || requestObj.method === undefined) {
             throw new Error('Required parameter "requestObj.method" was null or undefined when calling createRotateFlippedImage.');
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "method", requestObj.method);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
@@ -1479,11 +1521,6 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling createUpdatedImage.');
         }
 
-        // verify required parameter 'requestObj.format' is not null or undefined
-        if (requestObj.format === null || requestObj.format === undefined) {
-            throw new Error('Required parameter "requestObj.format" was null or undefined when calling createUpdatedImage.');
-        }
-
         // verify required parameter 'requestObj.newWidth' is not null or undefined
         if (requestObj.newWidth === null || requestObj.newWidth === undefined) {
             throw new Error('Required parameter "requestObj.newWidth" was null or undefined when calling createUpdatedImage.');
@@ -1520,7 +1557,6 @@ export class ImagingApi {
         }
 
         const formParams: { [key: string]: any } = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "x", requestObj.x);
@@ -1528,6 +1564,7 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rectWidth", requestObj.rectWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rectHeight", requestObj.rectHeight);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotateFlipMethod", requestObj.rotateFlipMethod);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
@@ -1615,11 +1652,6 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling cropImage.');
         }
 
-        // verify required parameter 'requestObj.format' is not null or undefined
-        if (requestObj.format === null || requestObj.format === undefined) {
-            throw new Error('Required parameter "requestObj.format" was null or undefined when calling cropImage.');
-        }
-
         // verify required parameter 'requestObj.x' is not null or undefined
         if (requestObj.x === null || requestObj.x === undefined) {
             throw new Error('Required parameter "requestObj.x" was null or undefined when calling cropImage.');
@@ -1640,11 +1672,11 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.height" was null or undefined when calling cropImage.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "x", requestObj.x);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "y", requestObj.y);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "width", requestObj.width);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "height", requestObj.height);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
@@ -1827,6 +1859,48 @@ export class ImagingApi {
         
         await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve();        
+    }
+
+    /**
+     * Deskew an existing image.
+     * @param requestObj contains request parameters
+     */
+    public async deskewImage(requestObj: model.DeskewImageRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deskewImage.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/{name}/deskew"
+            .replace("{" + "name" + "}", String(requestObj.name));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling deskewImage.');
+        }
+
+        // verify required parameter 'requestObj.resizeProportionally' is not null or undefined
+        if (requestObj.resizeProportionally === null || requestObj.resizeProportionally === undefined) {
+            throw new Error('Required parameter "requestObj.resizeProportionally" was null or undefined when calling deskewImage.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resizeProportionally", requestObj.resizeProportionally);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bkColor", requestObj.bkColor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+            json: true,
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
     }
 
     /**
@@ -2044,11 +2118,6 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling filterEffectImage.');
         }
 
-        // verify required parameter 'requestObj.format' is not null or undefined
-        if (requestObj.format === null || requestObj.format === undefined) {
-            throw new Error('Required parameter "requestObj.format" was null or undefined when calling filterEffectImage.');
-        }
-
         // verify required parameter 'requestObj.filterType' is not null or undefined
         if (requestObj.filterType === null || requestObj.filterType === undefined) {
             throw new Error('Required parameter "requestObj.filterType" was null or undefined when calling filterEffectImage.');
@@ -2059,8 +2128,8 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.filterProperties" was null or undefined when calling filterEffectImage.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterType", requestObj.filterType);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
@@ -3230,11 +3299,6 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling resizeImage.');
         }
 
-        // verify required parameter 'requestObj.format' is not null or undefined
-        if (requestObj.format === null || requestObj.format === undefined) {
-            throw new Error('Required parameter "requestObj.format" was null or undefined when calling resizeImage.');
-        }
-
         // verify required parameter 'requestObj.newWidth' is not null or undefined
         if (requestObj.newWidth === null || requestObj.newWidth === undefined) {
             throw new Error('Required parameter "requestObj.newWidth" was null or undefined when calling resizeImage.');
@@ -3245,9 +3309,9 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.newHeight" was null or undefined when calling resizeImage.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
@@ -3283,18 +3347,13 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling rotateFlipImage.');
         }
 
-        // verify required parameter 'requestObj.format' is not null or undefined
-        if (requestObj.format === null || requestObj.format === undefined) {
-            throw new Error('Required parameter "requestObj.format" was null or undefined when calling rotateFlipImage.');
-        }
-
         // verify required parameter 'requestObj.method' is not null or undefined
         if (requestObj.method === null || requestObj.method === undefined) {
             throw new Error('Required parameter "requestObj.method" was null or undefined when calling rotateFlipImage.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "method", requestObj.method);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
@@ -3405,11 +3464,6 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling updateImage.');
         }
 
-        // verify required parameter 'requestObj.format' is not null or undefined
-        if (requestObj.format === null || requestObj.format === undefined) {
-            throw new Error('Required parameter "requestObj.format" was null or undefined when calling updateImage.');
-        }
-
         // verify required parameter 'requestObj.newWidth' is not null or undefined
         if (requestObj.newWidth === null || requestObj.newWidth === undefined) {
             throw new Error('Required parameter "requestObj.newWidth" was null or undefined when calling updateImage.');
@@ -3445,7 +3499,6 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.rotateFlipMethod" was null or undefined when calling updateImage.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "x", requestObj.x);
@@ -3453,6 +3506,7 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rectWidth", requestObj.rectWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rectHeight", requestObj.rectHeight);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotateFlipMethod", requestObj.rotateFlipMethod);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
