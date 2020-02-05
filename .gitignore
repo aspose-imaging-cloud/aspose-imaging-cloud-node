@@ -1,6 +1,8 @@
 wwwroot/*.js
 node_modules
-examples/node_modules
+Examples/node_modules
+Examples/dist
+Examples/Output
 typings
 .vs/
 .vscode/
