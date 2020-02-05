@@ -165,7 +165,7 @@ async function runExamples() {
     await tiffImage.ModifyTiffAndUploadToStorage();
     await tiffImage.CreateModifiedTiffFromRequestBody();
     await tiffImage.ConvertTiffToFaxFromStorage();
-    //await tiffImage.AppendTiffFromStorage();
+    await tiffImage.AppendTiffFromStorage();
 
     // Update parameters of existing GIF image
     const updateGIFImage = new UpdateGifImage(imagingApi);

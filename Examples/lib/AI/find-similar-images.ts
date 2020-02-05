@@ -59,10 +59,10 @@ export class FindSimilarImages extends ImagingAiBase {
             '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg'
         ];
         for (const imageName of images) {
-            this.UploadImageToCloud(imageName, this.ImagesPath);
+            await this.UploadImageToCloud(imageName, this.ImagesPath);
         }
 
-        this.CreateImageFeatures(this.ImagesPath, true);
+        await this.CreateImageFeatures(this.ImagesPath, true);
 
         console.log();
     }

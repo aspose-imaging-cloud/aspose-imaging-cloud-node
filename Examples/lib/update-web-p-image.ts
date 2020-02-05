@@ -120,7 +120,8 @@ export class UpdateWebPImage extends ImagingBase {
 
     /**
      *
-     *Update parameters of existing Webp image. asposelogo.webpImage data is passed in a request stream
+     * Update parameters of existing Webp image.
+     * asposelogo.webpImage data is passed in a request stream
      * @constructor
      */
     public async CreateModifiedWebPFromRequestBody() {

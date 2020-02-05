@@ -50,7 +50,7 @@ export abstract class ImagingBase {
      * @constructor
      */
     public static get OutputFolder(): string {
-        return path.resolve(__dirname, '..', '..', "Output");
+        return path.resolve(__dirname, '..', "Output");
     }
 
     /**
@@ -58,7 +58,7 @@ export abstract class ImagingBase {
      * @constructor
      */
     protected static get ExampleImagesFolder(): string {
-        return path.resolve(__dirname, '..', '..', "Images");
+        return path.resolve(__dirname, '..', "Images");
     }
 
     /**

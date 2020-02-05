@@ -1,16 +1,8 @@
 {
-  "name": "examples",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "compile": "tsc",
-    "run": "node ./dist/lib/imaging-examples.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@asposecloud/aspose-imaging-cloud": "20.01.0"
+    "@asposecloud/aspose-imaging-cloud": "20.01.0",
+    "typescript": "3.7.4",
+    "ts-node": "7.0.1",
+    "ts-node-register": "1.0.0"
   }
 }

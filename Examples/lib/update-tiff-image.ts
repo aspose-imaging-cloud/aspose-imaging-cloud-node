@@ -146,7 +146,7 @@ export class UpdateTiffImage extends ImagingBase {
             resolutionUnit, horizontalResolution, verticalResolution, fromScratch, outPath, storage
         });
 
-        console.log(`Call CreateModifiedTiff with params: compression: ${compression}, esolution unit: ${resolutionUnit}, bit depth: ${bitDepth}, horizontal resolution: ${horizontalResolution}, vertical resolution: ${verticalResolution} `);
+        console.log(`Call CreateModifiedTiff with params: compression: ${compression}, resolution unit: ${resolutionUnit}, bit depth: ${bitDepth}, horizontal resolution: ${horizontalResolution}, vertical resolution: ${verticalResolution} `);
 
         try {
             const updatedImage = await this.ImagingApi.createModifiedTiff(postImageTiffRequest);

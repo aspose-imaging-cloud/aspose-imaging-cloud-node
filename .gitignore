@@ -10,3 +10,4 @@ dist/
 examples/dist
 package-lock.json
 .swagger-codegen-ignore
+**/.idea

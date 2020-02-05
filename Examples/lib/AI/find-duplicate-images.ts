@@ -50,12 +50,12 @@ export class FindDuplicateImages extends ImagingAiBase {
 
         const images = [this.ComparableImage, this.ComparingImageSimilarLess15, this.ComparingImageSimilarMore75];
         for (const imageName of images) {
-            this.UploadImageToCloud(imageName);
+            await this.UploadImageToCloud(imageName);
         }
 
-        this.CreateImageFeatures(this.ComparableImage, false);
-        this.CreateImageFeatures(this.ComparingImageSimilarLess15, false);
-        this.CreateImageFeatures(this.ComparingImageSimilarMore75, false);
+        await this.CreateImageFeatures(this.ComparableImage, false);
+        await this.CreateImageFeatures(this.ComparingImageSimilarLess15, false);
+        await this.CreateImageFeatures(this.ComparingImageSimilarMore75, false);
 
         console.log();
     }

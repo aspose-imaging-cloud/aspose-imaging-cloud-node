@@ -45,7 +45,7 @@ export class ImagingAiBase {
     /**
      * The example images folder path.
      */
-    protected readonly ExampleImagesFolder: string = path.resolve(__dirname, '..', '..', '..', "Images", 'AI');
+    protected readonly ExampleImagesFolder: string = path.resolve(__dirname, '..', '..', "Images", 'AI');
 
     /**
      * The cloud path.
@@ -146,12 +146,13 @@ export class ImagingAiBase {
      * @param subFolder Name of the subfolder.
      * @constructor
      */
-    protected UploadImageToCloud(imageName: string, subFolder: string = null) {
+    protected async UploadImageToCloud(imageName: string, subFolder: string = null) {
         const folder = subFolder != null ? path.resolve(this.ExampleImagesFolder, subFolder) : this.ExampleImagesFolder;
 
         const localInputImage = fs.readFileSync(path.resolve(folder, imageName));
         const request = new UploadFileRequest({path: path.resolve(this.CloudPath, imageName), file: localInputImage});
-        this.ImagingApi.uploadFile(request).then(_ => console.log(`Image ${imageName} was uploaded to cloud storage`));
+        await this.ImagingApi.uploadFile(request);
+        console.log(`Image ${imageName} was uploaded to cloud storage`);
     }
 
     /**
