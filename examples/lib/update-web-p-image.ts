@@ -26,7 +26,7 @@
 */
 
 import {ImagingBase} from "./imaging-base";
-import {CreateModifiedWebPRequest, ImagingApi, ModifyWebPRequest,} from "asposeimagingcloud";
+import {CreateModifiedWebPRequest, ImagingApi, ModifyWebPRequest,} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -59,7 +59,7 @@ export class UpdateWebPImage extends ImagingBase {
         // Specifies where additional parameters we do not support should be taken from.
         // If this is true – they will be taken from default values for standard image,
         // if it is false – they will be saved from current image. Default is false.
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -97,7 +97,7 @@ export class UpdateWebPImage extends ImagingBase {
         // Specifies where additional parameters we do not support should be taken from.
         // If this is true – they will be taken from default values for standard image,
         // if it is false – they will be saved from current image. Default is false.
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -130,7 +130,7 @@ export class UpdateWebPImage extends ImagingBase {
         const quality: number = 90;
         const animLoopCount: number = 5;
         const animBackgroundColor = "gray";
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const outPath = undefined; // Path to updated file (if this is empty, response contains streamed image).
         const storage = undefined; // We are using default Cloud Storage
 

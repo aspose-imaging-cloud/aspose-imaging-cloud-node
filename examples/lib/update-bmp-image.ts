@@ -26,7 +26,7 @@
 */
 
 import {ImagingBase} from "./imaging-base";
-import {CreateModifiedBmpRequest, ImagingApi, ModifyBmpRequest,} from "asposeimagingcloud";
+import {CreateModifiedBmpRequest, ImagingApi, ModifyBmpRequest,} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -55,7 +55,7 @@ export class UpdateBmpImage extends ImagingBase {
         const bitsPerPixel: number = 32;
         const horizontalResolution: number = 300;
         const verticalResolution: number = 300;
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -91,7 +91,7 @@ export class UpdateBmpImage extends ImagingBase {
         const bitsPerPixel: number = 32;
         const horizontalResolution: number = 300;
         const verticalResolution: number = 300;
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -129,7 +129,7 @@ export class UpdateBmpImage extends ImagingBase {
             const bitsPerPixel: number = 32;
             const horizontalResolution: number = 300;
             const verticalResolution: number = 300;
-            const fromScratch: boolean = null;
+            const fromScratch: boolean = false;
             const outPath = undefined; // Path to updated file (if this is empty, response contains streamed image)
             const storage = undefined; // We are using default Cloud Storage
 

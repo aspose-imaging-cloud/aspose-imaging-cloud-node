@@ -26,7 +26,7 @@
 */
 
 import {ImagingBase} from "./imaging-base";
-import {CreateModifiedJpegRequest, ImagingApi, ModifyJpegRequest,} from "asposeimagingcloud";
+import {CreateModifiedJpegRequest, ImagingApi, ModifyJpegRequest,} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -54,7 +54,7 @@ export class UpdateJpegImage extends ImagingBase {
 
         const quality: number = 65;
         const compressionType = "progressive";
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -87,7 +87,7 @@ export class UpdateJpegImage extends ImagingBase {
 
         const quality: number = 65;
         const compressionType = "progressive";
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -123,7 +123,7 @@ export class UpdateJpegImage extends ImagingBase {
 
         const quality: number = 65;
         const compressionType = "progressive";
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const outPath = undefined; // Path to updated file (if this is empty, response contains streamed image)
         const storage = undefined; // We are using default Cloud Storage
 

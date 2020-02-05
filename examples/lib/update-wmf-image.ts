@@ -26,7 +26,7 @@
 */
 
 import {ImagingBase} from "./imaging-base";
-import {CreateModifiedWmfRequest, ImagingApi, ModifyWmfRequest,} from "asposeimagingcloud";
+import {CreateModifiedWmfRequest, ImagingApi, ModifyWmfRequest,} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -56,7 +56,7 @@ export class UpdateWmfImage extends ImagingBase {
         const pageHeight: number = 300;
         const borderX: number = 50;
         const borderY: number = 50;
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
 
         const storage = undefined; // We are using default Cloud Storage
@@ -96,7 +96,7 @@ export class UpdateWmfImage extends ImagingBase {
         const pageHeight: number = 300;
         const borderX: number = 50;
         const borderY: number = 50;
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
 
         const storage = undefined; // We are using default Cloud Storage
@@ -133,7 +133,7 @@ export class UpdateWmfImage extends ImagingBase {
         const pageHeight: number = 300;
         const borderX: number = 50;
         const borderY: number = 50;
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const outPath = undefined; // Path to updated file (if this is empty, response contains streamed image).
         const storage = undefined; // We are using default Cloud Storage
         const exportFormat = "png";

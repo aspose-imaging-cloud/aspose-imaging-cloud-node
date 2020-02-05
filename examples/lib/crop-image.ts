@@ -25,7 +25,7 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-import {CreateCroppedImageRequest, CropImageRequest, ImagingApi,} from "asposeimagingcloud";
+import {CreateCroppedImageRequest, CropImageRequest, ImagingApi,} from "@asposecloud/aspose-imaging-cloud";
 import {ImagingBase} from "./imaging-base";
 import * as fs from "fs";
 import * as path from "path";

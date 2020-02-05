@@ -33,7 +33,7 @@ import {
     DownloadFileRequest,
     ImagingApi,
     ModifyTiffRequest,
-} from "asposeimagingcloud";
+} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -189,7 +189,7 @@ export class UpdateTiffImage extends ImagingBase {
      * @constructor
      */
     public async AppendTiffFromStorage() {
-        console.log(" Appends existing TIFF image to another existing TIFF image.");
+        console.log("Appends existing TIFF image to another existing TIFF image.");
 
         const appendFileName = "Append.tiff"; // Image file name to be appended to original one
 

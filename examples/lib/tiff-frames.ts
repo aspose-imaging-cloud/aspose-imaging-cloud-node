@@ -32,7 +32,7 @@ import {
     GetImageFramePropertiesRequest,
     GetImageFrameRequest,
     ImagingApi
-} from "asposeimagingcloud";
+} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
 import * as path from "path";
 

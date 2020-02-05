@@ -27,7 +27,7 @@
 
 
 import {ImagingBase} from "./imaging-base";
-import {ExtractImagePropertiesRequest, GetImagePropertiesRequest, ImagingApi} from "asposeimagingcloud";
+import {ExtractImagePropertiesRequest, GetImagePropertiesRequest, ImagingApi} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
 import * as path from "path";
 

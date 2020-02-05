@@ -26,7 +26,7 @@
 */
 
 import {ImagingBase} from "./imaging-base";
-import {CreateModifiedEmfRequest, ImagingApi, ModifyEmfRequest,} from "asposeimagingcloud";
+import {CreateModifiedEmfRequest, ImagingApi, ModifyEmfRequest,} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -60,7 +60,7 @@ export class UpdateEmfImage extends ImagingBase {
         // Specifies where additional parameters we do not support should be taken from.
         // If this is true – they will be taken from default values for standard image,
         // if it is false – they will be saved from current image. Default is false.
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // As we are using default Cloud Storage
 
@@ -107,7 +107,7 @@ export class UpdateEmfImage extends ImagingBase {
         // Specifies where additional parameters we do not support should be taken from.
         // If this is true – they will be taken from default values for standard image,
         // if it is false – they will be saved from current image. Default is false.
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // As we are using default Cloud Storage
 
@@ -149,7 +149,7 @@ export class UpdateEmfImage extends ImagingBase {
         const borderX = 50;
         const borderY = 50;
         const format = "png";
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const outPath = undefined; // Path to updated file (if this is empty, response contains streamed image)
         const storage = undefined; // As we are using default Cloud Storage
 

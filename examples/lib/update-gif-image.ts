@@ -26,7 +26,7 @@
 */
 
 import {ImagingBase} from "./imaging-base";
-import {CreateModifiedGifRequest, ImagingApi, ModifyGifRequest,} from "asposeimagingcloud";
+import {CreateModifiedGifRequest, ImagingApi, ModifyGifRequest,} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -56,7 +56,7 @@ export class UpdateGifImage extends ImagingBase {
         const interlaced: boolean = false;
         const isPaletteSorted: boolean = true;
         const pixelAspectRatio: number = 4;
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -93,7 +93,7 @@ export class UpdateGifImage extends ImagingBase {
         const interlaced: boolean = false;
         const isPaletteSorted: boolean = true;
         const pixelAspectRatio: number = 4;
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -128,7 +128,7 @@ export class UpdateGifImage extends ImagingBase {
         const interlaced: boolean = false;
         const isPaletteSorted: boolean = true;
         const pixelAspectRatio: number = 4;
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const outPath = undefined;
         const storage = undefined; // We are using default Cloud Storage
 

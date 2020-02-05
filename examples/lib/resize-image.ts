@@ -27,7 +27,7 @@
 
 
 import {ImagingBase} from "./imaging-base";
-import {CreateResizedImageRequest, ImagingApi, ResizeImageRequest} from "asposeimagingcloud";
+import {CreateResizedImageRequest, ImagingApi, ResizeImageRequest} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
 import * as path from "path";
 

@@ -27,7 +27,7 @@
 
 import * as fs from "fs";
 import * as path from "path";
-import {ImagingApi, ImagingResponse, UploadFileRequest} from "asposeimagingcloud";
+import {ImagingApi, ImagingResponse, UploadFileRequest} from "@asposecloud/aspose-imaging-cloud";
 
 /**
  * Modify image example.
@@ -113,7 +113,7 @@ export abstract class ImagingBase {
      */
     protected async UploadSampleImageToCloud() {
         const localInputImage = fs.readFileSync(path.join(ImagingBase.ExampleImagesFolder, this.SampleImageFileName));
-        this.UploadImageToCloud(this.SampleImageFileName, localInputImage);
+        await this.UploadImageToCloud(this.SampleImageFileName, localInputImage);
     }
 
     /**

@@ -26,7 +26,7 @@
 */
 
 import {ImagingBase} from "./imaging-base";
-import {CreateModifiedJpeg2000Request, ImagingApi, ModifyJpeg2000Request,} from "asposeimagingcloud";
+import {CreateModifiedJpeg2000Request, ImagingApi, ModifyJpeg2000Request,} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -53,7 +53,7 @@ export class UpdateJpeg2000Image extends ImagingBase {
 
         const codec = "jp2";
         const comment = "Aspose";
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -90,7 +90,7 @@ export class UpdateJpeg2000Image extends ImagingBase {
 
         const codec = "jp2";
         const comment = "Aspose";
-        const fromScratch: boolean = null;
+        const fromScratch: boolean = false;
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -127,7 +127,7 @@ export class UpdateJpeg2000Image extends ImagingBase {
         {
             const codec = "jp2";
             const comment = "Aspose";
-            const fromScratch: boolean = null;
+            const fromScratch: boolean = false;
             const outPath = undefined; // Path to updated file (if this is empty, response contains streamed image)
             const storage = undefined; // We are using default Cloud Storage
 

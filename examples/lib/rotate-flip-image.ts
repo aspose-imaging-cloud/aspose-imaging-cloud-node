@@ -26,7 +26,7 @@
 */
 
 import {ImagingBase} from "./imaging-base";
-import {CreateRotateFlippedImageRequest, ImagingApi, RotateFlipImageRequest} from "asposeimagingcloud";
+import {CreateRotateFlippedImageRequest, ImagingApi, RotateFlipImageRequest} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
 import * as path from "path";
 

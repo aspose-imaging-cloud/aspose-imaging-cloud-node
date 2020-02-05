@@ -29,7 +29,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import {ImagingBase} from "./imaging-base";
-import {CreateSavedImageAsRequest, ImagingApi, SaveImageAsRequest} from "asposeimagingcloud";
+import {CreateSavedImageAsRequest, ImagingApi, SaveImageAsRequest} from "@asposecloud/aspose-imaging-cloud";
 
 /**
  * Export image example.
