@@ -50,7 +50,10 @@ import {CompareImages} from "./AI/compare-images";
 import {FindDuplicateImages} from "./AI/find-duplicate-images";
 import {FindSimilarImages} from "./AI/find-similar-images";
 
-runExamples().catch(reason => console.log(reason));
+runExamples().catch(reason => {
+    console.log(reason);
+    process.exit(1)
+}).then(_ => process.exit(0));
 
 function ProcessArgument(args: string[], key: string, description: string, errors: string[], defaultValue: string = null): string {
     let argumentValue: string = null;
