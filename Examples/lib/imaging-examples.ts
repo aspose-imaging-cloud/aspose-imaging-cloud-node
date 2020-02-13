@@ -49,6 +49,7 @@ import * as os from "os";
 import {CompareImages} from "./AI/compare-images";
 import {FindDuplicateImages} from "./AI/find-duplicate-images";
 import {FindSimilarImages} from "./AI/find-similar-images";
+import {SearchImages} from "./AI/search-images";
 
 runExamples().catch(reason => {
     console.log(reason);
@@ -235,6 +236,12 @@ async function runExamples() {
     await findSimilarImages.FindImagesSimilar();
     await findSimilarImages.FindImagesByTag();
     await findSimilarImages.DeleteSearchContext();
+
+    // Search Images
+    const searchImages = new SearchImages(imagingApi);
+    await searchImages.PrepareSearchContext();
+    await searchImages.SearchImageFromWebSource();
+    await searchImages.DeleteSearchContext();
 }
 
 /**

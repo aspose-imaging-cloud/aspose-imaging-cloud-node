@@ -160,7 +160,7 @@ export class ImagingAiBase {
      * @param searchContextId The search context identifier.
      * @constructor
      */
-    private async WaitIdle(searchContextId) {
+    protected async WaitIdle(searchContextId) {
         console.log('Waiting Search context Idle ...');
 
         while ((await this.ImagingApi.getImageSearchStatus(new GetImageSearchStatusRequest({searchContextId}))).id != 'Idle')
