@@ -74,12 +74,8 @@ export class UpdateBmpImage extends ImagingBase {
 
         console.log(`Call ModifyBmp with params: bits per pixel: ${bitsPerPixel}, horizontal resolution: ${horizontalResolution}, vertical resolution: ${verticalResolution}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyBmp(request);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyBmp(request);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -110,12 +106,8 @@ export class UpdateBmpImage extends ImagingBase {
 
         console.log(`Call ModifyBmp with params: bits per pixel: ${bitsPerPixel}, horizontal resolution: ${horizontalResolution}, vertical resolution: ${verticalResolution}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyBmp(request);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyBmp(request);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
@@ -147,12 +139,8 @@ export class UpdateBmpImage extends ImagingBase {
 
             console.log(`Call CreateModifiedBmp with params: bits per pixel: ${bitsPerPixel}, horizontal resolution: ${horizontalResolution}, vertical resolution: ${verticalResolution}`);
 
-            try {
-                const updatedImage = await this.ImagingApi.createModifiedBmp(request);
-                await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-            } catch (e) {
-                console.log(e);
-            }
+            const updatedImage = await this.ImagingApi.createModifiedBmp(request);
+            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
             console.log();
         }

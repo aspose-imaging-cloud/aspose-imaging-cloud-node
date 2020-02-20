@@ -72,12 +72,8 @@ export class UpdatePsdImage extends ImagingBase {
 
         console.log(`Call ModifyPsd with params: channels count: ${channelsCount}, compression method: ${compressionMethod}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyPsd(modifyPsdRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyPsd(modifyPsdRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -108,12 +104,8 @@ export class UpdatePsdImage extends ImagingBase {
 
         console.log(`Call ModifyPsd with params: channels count: ${channelsCount}, compression method: ${compressionMethod}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyPsd(modifyPsdRequest);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyPsd(modifyPsdRequest);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
@@ -144,12 +136,8 @@ export class UpdatePsdImage extends ImagingBase {
 
         console.log(`Call CreateModifiedPsd with params: channels count: ${channelsCount}, compression method: ${compressionMethod}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createModifiedPsd(modifiedPsdRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createModifiedPsd(modifiedPsdRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
         console.log();
     }

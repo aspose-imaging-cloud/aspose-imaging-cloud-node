@@ -66,12 +66,8 @@ export class FilterImage extends ImagingBase {
 
         console.log(`Call FilterEffectImage with params: filter type: ${filterType}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.filterEffectImage(request);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.filterEffectImage(request);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -101,12 +97,8 @@ export class FilterImage extends ImagingBase {
 
         console.log(`Call FilterEffectImage with params: filter type: ${filterType}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.filterEffectImage(request);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false, format), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.filterEffectImage(request);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false, format), updatedImage);
 
         console.log();
     }

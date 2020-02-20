@@ -72,12 +72,8 @@ export class UpdateJpeg2000Image extends ImagingBase {
 
         console.log(`Call ModifyJpeg2000 with params: codec: ${codec}, comment: ${comment}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyJpeg2000(getImageJpeg2000Request);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyJpeg2000(getImageJpeg2000Request);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -108,12 +104,8 @@ export class UpdateJpeg2000Image extends ImagingBase {
 
         console.log(`Call ModifyJpeg2000 with params: codec: ${codec}, comment: ${comment}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyJpeg2000(getImageJpeg2000Request);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyJpeg2000(getImageJpeg2000Request);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
@@ -143,12 +135,8 @@ export class UpdateJpeg2000Image extends ImagingBase {
 
             console.log(`Call CreateModifiedJpeg2000 with params: codec: ${codec}, comment: ${comment}`);
 
-            try {
-                const updatedImage = await this.ImagingApi.createModifiedJpeg2000(postImageJpeg2000Request);
-                await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-            } catch (e) {
-                console.log(e);
-            }
+            const updatedImage = await this.ImagingApi.createModifiedJpeg2000(postImageJpeg2000Request);
+            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
             console.log();
         }

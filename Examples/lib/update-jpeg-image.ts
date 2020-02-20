@@ -68,12 +68,8 @@ export class UpdateJpegImage extends ImagingBase {
 
         console.log(`Call ModifyJpeg with params: quality: ${quality}, compression type: ${compressionType}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyJpeg(modifyJpegRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyJpeg(modifyJpegRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -105,12 +101,8 @@ export class UpdateJpegImage extends ImagingBase {
 
         console.log(`Call ModifyJpeg with params: quality: ${quality}, compression type: ${compressionType}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyJpeg(modifyJpegRequest);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyJpeg(modifyJpegRequest);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
@@ -141,12 +133,8 @@ export class UpdateJpegImage extends ImagingBase {
 
         console.log(`Call CreateModifiedJpeg with params: quality: ${quality}, compression type: ${compressionType}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createModifiedJpeg(modifiedJpgRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createModifiedJpeg(modifiedJpgRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
         console.log();
     }

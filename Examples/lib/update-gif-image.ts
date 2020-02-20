@@ -72,12 +72,8 @@ export class UpdateGifImage extends ImagingBase {
 
         console.log(`Call ModifyGif with params: background color index: ${backgroundColorIndex}, color resolution: ${colorResolution}, has trailer: ${hasTrailer}, interlaced: ${interlaced}, is palette sorted: ${isPaletteSorted}, pixel aspect ratio: ${pixelAspectRatio}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyGif(getImageGifRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyGif(getImageGifRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -108,12 +104,8 @@ export class UpdateGifImage extends ImagingBase {
 
         console.log(`Call ModifyGif with params: background color index: ${backgroundColorIndex}, color resolution: ${colorResolution}, has trailer: ${hasTrailer}, interlaced: ${interlaced}, is palette sorted: ${isPaletteSorted}, pixel aspect ratio: ${pixelAspectRatio}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyGif(getImageGifRequest);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyGif(getImageGifRequest);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
@@ -143,12 +135,8 @@ export class UpdateGifImage extends ImagingBase {
 
         console.log(`Call CreateModifiedGif with params: background color index: ${backgroundColorIndex}, color resolution: ${colorResolution}, has trailer: ${hasTrailer}, interlaced: ${interlaced}, is palette sorted: ${isPaletteSorted}, pixel aspect ratio: ${pixelAspectRatio}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createModifiedGif(postImageGifRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createModifiedGif(postImageGifRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
         console.log();
     }

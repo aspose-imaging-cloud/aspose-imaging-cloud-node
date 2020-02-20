@@ -73,12 +73,8 @@ export class UpdateWebPImage extends ImagingBase {
 
         console.log(`Call ModifyWebP with params: lossless: ${lossless}, quality: ${quality}, anim loop count: ${animLoopCount}, anim background color: ${animBackgroundColor}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyWebP(getImageWebPRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyWebP(getImageWebPRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -110,12 +106,8 @@ export class UpdateWebPImage extends ImagingBase {
 
         console.log(`Call ModifyWebP with params: lossless: ${lossless}, quality: ${quality}, anim loop count: ${animLoopCount}, anim background color: ${animBackgroundColor}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyWebP(getImageWebPRequest);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyWebP(getImageWebPRequest);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
@@ -144,12 +136,8 @@ export class UpdateWebPImage extends ImagingBase {
 
         console.log(`Call CreateModifiedWebP with params: lossless: ${lossless}, quality: ${quality}, anim loop count: ${animLoopCount}, anim background color: ${animBackgroundColor}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createModifiedWebP(modifiedImageWebPRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createModifiedWebP(modifiedImageWebPRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
         console.log();
     }

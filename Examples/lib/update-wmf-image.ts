@@ -74,12 +74,8 @@ export class UpdateWmfImage extends ImagingBase {
 
         console.log(`Call ModifyWmf with params: background color: ${bkColor}, page width: ${pageWidth}, page height: ${pageHeight}, border X: ${borderX}, border Y: ${borderY}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyWmf(getImageWmfRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyWmf(getImageWmfRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -113,12 +109,8 @@ export class UpdateWmfImage extends ImagingBase {
 
         console.log(`Call ModifyWmf with params: background color: ${bkColor}, page width: ${pageWidth}, page height: ${pageHeight}, border X: ${borderX}, border Y: ${borderY}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyWmf(getImageWmfRequest);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyWmf(getImageWmfRequest);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
@@ -149,12 +141,8 @@ export class UpdateWmfImage extends ImagingBase {
 
         console.log(`Call CreateModifiedWmf with params: background color: ${bkColor}, page width: ${pageWidth}, page height: ${pageHeight}, border X: ${borderX}, border Y: ${borderY}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createModifiedWmf(postImageWmfRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createModifiedWmf(postImageWmfRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
         console.log();
     }

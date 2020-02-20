@@ -81,12 +81,8 @@ export class CropImage extends ImagingBase {
 
         console.log(`Call CropImage with params: x: ${x},y: ${y}, width: ${width}, height: ${height}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.cropImage(request);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false, format);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.cropImage(request);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false, format);
 
         console.log();
     }
@@ -122,12 +118,8 @@ export class CropImage extends ImagingBase {
 
         console.log(`Call CropImage with params: x: ${x},y: ${y}, width: ${width}, height: ${height}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.cropImage(request);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.cropImage(request);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }

@@ -72,12 +72,8 @@ export class RotateFlipImage extends ImagingBase {
 
         console.log(`Call RotateFlipImage with params: method: ${method}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.rotateFlipImage(getImageRotateFlipRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false, format);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.rotateFlipImage(getImageRotateFlipRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false, format);
 
         console.log();
     }
@@ -107,12 +103,8 @@ export class RotateFlipImage extends ImagingBase {
 
         console.log(`Call RotateFlipImage with params: method: ${method}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.rotateFlipImage(getImageRotateFlipRequest);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false, format), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.rotateFlipImage(getImageRotateFlipRequest);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false, format), updatedImage);
 
         console.log();
     }
@@ -142,12 +134,8 @@ export class RotateFlipImage extends ImagingBase {
 
         console.log(`Call CreateRotateFlippedImage with params: method: ${method}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createRotateFlippedImage(createRotateFlippedImageRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true, format);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createRotateFlippedImage(createRotateFlippedImageRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true, format);
 
         console.log();
 

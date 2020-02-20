@@ -80,12 +80,8 @@ export class UpdateTiffImage extends ImagingBase {
 
         console.log(`Call ModifyTiff with params: compression: ${compression}, resolution unit: ${resolutionUnit}, bit depth: ${bitDepth}, horizontal resolution: ${horizontalResolution}, vertical resolution: ${verticalResolution} `);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyTiff(getImageTiffRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyTiff(getImageTiffRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -117,12 +113,8 @@ export class UpdateTiffImage extends ImagingBase {
 
         console.log(`Call ModifyTiff with params: compression: ${compression}, resolution unit: ${resolutionUnit}, bit depth: ${bitDepth}, horizontal resolution: ${horizontalResolution}, vertical resolution: ${verticalResolution} `);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyTiff(getImageTiffRequest);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyTiff(getImageTiffRequest);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
@@ -150,12 +142,8 @@ export class UpdateTiffImage extends ImagingBase {
 
         console.log(`Call CreateModifiedTiff with params: compression: ${compression}, resolution unit: ${resolutionUnit}, bit depth: ${bitDepth}, horizontal resolution: ${horizontalResolution}, vertical resolution: ${verticalResolution} `);
 
-        try {
-            const updatedImage = await this.ImagingApi.createModifiedTiff(postImageTiffRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createModifiedTiff(postImageTiffRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
         console.log();
     }

@@ -64,12 +64,8 @@ export class ExportImage extends ImagingBase {
 
         console.log(`Call SaveImageAs with params: format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.saveImageAs(request);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false, format);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.saveImageAs(request);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false, format);
 
         console.log();
     }
@@ -92,12 +88,8 @@ export class ExportImage extends ImagingBase {
 
         console.log(`Call SaveImageAs with params: format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.saveImageAs(request);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false, format), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.saveImageAs(request);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false, format), updatedImage);
 
         console.log();
     }
@@ -119,12 +111,8 @@ export class ExportImage extends ImagingBase {
 
         console.log(`Call CreateSavedImageAs with params: format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createSavedImageAs(request);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true, format);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createSavedImageAs(request);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true, format);
 
         console.log();
     }

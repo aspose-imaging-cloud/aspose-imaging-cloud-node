@@ -66,12 +66,8 @@ export class ResizeImage extends ImagingBase {
 
         console.log(`Call ResizeImage with params: new width: ${newWidth}, new height: ${newHeight}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.resizeImage(resizeImageRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.resizeImage(resizeImageRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -99,12 +95,8 @@ export class ResizeImage extends ImagingBase {
 
         console.log(`Call ResizeImage with params: new width: ${newWidth}, new height: ${newHeight}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.resizeImage(resizeImageRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.resizeImage(resizeImageRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -130,12 +122,8 @@ export class ResizeImage extends ImagingBase {
 
         console.log(`Call CreateResizedImage with params: new width: ${newWidth}, new height: ${newHeight}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createResizedImage(createResizedImageRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true, format);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createResizedImage(createResizedImageRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true, format);
 
         console.log();
     }

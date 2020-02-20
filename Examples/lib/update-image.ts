@@ -75,12 +75,8 @@ export class UpdateImage extends ImagingBase {
 
         console.log(`Call UpdateImage with params: new width: ${newWidth}, new height: ${newHeight}, x: ${x}, y: ${y}, rect width: ${rectWidth}, rectHeight: ${rectHeight}, rotate/flip method: ${rotateFlipMethod}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.updateImage(getImageUpdateRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.updateImage(getImageUpdateRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -113,12 +109,8 @@ export class UpdateImage extends ImagingBase {
 
         console.log(`Call UpdateImage with params: new width: ${newWidth}, new height: ${newHeight}, x: ${x}, y: ${y}, rect width: ${rectWidth}, rectHeight: ${rectHeight}, rotate/flip method: ${rotateFlipMethod}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.updateImage(getImageUpdateRequest);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.updateImage(getImageUpdateRequest);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
@@ -150,12 +142,8 @@ export class UpdateImage extends ImagingBase {
 
         console.log(`Call CreateUpdatedImage with params: new width: ${newWidth}, new height: ${newHeight}, x: ${x}, y: ${y}, rect width: ${rectWidth}, rectHeight: ${rectHeight}, rotate/flip method: ${rotateFlipMethod}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createUpdatedImage(postImageUpdateRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createUpdatedImage(postImageUpdateRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
         console.log();
     }
