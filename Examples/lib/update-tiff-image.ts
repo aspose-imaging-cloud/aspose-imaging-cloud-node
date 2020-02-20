@@ -201,7 +201,7 @@ export class UpdateTiffImage extends ImagingBase {
 
         // Download updated file to local storage
         const downloadRequest = new DownloadFileRequest({
-            path: path.resolve(this.CloudPath, this.SampleImageFileName),
+            path: path.join(this.CloudPath, this.SampleImageFileName),
             storageName: storage
         });
         const updatedImage = await this.ImagingApi.downloadFile(downloadRequest);
