@@ -46,10 +46,6 @@ import {UpdatePsdImage} from "./update-psd-image";
 import {UpdateWebPImage} from "./update-web-p-image";
 import {UpdateWmfImage} from "./update-wmf-image";
 import * as os from "os";
-import {CompareImages} from "./AI/compare-images";
-import {FindDuplicateImages} from "./AI/find-duplicate-images";
-import {FindSimilarImages} from "./AI/find-similar-images";
-import {SearchImages} from "./AI/search-images";
 
 runExamples().catch(reason => {
     console.log(reason);
@@ -212,36 +208,6 @@ async function runExamples() {
     await wmfImage.ModifyWmfFromStorage();
     await wmfImage.ModifyWmfAndUploadToStorage();
     await wmfImage.CreateModifiedWmfFromRequestBody();
-
-    // AI APIs
-    console.log(`Running AI examples:`);
-    console.log();
-
-    // Compare two images
-    const compareImages = new CompareImages(imagingApi);
-    await compareImages.PrepareSearchContext();
-    await compareImages.CompareTwoImagesInCloud();
-    await compareImages.CompareLoadedImageToImageInCloud();
-    await compareImages.DeleteSearchContext();
-
-    // Find Duplicate Images
-    const findDuplicateImages = new FindDuplicateImages(imagingApi);
-    await findDuplicateImages.PrepareSearchContext();
-    await findDuplicateImages.FindImageDuplicates();
-    await findDuplicateImages.DeleteSearchContext();
-
-    // Find Similar Images
-    const findSimilarImages = new FindSimilarImages(imagingApi);
-    await findSimilarImages.PrepareSearchContext();
-    await findSimilarImages.FindImagesSimilar();
-    await findSimilarImages.FindImagesByTag();
-    await findSimilarImages.DeleteSearchContext();
-
-    // Search Images
-    const searchImages = new SearchImages(imagingApi);
-    await searchImages.PrepareSearchContext();
-    await searchImages.SearchImageFromWebSource();
-    await searchImages.DeleteSearchContext();
 }
 
 /**
