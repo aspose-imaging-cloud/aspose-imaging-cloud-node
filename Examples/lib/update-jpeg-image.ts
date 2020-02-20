@@ -36,7 +36,11 @@ import * as path from "path";
 export class UpdateJpegImage extends ImagingBase {
     protected _SampleImageFileName: string = "UpdateJPEGSampleImage.jpg";
 
-
+    /**
+     * Creates a new instance of the UpdateJpegImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Update JPEG image example");
@@ -45,7 +49,6 @@ export class UpdateJpegImage extends ImagingBase {
     /**
      *
      *Update parameters of existing JPEG image. The image is saved in the cloud
-     * @constructor
      */
     public async ModifyJpegFromStorage() {
         console.log("Update parameters of a JPEG image from cloud storage");
@@ -78,7 +81,6 @@ export class UpdateJpegImage extends ImagingBase {
     /**
      *
      *Update parameters of existing JPEG image, and upload updated image to Cloud Storage
-     * @constructor
      */
     public async ModifyJpegAndUploadToStorage() {
         console.log("Update parameters of a JPEG image and upload to cloud storage");
@@ -116,7 +118,6 @@ export class UpdateJpegImage extends ImagingBase {
     /**
      *
      *Update parameters of existing JPEG image. Image data is passed in a request stream
-     * @constructor
      */
     public async CreateModifiedJpegFromRequestBody() {
         console.log("Update parameters of a JPEG image from request body");

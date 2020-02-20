@@ -37,6 +37,11 @@ export class RotateFlipImage extends ImagingBase {
 
     protected _SampleImageFileName: string = "RotateFlipSampleImage.psd";
 
+    /**
+     * Creates a new instance of the RotateFlipImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Rotate/flip image example");
@@ -44,9 +49,7 @@ export class RotateFlipImage extends ImagingBase {
 
     /**
      * Rotate and/or flip an image
-     * @constructor
      */
-
     public async RotateFlipImageFromStorage() {
         console.log("Rotate and/or flip an image from cloud storage");
 
@@ -81,7 +84,6 @@ export class RotateFlipImage extends ImagingBase {
 
     /**
      * Rotate and/or flip an image, and upload updated image to Cloud Storage
-     * @constructor
      */
     public async RotateFlipImageAndUploadToStorage() {
         console.log("Rotate/flip an image and upload to cloud storage");
@@ -117,7 +119,6 @@ export class RotateFlipImage extends ImagingBase {
 
     /**
      * Rotate and/or flip an image. Image data is passed in a request stream.
-     * @constructor
      */
     public async CreateRotateFlippedImageFromRequestBody() {
         console.log("Rotate/flip an image from request body");

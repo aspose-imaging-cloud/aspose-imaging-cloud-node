@@ -40,6 +40,11 @@ export class CropImage extends ImagingBase {
      */
     protected _SampleImageFileName: string = "CropSampleImage.bmp";
 
+    /**
+     * Creates a new instance of the CropImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     public constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Crop image example:");
@@ -47,7 +52,6 @@ export class CropImage extends ImagingBase {
 
     /**
      * Crops the image from cloud storage.
-     * @constructor
      */
     public async CropImageFromStorage() {
         console.log(`Crops the image from cloud storage`);
@@ -84,13 +88,11 @@ export class CropImage extends ImagingBase {
             console.log(e);
         }
 
-
         console.log();
     }
 
     /**
      * Crop an existing image, and upload updated image to Cloud Storage.
-     * @constructor
      */
     public async CropImageAndUploadToStorage() {
         console.log("Crops the image and upload to cloud storage");
@@ -132,7 +134,6 @@ export class CropImage extends ImagingBase {
 
     /**
      * Crop an image. Image data is passed in a request stream.
-     * @constructor
      */
     public async CreateCroppedImageFromRequestBody() {
         console.log("Crops the image from request body");

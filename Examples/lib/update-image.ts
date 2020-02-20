@@ -37,6 +37,11 @@ export class UpdateImage extends ImagingBase {
 
     protected _SampleImageFileName: string = "UpdateSampleImage.gif";
 
+    /**
+     * Creates a new instance of the UpdateImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Update image example");
@@ -44,7 +49,6 @@ export class UpdateImage extends ImagingBase {
 
     /**
      * Perform scaling, cropping and flipping of an existing image in a single request. The image is saved in the cloud
-     * @constructor
      */
     public async UpdateImageFromStorage() {
         console.log("Update parameters of an image from cloud storage");
@@ -83,7 +87,6 @@ export class UpdateImage extends ImagingBase {
 
     /**
      * Perform scaling, cropping and flipping of an existing image in a single request. And upload updated image to Cloud Storage
-     * @constructor
      */
     public async UpdateImageAndUploadToStorage() {
         console.log("Update parameters of an image and upload to cloud storage");
@@ -122,7 +125,6 @@ export class UpdateImage extends ImagingBase {
 
     /**
      * Perform scaling, cropping and flipping of an image in a single request. Image data is passed in a request stream
-     * @constructor
      */
     public async CreateUpdatedImageFromRequestBody() {
         console.log("Update parameters of an image from request body");

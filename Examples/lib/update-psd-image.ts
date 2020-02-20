@@ -36,7 +36,11 @@ import * as path from "path";
 export class UpdatePsdImage extends ImagingBase {
     protected _SampleImageFileName: string = "UpdatePSDSampleImage.psd";
 
-
+    /**
+     * Creates a new instance of the UpdatePsdImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Update PSD image example");
@@ -45,7 +49,6 @@ export class UpdatePsdImage extends ImagingBase {
     /**
      *
      *Update parameters of existing PSD image. The image is saved in the cloud
-     * @constructor
      */
     public async ModifyPsdFromStorage() {
         console.log("Update parameters of a PSD image from cloud storage");
@@ -82,7 +85,6 @@ export class UpdatePsdImage extends ImagingBase {
     /**
      *
      *Update parameters of existing PSD image, and upload updated image to Cloud Storage
-     * @constructor
      */
     public async ModifyPsdAndUploadToStorage() {
         console.log("Update parameters of a PSD image and upload to cloud storage");
@@ -119,11 +121,9 @@ export class UpdatePsdImage extends ImagingBase {
     /**
      *
      *Update parameters of existing PSD image. Image data is passed in a request stream
-     * @constructor
      */
     public async CreateModifiedPsdFromRequestBody() {
         console.log("Update parameters of a PSD image from request body");
-
 
         const channelsCount: number = 3;
         const compressionMethod = "raw";

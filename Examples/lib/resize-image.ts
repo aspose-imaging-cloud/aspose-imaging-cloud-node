@@ -25,7 +25,6 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-
 import {ImagingBase} from "./imaging-base";
 import {CreateResizedImageRequest, ImagingApi, ResizeImageRequest} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
@@ -34,6 +33,11 @@ import * as path from "path";
 export class ResizeImage extends ImagingBase {
     protected _SampleImageFileName: string = "ResizeSampleImage.psd";
 
+    /**
+     * Creates a new instance of the ResizeImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Resize an image example");
@@ -41,7 +45,6 @@ export class ResizeImage extends ImagingBase {
 
     /**
      * Resizes the image.
-     * @constructor
      */
     public async ResizeImageFromStorage() {
         console.log("Resize an image from cloud storage");
@@ -75,7 +78,6 @@ export class ResizeImage extends ImagingBase {
 
     /**
      * Resizes the sample image and upload to Cloud Storage
-     * @constructor
      */
     public async ResizeImageAndUploadToStorage() {
         console.log("Resize an image and upload to cloud storage");
@@ -109,7 +111,6 @@ export class ResizeImage extends ImagingBase {
 
     /**
      * Resize an image. Image data is passed in a request stream.
-     * @constructor
      */
     public async CreateResizedImageFromRequestBody() {
         console.log("Resize an image from request body");

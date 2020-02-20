@@ -36,7 +36,11 @@ import * as path from "path";
 export class UpdateWebPImage extends ImagingBase {
     protected _SampleImageFileName: string = "WEBPSampleImage.webp";
 
-
+    /**
+     * Creates a new instance of the UpdateWebPImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Update WEBP image example");
@@ -45,7 +49,6 @@ export class UpdateWebPImage extends ImagingBase {
     /**
      *
      *Update parameters of existing WEBP image. The image is saved in the cloud
-     * @constructor
      */
     public async ModifyWebPFromStorage() {
         console.log("Update parameters of a WEBP image from cloud storage");
@@ -83,7 +86,6 @@ export class UpdateWebPImage extends ImagingBase {
     /**
      *
      *Update parameters of existing WEBP image, and upload updated image to Cloud Storage
-     * @constructor
      */
     public async ModifyWebPAndUploadToStorage() {
         console.log("Update parameters of a WEBP image and upload to cloud storage");
@@ -122,7 +124,6 @@ export class UpdateWebPImage extends ImagingBase {
      *
      * Update parameters of existing Webp image.
      * asposelogo.webpImage data is passed in a request stream
-     * @constructor
      */
     public async CreateModifiedWebPFromRequestBody() {
         console.log("Update parameters of a WEBP image from request body");

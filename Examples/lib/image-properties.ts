@@ -25,7 +25,6 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-
 import {ImagingBase} from "./imaging-base";
 import {ExtractImagePropertiesRequest, GetImagePropertiesRequest, ImagingApi} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
@@ -38,6 +37,11 @@ export class ImageProperties extends ImagingBase {
 
     protected _SampleImageFileName: string = "PropertiesOfSampleImage.tiff";
 
+    /**
+     * Creates a new instance of the ImageProperties class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Image properties example");
@@ -45,7 +49,6 @@ export class ImageProperties extends ImagingBase {
 
     /**
      * Get properties of an image, which is store in the cloud.
-     * @constructor
      */
     public async GetImagePropertiesFromStorage() {
         console.log("Get properties of an image in cloud storage");
@@ -72,7 +75,6 @@ export class ImageProperties extends ImagingBase {
 
     /**
      * Get properties of an image. Image data is passed in a request stream.
-     * @constructor
      */
     public async ExtractImagePropertiesFromRequestBody() {
         console.log("Get properties of an image from request body");

@@ -36,6 +36,11 @@ import * as path from "path";
 export class UpdateGifImage extends ImagingBase {
     protected _SampleImageFileName: string = "UpdateGIFSampleImage.gif";
 
+    /**
+     * Creates a new instance of the UpdateGifImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Update GIF image example");
@@ -43,7 +48,6 @@ export class UpdateGifImage extends ImagingBase {
 
     /**
      * Update parameters of existing GIF image. The image is saved in the cloud
-     * @constructor
      */
     public async ModifyGifFromStorage() {
         console.log("Update parameters of a GIF image from cloud storage");
@@ -80,7 +84,6 @@ export class UpdateGifImage extends ImagingBase {
 
     /**
      * Update parameters of existing GIF image. The image is saved in the cloud
-     * @constructor
      */
     public async ModifyGifAndUploadToStorage() {
         console.log("Update parameters of a GIF image and upload to cloud storage");
@@ -117,7 +120,6 @@ export class UpdateGifImage extends ImagingBase {
 
     /**
      * Update parameters of GIF image. Image data is passed in a request stream
-     * @constructor
      */
     public async CreateModifiedGifFromRequestBody() {
         console.log("Update parameters of a GIF image from request body");
@@ -147,7 +149,6 @@ export class UpdateGifImage extends ImagingBase {
         } catch (e) {
             console.log(e);
         }
-
 
         console.log();
     }

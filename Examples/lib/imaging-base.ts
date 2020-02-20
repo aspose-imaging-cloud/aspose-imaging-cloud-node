@@ -41,13 +41,17 @@ export abstract class ImagingBase {
 
     private readonly _ImagingApi: ImagingApi;
 
+    /**
+     * Creates a new instance of the ImagingBase class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     protected constructor(imagingApi: ImagingApi) {
         this._ImagingApi = imagingApi;
     }
 
     /**
      * The output folder path.
-     * @constructor
      */
     public static get OutputFolder(): string {
         return path.resolve(__dirname, '..', "Output");
@@ -55,7 +59,6 @@ export abstract class ImagingBase {
 
     /**
      * The example images folder path.
-     * @constructor
      */
     protected static get ExampleImagesFolder(): string {
         return path.resolve(__dirname, '..', "Images");
@@ -63,7 +66,6 @@ export abstract class ImagingBase {
 
     /**
      * Gets the imaging API.
-     * @constructor
      */
     protected get ImagingApi(): ImagingApi {
         return this._ImagingApi;
@@ -76,7 +78,6 @@ export abstract class ImagingBase {
 
     /**
      * Gets the name of the example image file.
-     * @constructor
      */
     protected get SampleImageFileName(): string {
         return this._SampleImageFileName;
@@ -85,7 +86,6 @@ export abstract class ImagingBase {
     /**
      * Prints the example header.
      * @param header The example header.
-     * @constructor
      */
     protected static PrintHeader(header: string) {
         console.log(header);
@@ -97,7 +97,6 @@ export abstract class ImagingBase {
      * @param fromRequest If set to true - created from request.
      * @param newFormatExtension The new format extension.
      * @return The name of the modified sample image file.
-     * @constructor
      */
     protected GetModifiedSampleImageFileName(fromRequest: boolean = false, newFormatExtension: string = null): string {
         const nameWithNewExtension = newFormatExtension != null
@@ -109,7 +108,6 @@ export abstract class ImagingBase {
 
     /**
      * Uploads the example image to cloud.
-     * @constructor
      */
     protected async UploadSampleImageToCloud() {
         const localInputImage = fs.readFileSync(path.join(ImagingBase.ExampleImagesFolder, this.SampleImageFileName));
@@ -120,7 +118,6 @@ export abstract class ImagingBase {
      * Uploads the image to cloud.
      * @param imageName Name of the image.
      * @param image The image.
-     * @constructor
      */
     protected async UploadImageToCloud(imageName: string, image: Buffer) {
         const uploadFileRequest = new UploadFileRequest({path: path.join(this.CloudPath, imageName), file: image});
@@ -135,7 +132,6 @@ export abstract class ImagingBase {
      * @param updatedImage The updated image.
      * @param fromRequest If set to true - created from request.
      * @param newFormatExtension The new format extension.
-     * @constructor
      */
     protected async SaveUpdatedSampleImageToOutput(updatedImage: Buffer, fromRequest: boolean, newFormatExtension: string = null) {
         const newFileName = this.GetModifiedSampleImageFileName(fromRequest, newFormatExtension);
@@ -147,7 +143,6 @@ export abstract class ImagingBase {
      * Saves the updated image to output folder.
      * @param imageName Name of the image.
      * @param updatedImage The updated image.
-     * @constructor
      */
     protected async SaveUpdatedImageToOutput(imageName: string, updatedImage: Buffer) {
         const filePath = path.resolve(path.join(ImagingBase.OutputFolder, imageName));
@@ -164,7 +159,6 @@ export abstract class ImagingBase {
      * Outputs the properties to file.
      * @param fileName Name of the file.
      * @param imagingResponse The imaging response.
-     * @constructor
      */
     protected OutputPropertiesToFile(fileName: string, imagingResponse: ImagingResponse) {
         const filePath = path.resolve(path.join(ImagingBase.OutputFolder, fileName));

@@ -36,7 +36,11 @@ import * as path from "path";
 export class UpdateBmpImage extends ImagingBase {
     protected _SampleImageFileName: string = "UpdateBmpSampleImage.bmp";
 
-
+    /**
+     * Creates a new instance of the UpdateBmpImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Update BMP image example");
@@ -44,7 +48,6 @@ export class UpdateBmpImage extends ImagingBase {
 
     /**
      * Update parameters of a BMP image. image is saved in the cloud.
-     * @constructor
      */
     public async ModifyBmpFromStorage() {
         console.log("Update parameters of a BMP image from cloud storage");
@@ -119,7 +122,6 @@ export class UpdateBmpImage extends ImagingBase {
 
     /**
      * Update parameters of a BMP image. Image data is passed in a request stream
-     * @constructor
      */
     public async CreateModifiedBmpFromRequestBody() {
         console.log("Update parameters of a BMP image from request body");

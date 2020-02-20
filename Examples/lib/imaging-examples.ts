@@ -37,7 +37,7 @@ import {FilterImage} from "./filer-image";
 import {ImageProperties} from "./image-properties";
 import {ResizeImage} from "./resize-image";
 import {RotateFlipImage} from "./rotate-flip-image";
-import {TIFFFrames} from "./tiff-frames";
+import {TiffFrames} from "./tiff-frames";
 import {UpdateTiffImage} from "./update-tiff-image";
 import {UpdateGifImage} from "./update-gif-image";
 import {UpdateImage} from "./update-image";
@@ -143,7 +143,7 @@ async function runExamples() {
     await rotateFlipImage.CreateRotateFlippedImageFromRequestBody();
 
     // TIFF Frames
-    const tiffFrames = new TIFFFrames(imagingApi);
+    const tiffFrames = new TiffFrames(imagingApi);
     // Get a specified frame from existing TIFF image
     await tiffFrames.GetImageFrameFromStorage();
     // Get a specified frame from existing TIFF image, and upload the frame to Cloud Storage

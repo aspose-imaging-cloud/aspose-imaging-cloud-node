@@ -25,13 +25,17 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-
 import {ImagingBase} from "./imaging-base";
 import {BigRectangularFilterProperties, FilterEffectImageRequest, ImagingApi} from "@asposecloud/aspose-imaging-cloud";
 
 export class FilterImage extends ImagingBase {
     protected _SampleImageFileName: string = "FilterEffectSampleImage.psd";
 
+    /**
+     * Creates a new instance of the FilterImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Filter image example:")
@@ -39,7 +43,6 @@ export class FilterImage extends ImagingBase {
 
     /**
      * Applies filtering effect to an image from cloud storage.
-     * @constructor
      */
     public async FilterImageFromStorage() {
         console.log("Apply filtering effect to an image from cloud storage");
@@ -75,7 +78,6 @@ export class FilterImage extends ImagingBase {
 
     /**
      * Applies filtering effect to an image and uploads to Cloud Storage
-     * @constructor
      */
     public async FilterImageAndUploadToStorage() {
         console.log("Apply filtering effect to an image and upload to cloud storage");

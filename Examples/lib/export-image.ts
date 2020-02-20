@@ -25,7 +25,6 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-
 import * as fs from "fs";
 import * as path from "path";
 import {ImagingBase} from "./imaging-base";
@@ -37,7 +36,11 @@ import {CreateSavedImageAsRequest, ImagingApi, SaveImageAsRequest} from "@aspose
 export class ExportImage extends ImagingBase {
     protected _SampleImageFileName: string = "ExportSampleImage.bmp";
 
-
+    /**
+     * Creates a new instance of the ExportImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Export image example");
@@ -45,7 +48,6 @@ export class ExportImage extends ImagingBase {
 
     /**
      * Export an image to another format.
-     * @constructor
      */
     public async SaveImageAsFromStorage() {
         console.log("Export an image to another format");
@@ -74,7 +76,6 @@ export class ExportImage extends ImagingBase {
 
     /**
      * Export an image to another format.
-     * @constructor
      */
     public async SaveImageAsAndUploadToStorage() {
         console.log("Export an image to another format and upload to cloud storage");
@@ -103,7 +104,6 @@ export class ExportImage extends ImagingBase {
 
     /**
      * Export an image to another format. Image data is passed in a request stream.
-     * @constructor
      */
     public async CreateSavedImageAsFromRequestBody() {
         console.log("Export an image to another format. Image data is passed in a request body");
