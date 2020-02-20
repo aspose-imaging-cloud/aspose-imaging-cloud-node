@@ -33,6 +33,7 @@ import {CropImage} from "./crop-image";
 import {UpdateBmpImage} from "./update-bmp-image";
 import {UpdateEmfImage} from "./update-emf-image";
 import {ExportImage} from "./export-image";
+import {FilterImage} from "./filer-image";
 import {ImageProperties} from "./image-properties";
 import {ResizeImage} from "./resize-image";
 import {RotateFlipImage} from "./rotate-flip-image";
@@ -118,6 +119,11 @@ async function runExamples() {
     await exportImage.SaveImageAsFromStorage();
     await exportImage.SaveImageAsAndUploadToStorage();
     await exportImage.CreateSavedImageAsFromRequestBody();
+
+    // Apply a filtering effect to an image
+    const filterImage = new FilterImage(imagingApi);
+    await filterImage.FilterImageFromStorage();
+    await filterImage.FilterImageAndUploadToStorage();
 
     // Get properties of an image
     const imageProperties = new ImageProperties(imagingApi);
