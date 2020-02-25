@@ -33,7 +33,7 @@ import {CropImage} from "./crop-image";
 import {UpdateBmpImage} from "./update-bmp-image";
 import {UpdateEmfImage} from "./update-emf-image";
 import {ExportImage} from "./export-image";
-import {FilterImage} from "./filer-image";
+import {FilterImage} from "./filter-image";
 import {ImageProperties} from "./image-properties";
 import {ResizeImage} from "./resize-image";
 import {RotateFlipImage} from "./rotate-flip-image";
