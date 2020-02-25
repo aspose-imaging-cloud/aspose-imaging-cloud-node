@@ -38,7 +38,7 @@ export class DeskewImage extends ImagingBase {
     /**
      * The name of the example image file.
      */
-    protected _SampleImageFileName: string = "DeskewSampleImage.bmp";
+    protected _SampleImageFileName: string = "DeskewSampleImage.tif";
 
     public constructor(imagingApi: ImagingApi) {
         super(imagingApi);
@@ -55,7 +55,7 @@ export class DeskewImage extends ImagingBase {
         await this.UploadSampleImageToCloud();
 
         const resizeProportionally = true;
-        const bkColor = "green";
+        const bkColor = "white";
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -89,7 +89,7 @@ export class DeskewImage extends ImagingBase {
         await this.UploadSampleImageToCloud();
 
         const resizeProportionally = true;
-        const bkColor = "green";
+        const bkColor = "white";
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -121,7 +121,7 @@ export class DeskewImage extends ImagingBase {
         console.log("Deskews the image from request body");
 
         const resizeProportionally = true;
-        const bkColor = "green";
+        const bkColor = "white";
         const outPath = undefined; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
