@@ -26,7 +26,7 @@
 */
 
 import {ImagingBase} from "./imaging-base";
-import {BigRectangularFilterProperties, FilterEffectImageRequest, ImagingApi} from "@asposecloud/aspose-imaging-cloud";
+import {GaussianBlurFilterProperties, FilterEffectImageRequest, ImagingApi} from "@asposecloud/aspose-imaging-cloud";
 
 export class FilterImage extends ImagingBase {
     protected _SampleImageFileName: string = "FilterEffectSampleImage.psd";
@@ -49,9 +49,9 @@ export class FilterImage extends ImagingBase {
 
         await this.UploadSampleImageToCloud();
 
-        const filterType = "BigRectangular";
-        const filterProperties = new BigRectangularFilterProperties();
-        const format = "gif";
+        const filterType = "GaussianBlur";
+        const filterProperties = new GaussianBlurFilterProperties({radius: 4, sigma: 2.1});
+        const format = "bmp";
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -64,10 +64,10 @@ export class FilterImage extends ImagingBase {
             storage
         });
 
-        console.log(`Call FilterEffectImage with params: filter type: ${filterType}, format: ${format}`);
+        console.log(`Call FilterEffectImage with params: filter type: ${filterType}, radius: ${filterProperties.radius}, sigma: ${filterProperties.sigma}, format: ${format}`);
 
         const updatedImage = await this.ImagingApi.filterEffectImage(request);
-        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false, format);
 
         console.log();
     }
@@ -80,9 +80,9 @@ export class FilterImage extends ImagingBase {
 
         await this.UploadSampleImageToCloud();
 
-        const filterType = "BigRectangular";
-        const filterProperties = new BigRectangularFilterProperties();
-        const format = "gif";
+        const filterType = "GaussianBlur";
+        const filterProperties = new GaussianBlurFilterProperties({radius: 4, sigma: 2.1});
+        const format = "bmp";
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -95,7 +95,7 @@ export class FilterImage extends ImagingBase {
             storage
         });
 
-        console.log(`Call FilterEffectImage with params: filter type: ${filterType}, format: ${format}`);
+        console.log(`Call FilterEffectImage with params: filter type: ${filterType}, radius: ${filterProperties.radius}, sigma: ${filterProperties.sigma}, format: ${format}`);
 
         const updatedImage = await this.ImagingApi.filterEffectImage(request);
         await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false, format), updatedImage);
