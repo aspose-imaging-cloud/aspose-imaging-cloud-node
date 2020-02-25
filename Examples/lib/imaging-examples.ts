@@ -30,6 +30,7 @@ import * as fs from "fs";
 import * as path from "path";
 import {ImagingBase} from "./imaging-base";
 import {CropImage} from "./crop-image";
+import {DeskewImage} from "./deskew-image";
 import {UpdateBmpImage} from "./update-bmp-image";
 import {UpdateEmfImage} from "./update-emf-image";
 import {ExportImage} from "./export-image";
@@ -107,6 +108,12 @@ async function runExamples() {
     await cropImage.CropImageFromStorage();
     await cropImage.CropImageAndUploadToStorage();
     await cropImage.CreateCroppedImageFromRequestBody();
+
+    // Deskew an existing image
+    const deskewImage = new DeskewImage(imagingApi);
+    await deskewImage.DeskewImageFromStorage();
+    await deskewImage.DeskewImageAndUploadToStorage();
+    await deskewImage.CreateDeskewedImageFromRequestBody();
 
     // Process existing EMF imaging using given parameters
     const updateEMFImage = new UpdateEmfImage(imagingApi);
