@@ -36,6 +36,11 @@ import * as path from "path";
 export class UpdateGifImage extends ImagingBase {
     protected _SampleImageFileName: string = "UpdateGIFSampleImage.gif";
 
+    /**
+     * Creates a new instance of the UpdateGifImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Update GIF image example");
@@ -43,7 +48,6 @@ export class UpdateGifImage extends ImagingBase {
 
     /**
      * Update parameters of existing GIF image. The image is saved in the cloud
-     * @constructor
      */
     public async ModifyGifFromStorage() {
         console.log("Update parameters of a GIF image from cloud storage");
@@ -68,19 +72,14 @@ export class UpdateGifImage extends ImagingBase {
 
         console.log(`Call ModifyGif with params: background color index: ${backgroundColorIndex}, color resolution: ${colorResolution}, has trailer: ${hasTrailer}, interlaced: ${interlaced}, is palette sorted: ${isPaletteSorted}, pixel aspect ratio: ${pixelAspectRatio}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyGif(getImageGifRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyGif(getImageGifRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
 
     /**
      * Update parameters of existing GIF image. The image is saved in the cloud
-     * @constructor
      */
     public async ModifyGifAndUploadToStorage() {
         console.log("Update parameters of a GIF image and upload to cloud storage");
@@ -105,19 +104,14 @@ export class UpdateGifImage extends ImagingBase {
 
         console.log(`Call ModifyGif with params: background color index: ${backgroundColorIndex}, color resolution: ${colorResolution}, has trailer: ${hasTrailer}, interlaced: ${interlaced}, is palette sorted: ${isPaletteSorted}, pixel aspect ratio: ${pixelAspectRatio}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyGif(getImageGifRequest);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyGif(getImageGifRequest);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
 
     /**
      * Update parameters of GIF image. Image data is passed in a request stream
-     * @constructor
      */
     public async CreateModifiedGifFromRequestBody() {
         console.log("Update parameters of a GIF image from request body");
@@ -141,13 +135,8 @@ export class UpdateGifImage extends ImagingBase {
 
         console.log(`Call CreateModifiedGif with params: background color index: ${backgroundColorIndex}, color resolution: ${colorResolution}, has trailer: ${hasTrailer}, interlaced: ${interlaced}, is palette sorted: ${isPaletteSorted}, pixel aspect ratio: ${pixelAspectRatio}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createModifiedGif(postImageGifRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-        } catch (e) {
-            console.log(e);
-        }
-
+        const updatedImage = await this.ImagingApi.createModifiedGif(postImageGifRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
         console.log();
     }

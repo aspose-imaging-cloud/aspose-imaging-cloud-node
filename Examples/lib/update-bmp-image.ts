@@ -36,7 +36,11 @@ import * as path from "path";
 export class UpdateBmpImage extends ImagingBase {
     protected _SampleImageFileName: string = "UpdateBmpSampleImage.bmp";
 
-
+    /**
+     * Creates a new instance of the UpdateBmpImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Update BMP image example");
@@ -44,7 +48,6 @@ export class UpdateBmpImage extends ImagingBase {
 
     /**
      * Update parameters of a BMP image. image is saved in the cloud.
-     * @constructor
      */
     public async ModifyBmpFromStorage() {
         console.log("Update parameters of a BMP image from cloud storage");
@@ -71,12 +74,8 @@ export class UpdateBmpImage extends ImagingBase {
 
         console.log(`Call ModifyBmp with params: bits per pixel: ${bitsPerPixel}, horizontal resolution: ${horizontalResolution}, vertical resolution: ${verticalResolution}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyBmp(request);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyBmp(request);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -107,19 +106,14 @@ export class UpdateBmpImage extends ImagingBase {
 
         console.log(`Call ModifyBmp with params: bits per pixel: ${bitsPerPixel}, horizontal resolution: ${horizontalResolution}, vertical resolution: ${verticalResolution}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyBmp(request);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyBmp(request);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
 
     /**
      * Update parameters of a BMP image. Image data is passed in a request stream
-     * @constructor
      */
     public async CreateModifiedBmpFromRequestBody() {
         console.log("Update parameters of a BMP image from request body");
@@ -145,12 +139,8 @@ export class UpdateBmpImage extends ImagingBase {
 
             console.log(`Call CreateModifiedBmp with params: bits per pixel: ${bitsPerPixel}, horizontal resolution: ${horizontalResolution}, vertical resolution: ${verticalResolution}`);
 
-            try {
-                const updatedImage = await this.ImagingApi.createModifiedBmp(request);
-                await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-            } catch (e) {
-                console.log(e);
-            }
+            const updatedImage = await this.ImagingApi.createModifiedBmp(request);
+            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
             console.log();
         }

@@ -36,7 +36,11 @@ import * as path from "path";
 export class UpdateWebPImage extends ImagingBase {
     protected _SampleImageFileName: string = "WEBPSampleImage.webp";
 
-
+    /**
+     * Creates a new instance of the UpdateWebPImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Update WEBP image example");
@@ -45,7 +49,6 @@ export class UpdateWebPImage extends ImagingBase {
     /**
      *
      *Update parameters of existing WEBP image. The image is saved in the cloud
-     * @constructor
      */
     public async ModifyWebPFromStorage() {
         console.log("Update parameters of a WEBP image from cloud storage");
@@ -70,12 +73,8 @@ export class UpdateWebPImage extends ImagingBase {
 
         console.log(`Call ModifyWebP with params: lossless: ${lossless}, quality: ${quality}, anim loop count: ${animLoopCount}, anim background color: ${animBackgroundColor}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyWebP(getImageWebPRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyWebP(getImageWebPRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -83,7 +82,6 @@ export class UpdateWebPImage extends ImagingBase {
     /**
      *
      *Update parameters of existing WEBP image, and upload updated image to Cloud Storage
-     * @constructor
      */
     public async ModifyWebPAndUploadToStorage() {
         console.log("Update parameters of a WEBP image and upload to cloud storage");
@@ -108,12 +106,8 @@ export class UpdateWebPImage extends ImagingBase {
 
         console.log(`Call ModifyWebP with params: lossless: ${lossless}, quality: ${quality}, anim loop count: ${animLoopCount}, anim background color: ${animBackgroundColor}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyWebP(getImageWebPRequest);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyWebP(getImageWebPRequest);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
@@ -122,7 +116,6 @@ export class UpdateWebPImage extends ImagingBase {
      *
      * Update parameters of existing Webp image.
      * asposelogo.webpImage data is passed in a request stream
-     * @constructor
      */
     public async CreateModifiedWebPFromRequestBody() {
         console.log("Update parameters of a WEBP image from request body");
@@ -143,12 +136,8 @@ export class UpdateWebPImage extends ImagingBase {
 
         console.log(`Call CreateModifiedWebP with params: lossless: ${lossless}, quality: ${quality}, anim loop count: ${animLoopCount}, anim background color: ${animBackgroundColor}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createModifiedWebP(modifiedImageWebPRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createModifiedWebP(modifiedImageWebPRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
         console.log();
     }

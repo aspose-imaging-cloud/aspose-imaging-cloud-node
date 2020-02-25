@@ -36,16 +36,19 @@ import * as path from "path";
 export class UpdateWmfImage extends ImagingBase {
     protected _SampleImageFileName: string = "WMFSampleImage.wmf";
 
-
+    /**
+     * Creates a new instance of the UpdateWmfImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Update WMF image example");
     }
 
-    /// <summary>
-    /// Process existing WMF image using given parameters.
-    /// The image is saved in the cloud.
-    /// </summary>
+    /**
+     * Process existing WMF image using given parameters. The image is saved in the cloud.
+     */
     public async ModifyWmfFromStorage() {
         console.log("Update parameters of a WMF image from cloud storage");
 
@@ -71,12 +74,8 @@ export class UpdateWmfImage extends ImagingBase {
 
         console.log(`Call ModifyWmf with params: background color: ${bkColor}, page width: ${pageWidth}, page height: ${pageHeight}, border X: ${borderX}, border Y: ${borderY}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyWmf(getImageWmfRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyWmf(getImageWmfRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -84,7 +83,6 @@ export class UpdateWmfImage extends ImagingBase {
     /**
      *
      *Process existing WMF image using given parameters, and upload updated image to Cloud Storage
-     * @constructor
      */
     public async ModifyWmfAndUploadToStorage() {
         console.log("Update parameters of a WMF image and upload to cloud storage");
@@ -111,20 +109,15 @@ export class UpdateWmfImage extends ImagingBase {
 
         console.log(`Call ModifyWmf with params: background color: ${bkColor}, page width: ${pageWidth}, page height: ${pageHeight}, border X: ${borderX}, border Y: ${borderY}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyWmf(getImageWmfRequest);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyWmf(getImageWmfRequest);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
 
-    /// <summary>
-    /// Process existing WMF image using given parameters.
-    /// Image data is passed in a request stream.
-    /// </summary>
+    /**
+     * Process existing WMF image using given parameters. Image data is passed in a request stream.
+     */
     public async CreateModifiedWmfFromRequestBody() {
         console.log("Update parameters of a WMF image from request body");
 
@@ -148,12 +141,8 @@ export class UpdateWmfImage extends ImagingBase {
 
         console.log(`Call CreateModifiedWmf with params: background color: ${bkColor}, page width: ${pageWidth}, page height: ${pageHeight}, border X: ${borderX}, border Y: ${borderY}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createModifiedWmf(postImageWmfRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createModifiedWmf(postImageWmfRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
         console.log();
     }

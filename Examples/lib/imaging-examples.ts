@@ -33,10 +33,11 @@ import {CropImage} from "./crop-image";
 import {UpdateBmpImage} from "./update-bmp-image";
 import {UpdateEmfImage} from "./update-emf-image";
 import {ExportImage} from "./export-image";
+import {FilterImage} from "./filter-image";
 import {ImageProperties} from "./image-properties";
 import {ResizeImage} from "./resize-image";
 import {RotateFlipImage} from "./rotate-flip-image";
-import {TIFFFrames} from "./tiff-frames";
+import {TiffFrames} from "./tiff-frames";
 import {UpdateTiffImage} from "./update-tiff-image";
 import {UpdateGifImage} from "./update-gif-image";
 import {UpdateImage} from "./update-image";
@@ -46,10 +47,6 @@ import {UpdatePsdImage} from "./update-psd-image";
 import {UpdateWebPImage} from "./update-web-p-image";
 import {UpdateWmfImage} from "./update-wmf-image";
 import * as os from "os";
-import {CompareImages} from "./AI/compare-images";
-import {FindDuplicateImages} from "./AI/find-duplicate-images";
-import {FindSimilarImages} from "./AI/find-similar-images";
-import {SearchImages} from "./AI/search-images";
 
 runExamples().catch(reason => {
     console.log(reason);
@@ -123,6 +120,11 @@ async function runExamples() {
     await exportImage.SaveImageAsAndUploadToStorage();
     await exportImage.CreateSavedImageAsFromRequestBody();
 
+    // Apply a filtering effect to an image
+    const filterImage = new FilterImage(imagingApi);
+    await filterImage.FilterImageFromStorage();
+    await filterImage.FilterImageAndUploadToStorage();
+
     // Get properties of an image
     const imageProperties = new ImageProperties(imagingApi);
     await imageProperties.GetImagePropertiesFromStorage();
@@ -141,7 +143,7 @@ async function runExamples() {
     await rotateFlipImage.CreateRotateFlippedImageFromRequestBody();
 
     // TIFF Frames
-    const tiffFrames = new TIFFFrames(imagingApi);
+    const tiffFrames = new TiffFrames(imagingApi);
     // Get a specified frame from existing TIFF image
     await tiffFrames.GetImageFrameFromStorage();
     // Get a specified frame from existing TIFF image, and upload the frame to Cloud Storage
@@ -212,36 +214,6 @@ async function runExamples() {
     await wmfImage.ModifyWmfFromStorage();
     await wmfImage.ModifyWmfAndUploadToStorage();
     await wmfImage.CreateModifiedWmfFromRequestBody();
-
-    // AI APIs
-    console.log(`Running AI examples:`);
-    console.log();
-
-    // Compare two images
-    const compareImages = new CompareImages(imagingApi);
-    await compareImages.PrepareSearchContext();
-    await compareImages.CompareTwoImagesInCloud();
-    await compareImages.CompareLoadedImageToImageInCloud();
-    await compareImages.DeleteSearchContext();
-
-    // Find Duplicate Images
-    const findDuplicateImages = new FindDuplicateImages(imagingApi);
-    await findDuplicateImages.PrepareSearchContext();
-    await findDuplicateImages.FindImageDuplicates();
-    await findDuplicateImages.DeleteSearchContext();
-
-    // Find Similar Images
-    const findSimilarImages = new FindSimilarImages(imagingApi);
-    await findSimilarImages.PrepareSearchContext();
-    await findSimilarImages.FindImagesSimilar();
-    await findSimilarImages.FindImagesByTag();
-    await findSimilarImages.DeleteSearchContext();
-
-    // Search Images
-    const searchImages = new SearchImages(imagingApi);
-    await searchImages.PrepareSearchContext();
-    await searchImages.SearchImageFromWebSource();
-    await searchImages.DeleteSearchContext();
 }
 
 /**

@@ -36,14 +36,17 @@ import {
 import * as fs from "fs";
 import * as path from "path";
 
-
 /**
  *  TIFF frames example.
  */
-export class TIFFFrames extends ImagingBase {
+export class TiffFrames extends ImagingBase {
     protected _SampleImageFileName: string = "TiffFrameSampleImage.tiff";
 
-
+    /**
+     * Creates a new instance of the TiffFrames class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("TIFF frames example");
@@ -51,7 +54,6 @@ export class TIFFFrames extends ImagingBase {
 
     /**
      * Get separate frame from existing TIFF image
-     * @constructor
      */
     public async GetImageFrameFromStorage() {
         console.log("Get separate frame from existing TIFF image in cloud storage");
@@ -85,7 +87,6 @@ export class TIFFFrames extends ImagingBase {
 
     /**
      * Get separate frame from existing TIFF image, and upload the frame to Cloud Storage
-     * @constructor
      */
     public async GetImageFrameAndUploadToStorage() {
         console.log("Get separate frame from existing TIFF image and upload to cloud storage");
@@ -119,7 +120,6 @@ export class TIFFFrames extends ImagingBase {
 
     /**
      * Resize a TIFF frame
-     * @constructor
      */
     public async ResizeImageFrameFromStorage() {
         console.log("Resize frame from existing TIFF image from cloud storage");
@@ -143,13 +143,11 @@ export class TIFFFrames extends ImagingBase {
         const imageFrame = await this.ImagingApi.getImageFrame(getImageFrameRequest);
         await this.SaveUpdatedImageToOutput("ResizeFrame.tiff", imageFrame);
 
-
         console.log();
     }
 
     /**
      * Crop a TIFF frame
-     * @constructor
      */
     public async CropImageFrameFromStorage() {
         console.log("Crop frame from existing TIFF image from cloud storage");
@@ -188,7 +186,6 @@ export class TIFFFrames extends ImagingBase {
 
     /**
      * Rotate/Flip a TIFF frame
-     * @constructor
      */
     public async RotateFlipImageFrameFromStorage() {
         console.log("Rotate/flip frame from existing TIFF image from cloud storage");
@@ -217,7 +214,6 @@ export class TIFFFrames extends ImagingBase {
 
     /**
      * Gets all image frames from storage
-     * @constructor
      */
     public async GetAllImageFramesFromStorage() {
         console.log("Gets all image frames from existing TIFF image from cloud storage");
@@ -252,11 +248,9 @@ export class TIFFFrames extends ImagingBase {
 
     /**
      * Get separate frame from existing TIFF image. Image data is passed in a request stream
-     * @constructor
      */
     public async CreateImageFrameFromRequestBody() {
         console.log("Get separate frame from existing TIFF image from request body");
-
 
         const frameId: number = 1;
         const newWidth: number = 300;
@@ -286,7 +280,6 @@ export class TIFFFrames extends ImagingBase {
 
     /**
      * Get separate frame properties of a TIFF image
-     * @constructor
      */
     public async GetImageFramePropertiesFromStorage() {
         console.log("Gets separate frame properties of existing TIFF image from cloud storage");
@@ -310,7 +303,6 @@ export class TIFFFrames extends ImagingBase {
 
     /**
      * Get separate frame properties of a TIFF image. Image data is passed in a request stream.
-     * @constructor
      */
     public async ExtractImageFramePropertiesFromRequestBody() {
         console.log("Get separate frame properties of existing TIFF image from request body");

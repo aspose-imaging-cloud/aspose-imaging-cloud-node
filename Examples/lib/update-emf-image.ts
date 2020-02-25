@@ -36,7 +36,11 @@ import * as path from "path";
 export class UpdateEmfImage extends ImagingBase {
     protected _SampleImageFileName: string = "UpdateEMFSampleImage.emf";
 
-
+    /**
+     * Creates a new instance of the UpdateEmfImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Update EMF image example");
@@ -44,7 +48,6 @@ export class UpdateEmfImage extends ImagingBase {
 
     /**
      * Modifies the EMF from storage
-     * @constructor
      */
     public async ModifyEmfFromStorage() {
         console.log("Update parameters of a EMF image");
@@ -79,19 +82,14 @@ export class UpdateEmfImage extends ImagingBase {
 
         console.log(`Call ModifyEmf with params: background color: ${bkColor}, width: ${pageWidth}, height: ${pageHeight}, border x: ${borderX}, border y: ${borderY}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyEmf(request);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false, format);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyEmf(request);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false, format);
 
         console.log();
     }
 
     /**
      * Process existing EMF image using given parameters, and upload updated image to Cloud Storage
-     * @constructor
      */
     public async ModifyEmfAndUploadToStorage() {
         console.log("Update parameters of a EMF image and upload to cloud storage");
@@ -126,19 +124,14 @@ export class UpdateEmfImage extends ImagingBase {
 
         console.log(`Call ModifyEmf with params: background color: ${bkColor}, width: ${pageWidth}, height: ${pageHeight}, border x: ${borderX}, border y: ${borderY}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyEmf(request);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false, format), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyEmf(request);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false, format), updatedImage);
 
         console.log();
     }
 
     /**
      * Rasterize EMF image to PNG using given parameters. Image data is passed in a request stream.
-     * @constructor
      */
     public async CreateModifiedEmfFromRequestBody() {
         console.log("Update parameters of a EMF image from request body");
@@ -161,12 +154,8 @@ export class UpdateEmfImage extends ImagingBase {
 
         console.log(`Call CreateModifiedEmf with params: background color: ${bkColor}, width: ${pageWidth}, height: ${pageHeight}, border x: ${borderX}, border y: ${borderY}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createModifiedEmf(request);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true, format);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createModifiedEmf(request);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true, format);
 
         console.log();
     }

@@ -36,7 +36,11 @@ import * as path from "path";
 export class UpdateJpegImage extends ImagingBase {
     protected _SampleImageFileName: string = "UpdateJPEGSampleImage.jpg";
 
-
+    /**
+     * Creates a new instance of the UpdateJpegImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Update JPEG image example");
@@ -45,7 +49,6 @@ export class UpdateJpegImage extends ImagingBase {
     /**
      *
      *Update parameters of existing JPEG image. The image is saved in the cloud
-     * @constructor
      */
     public async ModifyJpegFromStorage() {
         console.log("Update parameters of a JPEG image from cloud storage");
@@ -65,12 +68,8 @@ export class UpdateJpegImage extends ImagingBase {
 
         console.log(`Call ModifyJpeg with params: quality: ${quality}, compression type: ${compressionType}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyJpeg(modifyJpegRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyJpeg(modifyJpegRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -78,7 +77,6 @@ export class UpdateJpegImage extends ImagingBase {
     /**
      *
      *Update parameters of existing JPEG image, and upload updated image to Cloud Storage
-     * @constructor
      */
     public async ModifyJpegAndUploadToStorage() {
         console.log("Update parameters of a JPEG image and upload to cloud storage");
@@ -103,12 +101,8 @@ export class UpdateJpegImage extends ImagingBase {
 
         console.log(`Call ModifyJpeg with params: quality: ${quality}, compression type: ${compressionType}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyJpeg(modifyJpegRequest);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyJpeg(modifyJpegRequest);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
@@ -116,7 +110,6 @@ export class UpdateJpegImage extends ImagingBase {
     /**
      *
      *Update parameters of existing JPEG image. Image data is passed in a request stream
-     * @constructor
      */
     public async CreateModifiedJpegFromRequestBody() {
         console.log("Update parameters of a JPEG image from request body");
@@ -140,12 +133,8 @@ export class UpdateJpegImage extends ImagingBase {
 
         console.log(`Call CreateModifiedJpeg with params: quality: ${quality}, compression type: ${compressionType}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createModifiedJpeg(modifiedJpgRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createModifiedJpeg(modifiedJpgRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
         console.log();
     }

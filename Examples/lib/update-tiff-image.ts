@@ -43,6 +43,11 @@ import * as path from "path";
 export class UpdateTiffImage extends ImagingBase {
     protected _SampleImageFileName: string = "TiffSampleImage.tiff";
 
+    /**
+     * Creates a new instance of the UpdateTiffImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("TIFF image example");
@@ -51,7 +56,6 @@ export class UpdateTiffImage extends ImagingBase {
     /**
      *
      *Update parameters of TIFF image. The image is saved in the cloud
-     * @constructor
      */
     public async ModifyTiffFromStorage() {
         console.log("Update parameters of a TIFF image from cloud storage");
@@ -76,12 +80,8 @@ export class UpdateTiffImage extends ImagingBase {
 
         console.log(`Call ModifyTiff with params: compression: ${compression}, resolution unit: ${resolutionUnit}, bit depth: ${bitDepth}, horizontal resolution: ${horizontalResolution}, vertical resolution: ${verticalResolution} `);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyTiff(getImageTiffRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyTiff(getImageTiffRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
@@ -89,7 +89,6 @@ export class UpdateTiffImage extends ImagingBase {
     /**
      *
      *Update parameters of TIFF image, and upload updated image to Cloud Storage
-     * @constructor
      */
     public async ModifyTiffAndUploadToStorage() {
         console.log("Update parameters of a TIFF image and upload to cloud storage");
@@ -114,20 +113,15 @@ export class UpdateTiffImage extends ImagingBase {
 
         console.log(`Call ModifyTiff with params: compression: ${compression}, resolution unit: ${resolutionUnit}, bit depth: ${bitDepth}, horizontal resolution: ${horizontalResolution}, vertical resolution: ${verticalResolution} `);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyTiff(getImageTiffRequest);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyTiff(getImageTiffRequest);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
 
-    /// <summary>
-    /// Update parameters of TIFF image.
-    /// Image data is passed in a request stream.
-    /// </summary>
+    /**
+     * Update parameters of TIFF image. Image data is passed in a request stream.
+     */
     public async CreateModifiedTiffFromRequestBody() {
         console.log("Update parameters of a TIFF image from request body");
 
@@ -148,13 +142,8 @@ export class UpdateTiffImage extends ImagingBase {
 
         console.log(`Call CreateModifiedTiff with params: compression: ${compression}, resolution unit: ${resolutionUnit}, bit depth: ${bitDepth}, horizontal resolution: ${horizontalResolution}, vertical resolution: ${verticalResolution} `);
 
-        try {
-            const updatedImage = await this.ImagingApi.createModifiedTiff(postImageTiffRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-        } catch (e) {
-            console.log(e);
-        }
-
+        const updatedImage = await this.ImagingApi.createModifiedTiff(postImageTiffRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
         console.log();
     }
@@ -162,7 +151,6 @@ export class UpdateTiffImage extends ImagingBase {
     /**
      *
      *Update parameters of TIFF image according to fax parameters
-     * @constructor
      */
     public async ConvertTiffToFaxFromStorage() {
         console.log("Update parameters of TIFF image according to fax parameters.");
@@ -186,7 +174,6 @@ export class UpdateTiffImage extends ImagingBase {
     /**
      *
      *Appends existing TIFF image to another existing TIFF image (i.e. merges TIFF images)
-     * @constructor
      */
     public async AppendTiffFromStorage() {
         console.log("Appends existing TIFF image to another existing TIFF image.");
@@ -196,7 +183,6 @@ export class UpdateTiffImage extends ImagingBase {
         await this.UploadSampleImageToCloud();
         const localInputImage = fs.readFileSync(path.resolve(ImagingBase.ExampleImagesFolder, appendFileName));
         await this.UploadImageToCloud(appendFileName, localInputImage);
-
 
         // Update TIFF Image parameters according to fax parameters
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
@@ -215,7 +201,7 @@ export class UpdateTiffImage extends ImagingBase {
 
         // Download updated file to local storage
         const downloadRequest = new DownloadFileRequest({
-            path: path.resolve(this.CloudPath, this.SampleImageFileName),
+            path: path.join(this.CloudPath, this.SampleImageFileName),
             storageName: storage
         });
         const updatedImage = await this.ImagingApi.downloadFile(downloadRequest);

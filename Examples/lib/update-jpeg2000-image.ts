@@ -30,13 +30,17 @@ import {CreateModifiedJpeg2000Request, ImagingApi, ModifyJpeg2000Request,} from 
 import * as fs from "fs";
 import * as path from "path";
 
-
 /**
  *  Update JPEG2000 image example.
  */
 export class UpdateJpeg2000Image extends ImagingBase {
     protected _SampleImageFileName: string = "UpdateJPEG2000SampleImage.jp2";
 
+    /**
+     * Creates a new instance of the UpdateJpeg2000Image class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Update JPEG2000 image example");
@@ -44,7 +48,6 @@ export class UpdateJpeg2000Image extends ImagingBase {
 
     /**
      * Update parameters of existing JPEG2000 image. The image is saved in the cloud.
-     * @constructor
      */
     public async ModifyJpeg2000FromStorage() {
         console.log("Update parameters of a Jpeg2000 image from cloud storage");
@@ -69,19 +72,14 @@ export class UpdateJpeg2000Image extends ImagingBase {
 
         console.log(`Call ModifyJpeg2000 with params: codec: ${codec}, comment: ${comment}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyJpeg2000(getImageJpeg2000Request);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyJpeg2000(getImageJpeg2000Request);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
 
     /**
      * Update parameters of existing JPEG2000 image, and upload updated image to Cloud Storage
-     * @constructor
      */
     public async ModifyJpeg2000AndUploadToStorage() {
         console.log("Update parameters of a Jpeg2000 image and upload to cloud storage");
@@ -106,19 +104,14 @@ export class UpdateJpeg2000Image extends ImagingBase {
 
         console.log(`Call ModifyJpeg2000 with params: codec: ${codec}, comment: ${comment}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.modifyJpeg2000(getImageJpeg2000Request);
-            await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.modifyJpeg2000(getImageJpeg2000Request);
+        await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false), updatedImage);
 
         console.log();
     }
 
     /**
      * Update parameters of existing JPEG2000 image. Image data is passed in a request stream
-     * @constructor
      */
     public async CreateModifiedJpeg2000FromRequestBody() {
         console.log("Update parameters of a Jpeg2000 image from request body");
@@ -142,12 +135,8 @@ export class UpdateJpeg2000Image extends ImagingBase {
 
             console.log(`Call CreateModifiedJpeg2000 with params: codec: ${codec}, comment: ${comment}`);
 
-            try {
-                const updatedImage = await this.ImagingApi.createModifiedJpeg2000(postImageJpeg2000Request);
-                await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
-            } catch (e) {
-                console.log(e);
-            }
+            const updatedImage = await this.ImagingApi.createModifiedJpeg2000(postImageJpeg2000Request);
+            await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
 
             console.log();
         }

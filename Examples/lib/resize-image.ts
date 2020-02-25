@@ -25,7 +25,6 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-
 import {ImagingBase} from "./imaging-base";
 import {CreateResizedImageRequest, ImagingApi, ResizeImageRequest} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
@@ -34,6 +33,11 @@ import * as path from "path";
 export class ResizeImage extends ImagingBase {
     protected _SampleImageFileName: string = "ResizeSampleImage.psd";
 
+    /**
+     * Creates a new instance of the ResizeImage class
+     * @param imagingApi The imaging API
+     * @constructor
+     */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
         ImagingBase.PrintHeader("Resize an image example");
@@ -41,7 +45,6 @@ export class ResizeImage extends ImagingBase {
 
     /**
      * Resizes the image.
-     * @constructor
      */
     public async ResizeImageFromStorage() {
         console.log("Resize an image from cloud storage");
@@ -63,19 +66,14 @@ export class ResizeImage extends ImagingBase {
 
         console.log(`Call ResizeImage with params: new width: ${newWidth}, new height: ${newHeight}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.resizeImage(resizeImageRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.resizeImage(resizeImageRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
 
     /**
      * Resizes the sample image and upload to Cloud Storage
-     * @constructor
      */
     public async ResizeImageAndUploadToStorage() {
         console.log("Resize an image and upload to cloud storage");
@@ -97,19 +95,14 @@ export class ResizeImage extends ImagingBase {
 
         console.log(`Call ResizeImage with params: new width: ${newWidth}, new height: ${newHeight}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.resizeImage(resizeImageRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.resizeImage(resizeImageRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, false);
 
         console.log();
     }
 
     /**
      * Resize an image. Image data is passed in a request stream.
-     * @constructor
      */
     public async CreateResizedImageFromRequestBody() {
         console.log("Resize an image from request body");
@@ -129,12 +122,8 @@ export class ResizeImage extends ImagingBase {
 
         console.log(`Call CreateResizedImage with params: new width: ${newWidth}, new height: ${newHeight}, format: ${format}`);
 
-        try {
-            const updatedImage = await this.ImagingApi.createResizedImage(createResizedImageRequest);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, true, format);
-        } catch (e) {
-            console.log(e);
-        }
+        const updatedImage = await this.ImagingApi.createResizedImage(createResizedImageRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true, format);
 
         console.log();
     }
