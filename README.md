@@ -81,7 +81,7 @@ Please, add the following [nmp package](https://www.npmjs.com/package/@asposeclo
 ```json
 {
   "dependencies": {
-    "@asposecloud/aspose-imaging-cloud": "^20.1.0"
+    "@asposecloud/aspose-imaging-cloud": "^20.2.0"
   }
 }
 ```
@@ -92,7 +92,7 @@ import * as imaging from "@asposecloud/aspose-imaging-cloud";
 4. **Using the SDK**. The best way to become familiar with how to use the SDK is to read the [Developer Guide](https://docs.aspose.cloud/display/imagingcloud/Developer+Guide). The [Getting Started Guide](https://docs.aspose.cloud/display/imagingcloud/Getting+Started) will help you to become familiar with the common concepts.
 
 ## Quick Examples
-Please, look at [Examples](EXAMPLES.md) document.
+Please, look at [Examples](EXAMPLES.md) document for basic usage or use the [Examples](Examples) folder for more sophisticated scenarios.
 
 #### Aspose Cloud-hosted service VS on-premise deployment (*experimental feature*)
 Starting from v19.7, you can choose either to use Aspose Cloud-hosted image processing service (the standard way) or the Docker image from Docker Hub deployed on-premise to serve the requests.

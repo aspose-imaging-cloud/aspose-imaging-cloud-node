@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 <a name="createCroppedImage"></a>
 ## **createCroppedImage**
-> createCroppedImage(imageData, format, x, y, width, height, outPath, storage)
+> createCroppedImage(imageData, x, y, width, height, format, outPath, storage)
 
 Crop an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 
@@ -151,12 +151,36 @@ Crop an image. Image data is passed as zero-indexed multipart/form-data content 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **imageData** | **Buffer** | Input image | 
-**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
 **x** | **number** | X position of start point for cropping rectangle. | 
 **y** | **number** | Y position of start point for cropping rectangle. | 
 **width** | **number** | Width of cropping rectangle. | 
 **height** | **number** | Height of cropping rectangle. | 
+**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed image). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+<a name="createDeskewedImage"></a>
+## **createDeskewedImage**
+> createDeskewedImage(imageData, resizeProportionally, bkColor, outPath, storage)
+
+Deskew an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**imageData** | **Buffer** | Input image | 
+**resizeProportionally** | **boolean** | Resize proportionally | 
+**bkColor** | **string** | Background color | [optional]
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed image) | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
 ### Return type
@@ -187,6 +211,28 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="createGrayscaledImage"></a>
+## **createGrayscaledImage**
+> createGrayscaledImage(imageData, outPath, storage)
+
+Grayscales an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**imageData** | **Buffer** | Input image | 
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed image) | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 <a name="createImageFeatures"></a>
@@ -570,7 +616,7 @@ Name | Type | Description  | Notes
 
 <a name="createResizedImage"></a>
 ## **createResizedImage**
-> createResizedImage(imageData, format, newWidth, newHeight, outPath, storage)
+> createResizedImage(imageData, newWidth, newHeight, format, outPath, storage)
 
 Resize an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 
@@ -578,9 +624,9 @@ Resize an image. Image data is passed as zero-indexed multipart/form-data conten
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **imageData** | **Buffer** | Input image | 
-**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
 **newWidth** | **number** | New width. | 
 **newHeight** | **number** | New height. | 
+**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed image). | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
@@ -595,7 +641,7 @@ Name | Type | Description  | Notes
 
 <a name="createRotateFlippedImage"></a>
 ## **createRotateFlippedImage**
-> createRotateFlippedImage(imageData, format, method, outPath, storage)
+> createRotateFlippedImage(imageData, method, format, outPath, storage)
 
 Rotate and/or flip an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 
@@ -603,8 +649,8 @@ Rotate and/or flip an image. Image data is passed as zero-indexed multipart/form
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **imageData** | **Buffer** | Input image | 
-**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
 **method** | **string** | RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). | 
+**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed image). | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
@@ -642,7 +688,7 @@ Name | Type | Description  | Notes
 
 <a name="createUpdatedImage"></a>
 ## **createUpdatedImage**
-> createUpdatedImage(imageData, format, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod, outPath, storage)
+> createUpdatedImage(imageData, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod, format, outPath, storage)
 
 Perform scaling, cropping and flipping of an image in a single request. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 
@@ -650,7 +696,6 @@ Perform scaling, cropping and flipping of an image in a single request. Image da
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **imageData** | **Buffer** | Input image | 
-**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
 **newWidth** | **number** | New width of the scaled image. | 
 **newHeight** | **number** | New height of the scaled image. | 
 **x** | **number** | X position of start point for cropping rectangle. | 
@@ -658,6 +703,7 @@ Name | Type | Description  | Notes
 **rectWidth** | **number** | Width of cropping rectangle. | 
 **rectHeight** | **number** | Height of cropping rectangle. | 
 **rotateFlipMethod** | **string** | RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone. | 
+**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed image). | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
@@ -672,7 +718,7 @@ Name | Type | Description  | Notes
 
 <a name="createWebSiteImageFeatures"></a>
 ## **createWebSiteImageFeatures**
-> createWebSiteImageFeatures(searchContextId, imagesSource, imageData, folder, storage)
+> createWebSiteImageFeatures(searchContextId, imagesSource, folder, storage)
 
 Extract images features from web page and add them to search context
 
@@ -681,7 +727,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **searchContextId** | **string** | The search context identifier. | 
 **imagesSource** | **string** | Images source - a web page | 
-**imageData** | **Buffer** | Input image | [optional]
 **folder** | **string** | The folder. | [optional]
 **storage** | **string** | The storage. | [optional]
 
@@ -691,12 +736,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 <a name="cropImage"></a>
 ## **cropImage**
-> cropImage(name, format, x, y, width, height, folder, storage)
+> cropImage(name, x, y, width, height, format, folder, storage)
 
 Crop an existing image.
 
@@ -704,11 +749,11 @@ Crop an existing image.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | Filename of an image. | 
-**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
 **x** | **number** | X position of start point for cropping rectangle. | 
 **y** | **number** | Y position of start point for cropping rectangle. | 
 **width** | **number** | Width of cropping rectangle | 
 **height** | **number** | Height of cropping rectangle. | 
+**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
 **folder** | **string** | Folder with image to process. | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
@@ -833,6 +878,30 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="deskewImage"></a>
+## **deskewImage**
+> deskewImage(name, resizeProportionally, bkColor, folder, storage)
+
+Deskew an existing image.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | Image file name. | 
+**resizeProportionally** | **boolean** | Resize proportionally | 
+**bkColor** | **string** | Background color | [optional]
+**folder** | **string** | Folder | [optional]
+**storage** | **string** | Storage | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="downloadFile"></a>
 ## **downloadFile**
 > downloadFile(path, storageName, versionId)
@@ -922,7 +991,7 @@ Name | Type | Description  | Notes
 
 <a name="filterEffectImage"></a>
 ## **filterEffectImage**
-> filterEffectImage(name, format, filterType, filterProperties, folder, storage)
+> filterEffectImage(name, filterType, filterProperties, format, folder, storage)
 
 Apply filtering effects to an existing image.
 
@@ -930,9 +999,9 @@ Apply filtering effects to an existing image.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | Filename of an image. | 
-**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
 **filterType** | **string** | Filter type (BigRectangular, SmallRectangular, Median, GaussWiener, MotionWiener, GaussianBlur, Sharpen, BilateralSmoothing). | 
 **filterProperties** | [**FilterPropertiesBase**](FilterPropertiesBase.md) | Filter properties. | 
+**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
 **folder** | **string** | Folder with image to process. | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
@@ -1214,6 +1283,28 @@ Name | Type | Description  | Notes
 **searchContextId** | **string** | Search context identifier. | 
 **imageId** | **string** | Image identifier. | 
 **folder** | **string** | Folder. | [optional]
+**storage** | **string** | Storage | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="grayscaleImage"></a>
+## **grayscaleImage**
+> grayscaleImage(name, folder, storage)
+
+Grayscale an existing image.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | Image file name. | 
+**folder** | **string** | Folder | [optional]
 **storage** | **string** | Storage | [optional]
 
 ### Return type
@@ -1572,7 +1663,7 @@ Name | Type | Description  | Notes
 
 <a name="resizeImage"></a>
 ## **resizeImage**
-> resizeImage(name, format, newWidth, newHeight, folder, storage)
+> resizeImage(name, newWidth, newHeight, format, folder, storage)
 
 Resize an existing image.
 
@@ -1580,9 +1671,9 @@ Resize an existing image.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | Filename of an image. | 
-**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
 **newWidth** | **number** | New width. | 
 **newHeight** | **number** | New height. | 
+**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
 **folder** | **string** | Folder with image to process. | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
@@ -1597,7 +1688,7 @@ Name | Type | Description  | Notes
 
 <a name="rotateFlipImage"></a>
 ## **rotateFlipImage**
-> rotateFlipImage(name, format, method, folder, storage)
+> rotateFlipImage(name, method, format, folder, storage)
 
 Rotate and/or flip an existing image.
 
@@ -1605,8 +1696,8 @@ Rotate and/or flip an existing image.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | Filename of an image. | 
-**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
 **method** | **string** | RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). | 
+**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
 **folder** | **string** | Folder with image to process. | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
@@ -1664,7 +1755,7 @@ Name | Type | Description  | Notes
 
 <a name="updateImage"></a>
 ## **updateImage**
-> updateImage(name, format, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod, folder, storage)
+> updateImage(name, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod, format, folder, storage)
 
 Perform scaling, cropping and flipping of an existing image in a single request.
 
@@ -1672,7 +1763,6 @@ Perform scaling, cropping and flipping of an existing image in a single request.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | Filename of an image. | 
-**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
 **newWidth** | **number** | New width of the scaled image. | 
 **newHeight** | **number** | New height of the scaled image. | 
 **x** | **number** | X position of start point for cropping rectangle. | 
@@ -1680,6 +1770,7 @@ Name | Type | Description  | Notes
 **rectWidth** | **number** | Width of cropping rectangle. | 
 **rectHeight** | **number** | Height of cropping rectangle. | 
 **rotateFlipMethod** | **string** | RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone. | 
+**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
 **folder** | **string** | Folder with image to process. | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 

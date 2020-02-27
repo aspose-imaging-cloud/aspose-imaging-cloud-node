@@ -5336,6 +5336,30 @@ export class CreateFolderRequest {
 }
 
 /**
+ * Request model for CreateGrayscaledImage operation.
+ */
+export class CreateGrayscaledImageRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image)
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateGrayscaledImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for CreateImageFeatures operation.
  */
 export class CreateImageFeaturesRequest {
@@ -6928,6 +6952,30 @@ export class GetSearchImageRequest {
     public storage: string;
     
     public constructor(init?: Partial<GetSearchImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GrayscaleImage operation.
+ */
+export class GrayscaleImageRequest {
+    /**
+     * Image file name.
+     */
+    public name: string;
+
+    /**
+     * Folder
+     */
+    public folder: string;
+
+    /**
+     * Storage
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<GrayscaleImageRequest>) {        
         Object.assign(this, init);
     } 
 }

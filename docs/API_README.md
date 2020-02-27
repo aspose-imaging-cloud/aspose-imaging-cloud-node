@@ -11,7 +11,9 @@ Class | Method | HTTP request | Description
 *ImagingApi* | [**copyFile**](ImagingApi.md#copyFile) | **PUT** /imaging/storage/file/copy/\{srcPath} | Copy file
 *ImagingApi* | [**copyFolder**](ImagingApi.md#copyFolder) | **PUT** /imaging/storage/folder/copy/\{srcPath} | Copy folder
 *ImagingApi* | [**createCroppedImage**](ImagingApi.md#createCroppedImage) | **POST** /imaging/crop | Crop an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+*ImagingApi* | [**createDeskewedImage**](ImagingApi.md#createDeskewedImage) | **POST** /imaging/deskew | Deskew an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**createFolder**](ImagingApi.md#createFolder) | **PUT** /imaging/storage/folder/\{path} | Create the folder
+*ImagingApi* | [**createGrayscaledImage**](ImagingApi.md#createGrayscaledImage) | **POST** /imaging/grayscale | Grayscales an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**createImageFeatures**](ImagingApi.md#createImageFeatures) | **POST** /imaging/ai/imageSearch/\{searchContextId}/features | Extract images features and add them to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**createImageFrame**](ImagingApi.md#createImageFrame) | **POST** /imaging/frames/\{frameId} | Get separate frame from existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**createImageSearch**](ImagingApi.md#createImageSearch) | **POST** /imaging/ai/imageSearch/create | Create new search context.
@@ -37,6 +39,7 @@ Class | Method | HTTP request | Description
 *ImagingApi* | [**deleteImageFeatures**](ImagingApi.md#deleteImageFeatures) | **DELETE** /imaging/ai/imageSearch/\{searchContextId}/features | Deletes image features from search context.
 *ImagingApi* | [**deleteImageSearch**](ImagingApi.md#deleteImageSearch) | **DELETE** /imaging/ai/imageSearch/\{searchContextId} | Deletes the search context.
 *ImagingApi* | [**deleteSearchImage**](ImagingApi.md#deleteSearchImage) | **DELETE** /imaging/ai/imageSearch/\{searchContextId}/image | Delete image and images features from search context
+*ImagingApi* | [**deskewImage**](ImagingApi.md#deskewImage) | **GET** /imaging/\{name}/deskew | Deskew an existing image.
 *ImagingApi* | [**downloadFile**](ImagingApi.md#downloadFile) | **GET** /imaging/storage/file/\{path} | Download file
 *ImagingApi* | [**extractImageFeatures**](ImagingApi.md#extractImageFeatures) | **GET** /imaging/ai/imageSearch/\{searchContextId}/image2features | Extract features from image without adding to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**extractImageFrameProperties**](ImagingApi.md#extractImageFrameProperties) | **POST** /imaging/frames/\{frameId}/properties | Get separate frame properties of existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -54,6 +57,7 @@ Class | Method | HTTP request | Description
 *ImagingApi* | [**getImageProperties**](ImagingApi.md#getImageProperties) | **GET** /imaging/\{name}/properties | Get properties of an image.
 *ImagingApi* | [**getImageSearchStatus**](ImagingApi.md#getImageSearchStatus) | **GET** /imaging/ai/imageSearch/\{searchContextId}/status | Gets the search context status.
 *ImagingApi* | [**getSearchImage**](ImagingApi.md#getSearchImage) | **GET** /imaging/ai/imageSearch/\{searchContextId}/image | Get image from search context
+*ImagingApi* | [**grayscaleImage**](ImagingApi.md#grayscaleImage) | **GET** /imaging/\{name}/grayscale | Grayscale an existing image.
 *ImagingApi* | [**modifyBmp**](ImagingApi.md#modifyBmp) | **GET** /imaging/\{name}/bmp | Update parameters of existing BMP image.
 *ImagingApi* | [**modifyEmf**](ImagingApi.md#modifyEmf) | **GET** /imaging/\{name}/emf | Process existing EMF imaging using given parameters.
 *ImagingApi* | [**modifyGif**](ImagingApi.md#modifyGif) | **GET** /imaging/\{name}/gif | Update parameters of existing GIF image.
