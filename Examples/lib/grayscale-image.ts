@@ -67,7 +67,7 @@ export class GrayscaleImage extends ImagingBase {
 
         try {
             const updatedImage = await this.ImagingApi.grayscaleImage(request);
-            await this.SaveUpdatedSampleImageToOutput(updatedImage, false, "bmp");
+            await this.SaveUpdatedSampleImageToOutput(updatedImage, false, ".bmp");
         } catch (e) {
             console.log(e);
         }
@@ -125,7 +125,7 @@ export class GrayscaleImage extends ImagingBase {
         console.log(`Call CreateGrayscaledImage`);
 
         const updatedImage = await this.ImagingApi.createGrayscaledImage(request);
-        await this.SaveUpdatedSampleImageToOutput(updatedImage, true, "bmp");
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true, ".bmp");
 
         console.log();
     }
