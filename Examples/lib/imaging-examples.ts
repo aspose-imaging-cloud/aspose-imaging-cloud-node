@@ -31,6 +31,7 @@ import * as path from "path";
 import {ImagingBase} from "./imaging-base";
 import {CropImage} from "./crop-image";
 import {DeskewImage} from "./deskew-image";
+import {GrayscaleImage} from "./grayscale-image";
 import {UpdateBmpImage} from "./update-bmp-image";
 import {UpdateEmfImage} from "./update-emf-image";
 import {ExportImage} from "./export-image";
@@ -114,6 +115,12 @@ async function runExamples() {
     await deskewImage.DeskewImageFromStorage();
     await deskewImage.DeskewImageAndUploadToStorage();
     await deskewImage.CreateDeskewedImageFromRequestBody();
+
+    // Grayscale an existing image
+    const grayscaleImage = new GrayscaleImage(imagingApi);
+    await grayscaleImage.GrayscaleImageFromStorage();
+    await grayscaleImage.GrayscaleImageAndUploadToStorage();
+    await grayscaleImage.CreateGrayscaledImageFromRequestBody();
 
     // Process existing EMF imaging using given parameters
     const updateEMFImage = new UpdateEmfImage(imagingApi);
