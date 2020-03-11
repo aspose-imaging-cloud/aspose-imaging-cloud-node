@@ -74,7 +74,7 @@ export class FindSimilarImages extends ImagingAiBase {
     public async FindImagesSimilar() {
         console.log('Finds the similar images');
 
-        const findImageId = this.CloudPath + '/' + this.ImageToFind;
+        const findImageId = this.CloudPath + '/' + this.ImagesPath + '/' + this.ImageToFind;
         const similarityThreshold = 60; // The similarity threshold
         const maxCount = 3; // The maximum count
         const folder = undefined;
