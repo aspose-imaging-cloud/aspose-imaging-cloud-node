@@ -1957,7 +1957,7 @@ export class ImagingApi {
      * Download file
      * @param requestObj contains request parameters
      */
-    public async downloadFile(requestObj: model.DownloadFileRequest): Promise<Buffer> {
+    public async downloadFile(requestObj: model.DownloadFileRequest): Promise<model.Buffer> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling downloadFile.');
         }
@@ -1983,8 +1983,10 @@ export class ImagingApi {
         
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
-        result = response.body;
-
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "Buffer");
+        }
         return Promise.resolve(result);        
     }
 
@@ -3733,35 +3735,14 @@ export class ImagingApi {
             throw new Error('Required parameter "requestObj.path" was null or undefined when calling uploadFile.');
         }
 
-        // verify required parameter 'requestObj.file' is not null or undefined
-        if (requestObj.file === null || requestObj.file === undefined) {
-            throw new Error('Required parameter "requestObj.file" was null or undefined when calling uploadFile.');
-        }
-
-        const formParams: { [key: string]: any } = {};
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
-        if (requestObj.file !== undefined) {
-            const paramKey = "File";
-            let formValue = null;
-            formValue = requestObj.file;
-            formParams[paramKey] = {
-                value: formValue,
-                options: {
-                    filename: "File",
-                    contentType: "application/octet-stream",
-                    knownLength: formValue.length,
-                },
-            };
-        }
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            json: true,
         };
         
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
-        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         let result = null;
         
