@@ -7845,6 +7845,11 @@ export class UploadFileRequest {
     public path: string;
 
     /**
+     * File to upload
+     */
+    public file: Buffer;
+
+    /**
      * Storage name
      */
     public storageName: string;
