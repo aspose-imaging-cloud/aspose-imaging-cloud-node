@@ -28,6 +28,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as imaging from "../../lib/api";
+import * as filetype from "file-type";
 
 export type PropertiesTesterDelegate = (originalProperties: imaging.ImagingResponse, resultProperties: imaging.ImagingResponse, resultBuffer: Buffer) => Promise<void>;
 export type GetRequestInvokerDelegate = () => Promise<Buffer>;
@@ -106,6 +107,16 @@ export abstract class ApiTester {
      * Input test files info
      */
     protected InputTestFiles: imaging.StorageFile[];
+
+    /**
+     * Basic input test files info
+     */
+    protected BasicInputTestFiles: imaging.StorageFile[];
+
+    /**
+     * Multipage input test files info
+     */
+    protected MultipageInputTestFiles: imaging.StorageFile[];
 
     /**
      * Dynamic temp folder name.
@@ -213,6 +224,8 @@ export abstract class ApiTester {
 
         this.imagingApi = new imaging.ImagingApi(appKey, appSid, baseUrl, false, apiVersion);
         this.InputTestFiles = await this.fetchInputTestFilesInfo();
+        this.BasicInputTestFiles = this.InputTestFiles.filter(function(element)  { return !element.name.startsWith("multipage_"); });
+        this.MultipageInputTestFiles = this.InputTestFiles.filter(function(element)  { return element.name.startsWith("multipage_"); });
     }
 
     /**
@@ -290,6 +303,22 @@ export abstract class ApiTester {
     }
 
     /**
+     * Copies original test file to specified folder in cloud
+     * @param inputFileName The original test file name
+     * @param folder The folder
+     * @param storage The storage
+     */
+    protected async copyInputFileToTestFolder(inputFileName: string, folder: string, storage: string) {
+        if (!this.checkInputFileExists(inputFileName)) {
+            throw new Error(`Input file ${inputFileName} doesn't exist in the specified storage folder: ${folder}. Please, upload it first.`);
+        }
+
+        await this.imagingApi.copyFile(
+            new imaging.CopyFileRequest({ srcPath: `${this.OriginalDataFolder}/${inputFileName}`, destPath: `${folder}/${inputFileName}`,
+                srcStorageName: storage, destStorageName: storage }));
+    }
+
+    /**
      * Obtains the typical GET request response.
      * @param requestInvoker The output path to save the result.
      */
@@ -345,13 +374,7 @@ export abstract class ApiTester {
                               invokeRequestAction: () => Promise<Buffer>, propertiesTester: PropertiesTesterDelegate, folder: string, storage: string = this.DefaultStorage) {
                             console.log(testMethodName);
 
-                            if (!this.checkInputFileExists(inputFileName)) {
-                                throw new Error(`Input file ${inputFileName} doesn't exist in the specified storage folder: ${folder}. Please, upload it first.`);
-                            }
-
-                            await this.imagingApi.copyFile(
-                                new imaging.CopyFileRequest({ srcPath: `${this.OriginalDataFolder}/${inputFileName}`, destPath: `${folder}/${inputFileName}`, 
-                                srcStorageName: storage, destStorageName: storage }));
+                            await this.copyInputFileToTestFolder(inputFileName, folder, storage);
 
                             let passed: boolean = false;
                             let outPath: string = null;
@@ -378,10 +401,12 @@ export abstract class ApiTester {
                                             `Result file ${resultFileName} doesn't exist in the specified storage folder: ${folder}. 
                                             Result isn't present in the storage by an unknown reason.`);
                                     }
-                                    resultProperties = await this.imagingApi.getImageProperties(
-                                        new imaging.GetImagePropertiesRequest({ name: resultFileName, folder, storage }));
-                                    expect(resultProperties).toBeTruthy();
-                                } else {
+                                    if (!resultFileName.endsWith(".pdf")) {
+                                        resultProperties = await this.imagingApi.getImageProperties(
+                                            new imaging.GetImagePropertiesRequest({ name: resultFileName, folder, storage }));
+                                        expect(resultProperties).toBeTruthy();
+                                    }
+                                } else if ((await filetype.fromBuffer(response)).ext !== "pdf") {
                                     resultProperties = await this.imagingApi.extractImageProperties(
                                         new imaging.ExtractImagePropertiesRequest({ imageData: response }));
                                     expect(resultProperties).toBeTruthy();

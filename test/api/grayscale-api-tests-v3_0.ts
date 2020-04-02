@@ -38,7 +38,7 @@ class GrayscaleApiTests extends ApiTester {
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
-        for (const inputFile of this.InputTestFiles) {
+        for (const inputFile of this.BasicInputTestFiles) {
             if (inputFile.name.endsWith(formatExtension)) {
                 name = inputFile.name;
             } else {
@@ -71,7 +71,7 @@ class GrayscaleApiTests extends ApiTester {
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
-        for (const inputFile of this.InputTestFiles) {
+        for (const inputFile of this.BasicInputTestFiles) {
             if (inputFile.name.endsWith(formatExtension)) {
                 name = inputFile.name;
             } else {
