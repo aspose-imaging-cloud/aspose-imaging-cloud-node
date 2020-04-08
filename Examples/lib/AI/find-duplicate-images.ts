@@ -67,7 +67,7 @@ export class FindDuplicateImages extends ImagingAiBase {
     public async FindImageDuplicates() {
         console.log('Finds the image duplicates');
 
-        const similarityThreshold = 70;
+        const similarityThreshold = 60;
         const folder = undefined;
         const storage = undefined; // We are using default Cloud Storage
 
