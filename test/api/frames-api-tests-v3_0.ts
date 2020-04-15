@@ -344,7 +344,9 @@ describe.each([[".tif", true], [".tif", false]])(
     },
 );
 
-if (true) {
+const useExtendedTests: boolean = process.env.ExtendedTests === "true";
+
+if (useExtendedTests) {
     console.log("Extended tests enabled");
 
     describe.each([
