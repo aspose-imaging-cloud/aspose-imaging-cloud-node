@@ -71,6 +71,68 @@ export class BmpProperties {
     }        
 }
 
+export class DetectedObject {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "label",
+            baseName: "Label",
+            type: "string",
+        },        
+        {
+            name: "score",
+            baseName: "Score",
+            type: "number",
+        },        
+        {
+            name: "bounds",
+            baseName: "Bounds",
+            type: "Rectangle",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return DetectedObject.attributeTypeMap;
+    }
+
+    /**
+     * label
+     */
+    public label: string;
+    
+    /**
+     * score
+     */
+    public score: number;
+    
+    /**
+     * bounds
+     */
+    public bounds: Rectangle;
+    
+    public constructor(init?: Partial<DetectedObject>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
 /**
  * Represents information about image in dicom format.
  */
@@ -3137,6 +3199,78 @@ export class PsdProperties {
     }        
 }
 
+export class Rectangle {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "X",
+            baseName: "X",
+            type: "number",
+        },        
+        {
+            name: "Y",
+            baseName: "Y",
+            type: "number",
+        },        
+        {
+            name: "width",
+            baseName: "Width",
+            type: "number",
+        },        
+        {
+            name: "height",
+            baseName: "Height",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return Rectangle.attributeTypeMap;
+    }
+
+    /**
+     * X
+     */
+    public X: number;
+    
+    /**
+     * Y
+     */
+    public Y: number;
+    
+    /**
+     * width
+     */
+    public width: number;
+    
+    /**
+     * height
+     */
+    public height: number;
+    
+    public constructor(init?: Partial<Rectangle>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
 /**
  * Search context status.
  */
@@ -4994,6 +5128,7 @@ const enumsMap = {
 
 const typeMap = {
             BmpProperties,
+            DetectedObject,
             DicomProperties,
             DiscUsage,
             DjvuProperties,
@@ -5019,6 +5154,7 @@ const typeMap = {
             OdgProperties,
             PngProperties,
             PsdProperties,
+            Rectangle,
             SearchContextStatus,
             SearchResult,
             SearchResultsSet,
@@ -6150,6 +6286,50 @@ export class CreateModifiedWmfRequest {
 }
 
 /**
+ * Request model for CreateObjectBounds operation.
+ */
+export class CreateObjectBoundsRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Object detection method
+     */
+    public method: string;
+
+    /**
+     * Object detection probability threshold in percents
+     */
+    public threshold: number;
+
+    /**
+     * Draw detected objects classes
+     */
+    public includeClass: boolean;
+
+    /**
+     * Draw detected objects scores
+     */
+    public includeScore: boolean;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image)
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateObjectBoundsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for CreateResizedImage operation.
  */
 export class CreateResizedImageRequest {
@@ -6311,6 +6491,50 @@ export class CreateUpdatedImageRequest {
     public storage: string;
     
     public constructor(init?: Partial<CreateUpdatedImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateVisualObjectBounds operation.
+ */
+export class CreateVisualObjectBoundsRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Object detection method
+     */
+    public method: string;
+
+    /**
+     * Object detection probability threshold in percents
+     */
+    public threshold: number;
+
+    /**
+     * Draw detected objects classes
+     */
+    public includeClass: boolean;
+
+    /**
+     * Draw detected objects scores
+     */
+    public includeScore: boolean;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image)
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateVisualObjectBoundsRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -7737,6 +7961,50 @@ export class MoveFolderRequest {
 }
 
 /**
+ * Request model for ObjectBounds operation.
+ */
+export class ObjectBoundsRequest {
+    /**
+     * Image file name.
+     */
+    public name: string;
+
+    /**
+     * Object detection method
+     */
+    public method: string;
+
+    /**
+     * Object detection probability threshold in percents
+     */
+    public threshold: number;
+
+    /**
+     * Return detected objects classes
+     */
+    public inlcudeClass: boolean;
+
+    /**
+     * Return detected objects score
+     */
+    public includeScore: boolean;
+
+    /**
+     * Folder
+     */
+    public folder: string;
+
+    /**
+     * Storage
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<ObjectBoundsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for ObjectExists operation.
  */
 export class ObjectExistsRequest {
@@ -8028,6 +8296,50 @@ export class UploadFileRequest {
     public storageName: string;
     
     public constructor(init?: Partial<UploadFileRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for VisualObjectBounds operation.
+ */
+export class VisualObjectBoundsRequest {
+    /**
+     * The image features detector.
+     */
+    public name: string;
+
+    /**
+     * Object detection method
+     */
+    public method: string;
+
+    /**
+     * Object detection probability threshold in percents
+     */
+    public threshold: number;
+
+    /**
+     * Draw detected objects classes
+     */
+    public includeClass: boolean;
+
+    /**
+     * Draw detected objects scores
+     */
+    public includeScore: boolean;
+
+    /**
+     * The folder.
+     */
+    public folder: string;
+
+    /**
+     * The storage.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<VisualObjectBoundsRequest>) {        
         Object.assign(this, init);
     } 
 }
