@@ -28,7 +28,6 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as imaging from "../../lib/api";
-import * as filetype from "file-type";
 
 export type PropertiesTesterDelegate = (originalProperties: imaging.ImagingResponse, resultProperties: imaging.ImagingResponse, resultBuffer: Buffer) => Promise<void>;
 export type GetRequestInvokerDelegate = () => Promise<Buffer>;
@@ -406,7 +405,7 @@ export abstract class ApiTester {
                                             new imaging.GetImagePropertiesRequest({ name: resultFileName, folder, storage }));
                                         expect(resultProperties).toBeTruthy();
                                     }
-                                } else if ((await filetype.fromBuffer(response)).ext !== "pdf") {
+                                } else if (!await this.fileIsPdf(response)) {
                                     resultProperties = await this.imagingApi.extractImageProperties(
                                         new imaging.ExtractImagePropertiesRequest({ imageData: response }));
                                     expect(resultProperties).toBeTruthy();
@@ -438,5 +437,14 @@ export abstract class ApiTester {
                                 console.warn(`Heap total: ${process.memoryUsage().heapTotal / (1024 * 1024)} MB`);
                                 console.warn(`RSS: ${process.memoryUsage().rss / (1024 * 1024)} MB`);
                             }
+    }
+
+    /**
+     * Checks that stream represents PDF file
+     * @param file The file stream
+     */
+    private async fileIsPdf(file: Buffer) {
+        return file[0] === 0x25 && file[1] === 0x50 && file[2] === 0x44 && file[3] === 0x46 &&
+            file[4] === 0x2d;
     }
 }
