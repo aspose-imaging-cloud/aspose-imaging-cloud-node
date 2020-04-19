@@ -63,7 +63,7 @@ class FilterEffectApiTests extends ApiTester {
             }
         }
 
-        for (const inputFile of this.InputTestFiles) {
+        for (const inputFile of this.BasicInputTestFiles) {
             if (inputFile.name.endsWith(formatExtension)) {
                 name = inputFile.name;
             } else {
