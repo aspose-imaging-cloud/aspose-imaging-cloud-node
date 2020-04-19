@@ -72,6 +72,11 @@ class FilterEffectApiTests extends ApiTester {
 
             for (const filter of this.filters) {
                 for (const format of formatsToExport) {
+					
+					if (formatExtension == ".psd" && format == "webp") {
+                            continue;
+                    }
+						
                     await this.testGetRequest(
                         "FilterEffectTest",
                         `Input image: ${name}; Output format: ${format}; Filter type: ${filter.filterType}`,
