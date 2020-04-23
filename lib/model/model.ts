@@ -5318,6 +5318,30 @@ export class CreateDeskewedImageRequest {
 }
 
 /**
+ * Request model for CreateFaxTiff operation.
+ */
+export class CreateFaxTiffRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateFaxTiffRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for CreateFolder operation.
  */
 export class CreateFolderRequest {

@@ -192,6 +192,28 @@ Name | Type | Description  | Notes
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
+<a name="createFaxTiff"></a>
+## **createFaxTiff**
+> createFaxTiff(imageData, outPath, storage)
+
+Update parameters of TIFF image accordingly to fax parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**imageData** | **Buffer** | Input image | 
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed image). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
 <a name="createFolder"></a>
 ## **createFolder**
 > createFolder(path, storageName)
