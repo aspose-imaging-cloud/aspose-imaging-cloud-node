@@ -29,7 +29,6 @@ import * as request from "request";
 import { Configuration } from "./internal/configuration";
 import { ObjectSerializer } from "./internal/object-serializer";
 import { addQueryParameterToUrl, invokeApiMethod } from "./internal/request-helper";
-import {DetectedObject} from "./model/model";
 import * as model from "./model/model";
 
 export { ApiError } from "./internal/api-error";
@@ -1504,7 +1503,7 @@ export class ImagingApi {
      * Detects objects bounds. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
-    public async createObjectBounds(requestObj: model.CreateObjectBoundsRequest): Promise<Array<DetectedObject>> {
+    public async createObjectBounds(requestObj: model.CreateObjectBoundsRequest): Promise<model.DetectedObjectList> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling createObjectBounds.');
         }
@@ -1550,7 +1549,7 @@ export class ImagingApi {
         let result = null;
         
         if (response.body) {
-            result = ObjectSerializer.deserialize(response.body, "Array<DetectedObject>");
+            result = ObjectSerializer.deserialize(response.body, "DetectedObjectList");
         }
         return Promise.resolve(result);        
     }
@@ -3620,7 +3619,7 @@ export class ImagingApi {
      * Detect objects' bounds
      * @param requestObj contains request parameters
      */
-    public async objectBounds(requestObj: model.ObjectBoundsRequest): Promise<Array<DetectedObject>> {
+    public async objectBounds(requestObj: model.ObjectBoundsRequest): Promise<model.DetectedObjectList> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling objectBounds.');
         }
@@ -3636,7 +3635,7 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "name", requestObj.name);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "method", requestObj.method);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "threshold", requestObj.threshold);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "inlcudeClass", requestObj.inlcudeClass);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeClass", requestObj.includeClass);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeScore", requestObj.includeScore);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -3651,7 +3650,7 @@ export class ImagingApi {
         let result = null;
         
         if (response.body) {
-            result = ObjectSerializer.deserialize(response.body, "Array<DetectedObject>");
+            result = ObjectSerializer.deserialize(response.body, "DetectedObjectList");
         }
         return Promise.resolve(result);        
     }

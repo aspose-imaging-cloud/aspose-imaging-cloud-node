@@ -53,9 +53,10 @@ class ObjectDetectionApiTests extends ApiTester {
                         const result = await this.imagingApi.objectBounds(request);
                         return result;
                     },
-                    (detectedObjects) => {
-                        expect(detectedObjects).toBeTruthy();
-                        expect(detectedObjects.length).toBeGreaterThan(0);
+                    (detectedObjectsList) => {
+                        expect(detectedObjectsList).toBeTruthy();
+                        expect(detectedObjectsList.detectedObjects).toBeTruthy();
+                        expect(detectedObjectsList.detectedObjects.length).toBeGreaterThan(0);
                         return Promise.resolve();
                     },
                     folder,
@@ -104,14 +105,14 @@ class ObjectDetectionApiTests extends ApiTester {
                         { imageData: inputStream, includeClass: true, includeScore: true, outPath, storage });
                     return await this.imagingApi.createObjectBounds(request);
                 },
-                (detectedObjects) => {
-                    expect(detectedObjects).toBeTruthy();
-                    expect(detectedObjects.length).toBeGreaterThan(0);
+                (detectedObjectsList) => {
+                    expect(detectedObjectsList).toBeTruthy();
+                    expect(detectedObjectsList.detectedObjects).toBeTruthy();
+                    expect(detectedObjectsList.detectedObjects.length).toBeGreaterThan(0);
                     return Promise.resolve();
                 },
                 folder,
                 storage);
-
 
             await this.testPostRequest(
                     "createVisualObjectBoundsTest",

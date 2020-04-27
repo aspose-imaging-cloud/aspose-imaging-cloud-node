@@ -134,6 +134,51 @@ export class DetectedObject {
 }
 
 /**
+ * Wrapper for detected objects array
+ */
+export class DetectedObjectList {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "detectedObjects",
+            baseName: "DetectedObjects",
+            type: "Array<DetectedObject>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return DetectedObjectList.attributeTypeMap;
+    }
+
+    /**
+     * detected objects
+     */
+    public detectedObjects: Array<DetectedObject>;
+    
+    public constructor(init?: Partial<DetectedObjectList>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Represents information about image in dicom format.
  */
 export class DicomProperties {
@@ -5129,6 +5174,7 @@ const enumsMap = {
 const typeMap = {
             BmpProperties,
             DetectedObject,
+            DetectedObjectList,
             DicomProperties,
             DiscUsage,
             DjvuProperties,
@@ -7982,7 +8028,7 @@ export class ObjectBoundsRequest {
     /**
      * Return detected objects classes
      */
-    public inlcudeClass: boolean;
+    public includeClass: boolean;
 
     /**
      * Return detected objects score

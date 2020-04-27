@@ -31,11 +31,11 @@ import * as imaging from "../../lib/api";
 
 export type PropertiesTesterDelegate = (originalProperties: imaging.ImagingResponse, resultProperties: imaging.ImagingResponse, resultBuffer: Buffer) => Promise<void>;
 export type ObjectDetectionBoundsTesterDelegate<T> = (detectedObjects: T) => Promise<void>;
-
 export type GetRequestInvokerDelegate = () => Promise<Buffer>;
 export type ObjectDetectionGetRequestInvokerDelegate<T> = () => Promise<T>;
 export type PostRequestInvokerDelegate = (inputStream: Buffer, outPath: string) => Promise<Buffer>;
 export type ObjectDetectionPostRequestInvokerDelegate<T> = (inputStream: Buffer, outPath: string) => Promise<T>;
+
 /**
  * API tester base class.
  */
