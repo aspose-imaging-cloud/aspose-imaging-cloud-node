@@ -152,6 +152,37 @@ class TiffApiTests extends ApiTester {
                 storage);
     }
 
+    public async createFaxTiff(saveResultToStorage: boolean) {
+        const name: string = "test.tiff";
+        const folder: string = this.TempFolder;
+        const storage: string = this.TestStorage;
+        const outName: string = `${name}_specific.tiff`;
+
+        await this.testPostRequest(
+            "createFaxTiff",
+            saveResultToStorage,
+            `Input image: ${name}`,
+            name,
+            outName,
+            async (inputStream, outPath) => {
+                const request = new imaging.CreateFaxTiffRequest({imageData: inputStream, outPath, storage });
+                const response = await this.imagingApi.createFaxTiff(request);
+                return response;
+            },
+            (originalProperties, resultProperties) => {
+                expect(originalProperties.tiffProperties).toBeTruthy();
+                expect(resultProperties.tiffProperties).toBeTruthy();
+                expect(1).toEqual(resultProperties.bitsPerPixel);
+                expect(196).toEqual(resultProperties.verticalResolution);
+                expect(204).toEqual(resultProperties.horizontalResolution);
+                expect(1728).toEqual(resultProperties.width);
+                expect(2200).toEqual(resultProperties.height);
+                return Promise.resolve();
+            },
+            folder,
+            storage);
+    }
+
     public async appendTiffTest() {
         console.log("appendTiffTest");
 
@@ -254,6 +285,10 @@ describe.each([[true], [false]])(
 
         test(`createModifiedTiffTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.createModifiedTiffTest(saveResultToStorage);
+        });
+
+        test(`createFaxTiff: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createFaxTiff(saveResultToStorage);
         });
 
         beforeEach(() => {

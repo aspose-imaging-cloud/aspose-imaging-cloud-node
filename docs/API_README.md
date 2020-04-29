@@ -12,10 +12,12 @@ Class | Method | HTTP request | Description
 *ImagingApi* | [**copyFolder**](ImagingApi.md#copyFolder) | **PUT** /imaging/storage/folder/copy/\{srcPath} | Copy folder
 *ImagingApi* | [**createCroppedImage**](ImagingApi.md#createCroppedImage) | **POST** /imaging/crop | Crop an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**createDeskewedImage**](ImagingApi.md#createDeskewedImage) | **POST** /imaging/deskew | Deskew an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+*ImagingApi* | [**createFaxTiff**](ImagingApi.md#createFaxTiff) | **POST** /imaging/tiff/toFax | Update parameters of TIFF image accordingly to fax parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**createFolder**](ImagingApi.md#createFolder) | **PUT** /imaging/storage/folder/\{path} | Create the folder
 *ImagingApi* | [**createGrayscaledImage**](ImagingApi.md#createGrayscaledImage) | **POST** /imaging/grayscale | Grayscales an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**createImageFeatures**](ImagingApi.md#createImageFeatures) | **POST** /imaging/ai/imageSearch/\{searchContextId}/features | Extract images features and add them to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
-*ImagingApi* | [**createImageFrame**](ImagingApi.md#createImageFrame) | **POST** /imaging/frames/\{frameId} | Get separate frame from existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+*ImagingApi* | [**createImageFrame**](ImagingApi.md#createImageFrame) | **POST** /imaging/frames/\{frameId} | Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+*ImagingApi* | [**createImageFrameRange**](ImagingApi.md#createImageFrameRange) | **POST** /imaging/frames/range | Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**createImageSearch**](ImagingApi.md#createImageSearch) | **POST** /imaging/ai/imageSearch/create | Create new search context.
 *ImagingApi* | [**createImageTag**](ImagingApi.md#createImageTag) | **POST** /imaging/ai/imageSearch/\{searchContextId}/addTag | Add tag and reference image to search context. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**createModifiedBmp**](ImagingApi.md#createModifiedBmp) | **POST** /imaging/bmp | Update parameters of BMP image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
@@ -42,7 +44,7 @@ Class | Method | HTTP request | Description
 *ImagingApi* | [**deskewImage**](ImagingApi.md#deskewImage) | **GET** /imaging/\{name}/deskew | Deskew an existing image.
 *ImagingApi* | [**downloadFile**](ImagingApi.md#downloadFile) | **GET** /imaging/storage/file/\{path} | Download file
 *ImagingApi* | [**extractImageFeatures**](ImagingApi.md#extractImageFeatures) | **GET** /imaging/ai/imageSearch/\{searchContextId}/image2features | Extract features from image without adding to search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
-*ImagingApi* | [**extractImageFrameProperties**](ImagingApi.md#extractImageFrameProperties) | **POST** /imaging/frames/\{frameId}/properties | Get separate frame properties of existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+*ImagingApi* | [**extractImageFrameProperties**](ImagingApi.md#extractImageFrameProperties) | **POST** /imaging/frames/\{frameId}/properties | Get separate frame properties of existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**extractImageProperties**](ImagingApi.md#extractImageProperties) | **POST** /imaging/properties | Get properties of an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**filterEffectImage**](ImagingApi.md#filterEffectImage) | **PUT** /imaging/\{name}/filterEffect | Apply filtering effects to an existing image.
 *ImagingApi* | [**findImageDuplicates**](ImagingApi.md#findImageDuplicates) | **GET** /imaging/ai/imageSearch/\{searchContextId}/findDuplicates | Find images duplicates.
@@ -52,8 +54,9 @@ Class | Method | HTTP request | Description
 *ImagingApi* | [**getFilesList**](ImagingApi.md#getFilesList) | **GET** /imaging/storage/folder/\{path} | Get all files and folders within a folder
 *ImagingApi* | [**getFileVersions**](ImagingApi.md#getFileVersions) | **GET** /imaging/storage/version/\{path} | Get file versions
 *ImagingApi* | [**getImageFeatures**](ImagingApi.md#getImageFeatures) | **GET** /imaging/ai/imageSearch/\{searchContextId}/features | Gets image features from search context.
-*ImagingApi* | [**getImageFrame**](ImagingApi.md#getImageFrame) | **GET** /imaging/\{name}/frames/\{frameId} | Get separate frame from existing TIFF image.
-*ImagingApi* | [**getImageFrameProperties**](ImagingApi.md#getImageFrameProperties) | **GET** /imaging/\{name}/frames/\{frameId}/properties | Get separate frame properties of existing TIFF image.
+*ImagingApi* | [**getImageFrame**](ImagingApi.md#getImageFrame) | **GET** /imaging/\{name}/frames/\{frameId} | Get separate frame from existing image.
+*ImagingApi* | [**getImageFrameProperties**](ImagingApi.md#getImageFrameProperties) | **GET** /imaging/\{name}/frames/\{frameId}/properties | Get separate frame properties of existing image.
+*ImagingApi* | [**getImageFrameRange**](ImagingApi.md#getImageFrameRange) | **GET** /imaging/\{name}/frames/range | Get frames range from existing image.
 *ImagingApi* | [**getImageProperties**](ImagingApi.md#getImageProperties) | **GET** /imaging/\{name}/properties | Get properties of an image.
 *ImagingApi* | [**getImageSearchStatus**](ImagingApi.md#getImageSearchStatus) | **GET** /imaging/ai/imageSearch/\{searchContextId}/status | Gets the search context status.
 *ImagingApi* | [**getSearchImage**](ImagingApi.md#getSearchImage) | **GET** /imaging/ai/imageSearch/\{searchContextId}/image | Get image from search context

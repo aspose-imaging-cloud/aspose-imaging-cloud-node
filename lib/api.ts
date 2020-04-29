@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,6 +24,7 @@
 * </summary>
 * --------------------------------------------------------------------------------------------------------------------
 */
+
 import * as request from "request";
 import { Configuration } from "./internal/configuration";
 import { ObjectSerializer } from "./internal/object-serializer";
@@ -445,6 +446,56 @@ export class ImagingApi {
     }
 
     /**
+     * Update parameters of TIFF image accordingly to fax parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+     * @param requestObj contains request parameters
+     */
+    public async createFaxTiff(requestObj: model.CreateFaxTiffRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling createFaxTiff.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/tiff/toFax";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.imageData' is not null or undefined
+        if (requestObj.imageData === null || requestObj.imageData === undefined) {
+            throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling createFaxTiff.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Create the folder
      * @param requestObj contains request parameters
      */
@@ -574,7 +625,7 @@ export class ImagingApi {
     }
 
     /**
-     * Get separate frame from existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+     * Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async createImageFrame(requestObj: model.CreateImageFrameRequest): Promise<Buffer> {
@@ -597,6 +648,76 @@ export class ImagingApi {
         }
 
         const formParams: { [key: string]: any } = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "x", requestObj.x);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "y", requestObj.y);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rectWidth", requestObj.rectWidth);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rectHeight", requestObj.rectHeight);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotateFlipMethod", requestObj.rotateFlipMethod);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "saveOtherFrames", requestObj.saveOtherFrames);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+     * @param requestObj contains request parameters
+     */
+    public async createImageFrameRange(requestObj: model.CreateImageFrameRangeRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling createImageFrameRange.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/frames/range";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.imageData' is not null or undefined
+        if (requestObj.imageData === null || requestObj.imageData === undefined) {
+            throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling createImageFrameRange.');
+        }
+
+        // verify required parameter 'requestObj.startFrameId' is not null or undefined
+        if (requestObj.startFrameId === null || requestObj.startFrameId === undefined) {
+            throw new Error('Required parameter "requestObj.startFrameId" was null or undefined when calling createImageFrameRange.');
+        }
+
+        // verify required parameter 'requestObj.endFrameId' is not null or undefined
+        if (requestObj.endFrameId === null || requestObj.endFrameId === undefined) {
+            throw new Error('Required parameter "requestObj.endFrameId" was null or undefined when calling createImageFrameRange.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "startFrameId", requestObj.startFrameId);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "endFrameId", requestObj.endFrameId);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "x", requestObj.x);
@@ -2047,7 +2168,7 @@ export class ImagingApi {
     }
 
     /**
-     * Get separate frame properties of existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+     * Get separate frame properties of existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
     public async extractImageFrameProperties(requestObj: model.ExtractImageFramePropertiesRequest): Promise<model.ImagingResponse> {
@@ -2516,7 +2637,7 @@ export class ImagingApi {
     }
 
     /**
-     * Get separate frame from existing TIFF image.
+     * Get separate frame from existing image.
      * @param requestObj contains request parameters
      */
     public async getImageFrame(requestObj: model.GetImageFrameRequest): Promise<Buffer> {
@@ -2565,7 +2686,7 @@ export class ImagingApi {
     }
 
     /**
-     * Get separate frame properties of existing TIFF image.
+     * Get separate frame properties of existing image.
      * @param requestObj contains request parameters
      */
     public async getImageFrameProperties(requestObj: model.GetImageFramePropertiesRequest): Promise<model.ImagingResponse> {
@@ -2603,6 +2724,61 @@ export class ImagingApi {
         if (response.body) {
             result = ObjectSerializer.deserialize(response.body, "ImagingResponse");
         }
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Get frames range from existing image.
+     * @param requestObj contains request parameters
+     */
+    public async getImageFrameRange(requestObj: model.GetImageFrameRangeRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getImageFrameRange.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/{name}/frames/range"
+            .replace("{" + "name" + "}", String(requestObj.name));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling getImageFrameRange.');
+        }
+
+        // verify required parameter 'requestObj.startFrameId' is not null or undefined
+        if (requestObj.startFrameId === null || requestObj.startFrameId === undefined) {
+            throw new Error('Required parameter "requestObj.startFrameId" was null or undefined when calling getImageFrameRange.');
+        }
+
+        // verify required parameter 'requestObj.endFrameId' is not null or undefined
+        if (requestObj.endFrameId === null || requestObj.endFrameId === undefined) {
+            throw new Error('Required parameter "requestObj.endFrameId" was null or undefined when calling getImageFrameRange.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "startFrameId", requestObj.startFrameId);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "endFrameId", requestObj.endFrameId);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newWidth", requestObj.newWidth);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "newHeight", requestObj.newHeight);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "x", requestObj.x);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "y", requestObj.y);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rectWidth", requestObj.rectWidth);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rectHeight", requestObj.rectHeight);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotateFlipMethod", requestObj.rotateFlipMethod);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "saveOtherFrames", requestObj.saveOtherFrames);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+            json: true,
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
         return Promise.resolve(result);        
     }
 

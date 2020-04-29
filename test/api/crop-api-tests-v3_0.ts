@@ -48,7 +48,7 @@ class CropApiTests extends ApiTester {
             }
         }
 
-        for (const inputFile of this.InputTestFiles) {
+        for (const inputFile of this.BasicInputTestFiles) {
             if (inputFile.name.endsWith(formatExtension)) {
                 name = inputFile.name;
             } else {
@@ -94,7 +94,7 @@ class CropApiTests extends ApiTester {
             }
         }
 
-        for (const inputFile of this.InputTestFiles) {
+        for (const inputFile of this.BasicInputTestFiles) {
             if (inputFile.name.endsWith(formatExtension)) {
                 name = inputFile.name;
             } else {

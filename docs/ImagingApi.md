@@ -192,6 +192,28 @@ Name | Type | Description  | Notes
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
+<a name="createFaxTiff"></a>
+## **createFaxTiff**
+> createFaxTiff(imageData, outPath, storage)
+
+Update parameters of TIFF image accordingly to fax parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**imageData** | **Buffer** | Input image | 
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed image). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
 <a name="createFolder"></a>
 ## **createFolder**
 > createFolder(path, storageName)
@@ -264,13 +286,45 @@ Name | Type | Description  | Notes
 ## **createImageFrame**
 > createImageFrame(imageData, frameId, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod, saveOtherFrames, outPath, storage)
 
-Get separate frame from existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **imageData** | **Buffer** | Input image | 
 **frameId** | **number** | Number of a frame. | 
+**newWidth** | **number** | New width. | [optional]
+**newHeight** | **number** | New height. | [optional]
+**x** | **number** | X position of start point for cropping rectangle. | [optional]
+**y** | **number** | Y position of start point for cropping rectangle. | [optional]
+**rectWidth** | **number** | Width of cropping rectangle. | [optional]
+**rectHeight** | **number** | Height of cropping rectangle. | [optional]
+**rotateFlipMethod** | **string** | RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone. | [optional]
+**saveOtherFrames** | **boolean** | If result will include all other frames or just a specified frame. | [optional]
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed image). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+<a name="createImageFrameRange"></a>
+## **createImageFrameRange**
+> createImageFrameRange(imageData, startFrameId, endFrameId, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod, saveOtherFrames, outPath, storage)
+
+Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**imageData** | **Buffer** | Input image | 
+**startFrameId** | **number** | Index of the first frame in range. | 
+**endFrameId** | **number** | Index of the last frame in range. | 
 **newWidth** | **number** | New width. | [optional]
 **newHeight** | **number** | New height. | [optional]
 **x** | **number** | X position of start point for cropping rectangle. | [optional]
@@ -952,7 +1006,7 @@ Name | Type | Description  | Notes
 ## **extractImageFrameProperties**
 > extractImageFrameProperties(imageData, frameId)
 
-Get separate frame properties of existing TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+Get separate frame properties of existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 
 ### Parameters
 Name | Type | Description  | Notes
@@ -1177,7 +1231,7 @@ Name | Type | Description  | Notes
 ## **getImageFrame**
 > getImageFrame(name, frameId, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod, saveOtherFrames, folder, storage)
 
-Get separate frame from existing TIFF image.
+Get separate frame from existing image.
 
 ### Parameters
 Name | Type | Description  | Notes
@@ -1208,7 +1262,7 @@ Name | Type | Description  | Notes
 ## **getImageFrameProperties**
 > getImageFrameProperties(name, frameId, folder, storage)
 
-Get separate frame properties of existing TIFF image.
+Get separate frame properties of existing image.
 
 ### Parameters
 Name | Type | Description  | Notes
@@ -1221,6 +1275,38 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ImagingResponse**](ImagingResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getImageFrameRange"></a>
+## **getImageFrameRange**
+> getImageFrameRange(name, startFrameId, endFrameId, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod, saveOtherFrames, folder, storage)
+
+Get frames range from existing image.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | Filename of image. | 
+**startFrameId** | **number** | Index of the first frame in range. | 
+**endFrameId** | **number** | Index of the last frame in range. | 
+**newWidth** | **number** | New width. | [optional]
+**newHeight** | **number** | New height. | [optional]
+**x** | **number** | X position of start point for cropping rectangle. | [optional]
+**y** | **number** | Y position of start point for cropping rectangle. | [optional]
+**rectWidth** | **number** | Width of cropping rectangle. | [optional]
+**rectHeight** | **number** | Height of cropping rectangle. | [optional]
+**rotateFlipMethod** | **string** | RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone. | [optional]
+**saveOtherFrames** | **boolean** | If result will include all other frames or just a specified frame. | [optional]
+**folder** | **string** | Folder with image to process. | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
 
 ### HTTP request headers
 

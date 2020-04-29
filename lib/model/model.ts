@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose">
-*   Copyright (c) 2018-2019 Aspose Pty Ltd. All rights reserved.
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,6 +24,7 @@
 * </summary>
 * --------------------------------------------------------------------------------------------------------------------
 */
+
 
 /**
  * Represents information about image in bmp format.
@@ -5317,6 +5318,30 @@ export class CreateDeskewedImageRequest {
 }
 
 /**
+ * Request model for CreateFaxTiff operation.
+ */
+export class CreateFaxTiffRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateFaxTiffRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for CreateFolder operation.
  */
 export class CreateFolderRequest {
@@ -5463,6 +5488,80 @@ export class CreateImageFrameRequest {
     public storage: string;
     
     public constructor(init?: Partial<CreateImageFrameRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateImageFrameRange operation.
+ */
+export class CreateImageFrameRangeRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Index of the first frame in range.
+     */
+    public startFrameId: number;
+
+    /**
+     * Index of the last frame in range.
+     */
+    public endFrameId: number;
+
+    /**
+     * New width.
+     */
+    public newWidth: number;
+
+    /**
+     * New height.
+     */
+    public newHeight: number;
+
+    /**
+     * X position of start point for cropping rectangle.
+     */
+    public x: number;
+
+    /**
+     * Y position of start point for cropping rectangle.
+     */
+    public y: number;
+
+    /**
+     * Width of cropping rectangle.
+     */
+    public rectWidth: number;
+
+    /**
+     * Height of cropping rectangle.
+     */
+    public rectHeight: number;
+
+    /**
+     * RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone.
+     */
+    public rotateFlipMethod: string;
+
+    /**
+     * If result will include all other frames or just a specified frame.
+     */
+    public saveOtherFrames: boolean;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateImageFrameRangeRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -6875,6 +6974,80 @@ export class GetImageFramePropertiesRequest {
     public storage: string;
     
     public constructor(init?: Partial<GetImageFramePropertiesRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetImageFrameRange operation.
+ */
+export class GetImageFrameRangeRequest {
+    /**
+     * Filename of image.
+     */
+    public name: string;
+
+    /**
+     * Index of the first frame in range.
+     */
+    public startFrameId: number;
+
+    /**
+     * Index of the last frame in range.
+     */
+    public endFrameId: number;
+
+    /**
+     * New width.
+     */
+    public newWidth: number;
+
+    /**
+     * New height.
+     */
+    public newHeight: number;
+
+    /**
+     * X position of start point for cropping rectangle.
+     */
+    public x: number;
+
+    /**
+     * Y position of start point for cropping rectangle.
+     */
+    public y: number;
+
+    /**
+     * Width of cropping rectangle.
+     */
+    public rectWidth: number;
+
+    /**
+     * Height of cropping rectangle.
+     */
+    public rectHeight: number;
+
+    /**
+     * RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone.
+     */
+    public rotateFlipMethod: string;
+
+    /**
+     * If result will include all other frames or just a specified frame.
+     */
+    public saveOtherFrames: boolean;
+
+    /**
+     * Folder with image to process.
+     */
+    public folder: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<GetImageFrameRangeRequest>) {        
         Object.assign(this, init);
     } 
 }
