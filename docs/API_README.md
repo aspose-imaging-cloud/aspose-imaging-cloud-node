@@ -30,10 +30,12 @@ Class | Method | HTTP request | Description
 *ImagingApi* | [**createModifiedTiff**](ImagingApi.md#createModifiedTiff) | **POST** /imaging/tiff | Update parameters of TIFF image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**createModifiedWebP**](ImagingApi.md#createModifiedWebP) | **POST** /imaging/webp | Update parameters of WEBP image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**createModifiedWmf**](ImagingApi.md#createModifiedWmf) | **POST** /imaging/wmf | Process existing WMF image using given parameters. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+*ImagingApi* | [**createObjectBounds**](ImagingApi.md#createObjectBounds) | **POST** /imaging/ai/objectdetection/bounds | Detects objects bounds. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**createResizedImage**](ImagingApi.md#createResizedImage) | **POST** /imaging/resize | Resize an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**createRotateFlippedImage**](ImagingApi.md#createRotateFlippedImage) | **POST** /imaging/rotateflip | Rotate and/or flip an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**createSavedImageAs**](ImagingApi.md#createSavedImageAs) | **POST** /imaging/saveAs | Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream. 
 *ImagingApi* | [**createUpdatedImage**](ImagingApi.md#createUpdatedImage) | **POST** /imaging/updateImage | Perform scaling, cropping and flipping of an image in a single request. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+*ImagingApi* | [**createVisualObjectBounds**](ImagingApi.md#createVisualObjectBounds) | **POST** /imaging/ai/objectdetection/visualbounds | Detect objects bounds and draw them on the original image
 *ImagingApi* | [**createWebSiteImageFeatures**](ImagingApi.md#createWebSiteImageFeatures) | **POST** /imaging/ai/imageSearch/\{searchContextId}/features/web | Extract images features from web page and add them to search context
 *ImagingApi* | [**cropImage**](ImagingApi.md#cropImage) | **GET** /imaging/\{name}/crop | Crop an existing image.
 *ImagingApi* | [**deleteFile**](ImagingApi.md#deleteFile) | **DELETE** /imaging/storage/file/\{path} | Delete file
@@ -73,6 +75,7 @@ Class | Method | HTTP request | Description
 *ImagingApi* | [**modifyWmf**](ImagingApi.md#modifyWmf) | **GET** /imaging/\{name}/wmf | Process existing WMF image using given parameters.
 *ImagingApi* | [**moveFile**](ImagingApi.md#moveFile) | **PUT** /imaging/storage/file/move/\{srcPath} | Move file
 *ImagingApi* | [**moveFolder**](ImagingApi.md#moveFolder) | **PUT** /imaging/storage/folder/move/\{srcPath} | Move folder
+*ImagingApi* | [**objectBounds**](ImagingApi.md#objectBounds) | **GET** /imaging/ai/objectdetection/bounds | Detect objects' bounds
 *ImagingApi* | [**objectExists**](ImagingApi.md#objectExists) | **GET** /imaging/storage/exist/\{path} | Check if file or folder exists
 *ImagingApi* | [**resizeImage**](ImagingApi.md#resizeImage) | **GET** /imaging/\{name}/resize | Resize an existing image.
 *ImagingApi* | [**rotateFlipImage**](ImagingApi.md#rotateFlipImage) | **GET** /imaging/\{name}/rotateflip | Rotate and/or flip an existing image.
@@ -82,6 +85,7 @@ Class | Method | HTTP request | Description
 *ImagingApi* | [**updateImageFeatures**](ImagingApi.md#updateImageFeatures) | **PUT** /imaging/ai/imageSearch/\{searchContextId}/features | Update images features in search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**updateSearchImage**](ImagingApi.md#updateSearchImage) | **PUT** /imaging/ai/imageSearch/\{searchContextId}/image | Update image and images features in search context. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**uploadFile**](ImagingApi.md#uploadFile) | **PUT** /imaging/storage/file/\{path} | Upload file
+*ImagingApi* | [**visualObjectBounds**](ImagingApi.md#visualObjectBounds) | **GET** /imaging/ai/objectdetection/visualbounds | Detect objects bounds and draw them on the original image
 
 ## Documentation for Models
 
@@ -92,6 +96,8 @@ Class | Description
 [**BmpProperties**](BmpProperties.md) | Represents information about image in bmp format.
 [**ConvolutionFilterProperties**](ConvolutionFilterProperties.md) | The convolution filter.
 [**DeconvolutionFilterProperties**](DeconvolutionFilterProperties.md) | Deconvolution Filter Options, abstract class
+[**DetectedObject**](DetectedObject.md) | 
+[**DetectedObjectList**](DetectedObjectList.md) | Wrapper for detected objects array
 [**DicomProperties**](DicomProperties.md) | Represents information about image in dicom format.
 [**DiscUsage**](DiscUsage.md) | Class for disc space information.
 [**DjvuProperties**](DjvuProperties.md) | Represents properties of djvu file.
@@ -123,6 +129,7 @@ Class | Description
 [**OdgProperties**](OdgProperties.md) | ODG format specific properties
 [**PngProperties**](PngProperties.md) | Represents information about image in PNG format.
 [**PsdProperties**](PsdProperties.md) | Represents information about PSD image
+[**Rectangle**](Rectangle.md) | 
 [**SearchContextStatus**](SearchContextStatus.md) | Search context status.
 [**SearchResult**](SearchResult.md) | Image search result.
 [**SearchResultsSet**](SearchResultsSet.md) | Search results set.
