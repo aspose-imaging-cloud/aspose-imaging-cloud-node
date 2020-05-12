@@ -156,7 +156,7 @@ export class DetectedObjectList {
         type: string}> = [
         {
             name: "detectedObjects",
-            baseName: "DetectedObjects",
+            baseName: "detectedObjects",
             type: "Array<DetectedObject>",
         }    ];
 
