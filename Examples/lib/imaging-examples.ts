@@ -39,7 +39,7 @@ import {FilterImage} from "./filter-image";
 import {ImageProperties} from "./image-properties";
 import {ResizeImage} from "./resize-image";
 import {RotateFlipImage} from "./rotate-flip-image";
-import {TiffFrames} from "./tiff-frames";
+import {MultiframeImage} from "./multiframe-image";
 import {UpdateTiffImage} from "./update-tiff-image";
 import {UpdateGifImage} from "./update-gif-image";
 import {UpdateImage} from "./update-image";
@@ -159,27 +159,15 @@ async function runExamples() {
     await rotateFlipImage.RotateFlipImageAndUploadToStorage();
     await rotateFlipImage.CreateRotateFlippedImageFromRequestBody();
 
-    // TIFF Frames
-    const tiffFrames = new TiffFrames(imagingApi);
-    // Get a specified frame from existing TIFF image
+    // Multiframe image
+    const tiffFrames = new MultiframeImage(imagingApi);
     await tiffFrames.GetImageFrameFromStorage();
-    // Get a specified frame from existing TIFF image, and upload the frame to Cloud Storage
     await tiffFrames.GetImageFrameAndUploadToStorage();
-    // Resize a TIFF frame
-    await tiffFrames.ResizeImageFrameFromStorage();
-    // Crop a TIFF frame
-    await tiffFrames.CropImageFrameFromStorage();
-    // RotateFlip a TIFF frame
-    await tiffFrames.RotateFlipImageFrameFromStorage();
-    // Get other frames from existing TIFF image
-    await tiffFrames.GetAllImageFramesFromStorage();
-    // Get separate frame from existing TIFF image.
-    // Image data is passed as zero-indexed multipart/form-data content or as raw body stream
     await tiffFrames.CreateImageFrameFromRequestBody();
-    // Get separate frame properties of existing TIFF image
+    await tiffFrames.GetImageFrameRangeFromStorage();
+    await tiffFrames.GetImageFrameRangeAndUploadToStorage();
+    await tiffFrames.CreateImageFrameRangeFromRequestBody();
     await tiffFrames.GetImageFramePropertiesFromStorage();
-    // Get separate frame properties of existing TIFF image.
-    // Image data is passed as zero-indexed multipart/form-data content or as raw body stream
     await tiffFrames.ExtractImageFramePropertiesFromRequestBody();
 
     // Update parameters of existing TIFF image
@@ -188,6 +176,7 @@ async function runExamples() {
     await tiffImage.ModifyTiffAndUploadToStorage();
     await tiffImage.CreateModifiedTiffFromRequestBody();
     await tiffImage.ConvertTiffToFaxFromStorage();
+    await tiffImage.CreateModifiedTiffFromRequestBody();
     await tiffImage.AppendTiffFromStorage();
 
     // Update parameters of existing GIF image

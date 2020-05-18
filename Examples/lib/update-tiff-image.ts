@@ -28,7 +28,7 @@
 import {ImagingBase} from "./imaging-base";
 import {
     AppendTiffRequest,
-    ConvertTiffToFaxRequest,
+    ConvertTiffToFaxRequest, CreateFaxTiffRequest,
     CreateModifiedTiffRequest,
     DownloadFileRequest,
     ImagingApi,
@@ -149,8 +149,7 @@ export class UpdateTiffImage extends ImagingBase {
     }
 
     /**
-     *
-     *Update parameters of TIFF image according to fax parameters
+     * Update parameters of TIFF image according to fax parameters
      */
     public async ConvertTiffToFaxFromStorage() {
         console.log("Update parameters of TIFF image according to fax parameters.");
@@ -166,14 +165,34 @@ export class UpdateTiffImage extends ImagingBase {
         console.log(`Call ConvertTiffToFax`);
 
         const updatedImage = await this.ImagingApi.convertTiffToFax(getTiffToFaxRequest);
-        this.SaveUpdatedImageToOutput("ConvertTiffToFax.tiff", updatedImage);
+        await this.SaveUpdatedImageToOutput("ConvertTiffToFax.tiff", updatedImage);
 
         console.log();
     }
 
     /**
-     *
-     *Appends existing TIFF image to another existing TIFF image (i.e. merges TIFF images)
+     * Update parameters of TIFF image from request body according to fax parameters
+     */
+    public async ConvertTiffToFaxFromRequestBody() {
+        console.log("Update parameters of TIFF image from request body according to fax parameters.");
+
+        // Update TIFF Image parameters according to fax parameters
+        const outPath = undefined;
+        const storage = undefined; // We are using default Cloud Storage
+
+        const inputStream = fs.readFileSync(path.resolve(ImagingBase.ExampleImagesFolder, this.SampleImageFileName));
+        const createFaxTiffRequest = new CreateFaxTiffRequest({imageData: inputStream, outPath, storage});
+
+        console.log("Call CreateFaxTiff");
+
+        const updatedImage = await this.ImagingApi.createFaxTiff(createFaxTiffRequest);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true);
+
+        console.log();
+    }
+
+    /**
+     * Appends existing TIFF image to another existing TIFF image (i.e. merges TIFF images)
      */
     public async AppendTiffFromStorage() {
         console.log("Appends existing TIFF image to another existing TIFF image.");
@@ -205,7 +224,7 @@ export class UpdateTiffImage extends ImagingBase {
             storageName: storage
         });
         const updatedImage = await this.ImagingApi.downloadFile(downloadRequest);
-        this.SaveUpdatedImageToOutput("AppendToTiff.tiff", updatedImage);
+        await this.SaveUpdatedImageToOutput("AppendToTiff.tiff", updatedImage);
 
         console.log();
     }
