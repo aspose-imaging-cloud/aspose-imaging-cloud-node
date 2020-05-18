@@ -526,15 +526,16 @@ export abstract class ApiTester {
         folder: string,
         storage: string = this.DefaultStorage) {
         console.log(testMethodName);
-
+        console.log("test6");
         if (!this.checkInputFileExists(inputFileName)) {
             throw new Error(`Input file ${inputFileName} doesn't exist in the specified storage folder: ${folder}. Please, upload it first.`);
         }
-
+        console.log("test7");
         await this.imagingApi.copyFile(
             new imaging.CopyFileRequest({ srcPath: `${this.OriginalDataFolder}/${inputFileName}`, destPath: `${folder}/${inputFileName}`,
                 srcStorageName: storage, destStorageName: storage }));
 
+        console.log("test8");
         let passed: boolean = false;
         let outPath: string = null;
 
@@ -545,14 +546,18 @@ export abstract class ApiTester {
                 outPath = folder + "/" + resultFileName;
                 if ((await this.imagingApi.objectExists(
                     new imaging.ObjectExistsRequest ({ path: outPath, storageName: storage }))).exists) {
+                    console.log("test1");
                     await this.imagingApi.deleteFile(
                         new imaging.DeleteFileRequest({ path: outPath, storageName: storage }));
+                    console.log("test2");
                 }
+                console.log("test3");
             }
 
             const response = await invokeRequestAction();
+            console.log("test4");
             await propertiesTester(response);
-
+            console.log("test5");
             passed = true;
 
         } catch (e) {
