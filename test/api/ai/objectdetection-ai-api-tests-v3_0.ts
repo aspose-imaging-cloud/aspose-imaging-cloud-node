@@ -34,7 +34,7 @@ import {ApiTester} from "../../base/api-tester";
 class ObjectDetectionApiTests extends ApiTester {
 
     public async objectDetectionImageTest() {
-        const name: string = "object_detection_example.jpg";
+        const name: string = "test.bmp";
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
@@ -42,33 +42,44 @@ class ObjectDetectionApiTests extends ApiTester {
             if (inputFile.name !== name) {
                 continue;
             }
+            const threshold = 20;
+            const includeClass = true;
+            const includeScore = true;
 
             await this.testObjectDetectionGetRequest(
-                    "objectDetectionImageTest",
-                    `Input image: ${name}; `,
-                    name,
-                    async () => {
-                        const request: imaging.ObjectBoundsRequest = new imaging.ObjectBoundsRequest({ name,
-                            folder, storage });
-                        const result = await this.imagingApi.objectBounds(request);
-                        return result;
-                    },
-                    (detectedObjectsList) => {
-                        expect(detectedObjectsList).toBeTruthy();
-                        expect(detectedObjectsList.detectedObjects).toBeTruthy();
-                        expect(detectedObjectsList.detectedObjects.length).toBeGreaterThan(0);
-                        return Promise.resolve();
-                    },
-                    folder,
-                    storage);
-
-            await this.testGetRequest(
-                "visualObjectDetectionImageTest",
-                `Input image: ${name}; `,
+                "objectDetection_objectbounds_test",
+                `Input image: ${name}; Method: ssd; threshold: ${threshold}; includeClass: ${includeClass}; includeScore: ${includeScore}`,
                 name,
                 async () => {
-                    const request: imaging.VisualObjectBoundsRequest = new imaging.VisualObjectBoundsRequest({ name,
-                        folder, storage });
+                    const request: imaging.ObjectBoundsRequest = new imaging.ObjectBoundsRequest({
+                        name,
+                        folder, storage, threshold, includeClass, includeScore,
+                    });
+                    return await this.imagingApi.objectBounds(request);
+                },
+                (detectedObjectsList) => {
+                    expect(detectedObjectsList).toBeTruthy();
+                    expect(detectedObjectsList.detectedObjects).toBeTruthy();
+                    expect(detectedObjectsList.detectedObjects.length).toBeGreaterThan(0);
+                    expect(detectedObjectsList.detectedObjects[0].label).toBeTruthy();
+                    expect(detectedObjectsList.detectedObjects[0].score).toBeTruthy();
+                    expect(detectedObjectsList.detectedObjects[0].bounds).toBeTruthy();
+                    expect(detectedObjectsList.detectedObjects[0].bounds.height).toBeGreaterThan(0);
+                    expect(detectedObjectsList.detectedObjects[0].bounds.width).toBeGreaterThan(0);
+                    return Promise.resolve();
+                },
+                folder,
+                storage);
+
+            await this.testGetRequest(
+                "objectDetection_visualobjectbounds_test",
+                `Input image: ${name}; Method: ssd; threshold: ${threshold}; includeClass: ${includeClass}; includeScore: ${includeScore}`,
+                name,
+                async () => {
+                    const request: imaging.VisualObjectBoundsRequest = new imaging.VisualObjectBoundsRequest({
+                        name,
+                        folder, storage, threshold, includeClass, includeScore
+                    });
                     return await this.imagingApi.visualObjectBounds(request);
                 },
                 (imagingResponse) => {
@@ -83,8 +94,8 @@ class ObjectDetectionApiTests extends ApiTester {
 
     public async createObjectDetectionTest(
         saveResultToStorage: boolean,
-        ) {
-        const name: string = "object_detection_example.jpg";
+    ) {
+        const name: string = "test.bmp";
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
 
@@ -93,46 +104,57 @@ class ObjectDetectionApiTests extends ApiTester {
                 continue;
             }
 
+            const threshold = 20;
+            const includeClass = true;
+            const includeScore = true;
+
             await this.testObjectDetectionPostRequest(
-                "createObjectBoundsTest",
+                "objectDetection_createobjectbounds_test",
                 saveResultToStorage,
-                `Input image: ${name};`,
+                `Input image: ${name}; Method: ssd; threshold: ${threshold}; includeClass: ${includeClass}; includeScore: ${includeScore}; saveResultToStorage: ${saveResultToStorage}`,
                 name,
-                "object_detection_result.jpg",
+                name,
                 async (inputStream, outPath) => {
                     const request: imaging.CreateObjectBoundsRequest
                         = new imaging.CreateObjectBoundsRequest(
-                        { imageData: inputStream, includeClass: true, includeScore: true, outPath, storage });
+                        {imageData: inputStream, threshold, includeClass, includeScore, outPath, storage});
                     return await this.imagingApi.createObjectBounds(request);
                 },
                 (detectedObjectsList) => {
                     expect(detectedObjectsList).toBeTruthy();
                     expect(detectedObjectsList.detectedObjects).toBeTruthy();
                     expect(detectedObjectsList.detectedObjects.length).toBeGreaterThan(0);
+                    expect(detectedObjectsList.detectedObjects[0].label).toBeTruthy();
+                    expect(detectedObjectsList.detectedObjects[0].score).toBeTruthy();
+                    expect(detectedObjectsList.detectedObjects[0].bounds).toBeTruthy();
+                    expect(detectedObjectsList.detectedObjects[0].bounds.height).toBeGreaterThan(0);
+                    expect(detectedObjectsList.detectedObjects[0].bounds.width).toBeGreaterThan(0);
                     return Promise.resolve();
                 },
                 folder,
                 storage);
 
             await this.testPostRequest(
-                    "createVisualObjectBoundsTest",
-                    saveResultToStorage,
-                    `Input image: ${name};`,
-                    name,
-                    "object_detection_result.jpg",
-                    async (inputStream, outPath) => {
-                        const request: imaging.CreateVisualObjectBoundsRequest
-                            = new imaging.CreateVisualObjectBoundsRequest(
-                                { imageData: inputStream, includeClass: true, includeScore: true, outPath, storage });
-                        return await this.imagingApi.createVisualObjectBounds(request);
-                    },
-                    (originalProperties, resultProperties) => {
-                        expect(originalProperties).toBeTruthy();
-                        expect(resultProperties).toBeTruthy();
-                        return Promise.resolve();
-                    },
-                    folder,
-                    storage);
+                "objectDetection_createvisualobjectbounds_test",
+                saveResultToStorage,
+                `Input image: ${name}; Method: ssd; threshold: ${threshold}; includeClass: ${includeClass}; includeScore: ${includeScore}; saveResultToStorage: ${saveResultToStorage}`,
+                name,
+                name,
+                async (inputStream, outPath) => {
+                    const request: imaging.CreateVisualObjectBoundsRequest
+                        = new imaging.CreateVisualObjectBoundsRequest(
+                        {imageData: inputStream, includeClass, includeScore, threshold, outPath, storage});
+                    return await this.imagingApi.createVisualObjectBounds(request);
+                },
+                (originalProperties, resultProperties, imagingResponse) => {
+                    expect(originalProperties).toBeTruthy();
+                    expect(resultProperties).toBeTruthy();
+                    expect(imagingResponse).toBeTruthy();
+
+                    return Promise.resolve();
+                },
+                folder,
+                storage);
         }
     }
 }
@@ -143,11 +165,11 @@ beforeEach(() => {
     jest.setTimeout(ApiTester.DefaultTimeout);
 });
 
-beforeAll(async () =>  {
+beforeAll(async () => {
     await testClass.beforeAll();
 });
 
-afterAll(async () =>  {
+afterAll(async () => {
     await testClass.afterAll();
 });
 
@@ -160,7 +182,7 @@ describe.each([true, false])(
             });
         }
 
-        test(`createobjectDetectionTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+        test(`createObjectDetectionTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
             await testClass.createObjectDetectionTest(saveResultToStorage);
         });
 
