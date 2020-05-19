@@ -113,7 +113,7 @@ class ObjectDetectionApiTests extends ApiTester {
                 saveResultToStorage,
                 `Input image: ${name}; Method: ssd; threshold: ${threshold}; includeClass: ${includeClass}; includeScore: ${includeScore}; saveResultToStorage: ${saveResultToStorage}`,
                 name,
-                name,
+                "result_" + name,
                 async (inputStream, outPath) => {
                     const request: imaging.CreateObjectBoundsRequest
                         = new imaging.CreateObjectBoundsRequest(
@@ -134,23 +134,21 @@ class ObjectDetectionApiTests extends ApiTester {
                 folder,
                 storage);
 
-            await this.testPostRequest(
+            await this.testObjectDetectionPostRequest(
                 "objectDetection_createvisualobjectbounds_test",
                 saveResultToStorage,
                 `Input image: ${name}; Method: ssd; threshold: ${threshold}; includeClass: ${includeClass}; includeScore: ${includeScore}; saveResultToStorage: ${saveResultToStorage}`,
                 name,
-                name,
+                "result_" + name,
                 async (inputStream, outPath) => {
                     const request: imaging.CreateVisualObjectBoundsRequest
                         = new imaging.CreateVisualObjectBoundsRequest(
                         {imageData: inputStream, includeClass, includeScore, threshold, outPath, storage});
                     return await this.imagingApi.createVisualObjectBounds(request);
                 },
-                (originalProperties, resultProperties, imagingResponse) => {
-                    expect(originalProperties).toBeTruthy();
-                    expect(resultProperties).toBeTruthy();
+                (imagingResponse) => {
                     expect(imagingResponse).toBeTruthy();
-
+                    expect(imagingResponse.length).toBeGreaterThan(0)
                     return Promise.resolve();
                 },
                 folder,

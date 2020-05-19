@@ -322,24 +322,6 @@ export abstract class ApiTester {
                 () => this.obtainPostResponse(folder + "/" + inputFileName, outPath, storage, requestInvoker), propertiesTester, folder, storage);
     }
 
-    /*protected async testObjectDetectionPostRequest(
-        testMethodName: string,
-        saveResultToStorage: boolean,
-        parametersLine: string,
-        inputFileName: string,
-        resultFileName: string,
-        requestInvoker: PostRequestInvokerDelegate,
-        propertiesTester: PropertiesTesterDelegate,
-        folder: string,
-        storage: string = this.DefaultStorage) {
-        let outPath: string = "";
-        if (saveResultToStorage) {
-            outPath = `${folder}/${resultFileName}`;
-        }
-
-        await this.testRequest(testMethodName, saveResultToStorage, parametersLine, inputFileName, resultFileName,
-            () => this.obtainPostResponse(folder + "/" + inputFileName, outPath, storage, requestInvoker), propertiesTester, folder, storage);
-    }*/
 
     protected async testObjectDetectionPostRequest<T>(
         testMethodName: string,
