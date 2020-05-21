@@ -30,8 +30,11 @@ import * as path from "path";
 import * as imaging from "../../lib/api";
 
 export type PropertiesTesterDelegate = (originalProperties: imaging.ImagingResponse, resultProperties: imaging.ImagingResponse, resultBuffer: Buffer) => Promise<void>;
+export type ObjectDetectionBoundsTesterDelegate<T> = (detectedObjects: T) => Promise<void>;
 export type GetRequestInvokerDelegate = () => Promise<Buffer>;
+export type ObjectDetectionGetRequestInvokerDelegate<T> = () => Promise<T>;
 export type PostRequestInvokerDelegate = (inputStream: Buffer, outPath: string) => Promise<Buffer>;
+export type ObjectDetectionPostRequestInvokerDelegate<T> = (inputStream: Buffer, outPath: string) => Promise<T>;
 
 /**
  * API tester base class.
@@ -277,6 +280,24 @@ export abstract class ApiTester {
                 () => this.obtainGetResponse(requestInvoker), propertiesTester, folder, storage);
     }
 
+    protected async testObjectDetectionGetRequest<T>(
+        testMethodName: string,
+        parametersLine: string,
+        inputFileName: string,
+        requestInvoker: ObjectDetectionGetRequestInvokerDelegate<T>,
+        propertiesTester: ObjectDetectionBoundsTesterDelegate<T>,
+        folder: string,
+        storage: string = this.DefaultStorage) {
+
+        await this.testObjectDetectionRequest(
+            testMethodName,
+            false,
+            parametersLine,
+            inputFileName,
+            null,
+            () => this.obtainObjectDetectionGetResponse(requestInvoker), propertiesTester, folder, storage);
+    }
+
      /**
       * Tests the typical POST request.
       * @param testMethodName Name of the test method.
@@ -299,6 +320,26 @@ export abstract class ApiTester {
 
             await this.testRequest(testMethodName, saveResultToStorage, parametersLine, inputFileName, resultFileName, 
                 () => this.obtainPostResponse(folder + "/" + inputFileName, outPath, storage, requestInvoker), propertiesTester, folder, storage);
+    }
+
+
+    protected async testObjectDetectionPostRequest<T>(
+        testMethodName: string,
+        saveResultToStorage: boolean,
+        parametersLine: string,
+        inputFileName: string,
+        resultFileName: string,
+        requestInvoker: ObjectDetectionPostRequestInvokerDelegate<T>,
+        propertiesTester: ObjectDetectionBoundsTesterDelegate<T>,
+        folder: string,
+        storage: string = this.DefaultStorage) {
+        let outPath: string = "";
+        if (saveResultToStorage) {
+            outPath = `${folder}/${resultFileName}`;
+        }
+
+        await this.testObjectDetectionRequest(testMethodName, saveResultToStorage, parametersLine, inputFileName, resultFileName,
+            () => this.obtainObjectDetectionPostResponse(folder + "/" + inputFileName, outPath, storage, requestInvoker), propertiesTester, folder, storage);
     }
 
     /**
@@ -328,6 +369,12 @@ export abstract class ApiTester {
         return response;
     }
 
+    private async obtainObjectDetectionGetResponse<T>(requestInvoker: ObjectDetectionGetRequestInvokerDelegate<T>) {
+        const response: T = await requestInvoker.call(null);
+        expect(response).toBeTruthy();
+        return response;
+    }
+
     /**
      * Obtains the typical POST request response.
      * @param inputPath The input path.
@@ -346,6 +393,17 @@ export abstract class ApiTester {
         }
 
         return null;
+    }
+
+    private async obtainObjectDetectionPostResponse<T>(
+        inputPath: string,
+        outPath: string,
+        storage: string,
+        requestInvoker: ObjectDetectionPostRequestInvokerDelegate<T>) {
+        const responseBody = await this.imagingApi.downloadFile(
+            new imaging.DownloadFileRequest({ path: inputPath, storageName: storage}));
+        const response: T = await requestInvoker.call(null, responseBody, outPath);
+        return response;
     }
 
     /**
@@ -431,12 +489,75 @@ export abstract class ApiTester {
                                     await this.imagingApi.deleteFile(
                                         new imaging.DeleteFileRequest({ path: outPath, storageName: storage }));
                                 }
-                
+
                                 console.log(`Test passed: ${passed}`);
                                 console.warn(`Heap usage: ${process.memoryUsage().heapUsed / (1024 * 1024)} MB`);
                                 console.warn(`Heap total: ${process.memoryUsage().heapTotal / (1024 * 1024)} MB`);
                                 console.warn(`RSS: ${process.memoryUsage().rss / (1024 * 1024)} MB`);
                             }
+    }
+
+    private async testObjectDetectionRequest<T>(
+        testMethodName: string,
+        saveResultToStorage: boolean,
+        parametersLine: string,
+        inputFileName: string,
+        resultFileName: string,
+        invokeRequestAction: () => Promise<T>,
+        propertiesTester: ObjectDetectionBoundsTesterDelegate<T>,
+        folder: string,
+        storage: string = this.DefaultStorage) {
+        console.log(testMethodName);
+        console.log("test6");
+        if (!this.checkInputFileExists(inputFileName)) {
+            throw new Error(`Input file ${inputFileName} doesn't exist in the specified storage folder: ${folder}. Please, upload it first.`);
+        }
+        console.log("test7");
+        await this.imagingApi.copyFile(
+            new imaging.CopyFileRequest({ srcPath: `${this.OriginalDataFolder}/${inputFileName}`, destPath: `${folder}/${inputFileName}`,
+                srcStorageName: storage, destStorageName: storage }));
+
+        console.log("test8");
+        let passed: boolean = false;
+        let outPath: string = null;
+
+        try {
+            console.log(parametersLine);
+
+            if (saveResultToStorage) {
+                outPath = folder + "/" + resultFileName;
+                if ((await this.imagingApi.objectExists(
+                    new imaging.ObjectExistsRequest ({ path: outPath, storageName: storage }))).exists) {
+                    console.log("test1");
+                    await this.imagingApi.deleteFile(
+                        new imaging.DeleteFileRequest({ path: outPath, storageName: storage }));
+                    console.log("test2");
+                }
+                console.log("test3");
+            }
+
+            const response = await invokeRequestAction();
+            console.log("test4");
+            await propertiesTester(response);
+            console.log("test5");
+            passed = true;
+
+        } catch (e) {
+            ApiTester.FailedAnyTest = true;
+            console.log(e);
+            throw e;
+        } finally {
+            if (!ApiTester.FailedAnyTest && passed && saveResultToStorage && this.RemoveResult && (await this.imagingApi.objectExists(
+                new imaging.ObjectExistsRequest ({ path: outPath, storageName: storage }))).exists) {
+                await this.imagingApi.deleteFile(
+                    new imaging.DeleteFileRequest({ path: outPath, storageName: storage }));
+            }
+
+            console.log(`Test passed: ${passed}`);
+            console.warn(`Heap usage: ${process.memoryUsage().heapUsed / (1024 * 1024)} MB`);
+            console.warn(`Heap total: ${process.memoryUsage().heapTotal / (1024 * 1024)} MB`);
+            console.warn(`RSS: ${process.memoryUsage().rss / (1024 * 1024)} MB`);
+        }
     }
 
     /**

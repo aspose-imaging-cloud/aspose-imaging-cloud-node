@@ -1500,6 +1500,61 @@ export class ImagingApi {
     }
 
     /**
+     * Detects objects bounds. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+     * @param requestObj contains request parameters
+     */
+    public async createObjectBounds(requestObj: model.CreateObjectBoundsRequest): Promise<model.DetectedObjectList> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling createObjectBounds.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/ai/objectdetection/bounds";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.imageData' is not null or undefined
+        if (requestObj.imageData === null || requestObj.imageData === undefined) {
+            throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling createObjectBounds.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "method", requestObj.method);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "threshold", requestObj.threshold);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeClass", requestObj.includeClass);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeScore", requestObj.includeScore);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "DetectedObjectList");
+        }
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Resize an image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
@@ -1736,6 +1791,60 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rectHeight", requestObj.rectHeight);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotateFlipMethod", requestObj.rotateFlipMethod);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        if (requestObj.imageData !== undefined) {
+            const paramKey = "imageData";
+            let formValue = null;
+            formValue = requestObj.imageData;
+            formParams[paramKey] = {
+                value: formValue,
+                options: {
+                    filename: "imageData",
+                    contentType: "application/octet-stream",
+                    knownLength: formValue.length,
+                },
+            };
+        }
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+        
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Detect objects bounds and draw them on the original image
+     * @param requestObj contains request parameters
+     */
+    public async createVisualObjectBounds(requestObj: model.CreateVisualObjectBoundsRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling createVisualObjectBounds.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/ai/objectdetection/visualbounds";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.imageData' is not null or undefined
+        if (requestObj.imageData === null || requestObj.imageData === undefined) {
+            throw new Error('Required parameter "requestObj.imageData" was null or undefined when calling createVisualObjectBounds.');
+        }
+
+        const formParams: { [key: string]: any } = {};
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "method", requestObj.method);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "threshold", requestObj.threshold);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeClass", requestObj.includeClass);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeScore", requestObj.includeScore);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
@@ -3507,6 +3616,46 @@ export class ImagingApi {
     }
 
     /**
+     * Detect objects' bounds
+     * @param requestObj contains request parameters
+     */
+    public async objectBounds(requestObj: model.ObjectBoundsRequest): Promise<model.DetectedObjectList> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling objectBounds.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/ai/objectdetection/bounds";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling objectBounds.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "name", requestObj.name);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "method", requestObj.method);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "threshold", requestObj.threshold);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeClass", requestObj.includeClass);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeScore", requestObj.includeScore);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "DetectedObjectList");
+        }
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Check if file or folder exists
      * @param requestObj contains request parameters
      */
@@ -3944,6 +4093,45 @@ export class ImagingApi {
         if (response.body) {
             result = ObjectSerializer.deserialize(response.body, "FilesUploadResult");
         }
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Detect objects bounds and draw them on the original image
+     * @param requestObj contains request parameters
+     */
+    public async visualObjectBounds(requestObj: model.VisualObjectBoundsRequest): Promise<Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling visualObjectBounds.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/ai/objectdetection/visualbounds";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling visualObjectBounds.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "name", requestObj.name);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "method", requestObj.method);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "threshold", requestObj.threshold);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeClass", requestObj.includeClass);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeScore", requestObj.includeScore);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+            json: true,
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        result = response.body;
+
         return Promise.resolve(result);        
     }
 
