@@ -1028,7 +1028,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: multipart/form-data
+ - **Accept**: application/json
 
 <a name="extractImageFeatures"></a>
 ## **extractImageFeatures**
@@ -1997,7 +1997,7 @@ Name | Type | Description  | Notes
 
 <a name="uploadFile"></a>
 ## **uploadFile**
-> uploadFile(path, File, storageName)
+> uploadFile(path, storageName)
 
 Upload file
 
@@ -2005,7 +2005,6 @@ Upload file
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **path** | **string** | Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext If the content is multipart and path does not contains the file name it tries to get them from filename parameter from Content-Disposition header.  | 
-**File** | **Buffer** | File to upload | 
 **storageName** | **string** | Storage name | [optional]
 
 ### Return type
@@ -2014,7 +2013,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 <a name="visualObjectBounds"></a>
