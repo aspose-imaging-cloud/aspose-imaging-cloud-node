@@ -6571,6 +6571,11 @@ export class CreateVisualObjectBoundsRequest {
     public includeScore: boolean;
 
     /**
+     * Bounds, labels, and scores text color
+     */
+    public color: string;
+
+    /**
      * Path to updated file (if this is empty, response contains streamed image)
      */
     public outPath: string;
@@ -8374,6 +8379,11 @@ export class VisualObjectBoundsRequest {
      * Draw detected objects scores
      */
     public includeScore: boolean;
+
+    /**
+     * Bounds, labels, and scores text color
+     */
+    public color: string;
 
     /**
      * The folder.

@@ -1845,6 +1845,7 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "threshold", requestObj.threshold);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeClass", requestObj.includeClass);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeScore", requestObj.includeScore);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "color", requestObj.color);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
@@ -4118,6 +4119,7 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "threshold", requestObj.threshold);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeClass", requestObj.includeClass);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeScore", requestObj.includeScore);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "color", requestObj.color);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
