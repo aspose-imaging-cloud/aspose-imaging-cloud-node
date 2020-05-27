@@ -6351,9 +6351,9 @@ export class CreateObjectBoundsRequest {
     public threshold: number;
 
     /**
-     * Draw detected objects classes
+     * Draw detected objects labels
      */
-    public includeClass: boolean;
+    public includeLabel: boolean;
 
     /**
      * Draw detected objects scores
@@ -6563,7 +6563,7 @@ export class CreateVisualObjectBoundsRequest {
     /**
      * Draw detected objects classes
      */
-    public includeClass: boolean;
+    public includeLabel: boolean;
 
     /**
      * Draw detected objects scores
@@ -7376,6 +7376,50 @@ export class GetImageSearchStatusRequest {
 }
 
 /**
+ * Request model for GetObjectBounds operation.
+ */
+export class GetObjectBoundsRequest {
+    /**
+     * Image file name.
+     */
+    public name: string;
+
+    /**
+     * Object detection method
+     */
+    public method: string;
+
+    /**
+     * Object detection probability threshold in percents
+     */
+    public threshold: number;
+
+    /**
+     * Return detected objects labels
+     */
+    public includeLabel: boolean;
+
+    /**
+     * Return detected objects score
+     */
+    public includeScore: boolean;
+
+    /**
+     * Folder
+     */
+    public folder: string;
+
+    /**
+     * Storage
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<GetObjectBoundsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for GetSearchImage operation.
  */
 export class GetSearchImageRequest {
@@ -7400,6 +7444,55 @@ export class GetSearchImageRequest {
     public storage: string;
     
     public constructor(init?: Partial<GetSearchImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetVisualObjectBounds operation.
+ */
+export class GetVisualObjectBoundsRequest {
+    /**
+     * The image features detector.
+     */
+    public name: string;
+
+    /**
+     * Object detection method
+     */
+    public method: string;
+
+    /**
+     * Object detection probability threshold in percents
+     */
+    public threshold: number;
+
+    /**
+     * Draw detected objects labels
+     */
+    public includeLabel: boolean;
+
+    /**
+     * Draw detected objects scores
+     */
+    public includeScore: boolean;
+
+    /**
+     * Bounds, labels, and scores text color
+     */
+    public color: string;
+
+    /**
+     * The folder.
+     */
+    public folder: string;
+
+    /**
+     * The storage.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<GetVisualObjectBoundsRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -8012,50 +8105,6 @@ export class MoveFolderRequest {
 }
 
 /**
- * Request model for ObjectBounds operation.
- */
-export class ObjectBoundsRequest {
-    /**
-     * Image file name.
-     */
-    public name: string;
-
-    /**
-     * Object detection method
-     */
-    public method: string;
-
-    /**
-     * Object detection probability threshold in percents
-     */
-    public threshold: number;
-
-    /**
-     * Return detected objects classes
-     */
-    public includeClass: boolean;
-
-    /**
-     * Return detected objects score
-     */
-    public includeScore: boolean;
-
-    /**
-     * Folder
-     */
-    public folder: string;
-
-    /**
-     * Storage
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<ObjectBoundsRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
  * Request model for ObjectExists operation.
  */
 export class ObjectExistsRequest {
@@ -8347,55 +8396,6 @@ export class UploadFileRequest {
     public storageName: string;
     
     public constructor(init?: Partial<UploadFileRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for VisualObjectBounds operation.
- */
-export class VisualObjectBoundsRequest {
-    /**
-     * The image features detector.
-     */
-    public name: string;
-
-    /**
-     * Object detection method
-     */
-    public method: string;
-
-    /**
-     * Object detection probability threshold in percents
-     */
-    public threshold: number;
-
-    /**
-     * Draw detected objects classes
-     */
-    public includeClass: boolean;
-
-    /**
-     * Draw detected objects scores
-     */
-    public includeScore: boolean;
-
-    /**
-     * Bounds, labels, and scores text color
-     */
-    public color: string;
-
-    /**
-     * The folder.
-     */
-    public folder: string;
-
-    /**
-     * The storage.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<VisualObjectBoundsRequest>) {        
         Object.assign(this, init);
     } 
 }
