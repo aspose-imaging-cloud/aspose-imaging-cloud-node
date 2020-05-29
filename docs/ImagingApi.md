@@ -317,7 +317,7 @@ Name | Type | Description  | Notes
 ## **createImageFrameRange**
 > createImageFrameRange(imageData, startFrameId, endFrameId, newWidth, newHeight, x, y, rectWidth, rectHeight, rotateFlipMethod, saveOtherFrames, outPath, storage)
 
-Get separate frame from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+Get frames range from existing image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 
 ### Parameters
 Name | Type | Description  | Notes
@@ -668,6 +668,32 @@ Name | Type | Description  | Notes
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
+<a name="createObjectBounds"></a>
+## **createObjectBounds**
+> createObjectBounds(imageData, method, threshold, includeLabel, includeScore, outPath, storage)
+
+Detects objects bounds. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**imageData** | **Buffer** | Input image | 
+**method** | **string** | Object detection method | [optional]
+**threshold** | **number** | Object detection probability threshold in percents | [optional]
+**includeLabel** | **boolean** | Draw detected objects labels | [optional]
+**includeScore** | **boolean** | Draw detected objects scores | [optional]
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed image) | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+[**DetectedObjectList**](DetectedObjectList.md)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
 <a name="createResizedImage"></a>
 ## **createResizedImage**
 > createResizedImage(imageData, newWidth, newHeight, format, outPath, storage)
@@ -759,6 +785,33 @@ Name | Type | Description  | Notes
 **rotateFlipMethod** | **string** | RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). Default is RotateNoneFlipNone. | 
 **format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed image). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+<a name="createVisualObjectBounds"></a>
+## **createVisualObjectBounds**
+> createVisualObjectBounds(imageData, method, threshold, includeLabel, includeScore, color, outPath, storage)
+
+Detects objects bounds and draw them on the original image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**imageData** | **Buffer** | Input image | 
+**method** | **string** | Object detection method | [optional]
+**threshold** | **number** | Object detection probability threshold in percents | [optional]
+**includeLabel** | **boolean** | Draw detected objects classes | [optional]
+**includeScore** | **boolean** | Draw detected objects scores | [optional]
+**color** | **string** | Bounds, labels, and scores text color | [optional]
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed image) | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
 ### Return type
@@ -1357,6 +1410,32 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="getObjectBounds"></a>
+## **getObjectBounds**
+> getObjectBounds(name, method, threshold, includeLabel, includeScore, folder, storage)
+
+Detects objects' bounds
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | Image file name. | 
+**method** | **string** | Object detection method | [optional]
+**threshold** | **number** | Object detection probability threshold in percents | [optional]
+**includeLabel** | **boolean** | Return detected objects labels | [optional]
+**includeScore** | **boolean** | Return detected objects score | [optional]
+**folder** | **string** | Folder | [optional]
+**storage** | **string** | Storage | [optional]
+
+### Return type
+
+[**DetectedObjectList**](DetectedObjectList.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getSearchImage"></a>
 ## **getSearchImage**
 > getSearchImage(searchContextId, imageId, folder, storage)
@@ -1370,6 +1449,33 @@ Name | Type | Description  | Notes
 **imageId** | **string** | Image identifier. | 
 **folder** | **string** | Folder. | [optional]
 **storage** | **string** | Storage | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getVisualObjectBounds"></a>
+## **getVisualObjectBounds**
+> getVisualObjectBounds(name, method, threshold, includeLabel, includeScore, color, folder, storage)
+
+Detects objects bounds and draw them on the original image
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The image features detector. | 
+**method** | **string** | Object detection method | [optional]
+**threshold** | **number** | Object detection probability threshold in percents | [optional]
+**includeLabel** | **boolean** | Draw detected objects labels | [optional]
+**includeScore** | **boolean** | Draw detected objects scores | [optional]
+**color** | **string** | Bounds, labels, and scores text color | [optional]
+**folder** | **string** | The folder. | [optional]
+**storage** | **string** | The storage. | [optional]
 
 ### Return type
 
