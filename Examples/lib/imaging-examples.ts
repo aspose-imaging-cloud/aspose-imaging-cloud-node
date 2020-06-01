@@ -30,28 +30,28 @@ import * as fs from "fs";
 import * as path from "path";
 import {ImagingBase} from "./imaging-base";
 import * as os from "os";
-import {CropImage} from "./crop-image";
-import {DeskewImage} from "./deskew-image";
-import {GrayscaleImage} from "./grayscale-image";
-import {UpdateBmpImage} from "./update-bmp-image";
-import {UpdateEmfImage} from "./update-emf-image";
-import {ExportImage} from "./export-image";
-import {FilterImage} from "./filter-image";
-import {ImageProperties} from "./image-properties";
-import {ResizeImage} from "./resize-image";
-import {RotateFlipImage} from "./rotate-flip-image";
-import {MultiframeImage} from "./multiframe-image";
-import {UpdateTiffImage} from "./update-tiff-image";
-import {UpdateGifImage} from "./update-gif-image";
-import {UpdateImage} from "./update-image";
-import {UpdateJpeg2000Image} from "./update-jpeg2000-image";
-import {UpdateJpegImage} from "./update-jpeg-image";
-import {UpdatePsdImage} from "./update-psd-image";
-import {UpdateWebPImage} from "./update-web-p-image";
-import {UpdateWmfImage} from "./update-wmf-image";
-import {CompareImages} from "./AI/compare-images";
-import {FindDuplicateImages} from "./AI/find-duplicate-images";
-import {FindSimilarImages} from "./AI/find-similar-images";
+// import {CropImage} from "./crop-image";
+// import {DeskewImage} from "./deskew-image";
+// import {GrayscaleImage} from "./grayscale-image";
+// import {UpdateBmpImage} from "./update-bmp-image";
+// import {UpdateEmfImage} from "./update-emf-image";
+// import {ExportImage} from "./export-image";
+// import {FilterImage} from "./filter-image";
+// import {ImageProperties} from "./image-properties";
+// import {ResizeImage} from "./resize-image";
+// import {RotateFlipImage} from "./rotate-flip-image";
+// import {MultiframeImage} from "./multiframe-image";
+// import {UpdateTiffImage} from "./update-tiff-image";
+// import {UpdateGifImage} from "./update-gif-image";
+// import {UpdateImage} from "./update-image";
+// import {UpdateJpeg2000Image} from "./update-jpeg2000-image";
+// import {UpdateJpegImage} from "./update-jpeg-image";
+// import {UpdatePsdImage} from "./update-psd-image";
+// import {UpdateWebPImage} from "./update-web-p-image";
+// import {UpdateWmfImage} from "./update-wmf-image";
+// import {CompareImages} from "./AI/compare-images";
+// import {FindDuplicateImages} from "./AI/find-duplicate-images";
+// import {FindSimilarImages} from "./AI/find-similar-images";
 import {ObjectDetectionImage} from "./object-detection-image";
 
 runExamples().catch(reason => {
@@ -102,6 +102,7 @@ async function runExamples() {
         rimraf(ImagingBase.OutputFolder);
     fs.mkdirSync(ImagingBase.OutputFolder);
 
+    /*
     // Update parameters of existing BMP image
     const bmpImage = new UpdateBmpImage(imagingApi);
     await bmpImage.ModifyBmpFromStorage();
@@ -245,7 +246,7 @@ async function runExamples() {
     await findSimilarImages.FindImagesSimilar();
     await findSimilarImages.FindImagesByTag();
     await findSimilarImages.DeleteSearchContext();
-
+*/
     // Object Detection
     const objectDetection = new ObjectDetectionImage(imagingApi);
     await objectDetection.DetectedObjectsImageFromRequestBody();
