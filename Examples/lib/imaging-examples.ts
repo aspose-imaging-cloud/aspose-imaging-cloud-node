@@ -29,6 +29,7 @@ import {ImagingApi} from "@asposecloud/aspose-imaging-cloud";
 import * as fs from "fs";
 import * as path from "path";
 import {ImagingBase} from "./imaging-base";
+import * as os from "os";
 import {CropImage} from "./crop-image";
 import {DeskewImage} from "./deskew-image";
 import {GrayscaleImage} from "./grayscale-image";
@@ -48,10 +49,10 @@ import {UpdateJpegImage} from "./update-jpeg-image";
 import {UpdatePsdImage} from "./update-psd-image";
 import {UpdateWebPImage} from "./update-web-p-image";
 import {UpdateWmfImage} from "./update-wmf-image";
-import * as os from "os";
 import {CompareImages} from "./AI/compare-images";
 import {FindDuplicateImages} from "./AI/find-duplicate-images";
 import {FindSimilarImages} from "./AI/find-similar-images";
+import {ObjectDetectionImage} from "./object-detection-image";
 
 runExamples().catch(reason => {
     console.log(reason);
@@ -244,6 +245,14 @@ async function runExamples() {
     await findSimilarImages.FindImagesSimilar();
     await findSimilarImages.FindImagesByTag();
     await findSimilarImages.DeleteSearchContext();
+
+    // Object Detection
+    const objectDetection = new ObjectDetectionImage(imagingApi);
+    await objectDetection.DetectedObjectsImageFromRequestBody();
+    await objectDetection.DetectObjectsImageFromStorage();
+    await objectDetection.VisualiizeDetectObjectsAndUploadToStorage();
+    await objectDetection.VisualizeDetectedObjectsImageFromRequestBody();
+
 }
 
 /**
