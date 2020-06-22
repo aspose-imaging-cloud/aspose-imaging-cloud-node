@@ -45,6 +45,8 @@ class ObjectDetectionApiTests extends ApiTester {
             const threshold = 20;
             const includeLabel = true;
             const includeScore = true;
+            const allowedLabels = "dog";
+            const blockedLabels = "";
             const color = "blue";
 
             await this.testObjectDetectionGetRequest(
@@ -54,7 +56,7 @@ class ObjectDetectionApiTests extends ApiTester {
                 async () => {
                     const request: imaging.GetObjectBoundsRequest = new imaging.GetObjectBoundsRequest({
                         name,
-                        folder, storage, threshold, includeLabel, includeScore,
+                        folder, storage, threshold, includeLabel, includeScore, allowedLabels, blockedLabels,
                     });
                     return await this.imagingApi.getObjectBounds(request);
                 },
@@ -79,7 +81,7 @@ class ObjectDetectionApiTests extends ApiTester {
                 async () => {
                     const request: imaging.GetVisualObjectBoundsRequest = new imaging.GetVisualObjectBoundsRequest({
                         name,
-                        folder, storage, threshold, color, includeLabel, includeScore,
+                        folder, storage, threshold, color, includeLabel, includeScore, allowedLabels, blockedLabels,
                     });
                     return await this.imagingApi.getVisualObjectBounds(request);
                 },
@@ -109,6 +111,8 @@ class ObjectDetectionApiTests extends ApiTester {
             const includeLabel = true;
             const includeScore = true;
             const color = "blue";
+            const allowedLabels = "dog";
+            const blockedLabels = "";
 
             await this.testObjectDetectionPostRequest(
                 "objectDetection_createobjectbounds_test",
@@ -119,7 +123,8 @@ class ObjectDetectionApiTests extends ApiTester {
                 async (inputStream, outPath) => {
                     const request: imaging.CreateObjectBoundsRequest
                         = new imaging.CreateObjectBoundsRequest(
-                        {imageData: inputStream, threshold, includeLabel, includeScore, outPath, storage});
+                        {imageData: inputStream, threshold, includeLabel,
+                            includeScore, outPath, storage, allowedLabels, blockedLabels});
                     return await this.imagingApi.createObjectBounds(request);
                 },
                 (detectedObjectsList) => {
@@ -145,7 +150,8 @@ class ObjectDetectionApiTests extends ApiTester {
                 async (inputStream, outPath) => {
                     const request: imaging.CreateVisualObjectBoundsRequest
                         = new imaging.CreateVisualObjectBoundsRequest(
-                        {imageData: inputStream, includeLabel, includeScore, color, threshold, outPath, storage});
+                        {imageData: inputStream, includeLabel, includeScore, color, threshold,
+                            outPath, storage, allowedLabels, blockedLabels});
                     return await this.imagingApi.createVisualObjectBounds(request);
                 },
                 (imagingResponse) => {
@@ -156,6 +162,15 @@ class ObjectDetectionApiTests extends ApiTester {
                 folder,
                 storage);
         }
+    }
+
+    public availableLabelsTest() {
+        this.imagingApi.getAvailableLabels(
+            new imaging.GetAvailableLabelsRequest({method: "ssd"})).then((list) => {
+            expect(list).toBeTruthy();
+            expect(list.availableLabels).toBeTruthy();
+            expect(list.availableLabels.length).toBeGreaterThan(0);
+        });
     }
 }
 
@@ -191,3 +206,11 @@ describe.each([true, false])(
         });
     },
 );
+
+describe("ObjectDetectionTestSuite_V3",
+    () => {
+        test(`availableLabelsTest`, () => {
+            testClass.availableLabelsTest();
+        });
+
+    });

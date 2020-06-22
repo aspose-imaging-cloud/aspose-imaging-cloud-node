@@ -26,6 +26,48 @@
 */
 
 
+export class AvailableLabelsList {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "availableLabels",
+            baseName: "availableLabels",
+            type: "Array<string>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return AvailableLabelsList.attributeTypeMap;
+    }
+
+    /**
+     * detected objects
+     */
+    public availableLabels: Array<string>;
+    
+    public constructor(init?: Partial<AvailableLabelsList>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
 /**
  * Represents information about image in bmp format.
  */
@@ -5172,6 +5214,7 @@ const enumsMap = {
 };
 
 const typeMap = {
+            AvailableLabelsList,
             BmpProperties,
             DetectedObject,
             DetectedObjectList,
@@ -6361,6 +6404,16 @@ export class CreateObjectBoundsRequest {
     public includeScore: boolean;
 
     /**
+     * Comma-separated list of allowed labels
+     */
+    public allowedLabels: string;
+
+    /**
+     * Comma-separated list of blocked labels
+     */
+    public blockedLabels: string;
+
+    /**
      * Path to updated file (if this is empty, response contains streamed image)
      */
     public outPath: string;
@@ -6569,6 +6622,16 @@ export class CreateVisualObjectBoundsRequest {
      * Draw detected objects scores
      */
     public includeScore: boolean;
+
+    /**
+     * Comma-separated list of allowed labels
+     */
+    public allowedLabels: string;
+
+    /**
+     * Comma-separated list of blocked labels
+     */
+    public blockedLabels: string;
 
     /**
      * Bounds, labels, and scores text color
@@ -7075,6 +7138,20 @@ export class FindSimilarImagesRequest {
 }
 
 /**
+ * Request model for GetAvailableLabels operation.
+ */
+export class GetAvailableLabelsRequest {
+    /**
+     * Object detection method
+     */
+    public method: string;
+    
+    public constructor(init?: Partial<GetAvailableLabelsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for GetDiscUsage operation.
  */
 export class GetDiscUsageRequest {
@@ -7405,6 +7482,16 @@ export class GetObjectBoundsRequest {
     public includeScore: boolean;
 
     /**
+     * Comma-separated list of allowed labels
+     */
+    public allowedLabels: string;
+
+    /**
+     * Comma-separated list of blocked labels
+     */
+    public blockedLabels: string;
+
+    /**
      * Folder
      */
     public folder: string;
@@ -7476,6 +7563,16 @@ export class GetVisualObjectBoundsRequest {
      * Draw detected objects scores
      */
     public includeScore: boolean;
+
+    /**
+     * Comma-separated list of allowed labels
+     */
+    public allowedLabels: string;
+
+    /**
+     * Comma-separated list of blocked labels
+     */
+    public blockedLabels: string;
 
     /**
      * Bounds, labels, and scores text color

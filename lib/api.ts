@@ -1521,6 +1521,8 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "threshold", requestObj.threshold);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeLabel", requestObj.includeLabel);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeScore", requestObj.includeScore);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "allowedLabels", requestObj.allowedLabels);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "blockedLabels", requestObj.blockedLabels);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         if (requestObj.imageData !== undefined) {
@@ -1845,6 +1847,8 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "threshold", requestObj.threshold);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeLabel", requestObj.includeLabel);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeScore", requestObj.includeScore);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "allowedLabels", requestObj.allowedLabels);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "blockedLabels", requestObj.blockedLabels);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "color", requestObj.color);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -2606,6 +2610,40 @@ export class ImagingApi {
     }
 
     /**
+     * Detects objects bounds and draw them on the original image
+     * @param requestObj contains request parameters
+     */
+    public async getAvailableLabels(requestObj: model.GetAvailableLabelsRequest): Promise<model.AvailableLabelsList> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getAvailableLabels.');
+        }
+
+        const localVarPath = this.configuration.getApiBaseUrl() + "/imaging/ai/objectdetection/availablelabels/{method}"
+            .replace("{" + "method" + "}", String(requestObj.method));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.method' is not null or undefined
+        if (requestObj.method === null || requestObj.method === undefined) {
+            throw new Error('Required parameter "requestObj.method" was null or undefined when calling getAvailableLabels.');
+        }
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "AvailableLabelsList");
+        }
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Get disc usage
      * @param requestObj contains request parameters
      */
@@ -2986,6 +3024,8 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "threshold", requestObj.threshold);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeLabel", requestObj.includeLabel);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeScore", requestObj.includeScore);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "allowedLabels", requestObj.allowedLabels);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "blockedLabels", requestObj.blockedLabels);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
@@ -3067,6 +3107,8 @@ export class ImagingApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "threshold", requestObj.threshold);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeLabel", requestObj.includeLabel);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeScore", requestObj.includeScore);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "allowedLabels", requestObj.allowedLabels);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "blockedLabels", requestObj.blockedLabels);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "color", requestObj.color);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
