@@ -165,6 +165,7 @@ class ObjectDetectionApiTests extends ApiTester {
     }
 
     public availableLabelsTest() {
+        console.log("available Labels Test");
         this.imagingApi.getAvailableLabels(
             new imaging.GetAvailableLabelsRequest({method: "ssd"})).then((list) => {
             expect(list).toBeTruthy();
