@@ -670,7 +670,7 @@ Name | Type | Description  | Notes
 
 <a name="createObjectBounds"></a>
 ## **createObjectBounds**
-> createObjectBounds(imageData, method, threshold, includeLabel, includeScore, outPath, storage)
+> createObjectBounds(imageData, method, threshold, includeLabel, includeScore, allowedLabels, blockedLabels, outPath, storage)
 
 Detects objects bounds. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
 
@@ -682,6 +682,8 @@ Name | Type | Description  | Notes
 **threshold** | **number** | Object detection probability threshold in percents | [optional]
 **includeLabel** | **boolean** | Draw detected objects labels | [optional]
 **includeScore** | **boolean** | Draw detected objects scores | [optional]
+**allowedLabels** | **string** | Comma-separated list of allowed labels | [optional]
+**blockedLabels** | **string** | Comma-separated list of blocked labels | [optional]
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed image) | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
@@ -798,7 +800,7 @@ Name | Type | Description  | Notes
 
 <a name="createVisualObjectBounds"></a>
 ## **createVisualObjectBounds**
-> createVisualObjectBounds(imageData, method, threshold, includeLabel, includeScore, color, outPath, storage)
+> createVisualObjectBounds(imageData, method, threshold, includeLabel, includeScore, allowedLabels, blockedLabels, color, outPath, storage)
 
 Detects objects bounds and draw them on the original image. Image data is passed as zero-indexed multipart/form-data content or as raw body stream
 
@@ -810,6 +812,8 @@ Name | Type | Description  | Notes
 **threshold** | **number** | Object detection probability threshold in percents | [optional]
 **includeLabel** | **boolean** | Draw detected objects classes | [optional]
 **includeScore** | **boolean** | Draw detected objects scores | [optional]
+**allowedLabels** | **string** | Comma-separated list of allowed labels | [optional]
+**blockedLabels** | **string** | Comma-separated list of blocked labels | [optional]
 **color** | **string** | Bounds, labels, and scores text color | [optional]
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed image) | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
@@ -1195,6 +1199,26 @@ Name | Type | Description  | Notes
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
+<a name="getAvailableLabels"></a>
+## **getAvailableLabels**
+> getAvailableLabels(method)
+
+Detects objects bounds and draw them on the original image
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**method** | **string** | Object detection method | 
+
+### Return type
+
+[**AvailableLabelsList**](AvailableLabelsList.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getDiscUsage"></a>
 ## **getDiscUsage**
 > getDiscUsage(storageName)
@@ -1412,7 +1436,7 @@ Name | Type | Description  | Notes
 
 <a name="getObjectBounds"></a>
 ## **getObjectBounds**
-> getObjectBounds(name, method, threshold, includeLabel, includeScore, folder, storage)
+> getObjectBounds(name, method, threshold, includeLabel, includeScore, allowedLabels, blockedLabels, folder, storage)
 
 Detects objects' bounds
 
@@ -1424,6 +1448,8 @@ Name | Type | Description  | Notes
 **threshold** | **number** | Object detection probability threshold in percents | [optional]
 **includeLabel** | **boolean** | Return detected objects labels | [optional]
 **includeScore** | **boolean** | Return detected objects score | [optional]
+**allowedLabels** | **string** | Comma-separated list of allowed labels | [optional]
+**blockedLabels** | **string** | Comma-separated list of blocked labels | [optional]
 **folder** | **string** | Folder | [optional]
 **storage** | **string** | Storage | [optional]
 
@@ -1461,7 +1487,7 @@ Name | Type | Description  | Notes
 
 <a name="getVisualObjectBounds"></a>
 ## **getVisualObjectBounds**
-> getVisualObjectBounds(name, method, threshold, includeLabel, includeScore, color, folder, storage)
+> getVisualObjectBounds(name, method, threshold, includeLabel, includeScore, allowedLabels, blockedLabels, color, folder, storage)
 
 Detects objects bounds and draw them on the original image
 
@@ -1473,6 +1499,8 @@ Name | Type | Description  | Notes
 **threshold** | **number** | Object detection probability threshold in percents | [optional]
 **includeLabel** | **boolean** | Draw detected objects labels | [optional]
 **includeScore** | **boolean** | Draw detected objects scores | [optional]
+**allowedLabels** | **string** | Comma-separated list of allowed labels | [optional]
+**blockedLabels** | **string** | Comma-separated list of blocked labels | [optional]
 **color** | **string** | Bounds, labels, and scores text color | [optional]
 **folder** | **string** | The folder. | [optional]
 **storage** | **string** | The storage. | [optional]
