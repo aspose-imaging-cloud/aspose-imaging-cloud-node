@@ -166,13 +166,20 @@ class ObjectDetectionApiTests extends ApiTester {
 
     public availableLabelsTest() {
         console.log("available Labels Test");
-
-        this.imagingApi.getAvailableLabels(
-            new imaging.GetAvailableLabelsRequest({method: "ssd"})).then((list) => {
-            expect(list).toBeFalsy();
-            expect(list.availableLabels).toBeTruthy();
-            expect(list.availableLabels.length).toBeGreaterThan(0);
-        });
+        try {
+            this.imagingApi.getAvailableLabels(
+                new imaging.GetAvailableLabelsRequest({method: "ssd"})).then((list) => {
+                expect(list).toBeFalsy();
+                expect(list.availableLabels).toBeTruthy();
+                expect(list.availableLabels.length).toBeGreaterThan(0);
+            });
+            console.log("tast passed: true");
+        } catch (e) {
+            ApiTester.FailedAnyTest = true;
+            console.log("tast passed: false");
+            console.log(e);
+            throw e;
+        }
     }
 }
 
