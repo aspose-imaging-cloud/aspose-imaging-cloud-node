@@ -1772,6 +1772,43 @@ export class ImagingApi {
     }
 
     /**
+     * Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.             
+     * @param requestObj contains request parameters
+     */
+    public async createSavedImageAs(requestObj: model.CreateSavedImageAsRequest): Promise<model.Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling createSavedImageAs.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/saveAs";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling createSavedImageAs.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+            json: true,
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "Buffer");
+        }
+        return Promise.resolve(result);        
+    }
+
+    /**
      * Perform scaling, cropping and flipping of an image in a single request. Image data is passed as zero-indexed multipart/form-data content or as raw body stream.
      * @param requestObj contains request parameters
      */
@@ -3860,6 +3897,49 @@ export class ImagingApi {
         let result = null;
         result = response.body;
 
+        return Promise.resolve(result);        
+    }
+
+    /**
+     * Export existing image to another format.
+     * @param requestObj contains request parameters
+     */
+    public async saveImageAs(requestObj: model.SaveImageAsRequest): Promise<model.Buffer> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling saveImageAs.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/imaging/{name}/saveAs"
+            .replace("{" + "name" + "}", String(requestObj.name));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling saveImageAs.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null or undefined
+        if (requestObj.format === null || requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was null or undefined when calling saveImageAs.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+            json: true,
+        };
+        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        let result = null;
+        
+        if (response.body) {
+            result = ObjectSerializer.deserialize(response.body, "Buffer");
+        }
         return Promise.resolve(result);        
     }
 

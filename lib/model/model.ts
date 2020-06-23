@@ -6507,6 +6507,30 @@ export class CreateRotateFlippedImageRequest {
 }
 
 /**
+ * Request model for CreateSavedImageAs operation.
+ */
+export class CreateSavedImageAsRequest {
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateSavedImageAsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for CreateUpdatedImage operation.
  */
 export class CreateUpdatedImageRequest {
@@ -8226,6 +8250,35 @@ export class RotateFlipImageRequest {
     public storage: string;
     
     public constructor(init?: Partial<RotateFlipImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for SaveImageAs operation.
+ */
+export class SaveImageAsRequest {
+    /**
+     * Filename of image.
+     */
+    public name: string;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+
+    /**
+     * Folder with image to process.
+     */
+    public folder: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<SaveImageAsRequest>) {        
         Object.assign(this, init);
     } 
 }
