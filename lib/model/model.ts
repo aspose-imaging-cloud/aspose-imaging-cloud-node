@@ -5373,35 +5373,6 @@ export class CompareImagesRequest {
 }
 
 /**
- * Request model for ConvertImage operation.
- */
-export class ConvertImageRequest {
-    /**
-     * Filename of image.
-     */
-    public name: string;
-
-    /**
-     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-     */
-    public format: string;
-
-    /**
-     * Folder with image to process.
-     */
-    public folder: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<ConvertImageRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
  * Request model for ConvertTiffToFax operation.
  */
 export class ConvertTiffToFaxRequest {
@@ -5484,35 +5455,6 @@ export class CopyFolderRequest {
     public destStorageName: string;
     
     public constructor(init?: Partial<CopyFolderRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for CreateConvertedImage operation.
- */
-export class CreateConvertedImageRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-     */
-    public format: string;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<CreateConvertedImageRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -6563,6 +6505,11 @@ export class CreateRotateFlippedImageRequest {
  * Request model for CreateSavedImageAs operation.
  */
 export class CreateSavedImageAsRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
     /**
      * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
      */
