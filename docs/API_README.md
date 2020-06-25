@@ -52,6 +52,7 @@ Class | Method | HTTP request | Description
 *ImagingApi* | [**findImageDuplicates**](ImagingApi.md#findImageDuplicates) | **GET** /imaging/ai/imageSearch/\{searchContextId}/findDuplicates | Find images duplicates.
 *ImagingApi* | [**findImagesByTags**](ImagingApi.md#findImagesByTags) | **POST** /imaging/ai/imageSearch/\{searchContextId}/findByTags | Find images by tags. Tags JSON string is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**findSimilarImages**](ImagingApi.md#findSimilarImages) | **GET** /imaging/ai/imageSearch/\{searchContextId}/findSimilar | Find similar images. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
+*ImagingApi* | [**getAvailableLabels**](ImagingApi.md#getAvailableLabels) | **GET** /imaging/ai/objectdetection/availablelabels/\{method} | Detects objects bounds and draw them on the original image
 *ImagingApi* | [**getDiscUsage**](ImagingApi.md#getDiscUsage) | **GET** /imaging/storage/disc | Get disc usage
 *ImagingApi* | [**getFilesList**](ImagingApi.md#getFilesList) | **GET** /imaging/storage/folder/\{path} | Get all files and folders within a folder
 *ImagingApi* | [**getFileVersions**](ImagingApi.md#getFileVersions) | **GET** /imaging/storage/version/\{path} | Get file versions
@@ -91,6 +92,7 @@ Class | Method | HTTP request | Description
 
 Class | Description
 ----- | -----
+[**AvailableLabelsList**](AvailableLabelsList.md) | 
 [**BigRectangularFilterProperties**](BigRectangularFilterProperties.md) | Big Rectangular Filter Options
 [**BilateralSmoothingFilterProperties**](BilateralSmoothingFilterProperties.md) | The Bilateral Smoothing Filter Options.
 [**BmpProperties**](BmpProperties.md) | Represents information about image in bmp format.
