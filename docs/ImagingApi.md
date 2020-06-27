@@ -72,6 +72,29 @@ Name | Type | Description  | Notes
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
+<a name="convertImage"></a>
+## **convertImage**
+> convertImage(name, format, folder, storage)
+
+Convert existing image to another format.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | Filename of image. | 
+**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
+**folder** | **string** | Folder with image to process. | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="convertTiffToFax"></a>
 ## **convertTiffToFax**
 > convertTiffToFax(name, storage, folder)
@@ -139,6 +162,29 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="createConvertedImage"></a>
+## **createConvertedImage**
+> createConvertedImage(imageData, format, outPath, storage)
+
+Convert existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream. 
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**imageData** | **Buffer** | Input image | 
+**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
+**outPath** | **string** | Path to updated file (if this is empty, response contains streamed image). | [optional]
+**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 <a name="createCroppedImage"></a>
@@ -733,29 +779,6 @@ Name | Type | Description  | Notes
 **imageData** | **Buffer** | Input image | 
 **method** | **string** | RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). | 
 **format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
-**outPath** | **string** | Path to updated file (if this is empty, response contains streamed image). | [optional]
-**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
-
-### Return type
-
-**Buffer**
-
-### HTTP request headers
-
- - **Content-Type**: multipart/form-data
- - **Accept**: application/json
-
-<a name="createSavedImageAs"></a>
-## **createSavedImageAs**
-> createSavedImageAs(imageData, format, outPath, storage)
-
-Export existing image to another format. Image data is passed as zero-indexed multipart/form-data content or as raw body stream. 
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**imageData** | **Buffer** | Input image | 
-**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
 **outPath** | **string** | Path to updated file (if this is empty, response contains streamed image). | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 
@@ -1918,29 +1941,6 @@ Name | Type | Description  | Notes
 **name** | **string** | Filename of an image. | 
 **method** | **string** | RotateFlip method (Rotate180FlipNone, Rotate180FlipX, Rotate180FlipXY, Rotate180FlipY, Rotate270FlipNone, Rotate270FlipX, Rotate270FlipXY, Rotate270FlipY, Rotate90FlipNone, Rotate90FlipX, Rotate90FlipXY, Rotate90FlipY, RotateNoneFlipNone, RotateNoneFlipX, RotateNoneFlipXY, RotateNoneFlipY). | 
 **format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | [optional]
-**folder** | **string** | Folder with image to process. | [optional]
-**storage** | **string** | Your Aspose Cloud Storage name. | [optional]
-
-### Return type
-
-**Buffer**
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-<a name="saveImageAs"></a>
-## **saveImageAs**
-> saveImageAs(name, format, folder, storage)
-
-Export existing image to another format.
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**name** | **string** | Filename of image. | 
-**format** | **string** | Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases. | 
 **folder** | **string** | Folder with image to process. | [optional]
 **storage** | **string** | Your Aspose Cloud Storage name. | [optional]
 

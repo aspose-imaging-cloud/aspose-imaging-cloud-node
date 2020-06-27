@@ -28,11 +28,11 @@ import * as imaging from "../../lib/api";
 import { ApiTester } from "../base/api-tester";
 
 /**
- * Class for testing save as API calls
+ * Class for testing convert API calls
  */
-class SaveAsApiTests extends ApiTester {
+class ConvertApiTests extends ApiTester {
 
-    public async saveImageAsTest(formatExtension: string, ...additionalExportFormats: string[]) {
+    public async convertImageTest(formatExtension: string, ...additionalExportFormats: string[]) {
         let name: string = null;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
@@ -53,13 +53,13 @@ class SaveAsApiTests extends ApiTester {
             for (const format of formatsToExport) {
 
                 await this.testGetRequest(
-                        "saveImageAsTest",
+                        "convertImageTest",
                         `Input image: ${name}; Output format: ${format}`,
                         name,
                         async () => {
-                            const request: imaging.SaveImageAsRequest = new imaging.SaveImageAsRequest({ name, format, 
+                            const request: imaging.ConvertImageRequest = new imaging.ConvertImageRequest({ name, format, 
                                 folder, storage });
-                            const response = await this.imagingApi.saveImageAs(request);
+                            const response = await this.imagingApi.convertImage(request);
                             return response;
                         },
                         null,
@@ -69,7 +69,7 @@ class SaveAsApiTests extends ApiTester {
         }
     }
 
-    public async createSavedImageAsTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
+    public async createConvertedImageTest(formatExtension: string, saveResultToStorage: boolean, ...additionalExportFormats: string[]) {
         let name: string = null;
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
@@ -92,15 +92,15 @@ class SaveAsApiTests extends ApiTester {
                 outName = `${name}.${format}`;
 
                 await this.testPostRequest(
-                        "createSavedImageAsTest",
+                        "createConvertedImageTest",
                         saveResultToStorage,
                         `Input image: ${name}; Output format: ${format}`,
                         name,
                         outName,
                         async (inputStream, outPath) => {
-                            const request: imaging.CreateSavedImageAsRequest = new imaging.CreateSavedImageAsRequest({ imageData: inputStream, format,  
+                            const request: imaging.CreateConvertedImageRequest = new imaging.CreateConvertedImageRequest({ imageData: inputStream, format,  
                                 outPath, storage });
-                            const response = await this.imagingApi.createSavedImageAs(request);
+                            const response = await this.imagingApi.createConvertedImage(request);
                             return response;
                         },
                         null,
@@ -111,7 +111,7 @@ class SaveAsApiTests extends ApiTester {
     }
 }
 
-const testClass: SaveAsApiTests = new SaveAsApiTests();
+const testClass: ConvertApiTests = new ConvertApiTests();
 const useExtendedTests: boolean = process.env.ExtendedTests === "true";
 
 beforeEach(() => {
@@ -127,16 +127,16 @@ afterAll(async () =>  {
 });
 
 describe.each([[".jpg", true], [".jpg", false]])(
-    "SaveAsTestSuite_V3",
+    "ConvertTestSuite_V3",
     (formatExtension, saveResultToStorage) => {
         if (!saveResultToStorage) {
-            test(`saveImageAsTest`, async () => {
-                await testClass.saveImageAsTest(formatExtension);
+            test(`convertImageTest`, async () => {
+                await testClass.convertImageTest(formatExtension);
             });
         }
 
-        test(`createSavedImageAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-            await testClass.createSavedImageAsTest(formatExtension, saveResultToStorage);
+        test(`createConvertedImageTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+            await testClass.createConvertedImageTest(formatExtension, saveResultToStorage);
         });
 
         beforeEach(() => {
@@ -161,16 +161,16 @@ if (useExtendedTests) {
         [".tiff", true], [".tiff", false],
         [".webp", true], [".webp", false],
         ])
-        ("SaveAsTestSuite_Extended_V3",
+        ("ConvertTestSuite_Extended_V3",
         (formatExtension, saveResultToStorage) => {
             if (!saveResultToStorage) {
-                test(`saveImageAsTest`, async () => {
-                    await testClass.saveImageAsTest(formatExtension);
+                test(`convertImageTest`, async () => {
+                    await testClass.convertImageTest(formatExtension);
                 });
             }
     
-            test(`createSavedImageAsTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
-                await testClass.createSavedImageAsTest(formatExtension, saveResultToStorage);
+            test(`createConvertedImageTest: saveResultToStorage - ${saveResultToStorage}`, async () => {
+                await testClass.createConvertedImageTest(formatExtension, saveResultToStorage);
             });
 
             beforeEach(() => {

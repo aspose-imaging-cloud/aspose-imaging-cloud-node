@@ -36,9 +36,9 @@ import { ApiTester } from "../base/api-tester";
 class ExamplesApiTests extends ApiTester {
 
     /**
-     * Save as from storage example.
+     * Convert from storage example.
      */
-    public async saveAsFromStorageExampleTest() {
+    public async convertFromStorageExampleTest() {
         const config = this.imagingApi.configuration;
         const imagingApi = new imaging.ImagingApi(config.appKey, config.appSID, config.baseUrl, 
             config.debugMode, config.apiVersion);
@@ -58,13 +58,13 @@ class ExamplesApiTests extends ApiTester {
             console.log(result);
 
             // convert image from storage to JPEG
-            const getSaveAsRequest =
-                new imaging.SaveImageAsRequest({
+            const getConvertRequest =
+                new imaging.ConvertImageRequest({
                     name: "inputImage.png", format: "jpg", folder: "ExampleFolderNet", 
                     storage: (config.onPremise ? this.TestStorage : undefined) });
 
             const convertedFile =
-                await imagingApi.saveImageAs(getSaveAsRequest);
+                await imagingApi.convertImage(getConvertRequest);
 
             // process resulting image
             // for example, save it to storage
@@ -85,9 +85,9 @@ class ExamplesApiTests extends ApiTester {
     }
 
     /**
-     * Save as from stream example.
+     * Convert from stream example.
      */
-    public async saveAsFromStreamExampleTest() {
+    public async convertFromStreamExampleTest() {
         const config = this.imagingApi.configuration;
         const imagingApi = new imaging.ImagingApi(config.appKey, config.appSID, config.baseUrl,
             config.debugMode, config.apiVersion);
@@ -100,11 +100,11 @@ class ExamplesApiTests extends ApiTester {
             // convert image from request stream to JPEG and save it to storage
             // please, use outPath parameter for saving the result to storage
             const postSaveToStorageRequest =
-                new imaging.CreateSavedImageAsRequest({
+                new imaging.CreateConvertedImageRequest({
                     imageData: localInputImage, format: "jpg", outPath: "ExampleFolderNet/resultImage.jpg", 
                     storage: (config.onPremise ? this.TestStorage : undefined) });
 
-            await imagingApi.createSavedImageAs(postSaveToStorageRequest);
+            await imagingApi.createConvertedImage(postSaveToStorageRequest);
 
             // download saved image from storage and process it
             const savedFile =
@@ -115,11 +115,11 @@ class ExamplesApiTests extends ApiTester {
             // convert image from request stream to JPEG and read it from resulting stream
             // please, set outPath parameter as null to return result in request stream instead of saving to storage
             const postSaveToStreamRequest =
-                new imaging.CreateSavedImageAsRequest({ imageData: localInputImage, format: "jpg", outPath: null, 
+                new imaging.CreateConvertedImageRequest({ imageData: localInputImage, format: "jpg", outPath: null, 
                     storage: (config.onPremise ? this.TestStorage : undefined) });
 
             // process resulting image from response stream
-            const resultPostImageStream = await imagingApi.createSavedImageAs(postSaveToStreamRequest);
+            const resultPostImageStream = await imagingApi.createConvertedImage(postSaveToStreamRequest);
             console.log(resultPostImageStream);
         } finally {
             // remove files from storage
@@ -143,10 +143,10 @@ afterAll(async () => {
     await testClass.afterAll();
 });
 
-test(`saveAsFromStorageExampleTest`, async () => {
-    await testClass.saveAsFromStorageExampleTest();
+test(`convertFromStorageExampleTest`, async () => {
+    await testClass.convertFromStorageExampleTest();
 });
 
-test(`saveAsFromStreamExampleTest`, async () => {
-    await testClass.saveAsFromStreamExampleTest();
+test(`convertFromStreamExampleTest`, async () => {
+    await testClass.convertFromStreamExampleTest();
 });
