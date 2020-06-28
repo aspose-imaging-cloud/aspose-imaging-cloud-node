@@ -92,7 +92,7 @@ Class | Method | HTTP request | Description
 
 Class | Description
 ----- | -----
-[**AvailableLabelsList**](AvailableLabelsList.md) | 
+[**AvailableLabelsList**](AvailableLabelsList.md) | AvailableLabelsList
 [**BigRectangularFilterProperties**](BigRectangularFilterProperties.md) | Big Rectangular Filter Options
 [**BilateralSmoothingFilterProperties**](BilateralSmoothingFilterProperties.md) | The Bilateral Smoothing Filter Options.
 [**BmpProperties**](BmpProperties.md) | Represents information about image in bmp format.

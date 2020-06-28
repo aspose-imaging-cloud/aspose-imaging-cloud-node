@@ -26,6 +26,9 @@
 */
 
 
+/**
+ * AvailableLabelsList
+ */
 export class AvailableLabelsList {
 
     /**
@@ -292,16 +295,6 @@ export class DicomProperties {
             type: "string",
         },        
         {
-            name: "widthTagFound",
-            baseName: "WidthTagFound",
-            type: "boolean",
-        },        
-        {
-            name: "heightTagFound",
-            baseName: "HeightTagFound",
-            type: "boolean",
-        },        
-        {
             name: "width",
             baseName: "Width",
             type: "number",
@@ -342,11 +335,6 @@ export class DicomProperties {
             type: "number",
         },        
         {
-            name: "lengthValue",
-            baseName: "LengthValue",
-            type: "number",
-        },        
-        {
             name: "isLittleEndian",
             baseName: "IsLittleEndian",
             type: "boolean",
@@ -355,11 +343,6 @@ export class DicomProperties {
             name: "offset",
             baseName: "Offset",
             type: "number",
-        },        
-        {
-            name: "dicomFound",
-            baseName: "DicomFound",
-            type: "boolean",
         }    ];
 
     /**
@@ -420,16 +403,6 @@ export class DicomProperties {
     public photoInterpretation: string;
     
     /**
-     * Gets or sets a value indicating whether width tag found.
-     */
-    public widthTagFound: boolean;
-    
-    /**
-     * Gets or sets a value indicating whether height tag found.
-     */
-    public heightTagFound: boolean;
-    
-    /**
      * Gets or sets the width.
      */
     public width: number;
@@ -470,11 +443,6 @@ export class DicomProperties {
     public numberOfFrames: number;
     
     /**
-     * Gets or sets the length of element.
-     */
-    public lengthValue: number;
-    
-    /**
      * Indicates if DICOM image has little endian byte order.
      */
     public isLittleEndian: boolean;
@@ -483,11 +451,6 @@ export class DicomProperties {
      * Gets or sets the offset.
      */
     public offset: number;
-    
-    /**
-     * Gets or sets a value indicating whether \"DICOM\" data is found.
-     */
-    public dicomFound: boolean;
     
     public constructor(init?: Partial<DicomProperties>) {
         
