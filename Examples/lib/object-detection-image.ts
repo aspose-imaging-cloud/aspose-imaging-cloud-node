@@ -63,6 +63,8 @@ export class ObjectDetectionImage extends ImagingBase {
         const threshold = 50;
         const includeLabel = true;
         const includeScore = true;
+        const allowedLabels = "cat";
+        const blockedLabels = "dog";
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
 
@@ -72,6 +74,8 @@ export class ObjectDetectionImage extends ImagingBase {
             threshold,
             includeLabel,
             includeScore,
+            allowedLabels,
+            blockedLabels,
             folder,
             storage,
         });
@@ -101,6 +105,8 @@ export class ObjectDetectionImage extends ImagingBase {
         const threshold = 50;
         const includeLabel = true;
         const includeScore = true;
+        const allowedLabels = "cat";
+        const blockedLabels = "dog";
         const color = "blue";
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // We are using default Cloud Storage
@@ -111,6 +117,8 @@ export class ObjectDetectionImage extends ImagingBase {
             threshold,
             includeLabel,
             includeScore,
+            allowedLabels,
+            blockedLabels,
             color,
             folder,
             storage,
@@ -140,6 +148,8 @@ export class ObjectDetectionImage extends ImagingBase {
         const threshold = 50;
         const includeLabel = true;
         const includeScore = true;
+        const allowedLabels = "cat";
+        const blockedLabels = "dog";
         const outPath = null;
         const storage = undefined; // We are using default Cloud Storage
         const imageData = fs.readFileSync(path.resolve(ImagingBase.ExampleImagesFolder, this.SampleImageFileName));
@@ -150,6 +160,8 @@ export class ObjectDetectionImage extends ImagingBase {
             threshold,
             includeLabel,
             includeScore,
+            allowedLabels,
+            blockedLabels,
             outPath,
             storage,
         });
@@ -177,7 +189,9 @@ export class ObjectDetectionImage extends ImagingBase {
         const method = "ssd";
         const threshold = 50;
         const includeLabel = true;
-        const includeScore = true
+        const includeScore = true;
+        const allowedLabels = "cat";
+        const blockedLabels = "dog";
         const outPath = null;
         const storage = undefined; // We are using default Cloud Storage
         const imageData = fs.readFileSync(path.resolve(ImagingBase.ExampleImagesFolder, this.SampleImageFileName));
@@ -188,6 +202,8 @@ export class ObjectDetectionImage extends ImagingBase {
             threshold,
             includeLabel,
             includeScore,
+            allowedLabels,
+            blockedLabels,
             outPath,
             storage,
         });
