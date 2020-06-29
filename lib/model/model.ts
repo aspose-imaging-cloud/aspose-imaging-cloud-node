@@ -27,6 +27,51 @@
 
 
 /**
+ * AvailableLabelsList
+ */
+export class AvailableLabelsList {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "availableLabels",
+            baseName: "availableLabels",
+            type: "Array<string>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return AvailableLabelsList.attributeTypeMap;
+    }
+
+    /**
+     * detected objects
+     */
+    public availableLabels: Array<string>;
+    
+    public constructor(init?: Partial<AvailableLabelsList>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Represents information about image in bmp format.
  */
 export class BmpProperties {
@@ -250,16 +295,6 @@ export class DicomProperties {
             type: "string",
         },        
         {
-            name: "widthTagFound",
-            baseName: "WidthTagFound",
-            type: "boolean",
-        },        
-        {
-            name: "heightTagFound",
-            baseName: "HeightTagFound",
-            type: "boolean",
-        },        
-        {
             name: "width",
             baseName: "Width",
             type: "number",
@@ -300,11 +335,6 @@ export class DicomProperties {
             type: "number",
         },        
         {
-            name: "lengthValue",
-            baseName: "LengthValue",
-            type: "number",
-        },        
-        {
             name: "isLittleEndian",
             baseName: "IsLittleEndian",
             type: "boolean",
@@ -313,11 +343,6 @@ export class DicomProperties {
             name: "offset",
             baseName: "Offset",
             type: "number",
-        },        
-        {
-            name: "dicomFound",
-            baseName: "DicomFound",
-            type: "boolean",
         }    ];
 
     /**
@@ -378,16 +403,6 @@ export class DicomProperties {
     public photoInterpretation: string;
     
     /**
-     * Gets or sets a value indicating whether width tag found.
-     */
-    public widthTagFound: boolean;
-    
-    /**
-     * Gets or sets a value indicating whether height tag found.
-     */
-    public heightTagFound: boolean;
-    
-    /**
      * Gets or sets the width.
      */
     public width: number;
@@ -428,11 +443,6 @@ export class DicomProperties {
     public numberOfFrames: number;
     
     /**
-     * Gets or sets the length of element.
-     */
-    public lengthValue: number;
-    
-    /**
      * Indicates if DICOM image has little endian byte order.
      */
     public isLittleEndian: boolean;
@@ -441,11 +451,6 @@ export class DicomProperties {
      * Gets or sets the offset.
      */
     public offset: number;
-    
-    /**
-     * Gets or sets a value indicating whether \"DICOM\" data is found.
-     */
-    public dicomFound: boolean;
     
     public constructor(init?: Partial<DicomProperties>) {
         
@@ -5172,6 +5177,7 @@ const enumsMap = {
 };
 
 const typeMap = {
+            AvailableLabelsList,
             BmpProperties,
             DetectedObject,
             DetectedObjectList,
@@ -5330,6 +5336,35 @@ export class CompareImagesRequest {
 }
 
 /**
+ * Request model for ConvertImage operation.
+ */
+export class ConvertImageRequest {
+    /**
+     * Filename of image.
+     */
+    public name: string;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+
+    /**
+     * Folder with image to process.
+     */
+    public folder: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<ConvertImageRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for ConvertTiffToFax operation.
  */
 export class ConvertTiffToFaxRequest {
@@ -5412,6 +5447,35 @@ export class CopyFolderRequest {
     public destStorageName: string;
     
     public constructor(init?: Partial<CopyFolderRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CreateConvertedImage operation.
+ */
+export class CreateConvertedImageRequest {
+    /**
+     * Input image
+     */
+    public imageData: Buffer;
+
+    /**
+     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
+     */
+    public format: string;
+
+    /**
+     * Path to updated file (if this is empty, response contains streamed image).
+     */
+    public outPath: string;
+
+    /**
+     * Your Aspose Cloud Storage name.
+     */
+    public storage: string;
+    
+    public constructor(init?: Partial<CreateConvertedImageRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -6361,6 +6425,16 @@ export class CreateObjectBoundsRequest {
     public includeScore: boolean;
 
     /**
+     * Comma-separated list of allowed labels
+     */
+    public allowedLabels: string;
+
+    /**
+     * Comma-separated list of blocked labels
+     */
+    public blockedLabels: string;
+
+    /**
      * Path to updated file (if this is empty, response contains streamed image)
      */
     public outPath: string;
@@ -6444,35 +6518,6 @@ export class CreateRotateFlippedImageRequest {
     public storage: string;
     
     public constructor(init?: Partial<CreateRotateFlippedImageRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for CreateSavedImageAs operation.
- */
-export class CreateSavedImageAsRequest {
-    /**
-     * Input image
-     */
-    public imageData: Buffer;
-
-    /**
-     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-     */
-    public format: string;
-
-    /**
-     * Path to updated file (if this is empty, response contains streamed image).
-     */
-    public outPath: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<CreateSavedImageAsRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -6569,6 +6614,16 @@ export class CreateVisualObjectBoundsRequest {
      * Draw detected objects scores
      */
     public includeScore: boolean;
+
+    /**
+     * Comma-separated list of allowed labels
+     */
+    public allowedLabels: string;
+
+    /**
+     * Comma-separated list of blocked labels
+     */
+    public blockedLabels: string;
 
     /**
      * Bounds, labels, and scores text color
@@ -7075,6 +7130,20 @@ export class FindSimilarImagesRequest {
 }
 
 /**
+ * Request model for GetAvailableLabels operation.
+ */
+export class GetAvailableLabelsRequest {
+    /**
+     * Object detection method
+     */
+    public method: string;
+    
+    public constructor(init?: Partial<GetAvailableLabelsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for GetDiscUsage operation.
  */
 export class GetDiscUsageRequest {
@@ -7405,6 +7474,16 @@ export class GetObjectBoundsRequest {
     public includeScore: boolean;
 
     /**
+     * Comma-separated list of allowed labels
+     */
+    public allowedLabels: string;
+
+    /**
+     * Comma-separated list of blocked labels
+     */
+    public blockedLabels: string;
+
+    /**
      * Folder
      */
     public folder: string;
@@ -7476,6 +7555,16 @@ export class GetVisualObjectBoundsRequest {
      * Draw detected objects scores
      */
     public includeScore: boolean;
+
+    /**
+     * Comma-separated list of allowed labels
+     */
+    public allowedLabels: string;
+
+    /**
+     * Comma-separated list of blocked labels
+     */
+    public blockedLabels: string;
 
     /**
      * Bounds, labels, and scores text color
@@ -8197,35 +8286,6 @@ export class RotateFlipImageRequest {
     public storage: string;
     
     public constructor(init?: Partial<RotateFlipImageRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for SaveImageAs operation.
- */
-export class SaveImageAsRequest {
-    /**
-     * Filename of image.
-     */
-    public name: string;
-
-    /**
-     * Resulting image format. Please, refer to https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats#SupportedFileFormats-CommonOperationsFormatSupportMap for possible use-cases.
-     */
-    public format: string;
-
-    /**
-     * Folder with image to process.
-     */
-    public folder: string;
-
-    /**
-     * Your Aspose Cloud Storage name.
-     */
-    public storage: string;
-    
-    public constructor(init?: Partial<SaveImageAsRequest>) {        
         Object.assign(this, init);
     } 
 }
