@@ -28,7 +28,10 @@
 import * as fs from "fs";
 import * as path from "path";
 import {ImagingBase} from "./imaging-base";
-import {CreateSavedImageAsRequest, ImagingApi, SaveImageAsRequest} from "@asposecloud/aspose-imaging-cloud";
+import {
+    ConvertImageRequest, CreateConvertedImageRequest,
+    ImagingApi,
+} from "@asposecloud/aspose-imaging-cloud";
 
 /**
  * Export image example.
@@ -60,11 +63,11 @@ export class ExportImage extends ImagingBase {
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // Cloud Storage name
 
-        const request = new SaveImageAsRequest({name: this.SampleImageFileName, format, folder, storage});
+        const request = new ConvertImageRequest({name: this.SampleImageFileName, format, folder, storage});
 
         console.log(`Call SaveImageAs with params: format: ${format}`);
 
-        const updatedImage = await this.ImagingApi.saveImageAs(request);
+        const updatedImage = await this.ImagingApi.convertImage(request);
         await this.SaveUpdatedSampleImageToOutput(updatedImage, false, format);
 
         console.log();
@@ -84,11 +87,11 @@ export class ExportImage extends ImagingBase {
         const folder = this.CloudPath; // Input file is saved at the Examples folder in the storage
         const storage = undefined; // Cloud Storage name
 
-        const request = new SaveImageAsRequest({name: this.SampleImageFileName, format, folder, storage});
+        const request = new ConvertImageRequest({name: this.SampleImageFileName, format, folder, storage});
 
         console.log(`Call SaveImageAs with params: format: ${format}`);
 
-        const updatedImage = await this.ImagingApi.saveImageAs(request);
+        const updatedImage = await this.ImagingApi.convertImage(request);
         await this.UploadImageToCloud(this.GetModifiedSampleImageFileName(false, format), updatedImage);
 
         console.log();
@@ -107,11 +110,11 @@ export class ExportImage extends ImagingBase {
         const storage = undefined; // Cloud Storage name
 
         const inputStream = fs.readFileSync(path.resolve(ImagingBase.ExampleImagesFolder, this.SampleImageFileName));
-        const request = new CreateSavedImageAsRequest({imageData: inputStream, format, outPath, storage});
+        const request = new CreateConvertedImageRequest({imageData: inputStream, format, outPath, storage});
 
         console.log(`Call CreateSavedImageAs with params: format: ${format}`);
 
-        const updatedImage = await this.ImagingApi.createSavedImageAs(request);
+        const updatedImage = await this.ImagingApi.createConvertedImage(request);
         await this.SaveUpdatedSampleImageToOutput(updatedImage, true, format);
 
         console.log();

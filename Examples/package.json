@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@asposecloud/aspose-imaging-cloud": "20.5.0",
+    "@asposecloud/aspose-imaging-cloud": "20.6.0",
     "typescript": "3.7.4",
     "ts-node": "7.0.1",
     "ts-node-register": "1.0.0"
