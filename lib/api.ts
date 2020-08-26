@@ -2651,7 +2651,7 @@ export class ImagingApi {
     }
 
     /**
-     * Detects objects bounds and draw them on the original image
+     * Gets available labels for selected object detection method.
      * @param requestObj contains request parameters
      */
     public async getAvailableLabels(requestObj: model.GetAvailableLabelsRequest): Promise<model.AvailableLabelsList> {

@@ -1226,7 +1226,7 @@ Name | Type | Description  | Notes
 ## **getAvailableLabels**
 > getAvailableLabels(method)
 
-Detects objects bounds and draw them on the original image
+Gets available labels for selected object detection method.
 
 ### Parameters
 Name | Type | Description  | Notes
