@@ -742,16 +742,6 @@ export class EpsProperties {
          */
         type: string}> = [
         {
-            name: "width",
-            baseName: "Width",
-            type: "number",
-        },        
-        {
-            name: "height",
-            baseName: "Height",
-            type: "number",
-        },        
-        {
             name: "boundingBoxString",
             baseName: "BoundingBoxString",
             type: "string",
@@ -784,16 +774,6 @@ export class EpsProperties {
         return EpsProperties.attributeTypeMap;
     }
 
-    /**
-     * Gets the width.
-     */
-    public width: number;
-    
-    /**
-     * Gets the height.
-     */
-    public height: number;
-    
     /**
      * Gets the BoundingBox.
      */
@@ -2457,8 +2437,8 @@ export class ImagingResponse {
             type: "SvgProperties",
         },        
         {
-            name: "espProperties",
-            baseName: "EspProperties",
+            name: "epsProperties",
+            baseName: "EpsProperties",
             type: "EpsProperties",
         },        
         {
@@ -2565,9 +2545,9 @@ export class ImagingResponse {
     public svgProperties: SvgProperties;
     
     /**
-     * Gets or sets the ESP properties.
+     * Gets or sets the EPS properties.
      */
-    public espProperties: EpsProperties;
+    public epsProperties: EpsProperties;
     
     /**
      * Gets or sets the horizontal resolution of an image.
