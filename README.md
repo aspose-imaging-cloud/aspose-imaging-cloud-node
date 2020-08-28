@@ -81,7 +81,7 @@ Please, add the following [nmp package](https://www.npmjs.com/package/@asposeclo
 ```json
 {
   "dependencies": {
-    "@asposecloud/aspose-imaging-cloud": "^20.7.0"
+    "@asposecloud/aspose-imaging-cloud": "^20.8.0"
   }
 }
 ```

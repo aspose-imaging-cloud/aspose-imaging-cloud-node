@@ -723,6 +723,88 @@ export class DngProperties {
     }        
 }
 
+export class EpsProperties {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{
+        /**
+         * Attribute name
+         */
+        name: string, 
+        /**
+         * Attribute base name
+         */
+        baseName: string,
+        /**
+         * Attribute type
+         */
+        type: string}> = [
+        {
+            name: "boundingBoxString",
+            baseName: "BoundingBoxString",
+            type: "string",
+        },        
+        {
+            name: "creationDateString",
+            baseName: "CreationDateString",
+            type: "string",
+        },        
+        {
+            name: "creator",
+            baseName: "Creator",
+            type: "string",
+        },        
+        {
+            name: "postScriptVersion",
+            baseName: "PostScriptVersion",
+            type: "string",
+        },        
+        {
+            name: "title",
+            baseName: "Title",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return EpsProperties.attributeTypeMap;
+    }
+
+    /**
+     * Gets the BoundingBox.
+     */
+    public boundingBoxString: string;
+    
+    /**
+     * Gets the CreationDate.
+     */
+    public creationDateString: string;
+    
+    /**
+     * Gets the Creator.
+     */
+    public creator: string;
+    
+    /**
+     * Gets the PostScript version.
+     */
+    public postScriptVersion: string;
+    
+    /**
+     * Gets the Title.
+     */
+    public title: string;
+    
+    public constructor(init?: Partial<EpsProperties>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
 /**
  * The error details
  */
@@ -2355,6 +2437,11 @@ export class ImagingResponse {
             type: "SvgProperties",
         },        
         {
+            name: "epsProperties",
+            baseName: "EpsProperties",
+            type: "EpsProperties",
+        },        
+        {
             name: "horizontalResolution",
             baseName: "HorizontalResolution",
             type: "number",
@@ -2456,6 +2543,11 @@ export class ImagingResponse {
      * Gets or sets the SVG properties.
      */
     public svgProperties: SvgProperties;
+    
+    /**
+     * Gets or sets the EPS properties.
+     */
+    public epsProperties: EpsProperties;
     
     /**
      * Gets or sets the horizontal resolution of an image.
@@ -5185,6 +5277,7 @@ const typeMap = {
             DiscUsage,
             DjvuProperties,
             DngProperties,
+            EpsProperties,
             ErrorDetails,
             ExifData,
             FileVersions,

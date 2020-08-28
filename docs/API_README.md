@@ -53,7 +53,7 @@ Class | Method | HTTP request | Description
 *ImagingApi* | [**findImageDuplicates**](ImagingApi.md#findImageDuplicates) | **GET** /imaging/ai/imageSearch/\{searchContextId}/findDuplicates | Find images duplicates.
 *ImagingApi* | [**findImagesByTags**](ImagingApi.md#findImagesByTags) | **POST** /imaging/ai/imageSearch/\{searchContextId}/findByTags | Find images by tags. Tags JSON string is passed as zero-indexed multipart/form-data content or as raw body stream.
 *ImagingApi* | [**findSimilarImages**](ImagingApi.md#findSimilarImages) | **GET** /imaging/ai/imageSearch/\{searchContextId}/findSimilar | Find similar images. Image data may be passed as zero-indexed multipart/form-data content or as raw body stream.
-*ImagingApi* | [**getAvailableLabels**](ImagingApi.md#getAvailableLabels) | **GET** /imaging/ai/objectdetection/availablelabels/\{method} | Detects objects bounds and draw them on the original image
+*ImagingApi* | [**getAvailableLabels**](ImagingApi.md#getAvailableLabels) | **GET** /imaging/ai/objectdetection/availablelabels/\{method} | Gets available labels for selected object detection method.
 *ImagingApi* | [**getDiscUsage**](ImagingApi.md#getDiscUsage) | **GET** /imaging/storage/disc | Get disc usage
 *ImagingApi* | [**getFilesList**](ImagingApi.md#getFilesList) | **GET** /imaging/storage/folder/\{path} | Get all files and folders within a folder
 *ImagingApi* | [**getFileVersions**](ImagingApi.md#getFileVersions) | **GET** /imaging/storage/version/\{path} | Get file versions
@@ -104,6 +104,7 @@ Class | Description
 [**DiscUsage**](DiscUsage.md) | Class for disc space information.
 [**DjvuProperties**](DjvuProperties.md) | Represents properties of djvu file.
 [**DngProperties**](DngProperties.md) | Represents information about image in DNG format.
+[**EpsProperties**](EpsProperties.md) | 
 [**Error**](Error.md) | Error
 [**ErrorDetails**](ErrorDetails.md) | The error details
 [**ExifData**](ExifData.md) | Represents common EXIF data section.
