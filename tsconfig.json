@@ -5,13 +5,13 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "suppressImplicitAnyIndexErrors": true,
-        "target": "ES6",        
+        "target": "ES5",
         "moduleResolution": "node",
         "removeComments": false,
-        "sourceMap": false,
+        "sourceMap": true,
         "noLib": false,
         "declaration": true,
-        "lib": ["es6", "scripthost", "es2017"],
+        "lib": ["es2015", "dom"],
         "outDir": "dist",
         "rootDir": "./"
     },
@@ -21,5 +21,5 @@
     "exclude": [
         "node_modules",
         "exclude"
-    ]    
+    ]
 }

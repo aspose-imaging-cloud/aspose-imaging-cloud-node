@@ -65,13 +65,16 @@
   "main": "dist/lib/api.js",
   "types": "dist/lib/api.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "dist-esm",
+    "_bundles"
   ],
   "scripts": {
     "compile": "tsc",
     "lint": "tslint lib/{,**/}*.ts test/{,**/}*.ts -t verbose --project ./tsconfig.json",
-    "test": "cross-var node --max_old_space_size=4096 ./node_modules/jest/bin/jest.js --testMatch=$ProcessedTestPattern --verbose --runInBand --no-cache --colors --ci --reporters=default --reporters=jest-junit",
-    "ci": "npm run-script compile && npm run-script test"
+    "test-node": "cross-var node --max_old_space_size=4096 ./node_modules/jest/bin/jest.js --testMatch=$ProcessedTestPattern --config=jest.node.config.js --colors --ci --reporters=default --reporters=jest-junit",
+    "test-jsdom": "cross-var node --max_old_space_size=4096 ./node_modules/jest/bin/jest.js --testMatch=$ProcessedTestPattern --config=jest.node.config.js --colors --ci --reporters=default --reporters=jest-junit",
+    "ci": "npm run-script compile && npm run-script test-node && npm run-script test-jsdom"
   },
   "jest-junit": {
     "outputDirectory": "../test-reports",
@@ -83,9 +86,10 @@
     "request-debug": "^0.2.0"
   },
   "devDependencies": {
-    "@types/node": "^12.0.10",
     "@types/jest": "^23.3.9",
     "@types/jest-each": "^0.3.2",
+    "@types/node": "^12.0.10",
+    "cross-var": "^1.1.0",
     "jest": "^23.6.0",
     "jest-each": "^23.6.0",
     "jest-junit": "^5.2.0",
@@ -93,6 +97,8 @@
     "ts-node": "^4.0.2",
     "tslint": "^5.8.0",
     "typescript": "^3.1.1",
-    "cross-var": "^1.1.0"
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "ts-loader": "^8.0.4"
   }
 }

@@ -22,10 +22,10 @@
 * SOFTWARE.
 */
 
-import request = require("request");
 import { ApiError } from "./api-error";
 import { Configuration } from "./configuration";
 import { invokeApiMethod } from "./request-helper";
+import * as request from 'request';
 
 /**
  * Authentication logic for api calls
