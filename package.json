@@ -73,7 +73,7 @@
     "compile": "tsc",
     "lint": "tslint lib/{,**/}*.ts test/{,**/}*.ts -t verbose --project ./tsconfig.json",
     "test-node": "cross-var node --max_old_space_size=4096 ./node_modules/jest/bin/jest.js --runInBand --testMatch=$ProcessedTestPattern --config=jest.node.config.js --colors --ci",
-    "test-jsdom": "cross-var node --max_old_space_size=4096 ./node_modules/jest/bin/jest.js --runInBand --testMatch=$ProcessedTestPattern --config=jest.node.config.js --colors --ci",
+    "test-jsdom": "cross-var node --max_old_space_size=4096 ./node_modules/jest/bin/jest.js --runInBand --testMatch=$ProcessedTestPattern --config=jest.jsdom.config.js --colors --ci",
     "ci": "npm run-script compile && npm run-script test-node && npm run-script test-jsdom"
   },
   "jest-junit": {
