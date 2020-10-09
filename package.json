@@ -76,10 +76,6 @@
     "test-jsdom": "cross-var node --max_old_space_size=4096 ./node_modules/jest/bin/jest.js --runInBand --testMatch=$ProcessedTestPattern --config=jest.jsdom.config.js --colors --ci",
     "ci": "npm run-script compile && npm run-script test-node && npm run-script test-jsdom"
   },
-  "jest-junit": {
-    "outputDirectory": "../test-reports",
-    "outputName": "./junit.xml"
-  },
   "dependencies": {
     "@types/request": "^2.47.0",
     "request": "^2.87.0",
