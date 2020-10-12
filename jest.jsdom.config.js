@@ -5,6 +5,9 @@ module.exports = {
     reporters: [
         'default',
         ['jest-junit', {
+            suiteName: "jsdom",
+            classNameTemplate: "jsdom.{classname}-{title}",
+            titleTemplate: "{classname}-{title}",
             outputDirectory: 'test_reports',
             outputName: 'jest-junit-jsdom.xml',
         }]
