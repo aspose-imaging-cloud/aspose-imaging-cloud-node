@@ -67,10 +67,10 @@
   "files": [
     "dist",
     "dist-esm",
-    "_bundles"
+    "dist-bundle"
   ],
   "scripts": {
-    "compile": "tsc && tsc -m es6 --outDir lib-esm && webpack --config webpack.config.js",
+    "compile": "tsc && tsc -m es6 --outDir dist-esm && webpack --config webpack.config.js",
     "lint": "tslint lib/{,**/}*.ts test/{,**/}*.ts -t verbose --project ./tsconfig.json",
     "test-node": "cross-var node --max_old_space_size=4096 ./node_modules/jest/bin/jest.js --runInBand --testMatch=$ProcessedTestPattern --config=jest.node.config.js --colors --ci",
     "test-jsdom": "cross-var node --max_old_space_size=4096 ./node_modules/jest/bin/jest.js --runInBand --testMatch=$ProcessedTestPattern --config=jest.jsdom.config.js --colors --ci",
