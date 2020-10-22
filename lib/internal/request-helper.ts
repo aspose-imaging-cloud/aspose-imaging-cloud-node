@@ -22,8 +22,8 @@
 * SOFTWARE.
 */
 
-import request = require("request");
-import requestDebug = require("request-debug");
+import * as request from "request";
+import * as requestDebug from "request-debug";
 import { ApiError } from "./api-error";
 import { Configuration } from "./configuration";
 import { ObjectSerializer } from "./object-serializer";

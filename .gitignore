@@ -6,7 +6,7 @@ Examples/Output
 typings
 .vs/
 .vscode/
-dist/
+dist*/
 examples/dist
 package-lock.json
 .swagger-codegen-ignore
