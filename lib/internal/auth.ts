@@ -72,8 +72,8 @@ export class JwtAuth implements IAuthentication {
 
     private async requestToken(configuration: Configuration): Promise<void> {
         let postData = "grant_type=client_credentials";
-        postData += "&client_id=" + configuration.appSID;
-        postData += "&client_secret=" + configuration.appKey;
+        postData += "&client_id=" + configuration.clientSecret;
+        postData += "&client_secret=" + configuration.clientId;
 
         const requestOptions: request.Options = {
             method: "POST",

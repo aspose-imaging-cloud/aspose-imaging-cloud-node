@@ -181,12 +181,12 @@ export abstract class ApiTester {
     protected async createApiInstances() {
         console.log("Trying to obtain the creds from environment variables.");
         const onPremise = process.env.OnPremise === "true";
-        let appKey = onPremise ? undefined : process.env.AppKey;
-        let appSid = onPremise ? undefined : process.env.AppSid;
+        let clientSecret = onPremise ? undefined : process.env.ClientSecret;
+        let clientId = onPremise ? undefined : process.env.ClientId;
         let baseUrl = process.env.ApiEndpoint;
         let apiVersion = process.env.ApiVersion;
 
-        if ((!onPremise && (!appKey || !appSid)) || !baseUrl || !apiVersion) {
+        if ((!onPremise && (!clientSecret || !clientId)) || !baseUrl || !apiVersion) {
             console.log("Access data isn't set completely by environment variables. Filling unset data with default values.");
         }
 
@@ -199,14 +199,14 @@ export abstract class ApiTester {
         const stats = fs.statSync(serverAccessPath);
         if (stats && stats.isFile() && stats.size > 0) {
             const accessData: any = JSON.parse(fs.readFileSync(serverAccessPath).toString());
-            if (!appKey && !onPremise) {
-                appKey = accessData.AppKey;
-                console.log("Set default App key");
+            if (!clientSecret && !onPremise) {
+                clientSecret = accessData.ClientSecret;
+                console.log("Set default Client Secret");
             }
 
-            if (!appSid && !onPremise) {
-                appSid = accessData.AppSid;
-                console.log("Set default App SID");
+            if (!clientId && !onPremise) {
+                clientId = accessData.ClientId;
+                console.log("Set default Client ID");
             }
 
             if (!baseUrl) {
@@ -214,17 +214,17 @@ export abstract class ApiTester {
                 console.log("Set default base URL");
             }
         } else if (!onPremise) {
-            throw new Error("Please, specify valid access data (AppKey, AppSid, Base URL)");
+            throw new Error("Please, specify valid access data (ClientSecret, ClientId, Base URL)");
         }
 
         console.log(`On-premise: ${onPremise}`);
-        console.log(`App key: ${appKey}`);
-        console.log(`App SID: ${appSid}`);
+        console.log(`Client Secret: ${clientSecret}`);
+        console.log(`Client ID: ${clientId}`);
         console.log(`Storage: ${this.TestStorage}`);
         console.log(`Base URL: ${baseUrl}`);
         console.log(`API version: ${apiVersion}`);
 
-        this.imagingApi = new imaging.ImagingApi(appKey, appSid, baseUrl, false, apiVersion);
+        this.imagingApi = new imaging.ImagingApi(clientSecret, clientId, baseUrl, false, apiVersion);
         this.InputTestFiles = await this.fetchInputTestFilesInfo();
         this.BasicInputTestFiles = this.InputTestFiles.filter(function(element)  { return !element.name.startsWith("multipage_"); });
         this.MultipageInputTestFiles = this.InputTestFiles.filter(function(element)  { return element.name.startsWith("multipage_"); });

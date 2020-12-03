@@ -1,9 +1,9 @@
-# Aspose.Imaging Cloud Node.js SDK
+# Aspose.Imaging Cloud JavaScript SDK
 [Aspose.Imaging Cloud](https://products.aspose.cloud/imaging) is a true [REST API](https://apireference.aspose.cloud/imaging/) that enables you to perform a wide range of image processing operations including creation, manipulation and conversion in the cloud, with zero initial costs. Our Cloud SDKs are wrappers around REST API in various programming languages, allowing you to process images in language of your choice quickly and easily, gaining all benefits of strong types and IDE highlights. 
 
-This repository contains [Aspose.Imaging Cloud Node.js SDK](https://products.aspose.cloud/imaging/nodejs) source code which is written in TypeScript. This SDK allows you to work with Aspose.Imaging Cloud REST APIs in your Node.js applications quickly and easily, with zero initial cost.
+This repository contains [Aspose.Imaging Cloud JavaScript SDK](https://products.aspose.cloud/imaging/nodejs) source code which is written in TypeScript. This SDK allows you to work with Aspose.Imaging Cloud REST APIs in your web and Node.js applications quickly and easily, with zero initial cost.
 
-To use this SDK, you will need App SID and App Key which can be looked up at [Aspose Cloud Dashboard](https://dashboard.aspose.cloud/#/apps) (free registration in Aspose Cloud is required for this).
+To use this SDK, you will need Client ID and Client Secret which can be looked up at [Aspose Cloud Dashboard](https://dashboard.aspose.cloud/#/apps) (free registration in Aspose Cloud is required for this).
 
 ## Key Features
 #### Image Formats Support
@@ -73,9 +73,17 @@ It gives you an ability to:
 Detalied official documentation can be found at the [following link](https://docs.aspose.cloud/display/imagingcloud).
 
 ## Getting Started
+
+### Web application usage
+1. **Sign Up**. Before you begin, you need to sign up for an account on our [Dashboard](https://dashboard.aspose.cloud/) and retrieve your [credentials](https://dashboard.aspose.cloud/#/apps).
+2. **Install Aspose.Imaging Cloud JavaScript SDK**.
+
+TBD
+
+### Node.js usage
 1. **Sign Up**. Before you begin, you need to sign up for an account on our [Dashboard](https://dashboard.aspose.cloud/) and retrieve your [credentials](https://dashboard.aspose.cloud/#/apps).
 2. **Minimum requirements**. This SDK requires [Node.js 6.x and higher](https://nodejs.org/download/release/).
-3. **Install Aspose.Imaging Cloud Node.js SDK**.
+3. **Install Aspose.Imaging Cloud JavaScript SDK**.
 
 Please, add the following [nmp package](https://www.npmjs.com/package/@asposecloud/aspose-imaging-cloud) to your project.json as a dependency.
 ```json
@@ -99,14 +107,11 @@ Starting from v19.7, you can choose either to use Aspose Cloud-hosted image proc
 The details about key differences and deployment process will be described on the dedicated Docker Hub page as soon as it's released.
 
 To succeed with your on-premise service usage by the SDK, you need to:
-1. Set the *appKey* and *appSID* parameters as null and use *baseUrl* parameter according to your on-premise deployment with additional API version and debug mode parameters.
+1. Set the *clientId* and *clientSecret* parameters as null and use *baseUrl* parameter according to your on-premise deployment with additional API version and debug mode parameters.
 ```ts
 const imagingApi: imaging.ImagingApi  = new imaging.ImagingApi(null, null, "yourServiceUrl");
 ```
 2. Set *storage* or *storageName* parameters for each request where they're present (mandatory!).
-
-## Dependencies
-* [Node.js 6.x and higher](https://nodejs.org/download/release/)
 
 ## Licensing
 All Aspose.Imaging Cloud SDKs, helper scripts and templates are licensed under [MIT License](LICENSE).

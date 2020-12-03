@@ -1,7 +1,7 @@
 ### Imaging - Save as: convert image from storage to another format
 ```ts
 // optional parameters are base URL, API version and debug mode
-const imagingApi = new imaging.ImagingApi("yourAppKey", "yourAppSID");
+const imagingApi = new imaging.ImagingApi("yourClientSecret", "yourClientId");
         
 try {
     // get local image
@@ -43,7 +43,7 @@ try {
 ### Imaging - Save as: convert image from stream to another format
 ```ts
 // optional parameters are base URL, API version and debug mode
-const imagingApi = new imaging.ImagingApi("yourAppKey", "yourAppSID");
+const imagingApi = new imaging.ImagingApi("yourClientSecret", "yourClientId");
         
 try {
     // get local image
@@ -80,7 +80,7 @@ try {
 
 ### Imaging.AI - Compare two images
 ```ts
-const imagingApi = new imaging.ImagingApi("yourAppKey", "yourAppSID");
+const imagingApi = new imaging.ImagingApi("yourClientSecret", "yourClientId");
  
 // create search context or use existing search context ID if search context was created earlier
 const apiResponse = await imagingApi.createImageSearch(
@@ -100,7 +100,7 @@ const similarity = response.results[0].similarity;
 
 ### Imaging.AI - Find similar images
 ```ts
-const imagingApi = new imaging.ImagingApi("yourAppKey", "yourAppSID");
+const imagingApi = new imaging.ImagingApi("yourClientSecret", "yourClientId");
  
 // create search context or use existing search context ID if search context was created earlier
 const apiResponse = await imagingApi.createImageSearch(
@@ -145,7 +145,7 @@ for (const searchResult of results.results) {
 
 ### Imaging.AI - Find duplicate images
 ```ts
-const imagingApi = new imaging.ImagingApi("yourAppKey", "yourAppSID");
+const imagingApi = new imaging.ImagingApi("yourClientSecret", "yourClientId");
  
 // create search context or use existing search context ID if search context was created earlier
 const apiResponse = await imagingApi.createImageSearch(
@@ -179,7 +179,7 @@ for (const duplicates of response.duplicates) {
 
 ### Imaging.AI - Search images by tags
 ```ts
-const imagingApi = new imaging.ImagingApi("yourAppKey", "yourAppSID");
+const imagingApi = new imaging.ImagingApi("yourClientSecret", "yourClientId");
  
 // create search context or use existing search context ID if search context was created earlier
 const apiResponse = await imagingApi.createImageSearch(
