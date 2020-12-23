@@ -61,7 +61,7 @@
     "pdf",
     "svg"  
   ],
-  "readmeFilename": "README.md",
+  "readmeFilename": "package.md",
   "main": "dist/lib/api.js",
   "types": "dist/lib/api.d.ts",
   "files": [
