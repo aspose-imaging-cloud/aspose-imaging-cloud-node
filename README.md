@@ -5,6 +5,8 @@ This repository contains [Aspose.Imaging Cloud Node.js SDK](https://products.asp
 
 To use this SDK, you will need Client ID and Client Secret which can be looked up at [Aspose Cloud Dashboard](https://dashboard.aspose.cloud/#/apps) (free registration in Aspose Cloud is required for this).
 
+The SDK also can be used as [Aspose.Imaging Cloud JavaScrip SDK](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-javascript).
+
 ## Key Features
 #### Image Formats Support
 Export the following images to various formats (generally supported ones are BMP, PSD, JPEG, TIFF, GIF, PNG, JPEG2000, WEBP and PDF):
