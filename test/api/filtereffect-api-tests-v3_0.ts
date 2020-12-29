@@ -130,7 +130,7 @@ afterAll(async () => {
 describe.each(useExtendedTests ? [".dicom", ".djvu", ".gif", ".psd", ".tiff", "webp"] : [".psd"])(
     "FilterEffectTestSuite_V3",
     (formatExtension) => {
-        test(`filterEffectpedImageTest: format - ${formatExtension}`, async () => {
+        test(`filterEffectImageTest: format - ${formatExtension.substr(1)}`, async () => {
             await testClass.filterEffectImageTest(formatExtension);
         });
 

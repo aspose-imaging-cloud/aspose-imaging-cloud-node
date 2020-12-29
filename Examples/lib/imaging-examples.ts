@@ -82,21 +82,21 @@ function ProcessArgument(args: string[], key: string, description: string, error
 function ProcessArguments(args: string[]): [string, string, string] {
     let errors: string[] = [];
 
-    const appKey: string = ProcessArgument(args, "--appKey", "app key", errors);
-    const appSid: string = ProcessArgument(args, "--appSid", "app sid", errors);
+    const clientId: string = ProcessArgument(args, "--clientId", "Client ID", errors);
+    const clientSecret: string = ProcessArgument(args, "--clientSecret", "Client Secret", errors);
     const baseUrl: string = ProcessArgument(args, "--baseUrl", "base url", errors, "https://api.aspose.cloud/");
 
     if (errors.length == 0)
-        return [appKey, appSid, baseUrl];
+        return [clientId, clientSecret, baseUrl];
 
     console.log("Failed to launch examples:" + os.EOL + errors.join(os.EOL));
     process.exit(1)
 }
 
 async function runExamples() {
-    const [appKey, appSid, baseUrl] = ProcessArguments(process.argv);
+    const [clientSecret, clientId, baseUrl] = ProcessArguments(process.argv);
 
-    const imagingApi = new ImagingApi(appKey, appSid, baseUrl);
+    const imagingApi = new ImagingApi(clientSecret, clientId, baseUrl);
 
     if (fs.existsSync(ImagingBase.OutputFolder))
         rimraf(ImagingBase.OutputFolder);

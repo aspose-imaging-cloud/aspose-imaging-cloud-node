@@ -22,8 +22,8 @@
 * SOFTWARE.
 */
 
-import request = require("request");
-import requestDebug = require("request-debug");
+import * as request from "request";
+import * as requestDebug from "request-debug";
 import { ApiError } from "./api-error";
 import { Configuration } from "./configuration";
 import { ObjectSerializer } from "./object-serializer";
@@ -80,7 +80,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "node.js sdk";
-    requestOptions.headers["x-aspose-client-version"] = "20.9.0";
+    requestOptions.headers["x-aspose-client-version"] = "20.12.0";
 
     requestOptions.timeout = 600000;
 

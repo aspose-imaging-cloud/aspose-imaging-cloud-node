@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-import { IAuthentication, JwtAuth  } from "../internal/auth";
+import { IAuthentication, JwtAuth  } from "./auth";
 const defaultBasePath = "https://api.aspose.cloud/";
 
 /**
@@ -35,14 +35,14 @@ export class Configuration {
     public authentication: IAuthentication;
 
     /**
-     * App SID.
+     * Client Secret.
      */
-    public appSID: string;
+    public clientSecret: string;
 
     /**
-     * App key.
+     * Client ID.
      */
-    public appKey: string;
+    public clientId: string;
 
     /**
      * Base Url.
@@ -65,8 +65,8 @@ export class Configuration {
      */
     public onPremise: boolean = false;
 
-    constructor(appKey: string, appSID: string, baseUrl?: string, debugMode?: boolean, apiVersion?: string) {
-        if (appKey && appSID) {
+    constructor(clientSecret: string, clientId: string, baseUrl?: string, debugMode?: boolean, apiVersion?: string) {
+        if (clientSecret && clientId) {
             this.onPremise = false;
         } else if (baseUrl) {
             this.onPremise = true;
@@ -80,8 +80,8 @@ export class Configuration {
             this.baseUrl = baseUrl;
         }
 
-        this.appSID = appSID;
-        this.appKey = appKey;
+        this.clientSecret = clientId;
+        this.clientId = clientSecret;
         this.debugMode = debugMode;
 
         if (apiVersion) {

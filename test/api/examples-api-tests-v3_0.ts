@@ -40,7 +40,7 @@ class ExamplesApiTests extends ApiTester {
      */
     public async convertFromStorageExampleTest() {
         const config = this.imagingApi.configuration;
-        const imagingApi = new imaging.ImagingApi(config.appKey, config.appSID, config.baseUrl, 
+        const imagingApi = new imaging.ImagingApi(config.clientId, config.clientSecret, config.baseUrl,
             config.debugMode, config.apiVersion);
 
         try {
@@ -89,7 +89,7 @@ class ExamplesApiTests extends ApiTester {
      */
     public async convertFromStreamExampleTest() {
         const config = this.imagingApi.configuration;
-        const imagingApi = new imaging.ImagingApi(config.appKey, config.appSID, config.baseUrl,
+        const imagingApi = new imaging.ImagingApi(config.clientId, config.clientSecret, config.baseUrl,
             config.debugMode, config.apiVersion);
 
         try {

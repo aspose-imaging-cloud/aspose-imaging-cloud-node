@@ -22,10 +22,10 @@
 * SOFTWARE.
 */
 
-import request = require("request");
 import { ApiError } from "./api-error";
 import { Configuration } from "./configuration";
 import { invokeApiMethod } from "./request-helper";
+import * as request from 'request';
 
 /**
  * Authentication logic for api calls
@@ -72,8 +72,8 @@ export class JwtAuth implements IAuthentication {
 
     private async requestToken(configuration: Configuration): Promise<void> {
         let postData = "grant_type=client_credentials";
-        postData += "&client_id=" + configuration.appSID;
-        postData += "&client_secret=" + configuration.appKey;
+        postData += "&client_id=" + configuration.clientSecret;
+        postData += "&client_secret=" + configuration.clientId;
 
         const requestOptions: request.Options = {
             method: "POST",
