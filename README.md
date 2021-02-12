@@ -74,6 +74,22 @@ import * as imaging from "@asposecloud/aspose-imaging-cloud";
 ## Quick Examples
 Please, look at [Examples](EXAMPLES.md) document for basic usage or use the [Examples](Examples) folder for more sophisticated scenarios.
 
+## Convert JPG to PNG in Node.Js
+
+```js
+	// Get your ClientId and ClientSecret from https://dashboard.aspose.cloud (free registration required).
+	const imagingApi = new ImagingApi("MY_CLIENT_SECRET", "MY_CLIENT_ID");
+
+	const request = new ConvertImageRequest({ "sample.jpg", "png", "tempFolder", "My_Storage_Name" });
+
+	imagingApi.convertImage(request).then((response) => {
+		fs.writeFile("sample.png", response.body, (err) => {
+			if (err) throw err;
+		});
+	});
+```
+
+
 #### Aspose Cloud-hosted service VS on-premise deployment (*experimental feature*)
 Starting from v19.7, you can choose either to use Aspose Cloud-hosted image processing service (the standard way) or the Docker image from Docker Hub deployed on-premise to serve the requests.
 The details about key differences and deployment process will be described on the dedicated Docker Hub page as soon as it's released.
