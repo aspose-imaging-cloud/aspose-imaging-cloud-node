@@ -1,5 +1,6 @@
-# Aspose.Imaging Cloud Node.js SDK
-[Aspose.Imaging Cloud](https://products.aspose.cloud/imaging) is a true [REST API](https://apireference.aspose.cloud/imaging/) that enables you to perform a wide range of image processing operations including creation, manipulation and conversion in the cloud, with zero initial costs. Our Cloud SDKs are wrappers around REST API in various programming languages, allowing you to process images in language of your choice quickly and easily, gaining all benefits of strong types and IDE highlights. 
+![](https://img.shields.io/badge/api-v3.0-lightgrey) ![npm](https://img.shields.io/npm/v/asposeimagingcloud) ![npm bundle size](https://img.shields.io/bundlephobia/min/asposeimagingcloud) ![node-current](https://img.shields.io/node/v/asposeimagingcloud) ![npm type definitions](https://img.shields.io/npm/types/asposeimagingcloud) [![GitHub license](https://img.shields.io/github/license/aspose-imaging-cloud/aspose-imaging-cloud-nodejs)](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-nodejs/blob/master/LICENSE)
+# Image Processing in Cloud via Node.js REST API SDK
+[Aspose.Imaging Cloud](https://products.aspose.cloud/imaging) is a true [REST API](https://apireference.aspose.cloud/imaging/) that enables you to perform a wide range of image processing operations including creation, manipulation and conversion in the cloud, with zero initial costs. Our Cloud SDKs are wrappers around REST API in various programming languages, allowing you to process images in language of your choice quickly and easily, gaining all benefits of strong types and IDE highlights.
 
 This repository contains [Aspose.Imaging Cloud Node.js SDK](https://products.aspose.cloud/imaging/nodejs) source code which is written in TypeScript. This SDK allows you to work with Aspose.Imaging Cloud REST APIs in your Node.js applications quickly and easily, with zero initial cost.
 
@@ -7,63 +8,39 @@ To use this SDK, you will need Client ID and Client Secret which can be looked u
 
 The SDK also can be used as [Aspose.Imaging Cloud JavaScript SDK](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-javascript).
 
-## Key Features
-#### Image Formats Support
-Export the following images to various formats (generally supported ones are BMP, PSD, JPEG, TIFF, GIF, PNG, JPEG2000, WEBP and PDF):
-* BMP
-* GIF
-* DJVU
-* WMF
-* EMF
-* JPEG
-* JPEG2000
-* PSD
-* TIFF
-* WEBP
-* PNG
-* DICOM
-* CDR
-* ODG
-* OTG
-* DNG
-* SVG
-* CMX
+- Fetch or update properties of cloud-hosted images.
+- Scale, flip, crop, and export an image with a single API call.
+- Resize, crop, flip, convert, and export an image to other supported formats.
+- Update image parameters of JPEG2000 & WEBP images.
+- Access and multi-frame TIFF image and extract the desired frames from it.
+- Rotate, flip, crop, resize, or fetch properties of the selected TIFF frame.
+- Merge multiple TIFF images.
 
-Process options, change and return images in the same format:
-* PSD
-* JPEG
-* TIFF
-* GIF
-* BMP
-* JPEG2000
-* WEBP
+## Read & Write Image Formats
+BMP, GIF, JPEG, JPEG2000, PSD, TIFF, WEBP, PNG, WMF, EMF, SVG
 
-Process options, change and return images in any supported export format:
-* EMF
-* WMF
+## Save Image As
+PDF, DICOM
 
-#### Supported Imaging Operations
-* Export 
-* Resize
-* Crop
-* Rotate and Flip
-* TIFF frames extraction
-* TIFF frames manipulation
-* TIFF concatenation
-* TIFF conversion to fax-friendly format
-* Retrieve & update image properties
-* Conversion to and from PSD format
+## Read Image Formats
+DJVU, DICOM, CDR, CMX, ODG, DNG, EPS
 
-#### Supported Imaging AI Operations
-* Content-based image search
-* Image duplicates search
-* Image search by custom registered tags
-* Image comparison and similarity detection
-* Image features extraction (for now, AKAZE detector is supported)
+## Enhancements in Version 20.12
 
-For the complete list of use-cases, please refer to the [format support document](https://docs.aspose.cloud/display/imagingcloud/Supported+File+Formats) to see what you can achieve!
+- Enhanced the **EPS** file format inheritance to support rotate, resize, flip, etc. operations as vector images support.
+- Improved image loading, conversion, and export features.
+- Added the JavaScript SDK.
 
-#### Storage API support
+## Enhancements in Version 20.9
+- Resumed the support of **Android SDK** and updated reference to Aspose.Imaging and Aspose.PSD.
+
+
+## Enhancements in Version 20.10
+
+- Support for additional image formats in Object Detection.
+- Support to load and convert **EPS** files to **PDF/A** format.
+
+## Storage API support
 Since version 19.4, SDK includes support of storage operations for better user experience and unification, so now there's no need to use 2 different SDKs!
 
 It gives you an ability to:
@@ -72,7 +49,7 @@ It gives you an ability to:
 * Copy and move files and folders accross separate storages in scope of a single operation
 * Check if certain file, folder or storage exists
 
-Detalied official documentation can be found at the [following link](https://docs.aspose.cloud/display/imagingcloud).
+Detalied official documentation can be found at the [following link](https://docs.aspose.cloud/imaging/).
 
 ## Getting Started
 1. **Sign Up**. Before you begin, you need to sign up for an account on our [Dashboard](https://dashboard.aspose.cloud/) and retrieve your [credentials](https://dashboard.aspose.cloud/#/apps).
@@ -91,10 +68,26 @@ Import the dependencies to your code as follows.
 ```ts
 import * as imaging from "@asposecloud/aspose-imaging-cloud";
 ```
-4. **Using the SDK**. The best way to become familiar with how to use the SDK is to read the [Developer Guide](https://docs.aspose.cloud/display/imagingcloud/Developer+Guide). The [Getting Started Guide](https://docs.aspose.cloud/display/imagingcloud/Getting+Started) will help you to become familiar with the common concepts.
+4. **Using the SDK**. The best way to become familiar with how to use the SDK is to read the [Developer Guide](https://docs.aspose.cloud/imaging/developer-guide/). The [Getting Started Guide](https://docs.aspose.cloud/imaging/getting-started/) will help you to become familiar with the common concepts.
 
 ## Quick Examples
 Please, look at [Examples](EXAMPLES.md) document for basic usage or use the [Examples](Examples) folder for more sophisticated scenarios.
+
+## Convert JPG to PNG in Node.Js
+
+```js
+	// Get your ClientId and ClientSecret from https://dashboard.aspose.cloud (free registration required).
+	const imagingApi = new ImagingApi("MY_CLIENT_SECRET", "MY_CLIENT_ID");
+
+	const request = new ConvertImageRequest({ "sample.jpg", "png", "tempFolder", "My_Storage_Name" });
+
+	imagingApi.convertImage(request).then((response) => {
+		fs.writeFile("sample.png", response.body, (err) => {
+			if (err) throw err;
+		});
+	});
+```
+
 
 #### Aspose Cloud-hosted service VS on-premise deployment (*experimental feature*)
 Starting from v19.7, you can choose either to use Aspose Cloud-hosted image processing service (the standard way) or the Docker image from Docker Hub deployed on-premise to serve the requests.
@@ -110,20 +103,11 @@ const imagingApi: imaging.ImagingApi  = new imaging.ImagingApi(null, null, "your
 ## Licensing
 All Aspose.Imaging Cloud SDKs, helper scripts and templates are licensed under [MIT License](LICENSE).
 
-## Contact Us
-Your feedback is very important to us. Please feel free to contact via
-+ [**Free Support Forum**](https://forum.aspose.cloud/c/imaging)
-+ [**Paid Support Helpdesk**](https://helpdesk.aspose.cloud/)
+## Aspose.Imaging Cloud SDKs in Popular Languages
 
-## Resources
-+ [**Web API reference**](https://apireference.aspose.cloud/imaging/)
-+ [**Website**](https://www.aspose.cloud)
-+ [**Product Home**](https://products.aspose.cloud/imaging)
-+ [**Documentation**](https://docs.aspose.cloud/display/imagingcloud/Home)
-+ [**Blog**](https://blog.aspose.cloud/category/aspose-products/aspose.imaging-cloud/)
+| .NET | Java | PHP | Python | Ruby | Node.js |Android|
+|---|---|---|---|---|---|--|
+| [GitHub](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-dotnet) | [GitHub](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-java) | [GitHub](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-php) | [GitHub](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-python) | [GitHub](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-ruby)  | [GitHub](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-node) | [GitHub](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-android) | [GitHub](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-swift)|[GitHub](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-dart) |[GitHub](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-go) |
+| [NuGet](https://www.nuget.org/packages/Aspose.Imaging-Cloud/) | [Maven](https://repository.aspose.cloud/webapp/#/artifacts/browse/tree/General/repo/com/aspose/aspose-imaging-cloud) | [Composer](https://packagist.org/packages/aspose/aspose-imaging-cloud) | [PIP](https://pypi.org/project/aspose.imaging-cloud/) | [GEM](https://rubygems.org/gems/aspose_imaging_cloud)  | [NPM](https://www.npmjs.com/package/@asposecloud/aspose-imaging-cloud) |[Maven](https://repository.aspose.cloud/webapp/#/artifacts/browse/tree/General/repo/com/aspose/aspose-imaging-cloud)|
 
-## Other languages
-We generate our SDKs in different languages so you may check if yours is available in our [repository](https://github.com/aspose-imaging-cloud). If you don't find your language in the list, feel free to request it from us, or use raw REST API requests as you can find it [here](https://products.aspose.cloud/imaging/curl).
-
-## Code generator
-The solution is updated using [code generator](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-codegen).
+[Product Page](https://products.aspose.cloud/imaging/nodejs) | [Documentation](https://docs.aspose.cloud/display/imagingcloud/Home) | [API Reference](https://apireference.aspose.cloud/imaging/) | [Code Samples](https://github.com/aspose-imaging-cloud/aspose-imaging-cloud-nodejs) | [Blog](https://blog.aspose.cloud/category/imaging/) | [Free Support](https://forum.aspose.cloud/c/imaging) | [Free Trial](https://dashboard.aspose.cloud/#/apps)
