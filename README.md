@@ -17,13 +17,13 @@ The SDK also can be used as [Aspose.Imaging Cloud JavaScript SDK](https://github
 - Merge multiple TIFF images.
 
 ## Read & Write Image Formats
-BMP, GIF, JPEG, JPEG2000, PSD, TIFF, WEBP, PNG, WMF, EMF, SVG
+BMP, GIF, JPEG, JPEG2000, PSD, TIFF, WEBP, PNG, WMF, EMF, SVG, TGA, APNG
 
 ## Save Image As
 PDF, DICOM
 
 ## Read Image Formats
-DJVU, DICOM, CDR, CMX, ODG, DNG, EPS
+DJVU, DICOM, CDR, CMX, ODG, DNG, EPS, EMZ, WMZ, SVGZ
 
 ## Enhancements in Version 20.12
 
@@ -60,7 +60,7 @@ Please, add the following [nmp package](https://www.npmjs.com/package/@asposeclo
 ```json
 {
   "dependencies": {
-    "@asposecloud/aspose-imaging-cloud": "^21.6.0"
+    "@asposecloud/aspose-imaging-cloud": "^21.11.0"
   }
 }
 ```
