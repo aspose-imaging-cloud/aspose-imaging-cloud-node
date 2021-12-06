@@ -73,7 +73,7 @@ export class LoadCustomFonts extends ImagingBase {
         console.log(`Call Convert with params: format: ${format}`);
 
         const updatedImage = await this.ImagingApi.convertImage(request);
-        await this.SaveUpdatedSampleImageToOutput(updatedImage, false, format);
+        await this.SaveUpdatedSampleImageToOutput(updatedImage, true, format);
 
         console.log();
     }
@@ -85,7 +85,7 @@ export class LoadCustomFonts extends ImagingBase {
 			  files.forEach(file => {
 				if (path.extname(file) == ".ttf"){
 					 const fontContent = fs.readFileSync(path.join(fontsFolder, file));
-					 this.UploadFileToCloud(path.resolve("Fonts", path.basename(file)), fontContent);
+					 await this.UploadFileToCloud(path.resolve("Fonts", path.basename(file)), fontContent);
 				}
 			  });
 			}
