@@ -54,7 +54,7 @@ export class LoadCustomFonts extends ImagingBase {
      * Using custom fonts for vector image conversion example.
      */
     public async UsingCustomFontsForVectorImageConversion() {
-        console.log("Export an image to another format");
+        console.log("Using custom fonts for vector image conversion");
 
         await this.UploadSampleImageToCloud();
 		
@@ -84,7 +84,7 @@ export class LoadCustomFonts extends ImagingBase {
 			if (!err){
 			  files.forEach(file => {
 				if (path.extname(file) == ".ttf"){
-					 const fontContent = fs.readFileSync(file);
+					 const fontContent = fs.readFileSync(path.join(fontsFolder, file);
 					 this.UploadFileToCloud(path.resolve("Fonts", path.basename(file)), fontContent);
 				}
 			  });

@@ -254,7 +254,7 @@ async function runExamples() {
     await objectDetection.VisualiizeDetectObjectsAndUploadToStorage();
     await objectDetection.VisualizeDetectedObjectsImageFromRequestBody();
 
-	// custom fonts
+	// Custom fonts
     const customFonts = new LoadCustomFonts(imagingApi);
     await  customFonts.UsingCustomFontsForVectorImageConversion();
 }
