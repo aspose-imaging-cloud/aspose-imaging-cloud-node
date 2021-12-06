@@ -47,7 +47,7 @@ export class LoadCustomFonts extends ImagingBase {
      */
     constructor(imagingApi: ImagingApi) {
         super(imagingApi);
-        ImagingBase.PrintHeader("Export image example");
+        ImagingBase.PrintHeader("Using custom fonts for vector image conversion");
     }
 
     /**
