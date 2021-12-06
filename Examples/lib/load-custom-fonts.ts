@@ -85,7 +85,7 @@ export class LoadCustomFonts extends ImagingBase {
 			  files.forEach(file => {
 				if (path.extname(file) == ".ttf"){
 					 const fontContent = fs.readFileSync(file);
-					 await this.UploadFileToCloud(path.resolve("Fonts", path.basename(file)), fontContent);
+					 this.UploadFileToCloud(path.resolve("Fonts", path.basename(file)), fontContent);
 				}
 			  });
 			}
@@ -102,7 +102,7 @@ export class LoadCustomFonts extends ImagingBase {
         const result = await this.ImagingApi.uploadFile(uploadFileRequest);
         console.log(result.errors.length > 0
             ? `Uploading errors count: ${result.errors.length}`
-            : `Image ${imageName} is uploaded to cloud storage`);
+            : `File ${fileName} is uploaded to cloud storage`);
     }
 
 }
