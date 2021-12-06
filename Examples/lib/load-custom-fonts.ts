@@ -80,16 +80,13 @@ export class LoadCustomFonts extends ImagingBase {
 	
 	 private async UploadFontsToCloud(){		
 	    const fontsFolder = path.resolve(ImagingBase.ExampleImagesFolder, "Fonts");
-		fs.readdir(fontsFolder, async (err, files) => {
-			if (!err){
-			  files.forEach(file => {
-				if (path.extname(file) == ".ttf"){
-					 const fontContent = fs.readFileSync(path.join(fontsFolder, file));
-					 await this.UploadFileToCloud(path.resolve("Fonts", path.basename(file)), fontContent);
-				}
-			  });
+		$files = await fs.readdir(fontsFolder);		
+		$files.forEach(file => {
+			if (path.extname(file) == ".ttf"){
+				 const fontContent = fs.readFileSync(path.join(fontsFolder, file));
+				 await this.UploadFileToCloud(path.resolve("Fonts", path.basename(file)), fontContent);
 			}
-		});
+		  });
     }
 
     /**
