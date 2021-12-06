@@ -29,6 +29,7 @@ import * as fs from "fs";
 import * as path from "path";
 import {ImagingBase} from "./imaging-base";
 import {
+	UploadFileRequest,
     ConvertImageRequest, 
     ImagingApi,
 } from "@asposecloud/aspose-imaging-cloud";
@@ -78,14 +79,16 @@ export class LoadCustomFonts extends ImagingBase {
     }
 	
 	 private async UploadFontsToCloud(){		
-	    const fontsFolder = Path.Combine(ExampleImagesFolder, "Fonts");
+	    const fontsFolder = path.resolve(ImagingBase.ExampleImagesFolder, "Fonts");
 		fs.readdir(fontsFolder, (err, files) => {
-		  files.forEach(file => {
-			if (path.extname(file) == ".ttf"){
-				 const fontContent = fs.readFileSync(file);
-				 await this.UploadFileToCloud(path.resolve("Fonts", path.basename(file)), fontContent);
+			if (!err){
+			  files.forEach(file => {
+				if (path.extname(file) == ".ttf"){
+					 const fontContent = fs.readFileSync(file);
+					 await this.UploadFileToCloud(path.resolve("Fonts", path.basename(file)), fontContent);
+				}
+			  });
 			}
-		  });
 		});
     }
 
@@ -95,7 +98,7 @@ export class LoadCustomFonts extends ImagingBase {
      * @param file The file.
      */
     private async UploadFileToCloud(fileName: string, file: Buffer) {
-        const uploadFileRequest = new UploadFileRequest({path: imageName, file: file});
+        const uploadFileRequest = new UploadFileRequest({path: fileName, file: file});
         const result = await this.ImagingApi.uploadFile(uploadFileRequest);
         console.log(result.errors.length > 0
             ? `Uploading errors count: ${result.errors.length}`
