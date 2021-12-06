@@ -84,7 +84,7 @@ export class LoadCustomFonts extends ImagingBase {
 			if (!err){
 			  files.forEach(file => {
 				if (path.extname(file) == ".ttf"){
-					 const fontContent = fs.readFileSync(path.join(fontsFolder, file);
+					 const fontContent = fs.readFileSync(path.join(fontsFolder, file));
 					 this.UploadFileToCloud(path.resolve("Fonts", path.basename(file)), fontContent);
 				}
 			  });
