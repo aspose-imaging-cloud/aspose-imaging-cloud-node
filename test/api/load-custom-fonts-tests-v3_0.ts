@@ -35,7 +35,7 @@ class LoadCustomFontsTests extends ApiTester {
     protected readonly OriginalDataFolder: string = "ImagingIntegrationTestData/UseCases";
 
     public async usingCustomFontsForVectorImageTest() {
-        let name: string = null;
+        const name: string = "image.emz";
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
         const format: string = "png";
