@@ -35,6 +35,11 @@ class LoadCustomFontsTests extends ApiTester {
     protected readonly OriginalDataFolder: string = "ImagingIntegrationTestData/UseCases";
 
     public async usingCustomFontsForVectorImageTest() {
+		/**
+		 * custom fonts should be loaded to storage to 'Fonts' folder
+         * 'Fonts' folder should be placed to the root of the cloud storage
+		 */
+		
         const name: string = "image.emz";
         const folder: string = this.TempFolder;
         const storage: string = this.TestStorage;
