@@ -47,7 +47,7 @@ class LoadCustomFontsTests extends ApiTester {
 					const request: imaging.ConvertImageRequest = new imaging.ConvertImageRequest({ name, format, 
 						folder, storage });
 					const response = await this.imagingApi.convertImage(request);
-					expect(Math.abs(response.getSize() - 11454)).toBeLessThan(100);
+					expect(Math.abs(response.length - 11454)).toBeLessThan(100);
 					
 					return response;
 				},
