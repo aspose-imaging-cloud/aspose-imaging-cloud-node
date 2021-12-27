@@ -53,6 +53,7 @@ import {CompareImages} from "./AI/compare-images";
 import {FindDuplicateImages} from "./AI/find-duplicate-images";
 import {FindSimilarImages} from "./AI/find-similar-images";
 import {ObjectDetectionImage} from "./object-detection-image";
+import {LoadCustomFonts} from "./load-custom-fonts";
 
 runExamples().catch(reason => {
     console.log(reason);
@@ -253,6 +254,9 @@ async function runExamples() {
     await objectDetection.VisualiizeDetectObjectsAndUploadToStorage();
     await objectDetection.VisualizeDetectedObjectsImageFromRequestBody();
 
+	// Custom fonts
+    const customFonts = new LoadCustomFonts(imagingApi);
+    await  customFonts.UsingCustomFontsForVectorImageConversion();
 }
 
 /**
