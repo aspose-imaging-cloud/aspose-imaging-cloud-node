@@ -85,17 +85,17 @@ TBD
 2. **Minimum requirements**. This SDK requires [Node.js 6.x and higher](https://nodejs.org/download/release/).
 3. **Install Aspose.Imaging Cloud JavaScript SDK**.
 
-Please, add the following [nmp package](https://www.npmjs.com/package/@asposecloud/aspose-imaging-cloud) to your project.json as a dependency.
+Please, add the following [nmp package](https://www.npmjs.com/package/@asposeimaging/aspose-imaging-cloud) to your project.json as a dependency.
 ```json
 {
   "dependencies": {
-    "@asposecloud/aspose-imaging-cloud": "^25.4.0"
+    "@asposeimaging/aspose-imaging-cloud": "^25.4.0"
   }
 }
 ```
 Import the dependencies to your code as follows.
 ```ts
-import * as imaging from "@asposecloud/aspose-imaging-cloud";
+import * as imaging from "@asposeimaging/aspose-imaging-cloud";
 ```
 4. **Using the SDK**. The best way to become familiar with how to use the SDK is to read the [Developer Guide](https://docs.aspose.cloud/display/imagingcloud/Developer+Guide). The [Getting Started Guide](https://docs.aspose.cloud/display/imagingcloud/Getting+Started) will help you to become familiar with the common concepts.
 
